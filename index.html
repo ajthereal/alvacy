@@ -3,8 +3,8 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-<title>Alvacy · Sehat yang muat di jadwal sibuk</title>
-<meta name="description" content="Untuk profesional sibuk 35+: cek sinyal badan gratis, tools makan sehari-hari, dan program 90 hari bersama coach.">
+<title>Alvacy · Sehat yang muat di schedule kamu</title>
+<meta name="description" content="Buat kamu yang 35+ dan super sibuk: cek sinyal badan gratis, tools makan sehari-hari, dan program 90 hari bareng coach.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Sora:wght@600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap">
@@ -70,7 +70,7 @@ a.rung:hover{transform:translateY(-2px);border-color:var(--accent)}
 .avatar{width:200px;aspect-ratio:1;border-radius:24px;background:var(--accent-soft);display:grid;place-items:center;overflow:hidden;font-family:var(--f-display);font-size:3.4rem;color:var(--accent)}
 .avatar img{width:100%;height:100%;object-fit:cover}
 .coach .copy{display:grid;gap:12px}
-.coach blockquote{margin:0;font-family:var(--f-display);font-weight:600;color:var(--head);font-size:clamp(1.15rem,2.4vw,1.4rem);line-height:1.45}
+.coach blockquote{margin:0;font-family:var(--f-body);font-weight:500;color:var(--head);font-size:clamp(1.05rem,2vw,1.2rem);line-height:1.6}
 .coach .who{font-size:.9rem;color:var(--muted)}
 @media (max-width:640px){ .coach{grid-template-columns:1fr} .avatar{width:120px;font-size:2.4rem} }
 
@@ -226,49 +226,49 @@ a.rung:hover{transform:translateY(-2px);border-color:var(--accent)}
 <script>
 const T={
  id:{
-  tagline:c=>`bersama ${c}`,navHome:'Beranda',navFree:'Gratis',navTools:'Tools',navTest:'Cek Sinyal Badan',
-  kicker:'Untuk profesional sibuk 35+',
-  h1:'Badan berubah setelah 35. <em>Bukan salah kamu.</em>',
-  lede:'Jadwal padat, makan di luar, tidur kurang. Di sini kamu mulai dari yang paling kecil: cek sinyal badan, lalu langkah yang muat di jadwal kamu.',
-  ctaTest:'Mulai Cek Sinyal Badan',ctaFree:'Lihat tools gratis',
-  m1:'Gratis',m2:'±4 menit',m3:'Indonesia & English',
+  tagline:c=>`bareng ${c}`,navHome:'Beranda',navFree:'Gratis',navTools:'Tools',navTest:'Cek Sinyal Badan',
+  kicker:'Buat kamu yang 35+ dan super sibuk',
+  h1:'Udah diet, udah nge‑gym, tapi balik lagi? <em>Itu bukan salah kamu.</em>',
+  lede:'Meeting dari pagi, client dinner, tidur kurang. Wajar kalau badan ikut berubah. Mulai dari yang simpel dulu: cek sinyal badan kamu, terus ambil langkah yang beneran muat di schedule kamu.',
+  ctaTest:'Cek sinyal badan aku',ctaFree:'Lihat tools gratis',
+  m1:'Gratis',m2:'Cuma ±4 menit',m3:'Bahasa & English',
   sigLbl:'Contoh hasil',s_food:'Pola makan',s_energy:'Energi',s_sleep:'Tidur & stres',s_move:'Gerak & otot',s_trend:'Tren badan',
-  sigFoot:'Hasilnya sinyal, bukan diagnosis. Gunanya: tahu mulai dari mana.',
-  painK:'Kedengarannya familiar?',painH:'Yang berubah bukan niat kamu. Yang berubah keadaannya.',
-  p1q:'Makan sama aja kayak dulu, kok perut nambah?',p1:'Setelah 35, massa otot cenderung turun kalau tidak dilatih, dan kebutuhan energi ikut bergeser.',
-  p2q:'Jam 3 sore udah ngantuk berat.',p2:'Sering bukan soal kurang kopi, tapi pola makan siang, gula, dan kualitas tidur.',
-  p3q:'Udah coba diet, balik lagi.',p3:'Program yang tidak muat di jadwal kerja memang susah bertahan. Itu masalah desain, bukan disiplin.',
-  notyou:'Jadi bukan salah kamu. Kamu cuma butuh cara yang dibuat untuk hidup kamu yang sekarang.',
-  freeK:'Mulai gratis',freeH:'Ambil satu langkah. Tidak perlu daftar apa-apa.',freeP:'Semua di bawah ini gratis. Mulai dari cek sinyal, atau langsung pakai tools-nya.',
+  sigFoot:'Ini sinyal, bukan diagnosis. Gunanya biar kamu tahu mulai dari mana.',
+  painK:'Relate nggak?',painH:'Niat kamu nggak berubah. Keadaannya yang beda.',
+  p1q:'Makan segini-gini aja, kok perut makin maju?',p1:'Lewat 35, otot pelan-pelan berkurang kalau nggak dilatih. Otot itu mesin pembakar kamu. Mesinnya mengecil, porsinya tetap.',
+  p2q:'Jam 3 sore udah ngantuk berat.',p2:'Biasanya bukan karena kurang kopi. Lebih sering karena makan siang, gula, dan kualitas tidur.',
+  p3q:'Udah pernah turun, terus naik lagi.',p3:'Program yang nggak cocok sama jadwal kerja memang susah dijalanin lama. Yang salah programnya, bukan disiplin kamu.',
+  notyou:'Jadi bukan salah kamu. Kamu cuma butuh cara yang dibikin buat hidup kamu yang sekarang.',
+  freeK:'Mulai gratis',freeH:'Mulai dari satu langkah kecil.',freeP:'Semuanya gratis, nggak perlu daftar. Mulai dari cek sinyal, atau langsung cobain tools-nya.',
   tagStart:'Mulai di sini',tagTool:'Tool',tagSoon:'Segera',
-  r1h:'Cek Sinyal Badan',r1p:'30 pertanyaan singkat tentang makan, energi, tidur, gerak, dan tren badan. Kamu dapat skor per area dan langkah pertama yang paling masuk akal.',r1go:'Mulai cek →',
-  r2h:'Pesan Padang lebih ringan',r2p:'Susun piringmu, lihat bon kalorinya, dan dapat kalimat siap pakai buat bilang ke uda.',
-  r3h:'Audit gula minuman',r3p:'Kopi susu, es teh, boba. Lihat gula seminggu dalam sendok teh.',
-  r4h:'Target protein',r4p:'Hitung kebutuhan protein harian dan susun per kali makan.',
+  r1h:'Cek Sinyal Badan',r1p:'30 pertanyaan singkat soal makan, energi, tidur, gerak, dan tren badan. Kamu dapat skor per area, plus langkah pertama yang paling masuk akal buat kamu.',r1go:'Mulai cek →',
+  r2h:'Makan Padang, tetap on track',r2p:'Pilih lauk kamu, lihat "bon kalori"-nya, dan dapat kalimat siap pakai buat bilang ke uda.',
+  r3h:'Audit gula minuman',r3p:'Kopi susu, es teh, boba. Lihat gula kamu seminggu dalam sendok teh. Siap-siap kaget.',
+  r4h:'Target protein',r4p:'Hitung kebutuhan protein harian kamu, terus bagi per kali makan.',
   open:'Buka →',
-  r5h:'Reset 7 hari via WhatsApp',r5p:'Satu pesan pendek per hari, satu kebiasaan kecil. Sedang disiapkan.',
-  r6h:'Panduan menu meeting',r6p:'Pilihan aman di restoran Jepang, Chinese, Western, dan warung. Sedang disiapkan.',
-  howK:'Kalau mau lebih serius',howH:'Tiga langkah, tanpa tebak-tebakan.',
-  h1t:'Cek sinyal',h1p:'Mulai dari kuis gratis. Kamu dan coach tahu area mana yang paling menahan progress.',
-  h2t:'Ukur dengan Omron',h2p:'Body fat, otot, lemak visceral, dan body age diukur pakai timbangan Omron HBF-375, supaya progress kelihatan, bukan cuma perasaan.',
-  h3t:'Program 90 hari bersama coach',h3p:'Rencana makan yang muat di jadwal kerja, cek rutin, dan teman jalan sampai kebiasaannya jadi.',
-  howFine:'Angka dari timbangan BIA (termasuk body age) adalah perkiraan. Kita pakai untuk melihat tren dari waktu ke waktu, bukan sebagai diagnosis.',
+  r5h:'Reset 7 hari via WhatsApp',r5p:'Satu pesan pendek tiap hari, satu kebiasaan kecil. Lagi disiapin.',
+  r6h:'Panduan Menu Meeting',r6p:'Mau pesan apa pas client dinner? Jepang, Chinese, Western, sampai warung. Lagi disiapin.',
+  howK:'Kalau mau serius',howH:'Tiga langkah. Nggak pakai tebak-tebakan.',
+  h1t:'Cek sinyal',h1p:'Mulai dari kuis gratis. Kamu dan coach jadi tahu area mana yang paling nahan progress kamu.',
+  h2t:'Ukur pakai Omron',h2p:'Body fat, otot, lemak visceral, dan body age diukur pakai Omron HBF-375. Ukur dulu, baru ubah. Jadi progress-nya kelihatan, bukan cuma perasaan.',
+  h3t:'Program 90 hari bareng coach',h3p:'Pola makan yang nyesuain jadwal kerja kamu, check-in rutin, dan ada yang nemenin sampai kebiasaannya jadi.',
+  howFine:'Angka dari timbangan BIA (termasuk body age) itu perkiraan. Kita pakai buat lihat tren dari waktu ke waktu, bukan buat diagnosis.',
   coachK:'Coach kamu',coachCta:'Mulai dari cek sinyal',
-  doorH:'Tertarik bantu orang lain juga?',doorP:'Beberapa klien kami akhirnya ikut jadi coach. Kalau kamu penasaran bagaimana caranya, ngobrol aja dulu. Tidak ada paksaan.',doorBtn:'Ngobrol via WhatsApp',
+  doorH:'Penasaran bantu orang lain juga?',doorP:'Beberapa klien kami akhirnya ikut jadi coach. Kalau kamu penasaran caranya, ngobrol aja dulu. No pressure.',doorBtn:'Ngobrol via WhatsApp',
   doorMsg:c=>`Halo ${c}, aku penasaran soal jadi coach di Alvacy. Boleh ngobrol?`,
-  faqH:'Yang sering ditanyakan',
-  f1q:'Apakah kuisnya benar-benar gratis?',f1a:'Ya. Untuk melihat hasil lengkap kamu isi nama dan kontak, lalu coach akan menghubungi untuk menjelaskan hasilnya. Tidak ada kewajiban beli apa pun.',
-  f2q:'Apakah ini diagnosis medis?',f2a:'Bukan. Hasilnya berupa sinyal kebiasaan untuk membantu kamu memilih langkah awal. Kalau punya kondisi medis, tetap konsultasi ke dokter.',
-  f3q:'Saya sibuk sekali. Apakah tetap bisa?',f3a:'Justru dibuat untuk itu. Fokusnya kebiasaan yang muat di jadwal kerja: makan di luar, meeting, perjalanan dinas.',
-  f4q:'Apa itu body age dari Omron?',f4a:'Perkiraan dari timbangan Omron berdasarkan metabolisme istirahat, yang dipengaruhi komposisi lemak dan otot. Berguna untuk melihat tren, bukan angka mutlak.',
-  f5q:'Data saya dipakai untuk apa?',f5a:'Hanya untuk coach kamu menghubungi dan menjelaskan hasil. Kami tidak menjual data.',
-  finH:'Mulai dari empat menit.',finP:'Tidak perlu siap dulu. Cukup tahu kondisi kamu sekarang.',
-  footer:'© Alvacy. Konten edukatif, bukan nasihat medis. Hasil tiap orang berbeda.'
+  faqH:'Yang sering ditanyain',
+  f1q:'Kuisnya beneran gratis?',f1a:'Beneran. Buat lihat hasil lengkapnya, kamu isi nama dan kontak. Nanti coach kamu hubungin buat jelasin hasilnya. Nggak ada kewajiban beli apa-apa.',
+  f2q:'Ini diagnosis medis?',f2a:'Bukan. Hasilnya cuma sinyal dari kebiasaan kamu, biar kamu tahu mulai dari mana. Kalau punya kondisi medis, tetap konsultasi ke dokter ya.',
+  f3q:'Aku sibuk banget. Masih bisa?',f3a:'Justru dibikin buat itu. Fokusnya kebiasaan yang muat di hidup kerja: makan di luar, meeting, business trip.',
+  f4q:'Body age dari Omron itu apa?',f4a:'Perkiraan dari timbangan Omron, dihitung dari metabolisme istirahat kamu. Angka ini dipengaruhi komposisi lemak dan otot. Paling berguna buat lihat tren, bukan angka mutlak.',
+  f5q:'Data aku dipakai buat apa?',f5a:'Cuma buat coach kamu hubungin dan jelasin hasilnya. Kami nggak jual data kamu.',
+  finH:'Cuma butuh 4 menit.',finP:'Nggak perlu nunggu siap dulu. Cukup tahu kondisi kamu sekarang kayak gimana.',
+  footer:'© Alvacy. Konten edukasi, bukan nasihat medis. Hasil tiap orang beda-beda.'
  },
  en:{
   tagline:c=>`with ${c}`,navHome:'Home',navFree:'Free',navTools:'Tools',navTest:'Body Signal Check',
   kicker:'For busy professionals 35+',
-  h1:'Your body changes after 35. <em>It’s not your fault.</em>',
+  h1:'Dieted, hit the gym, and it came back? <em>That’s not your fault.</em>',
   lede:'Packed schedule, eating out, short sleep. Start small here: check your body signals, then take steps that fit your calendar.',
   ctaTest:'Start the Body Signal Check',ctaFree:'See free tools',
   m1:'Free',m2:'±4 minutes',m3:'English & Indonesian',
