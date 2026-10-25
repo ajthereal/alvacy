@@ -1,12 +1,17 @@
 /* Shared site config: coaches, language, coach memory. Loaded by every page. */
 window.ALV = (function () {
-  /* Each coach gets a link: any page + #code (letters/numbers only). Photos live in /images (photo: square portrait, face: small round avatar). */
+  /* Each coach gets a link: any page + #code (letters/numbers only). Photos live in /images (photo: square portrait, face: small round avatar).
+     booking: optional appointment-booking link shown after a lead unlocks results. */
   const COACHES = {
-    aj: { name: 'Coach AJ', wa: '628170241185', pretty: '+62 817 0241 185', city: 'Jakarta', photo: 'coach-aj.jpg', face: 'coach-aj-face.jpg',
+    aj: { name: 'Coach AJ', wa: '628170241185', pretty: '+62 817 0241 185', city: 'Jakarta', photo: 'coach-aj.jpg', face: 'coach-aj-face.jpg', booking: '',
       story: { id: 'Dulu aku sibuk jalanin startup game development, punya 3 anak, dan ikutan “hamil” tiap istri hamil, sampai akhirnya kegemukan. Bareng istri, aku turun 18 kg dalam 90 hari tanpa berhenti kerja. Sekarang aku bantu profesional sibuk menemukan cara yang muat di jadwal mereka.',
                en: 'I was busy running a game development startup, raising 3 kids, and gaining “sympathy weight” every time my wife was pregnant. Together with my wife, I lost 18 kg in 90 days without stepping away from work. Now I help busy professionals find a way that fits their schedule.' } }
   };
   const DEFAULT = 'aj';
+
+  /* Meta Pixel: paste the Pixel ID from Meta Events Manager here. Empty = no tracking loads. */
+  const PIXEL_ID = '';
+
   function coachCode() {
     const h = (location.hash || '').slice(1).toLowerCase();
     if (COACHES[h]) { try { localStorage.setItem('alv-coach', h); } catch (e) {} return h; }
@@ -15,5 +20,40 @@ window.ALV = (function () {
   }
   function getLang() { try { const s = localStorage.getItem('csb-lang'); if (s === 'en' || s === 'id') return s; } catch (e) {} return 'id'; }
   function setLang(l) { try { localStorage.setItem('csb-lang', l); } catch (e) {} document.documentElement.lang = l; }
-  return { COACHES, DEFAULT, coachCode, getLang, setLang, coach: () => COACHES[coachCode()] };
+
+  /* Where did this visitor come from? A link with utm_* wins; otherwise the first outside referrer is kept. */
+  function captureSource() {
+    let stored = null;
+    try { stored = JSON.parse(localStorage.getItem('alv-src') || 'null'); } catch (e) {}
+    const q = new URLSearchParams(location.search);
+    const pick = k => (q.get(k) || '').slice(0, 100);
+    const utm = { source: pick('utm_source'), medium: pick('utm_medium'), campaign: pick('utm_campaign'), content: pick('utm_content') };
+    let next = null;
+    if (utm.source || utm.campaign) next = utm;
+    else if (q.get('fbclid')) next = { source: 'facebook/instagram', medium: 'click', campaign: '', content: '' };
+    else if (!stored) {
+      let ref = '';
+      try { const r = new URL(document.referrer); if (r.hostname && r.hostname !== location.hostname) ref = r.hostname.replace(/^www\./, ''); } catch (e) {}
+      next = { source: ref || 'langsung', medium: ref ? 'referral' : '', campaign: '', content: '' };
+    }
+    if (next) {
+      next.landing = location.pathname.replace(/^\/alvacy/, '') || '/';
+      try { localStorage.setItem('alv-src', JSON.stringify(next)); } catch (e) {}
+      return next;
+    }
+    return stored || { source: 'langsung', medium: '', campaign: '', content: '', landing: '' };
+  }
+  const SOURCE = captureSource();
+
+  /* Meta Pixel loader + a tiny track() helper that is safe to call when the Pixel is off. */
+  if (PIXEL_ID) {
+    !function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,document,'script','https://connect.facebook.net/en_US/fbevents.js');
+    fbq('init', PIXEL_ID);
+    fbq('track', 'PageView');
+  }
+  function track(event, params, eventId, custom) {
+    try { if (window.fbq) fbq(custom ? 'trackCustom' : 'track', event, params || {}, eventId ? { eventID: eventId } : undefined); } catch (e) {}
+  }
+
+  return { COACHES, DEFAULT, coachCode, getLang, setLang, coach: () => COACHES[coachCode()], source: () => SOURCE, track };
 })();

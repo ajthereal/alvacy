@@ -246,6 +246,7 @@ const UI = {
   foot:'Kuesioner ini untuk edukasi gaya hidup, bukan pengganti nasihat medis.', team:'Dikelola oleh tim coach Success Together.',
   ageK:'Sinyal umur badan', ageV:{good:'Kemungkinan sejalan dengan umur kamu, atau lebih muda',warn:'Kemungkinan lebih tua dari umur kamu',bad:'Kemungkinan jauh lebih tua dari umur kamu'},
   ageNote:'Ini perkiraan arah dari kebiasaan kamu, bukan angka. Angka pastinya diukur di assessment lengkap.',
+  bookP:'Mau lebih cepat? Pilih sendiri jadwal assessment kamu.', bookBtn:'Pilih jadwal assessment', privacyLink:'Kebijakan Privasi',
   back:'Kembali', why:'Kenapa ditanya:', next:'Lanjut', multiHint:'Boleh pilih lebih dari satu.',
   done:'selesai', left:n=>n===1?'Tinggal 1 bagian lagi.':`Tinggal ${n} bagian lagi.`, cont:'Lanjut',
   resK:'Hasil Body Age Assessment', score:'skor',
@@ -283,6 +284,7 @@ const UI = {
   foot:'This questionnaire is for lifestyle education and does not replace medical advice.', team:'Run by the Success Together coaching team.',
   ageK:'Body age signal', ageV:{good:'Likely in line with your age, or younger',warn:'Likely older than your age',bad:'Likely much older than your age'},
   ageNote:'This is a direction based on your habits, not a number. The real number is measured in the full assessment.',
+  bookP:'Want to move faster? Pick your own assessment time.', bookBtn:'Pick an assessment time', privacyLink:'Privacy Policy',
   back:'Back', why:'Why we ask:', next:'Next', multiHint:'Pick as many as apply.',
   done:'complete', left:n=>n===1?'1 section left.':`${n} sections left.`, cont:'Continue',
   resK:'Your Body Age Assessment', score:'score',
@@ -462,7 +464,7 @@ function landing(u,c){
   <h2>${u.finalH}</h2>
   <button class="btn" data-act="start">${u.cta} <span aria-hidden="true">→</span></button>
 </div></div></section>
-<footer class="foot"><div class="wrap"><span>${u.foot}</span><span>${u.team}</span></div></footer>`;
+<footer class="foot"><div class="wrap"><span>${u.foot}</span><span>${u.team} · <a href="../privacy/" style="color:inherit">${u.privacyLink}</a></span></div></footer>`;
 }
 
 function quiz(u){
@@ -555,7 +557,7 @@ function results(u,c){
   </div>`;
   if(S.unlocked){
     return `<section class="results wrap narrow">${top}${detailHTML(u,sc)}
-      <div class="next"><h3>${u.nextH(c.name)}</h3><p class="small">${u.nextP}</p></div>
+      <div class="next"><h3>${u.nextH(c.name)}</h3><p class="small">${u.nextP}</p>${c.booking?`<p class="small" style="margin-top:6px">${u.bookP}</p><a class="btn primary" style="justify-self:start;margin-top:6px" href="${esc(bookUrl(c.booking))}" target="_blank" rel="noopener" data-book>${u.bookBtn} <span aria-hidden="true">→</span></a>`:''}</div>
       <p class="disc">${u.disc}</p>
       <div><button class="btn quiet" data-act="retake">${u.retake}</button></div>
     </section>`;
@@ -579,13 +581,19 @@ function results(u,c){
             <label class="check full"><input type="checkbox" id="f-consent"${lead.consent?' checked':''}> <span>${u.consentCheck(c.name)}</span></label>
             <p class="err full" id="f-err" hidden></p>
             <button class="btn primary full" type="submit">${u.submit} <span aria-hidden="true">→</span></button>
-            <p class="small full">${u.privacy}</p>
+            <p class="small full">${u.privacy} <a href="../privacy/" target="_blank" rel="noopener">${u.privacyLink}</a></p>
           </form>
         </div>
     <p class="disc">${u.disc}</p>
   </section>`;
 }
 
+function bookUrl(base){
+  /* Calendly accepts name/email in the link, so the lead doesn't retype them. */
+  if(!/calendly\.com/.test(base)) return base;
+  const q = new URLSearchParams({name:S.lead.name||'', email:S.lead.email||''});
+  return base + (base.includes('?')?'&':'?') + q.toString();
+}
 function syncLead(){
   const v=id=>document.getElementById(id);
   if(v('f-name')) S.lead.name = v('f-name').value.trim();
@@ -618,13 +626,14 @@ function logLead(status, withContact){
   const d = {sid:SID, status, coach:coach().name, lang, total:sc.total, band,
     food:sc.food, energy:sc.energy, sleep:sc.sleep, move:sc.move, trend:sc.trend,
     age:pick(0), gender:pick(1), goal:pick(2), start:pick(3), tried:pick(4),
+    src:[ALV.source().source,ALV.source().medium].filter(Boolean).join(' / '), campaign:ALV.source().campaign, content:ALV.source().content, landing:ALV.source().landing,
     name: withContact ? S.lead.name : '', wa: withContact ? fullWa() : '', email: withContact ? S.lead.email : '', consent: withContact ? 'Ya' : '', city: withContact ? u.cities[S.lead.city] : '', mode: withContact ? u.modes[S.lead.mode] : ''};
   try{ fetch(LEADS_URL, {method:'POST', mode:'no-cors', keepalive:true, headers:{'Content-Type':'text/plain;charset=utf-8'}, body:JSON.stringify(d)}).catch(()=>{}); }catch(e){}
 }
 
 function advance(){
   const cur = Q[S.i];
-  if(S.i === Q.length-1){ S.view='results'; render(); scrollTo(0,0); logLead('Selesai kuis', false); return; }
+  if(S.i === Q.length-1){ S.view='results'; render(); scrollTo(0,0); logLead('Selesai kuis', false); ALV.track('QuizComplete', {}, null, true); return; }
   if(Q[S.i+1].s !== cur.s){
     S.interFor = cur.s; S.view='inter'; render();
     clearTimeout(timer); timer = setTimeout(()=>{ if(S.view==='inter'){ S.i++; S.view='quiz'; render(); } }, 1600);
@@ -634,11 +643,12 @@ function advance(){
 }
 
 document.addEventListener('click', e=>{
+  if(e.target.closest('[data-book]')){ ALV.track('Schedule', {}, null, false); return; }
   const lb = e.target.closest('[data-lang]');
   if(lb){ if(S.view==='results') syncLead(); setLang(lb.dataset.lang); return; }
   const b = e.target.closest('[data-act]'); if(!b) return;
   const act = b.dataset.act;
-  if(act==='start'){ S.view='quiz'; S.i=0; render(); scrollTo(0,0); }
+  if(act==='start'){ S.view='quiz'; S.i=0; render(); scrollTo(0,0); ALV.track('StartAssessment', {}, null, true); }
   else if(act==='back'){ clearTimeout(timer); if(S.i>0){ S.i--; render(); } else { S.view='landing'; render(); } }
   else if(act==='pick'){
     const v=+b.dataset.v, q=Q[S.i];
@@ -656,6 +666,7 @@ document.addEventListener('submit', e=>{
   const err = leadError(UI[lang]);
   if(err){ const er=document.getElementById('f-err'); er.textContent=err[0]; er.hidden=false; const f=document.getElementById(err[1]); if(f) f.focus(); return; }
   logLead('Lead masuk', true);
+  ALV.track('Lead', {content_name:'Body Age Assessment', value:scores().total}, SID);
   S.unlocked=true; render(); scrollTo({top:0});
 });
 document.addEventListener('change', e=>{ if(e.target.closest('.gatecard')) syncLead(); });

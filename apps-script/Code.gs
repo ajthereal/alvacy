@@ -10,6 +10,11 @@ const HEADERS = ['Timestamp','Session ID','Status','Coach','Bahasa','Nama','What
 const KEYS = [null,'sid','status','coach','lang','name','wa','email','city','mode',
   'total','band','food','energy','sleep','move','trend','age','gender','goal','start','tried','consent',null];
 
+/* Lead source lives in columns Z-AC, after column Y ("Masuk CRM", used by the CRM sync). */
+const SRC_COL = 26;
+const SRC_HEADERS = ['Sumber','Campaign','Konten iklan','Halaman masuk'];
+const SRC_KEYS = ['src','campaign','content','landing'];
+
 /* Who gets an email when a new lead arrives, by coach name shown on the site. */
 const COACH_EMAILS = { 'Coach AJ': 'aj.thereal@gmail.com' };
 const DEFAULT_EMAIL = 'aj.thereal@gmail.com';
@@ -25,6 +30,8 @@ function sheet_() {
   const sh = SpreadsheetApp.getActiveSpreadsheet().getSheets()[0];
   const first = sh.getRange(1, 1, 1, HEADERS.length).getValues()[0];
   if (first.join('|') !== HEADERS.join('|')) sh.getRange(1, 1, 1, HEADERS.length).setValues([HEADERS]);
+  const src = sh.getRange(1, SRC_COL, 1, SRC_HEADERS.length).getValues()[0];
+  if (src.join('|') !== SRC_HEADERS.join('|')) sh.getRange(1, SRC_COL, 1, SRC_HEADERS.length).setValues([SRC_HEADERS]);
   return sh;
 }
 
@@ -52,6 +59,12 @@ function doPost(e) {
       sh.getRange(r, 1, 1, n).setValues([row]);
     } else {
       sh.appendRow(row);
+      r = sh.getLastRow();
+    }
+    const srcRow = SRC_KEYS.map(k => clean_(d[k]));
+    if (srcRow.some(v => v !== '')) {
+      const curSrc = sh.getRange(r, SRC_COL, 1, SRC_KEYS.length).getValues()[0];
+      sh.getRange(r, SRC_COL, 1, SRC_KEYS.length).setValues([srcRow.map((v, i) => v === '' ? curSrc[i] : v)]);
     }
     if (d.status === 'Lead masuk') notify_(d);
     return ContentService.createTextOutput('ok');
@@ -70,6 +83,7 @@ function notify_(d) {
     'WhatsApp: +' + wa + '  ->  https://wa.me/' + wa,
     'Email: ' + d.email,
     'Kota: ' + d.city + ' | Mau: ' + d.mode,
+    'Sumber: ' + (d.src || '-') + (d.campaign ? ' | Campaign: ' + d.campaign : '') + (d.content ? ' | Iklan: ' + d.content : ''),
     '',
     'Skor total: ' + d.total + '/100 (' + d.band + ')',
     'Pola makan ' + d.food + ' | Energi ' + d.energy + ' | Tidur & stres ' + d.sleep + ' | Gerak & otot ' + d.move + ' | Tren badan ' + d.trend,
