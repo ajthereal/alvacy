@@ -64,7 +64,7 @@ function notify_(d) {
   const to = COACH_EMAILS[d.coach] || DEFAULT_EMAIL;
   const wa = String(d.wa || '').replace(/\D/g, '');
   const body = [
-    'Lead baru dari Cek Sinyal Badan',
+    'Lead baru dari Body Age Assessment',
     '',
     'Nama: ' + d.name,
     'WhatsApp: +' + wa + '  →  https://wa.me/' + wa,

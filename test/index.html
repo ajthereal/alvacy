@@ -209,7 +209,7 @@ button{font:inherit;color:inherit;cursor:pointer}
 
 
 <header class="top"><div class="wrap">
-  <a class="brand" href="../" style="color:inherit;text-decoration:none"><b id="brand-name">Body Age Assessment</b><span id="tagline"></span></a>
+  <a class="brand" href="../" style="color:inherit;text-decoration:none"><b id="brand-name">Alvacy</b><span id="tagline"></span></a>
   <div class="lang" role="group" aria-label="Language">
     <button id="l-id" data-lang="id" aria-pressed="true">ID</button>
     <button id="l-en" data-lang="en" aria-pressed="false">EN</button>
@@ -228,7 +228,7 @@ const SID = (self.crypto && crypto.randomUUID) ? crypto.randomUUID() : String(Da
 
 const UI = {
  id:{
-  tagline:c=>`bareng ${c}`,
+  tagline:c=>'Body Age Assessment',
   eyebrow:'Gratis · 3 menit · langkah pertama',
   h1:'Berapa umur badan kamu <em>sebenarnya?</em>',
   lede:'Umur di KTP belum tentu sama dengan umur badan kamu. Assessment singkat ini langkah pertama buat cari tahu, plus area mana yang paling nahan progress kamu.',
@@ -262,10 +262,10 @@ const UI = {
   nextP:'Siapin waktu sekitar 30 menit buat assessment lengkap dan bahas hasilnya.',
   disc:'Skor ini adalah perkiraan dari jawaban kamu, bukan diagnosis medis. Kalau kamu punya kondisi kesehatan atau sedang minum obat, konsultasikan dengan dokter sebelum mengubah pola makan atau olahraga.',
   retake:'Ulangi kuis',
-  m:{title:'CEK SINYAL BADAN', hi:(c,n,city)=>`Halo ${c}, aku *${n}* dari ${city}. Ini hasil cek aku:`, total:'Skor total', areas:'Skor per area', focus:'Paling perlu perhatian', profile:'Profil', age:'Usia', gender:'Gender', goal:'Goal', start:'Mulai', tried:'Pernah coba', want:'Yang aku mau', none:'-'}
+  m:{title:'BODY AGE ASSESSMENT', hi:(c,n,city)=>`Halo ${c}, aku *${n}* dari ${city}. Ini hasil cek aku:`, total:'Skor total', areas:'Skor per area', focus:'Paling perlu perhatian', profile:'Profil', age:'Usia', gender:'Gender', goal:'Goal', start:'Mulai', tried:'Pernah coba', want:'Yang aku mau', none:'-'}
  },
  en:{
-  tagline:c=>`with ${c}`,
+  tagline:c=>'Body Age Assessment',
   eyebrow:'Free · 3 minutes · your first step',
   h1:'How old is your body, <em>really?</em>',
   lede:'The age on your ID isn’t always your body’s age. This short assessment is the first step to find out, plus which area is holding your progress back most.',
@@ -299,7 +299,7 @@ const UI = {
   nextP:'Set aside about 30 minutes for the full assessment and results review.',
   disc:'This score is an estimate based on your answers, not a medical diagnosis. If you have a health condition or take medication, talk to your doctor before changing how you eat or exercise.',
   retake:'Retake the quiz',
-  m:{title:'BODY SIGNAL CHECK', hi:(c,n,city)=>`Hi ${c}, I’m *${n}* from ${city}. Here are my results:`, total:'Total score', areas:'Area scores', focus:'Needs the most attention', profile:'Profile', age:'Age', gender:'Gender', goal:'Goal', start:'Start', tried:'Tried before', want:'What I’d like', none:'-'}
+  m:{title:'BODY AGE ASSESSMENT', hi:(c,n,city)=>`Hi ${c}, I’m *${n}* from ${city}. Here are my results:`, total:'Total score', areas:'Area scores', focus:'Needs the most attention', profile:'Profile', age:'Age', gender:'Gender', goal:'Goal', start:'Start', tried:'Tried before', want:'What I’d like', none:'-'}
  }
 };
 
