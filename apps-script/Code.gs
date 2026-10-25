@@ -1,7 +1,7 @@
 /**
- * Alvacy · Cek Sinyal Badan — lead logger + coach email alert.
- * Lives in the leads Google Sheet: Extensions → Apps Script.
- * After editing: Deploy → Manage deployments → (edit) → Version: New version → Deploy.
+ * Alvacy | Cek Sinyal Badan - lead logger + coach email alert.
+ * Lives in the leads Google Sheet: Extensions -> Apps Script.
+ * After editing: Deploy -> Manage deployments -> (edit) -> Version: New version -> Deploy.
  * One row per quiz session (Session ID); later events update the same row.
  */
 const HEADERS = ['Timestamp','Session ID','Status','Coach','Bahasa','Nama','WhatsApp','Email','Kota','Mau ketemu',
@@ -67,15 +67,15 @@ function notify_(d) {
     'Lead baru dari Body Age Assessment',
     '',
     'Nama: ' + d.name,
-    'WhatsApp: +' + wa + '  →  https://wa.me/' + wa,
+    'WhatsApp: +' + wa + '  ->  https://wa.me/' + wa,
     'Email: ' + d.email,
-    'Kota: ' + d.city + ' · Mau: ' + d.mode,
+    'Kota: ' + d.city + ' | Mau: ' + d.mode,
     '',
     'Skor total: ' + d.total + '/100 (' + d.band + ')',
-    'Pola makan ' + d.food + ' · Energi ' + d.energy + ' · Tidur & stres ' + d.sleep + ' · Gerak & otot ' + d.move + ' · Tren badan ' + d.trend,
+    'Pola makan ' + d.food + ' | Energi ' + d.energy + ' | Tidur & stres ' + d.sleep + ' | Gerak & otot ' + d.move + ' | Tren badan ' + d.trend,
     '',
-    'Usia: ' + d.age + ' · Gender: ' + d.gender,
-    'Goal: ' + d.goal + ' · Mulai: ' + d.start,
+    'Usia: ' + d.age + ' | Gender: ' + d.gender,
+    'Goal: ' + d.goal + ' | Mulai: ' + d.start,
     'Pernah coba: ' + d.tried,
     '',
     'Sheet: ' + SpreadsheetApp.getActiveSpreadsheet().getUrl()
