@@ -316,7 +316,7 @@ function render(){
  const suffix=code!==ALV.DEFAULT?'#'+code:'';
  document.querySelectorAll('.js-test').forEach(a=>a.href='test/'+suffix);
  const av=document.getElementById('avatar');
- av.innerHTML=c.photo?`<img src="${c.photo}" alt="${c.name}">`:c.name.replace(/^Coach\s+/i,'').slice(0,2).toUpperCase();
+ av.innerHTML=c.photo?`<img src="images/${c.photo}" alt="${c.name}" width="200" height="200" loading="lazy">`:c.name.replace(/^Coach\s+/i,'').slice(0,2).toUpperCase();
  document.getElementById('coachStory').textContent=c.story?c.story[lang]:'';
  document.getElementById('coachWho').textContent=`${c.name} · ${c.city||''}`;
  document.getElementById('doorBtn').href=`https://wa.me/${c.wa}?text=${encodeURIComponent(t.doorMsg(c.name))}`;
