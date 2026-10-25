@@ -202,7 +202,7 @@ const COACHES = {
 };
 const DEFAULT_COACH = 'aj';
 /* Google Apps Script web app URL that writes each quiz result to the leads Google Sheet. Empty = logging off. */
-const LEADS_URL = '';
+const LEADS_URL = 'https://script.google.com/macros/s/AKfycbwQhSCqUpvqa-7rTIADFUSqfaOAs0ws7l1RY-HZju2QN3YC3C5Rd_bz1p04b7HFkb6yEw/exec';
 const SID = (self.crypto && crypto.randomUUID) ? crypto.randomUUID() : String(Date.now())+Math.random().toString(36).slice(2);
 function coachCode(){ const h=(location.hash||'').slice(1).toLowerCase(); return COACHES[h] ? h : DEFAULT_COACH; }
 
