@@ -1,35 +1,38 @@
-/* Shared look for alvacy.com pages: calm sage wellness, Fraunces display + Plus Jakarta Sans body. */
+/* Shared look for alvacy.com pages: navy + orange CTA + teal health accent; Sora headings, Plus Jakarta Sans body. */
 :root{
-  --bg:#F6F6F2; --surface:#FFFFFF; --ink:#1C2726; --muted:#5E6B69; --line:#E2E5DF;
-  --accent:#2E6B5E; --accent-ink:#FFFFFF; --accent-soft:#E4EFEA; --sand:#EFEBE2;
-  --warm:#B5702A; --warm-soft:#F6E9D7;
-  --good:#2F7D57; --warn:#A86F0E; --bad:#B4432F;
-  --good-soft:#E1F0E7; --warn-soft:#F5EBD6; --bad-soft:#F6E1DC;
-  --paper:#FFFDF8; --paper-ink:#2A2418; --paper-line:#D9D1C0;
-  --f-display:"Fraunces",Georgia,"Times New Roman",serif;
+  --bg:#F8FAFC; --surface:#FFFFFF; --ink:#0F172A; --head:#172554; --muted:#475569; --line:#E2E8F0;
+  --accent:#1E3A8A; --accent-ink:#FFFFFF; --accent-soft:#EAF0FB; --sand:#F1F5F9;
+  --cta:#F97316; --cta-ink:#172554; --hl:#EA580C;
+  --warm:#EA580C; --warm-soft:#FFEDD5;
+  --good:#0F766E; --warn:#B45309; --bad:#B91C1C;
+  --good-soft:#E3F5F2; --warn-soft:#FEF3C7; --bad-soft:#FEE2E2;
+  --paper:#FFFDF8; --paper-ink:#1E293B; --paper-line:#D6D3CC;
+  --f-display:"Sora","Plus Jakarta Sans","Segoe UI",system-ui,sans-serif;
   --f-body:"Plus Jakarta Sans","Segoe UI",system-ui,sans-serif;
   --f-mono:ui-monospace,"SFMono-Regular",Menlo,Consolas,monospace;
   --r:18px;
 }
 @media (prefers-color-scheme: dark){
   :root:not([data-theme="light"]){
-    --bg:#111716; --surface:#18201F; --ink:#E8EEEC; --muted:#9AA8A5; --line:#29332F;
-    --accent:#7CC4B0; --accent-ink:#0E1F1B; --accent-soft:#1C3430; --sand:#161D1B;
-    --warm:#E3A55E; --warm-soft:#33261A;
-    --good:#5FC491; --warn:#E2B14F; --bad:#EE8370;
-    --good-soft:#15302A; --warn-soft:#33291A; --bad-soft:#3A201B;
-    --paper:#1E2523; --paper-ink:#ECE5D5; --paper-line:#3A4440;
+    --bg:#0B1220; --surface:#121B2E; --ink:#E2E8F0; --head:#F8FAFC; --muted:#94A3B8; --line:#1F2A44;
+    --accent:#93B4FF; --accent-ink:#0B1220; --accent-soft:#18264A; --sand:#0F1828;
+    --cta:#FB923C; --cta-ink:#1A0E05; --hl:#FB923C;
+    --warm:#FB923C; --warm-soft:#3A2414;
+    --good:#2DD4BF; --warn:#FBBF24; --bad:#F87171;
+    --good-soft:#0F2E2C; --warn-soft:#3A2E12; --bad-soft:#3B1A1A;
+    --paper:#16213A; --paper-ink:#E2E8F0; --paper-line:#2B3A5C;
     color-scheme:dark;
   }
 }
 :root[data-theme="dark"]{
-  --bg:#111716; --surface:#18201F; --ink:#E8EEEC; --muted:#9AA8A5; --line:#29332F;
-  --accent:#7CC4B0; --accent-ink:#0E1F1B; --accent-soft:#1C3430; --sand:#161D1B;
-  --warm:#E3A55E; --warm-soft:#33261A;
-  --good:#5FC491; --warn:#E2B14F; --bad:#EE8370;
-  --good-soft:#15302A; --warn-soft:#33291A; --bad-soft:#3A201B;
-  --paper:#1E2523; --paper-ink:#ECE5D5; --paper-line:#3A4440;
-  color-scheme:dark;
+    --bg:#0B1220; --surface:#121B2E; --ink:#E2E8F0; --head:#F8FAFC; --muted:#94A3B8; --line:#1F2A44;
+    --accent:#93B4FF; --accent-ink:#0B1220; --accent-soft:#18264A; --sand:#0F1828;
+    --cta:#FB923C; --cta-ink:#1A0E05; --hl:#FB923C;
+    --warm:#FB923C; --warm-soft:#3A2414;
+    --good:#2DD4BF; --warn:#FBBF24; --bad:#F87171;
+    --good-soft:#0F2E2C; --warn-soft:#3A2E12; --bad-soft:#3B1A1A;
+    --paper:#16213A; --paper-ink:#E2E8F0; --paper-line:#2B3A5C;
+    color-scheme:dark;
 }
 *{box-sizing:border-box}
 html{-webkit-text-size-adjust:100%}
@@ -38,7 +41,7 @@ body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--f-body);fo
 img{max-width:100%}
 [hidden]{display:none!important}
 h1,h2,h3{margin:0;text-wrap:balance}
-h1,h2{font-family:var(--f-display);font-weight:600;letter-spacing:-.015em;line-height:1.12}
+h1,h2{font-family:var(--f-display);font-weight:700;letter-spacing:-.025em;line-height:1.12;color:var(--head)}
 h1{font-size:clamp(2.1rem,6vw,3.5rem)}
 h2{font-size:clamp(1.5rem,4vw,2.2rem)}
 h3{font-size:1.05rem;font-weight:700;line-height:1.3}
@@ -70,7 +73,7 @@ button{font:inherit;color:inherit;cursor:pointer}
 
 /* buttons */
 .btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;border:0;border-radius:14px;padding:15px 24px;font-weight:700;font-size:1rem;text-decoration:none;transition:transform .15s ease,filter .15s ease}
-.btn.primary{background:var(--accent);color:var(--accent-ink)}
+.btn.primary{background:var(--cta);color:var(--cta-ink)}
 .btn.primary:hover{filter:brightness(1.06);transform:translateY(-1px)}
 .btn.quiet{background:var(--surface);border:1px solid var(--line);color:var(--ink)}
 .btn.small{padding:10px 14px;font-size:.9rem;border-radius:12px}
