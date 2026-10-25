@@ -1,0 +1,24 @@
+<!doctype html>
+<html lang="id">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Alvacy</title>
+<meta name="robots" content="noindex">
+<style>body{margin:0;background:#F8FAFC;font-family:system-ui,sans-serif}@media (prefers-color-scheme:dark){body{background:#0B1220}}</style>
+<script>
+/* Short coach link (alvacy.com/<code>): remembers the coach, tags the visit source, then opens the homepage.
+   To add a coach link, copy this folder to /<code>/ and change CODE. */
+(function(){
+  var CODE = 'aj';
+  var q = location.search;
+  try {
+    localStorage.setItem('alv-coach', CODE);
+    if (!/utm_/.test(q)) localStorage.setItem('alv-src', JSON.stringify({source:'link /' + CODE, medium:'bio', campaign:'', content:'', landing:'/' + CODE}));
+  } catch (e) {}
+  location.replace('../' + q + '#' + CODE);
+})();
+</script>
+</head>
+<body></body>
+</html>
