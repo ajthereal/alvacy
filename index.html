@@ -137,9 +137,12 @@ button{font:inherit;color:inherit;cursor:pointer}
 .ring .val{stroke:var(--accent);transition:stroke-dashoffset 1s ease}
 .ring text{fill:var(--ink);font-family:var(--f-body);font-weight:700}
 .ring .sub{fill:var(--muted);font-size:11px;font-weight:500}
-.locked{position:relative;border-radius:24px;overflow:hidden}
+.locked{position:relative;border-radius:24px;overflow:hidden;max-height:320px}
+.locked::after{content:"";position:absolute;inset:auto 0 0;height:90px;background:linear-gradient(transparent,var(--bg))}
 .locked .behind{filter:blur(7px);opacity:.55;pointer-events:none;user-select:none}
-.locked .gate{position:absolute;inset:0;display:grid;place-items:center;padding:16px;background:color-mix(in srgb,var(--bg) 35%,transparent)}
+.locked .gate{position:absolute;inset:0;display:grid;place-items:center;padding:16px;z-index:1}
+.lockpill{display:inline-flex;align-items:center;gap:8px;background:var(--surface);border:1px solid var(--line);border-radius:999px;padding:10px 16px;font-weight:700;font-size:.9rem;box-shadow:0 10px 24px -14px rgba(20,40,36,.45)}
+.lockpill svg{color:var(--accent)}
 .detail{display:grid;gap:18px}
 .pillars{display:grid;gap:14px;background:var(--surface);border:1px solid var(--line);border-radius:var(--r);padding:clamp(18px,3vw,26px)}
 .pil{display:grid;grid-template-columns:minmax(110px,170px) 1fr auto;gap:12px;align-items:center}
@@ -153,7 +156,7 @@ button{font:inherit;color:inherit;cursor:pointer}
 .focus{display:grid;grid-template-columns:1fr 1fr;gap:14px}
 .tip{border:1px solid var(--line);border-radius:var(--r);padding:20px;display:grid;gap:8px;background:var(--surface)}
 .tip p{color:var(--muted)}
-.gatecard{width:min(100%,520px);background:var(--surface);border:1px solid var(--line);border-radius:22px;padding:clamp(20px,4vw,30px);display:grid;gap:14px;box-shadow:0 24px 48px -28px rgba(20,40,36,.45)}
+.gatecard{width:100%;background:var(--surface);border:1px solid var(--line);border-radius:22px;padding:clamp(20px,4vw,30px);display:grid;gap:14px;box-shadow:0 24px 48px -28px rgba(20,40,36,.45)}
 .gatecard .lede{font-size:.98rem}
 .form{display:grid;grid-template-columns:1fr 1fr;gap:12px}
 .field{display:grid;gap:6px;min-width:0}
@@ -179,9 +182,9 @@ button{font:inherit;color:inherit;cursor:pointer}
 @media (max-width:760px){ .steps,.focus{grid-template-columns:1fr} .areas{grid-template-columns:repeat(2,1fr)} }
 @media (max-width:520px){
   .form{grid-template-columns:1fr}
+  .locked{max-height:260px}
   .pil{grid-template-columns:1fr auto}
   .pil-bar{grid-column:1/-1;grid-row:2}
-  .locked .gate{align-items:start;padding-top:24px}
 }
 @media (prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}
 </style>
@@ -233,7 +236,7 @@ const UI = {
   resK:'Hasil Cek Sinyal Badan', score:'skor',
   gateH:'Hasil lengkap kamu sudah siap',
   gateP:c=>`Isi data kamu untuk membuka skor per area dan 2 langkah pertama. ${c} akan menghubungi kamu lewat WhatsApp untuk membahas hasilnya.`,
-  fWa:'Nomor WhatsApp', fEmail:'Email', submit:'Lihat hasil lengkap', consentCheck:c=>`Aku setuju data dan hasil kuis ini disimpan, dan ${c} boleh menghubungi aku lewat WhatsApp atau email.`, errWa:'Masukkan nomor WhatsApp yang benar.', errEmail:'Masukkan alamat email yang benar.', errConsent:'Centang persetujuan dulu ya.', privacy:'Data kamu hanya dipakai oleh coach kamu dan tidak dibagikan ke pihak lain.',
+  fWa:'Nomor WhatsApp', fEmail:'Email', submit:'Lihat hasil lengkap', lockPill:'Terkunci · isi data di bawah untuk membuka', consentCheck:c=>`Aku setuju data dan hasil kuis ini disimpan, dan ${c} boleh menghubungi aku lewat WhatsApp atau email.`, errWa:'Masukkan nomor WhatsApp yang benar.', errEmail:'Masukkan alamat email yang benar.', errConsent:'Centang persetujuan dulu ya.', privacy:'Data kamu hanya dipakai oleh coach kamu dan tidak dibagikan ke pihak lain.',
   fName:'Nama panggilan', fCity:'Kota', cities:['Jakarta','Tangerang','Bekasi','Depok','Bogor','Bandung','Kota lain'],
   fMode:'Mau bertemu bagaimana?', modes:['Ketemu langsung (body check Omron)','Online dulu (video call)'],
   send:c=>`Kirim ke WhatsApp ${c}`, errName:'Isi nama panggilan kamu dulu.',
@@ -268,7 +271,7 @@ const UI = {
   resK:'Your Body Signal Check', score:'score',
   gateH:'Your full results are ready',
   gateP:c=>`Add your details to unlock your area scores and 2 first steps. ${c} will contact you on WhatsApp to go through your results.`,
-  fWa:'WhatsApp number', fEmail:'Email', submit:'See my full results', consentCheck:c=>`I agree that my details and quiz results are saved, and that ${c} may contact me on WhatsApp or email.`, errWa:'Please enter a valid WhatsApp number.', errEmail:'Please enter a valid email address.', errConsent:'Please tick the consent box first.', privacy:'Your details are only used by your coach and are never shared with anyone else.',
+  fWa:'WhatsApp number', fEmail:'Email', submit:'See my full results', lockPill:'Locked · add your details below to unlock', consentCheck:c=>`I agree that my details and quiz results are saved, and that ${c} may contact me on WhatsApp or email.`, errWa:'Please enter a valid WhatsApp number.', errEmail:'Please enter a valid email address.', errConsent:'Please tick the consent box first.', privacy:'Your details are only used by your coach and are never shared with anyone else.',
   fName:'Your name', fCity:'City', cities:['Jakarta','Tangerang','Bekasi','Depok','Bogor','Bandung','Other city'],
   fMode:'How would you like to meet?', modes:['In person (Omron body check)','Online first (video call)'],
   send:c=>`Send to ${c} on WhatsApp`, errName:'Please add your name first.',
@@ -544,7 +547,8 @@ function results(u,c){
   return `<section class="results wrap narrow">${top}
     <div class="locked">
       <div class="behind" aria-hidden="true">${detailHTML(u,sc)}</div>
-      <div class="gate">
+      <div class="gate"><span class="lockpill">${svg('<rect x="5" y="11" width="14" height="10" rx="2"/><path d="M8 11V8a4 4 0 0 1 8 0v3"/>',18)}${u.lockPill}</span></div>
+    </div>
         <div class="gatecard">
           <h2 style="font-size:1.45rem">${u.gateH}</h2>
           <p class="lede">${u.gateP(c.name)}</p>
@@ -560,8 +564,6 @@ function results(u,c){
             <p class="small full">${u.privacy}</p>
           </form>
         </div>
-      </div>
-    </div>
     <p class="disc">${u.disc}</p>
   </section>`;
 }
