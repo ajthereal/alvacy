@@ -164,6 +164,10 @@ button{font:inherit;color:inherit;cursor:pointer}
 .radio input{accent-color:var(--accent);width:18px;height:18px}
 .full{grid-column:1/-1}
 .err{color:var(--bad);font-size:.85rem;font-weight:600}
+.phone{display:grid;grid-template-columns:auto 1fr;gap:8px}
+.phone select{width:auto}
+.check{display:flex;gap:10px;align-items:flex-start;font-size:.88rem;color:var(--muted);line-height:1.5}
+.check input{accent-color:var(--accent);width:18px;height:18px;margin-top:2px;flex:none}
 .small{font-size:.82rem;color:var(--muted)}
 .copyline{display:flex;flex-wrap:wrap;gap:8px 12px;align-items:center}
 .linkbtn{border:0;background:none;color:var(--accent);font-weight:700;padding:0;text-decoration:underline}
@@ -228,14 +232,15 @@ const UI = {
   done:'selesai', left:n=>n===1?'Tinggal 1 bagian lagi.':`Tinggal ${n} bagian lagi.`, cont:'Lanjut',
   resK:'Hasil Cek Sinyal Badan', score:'skor',
   gateH:'Hasil lengkap kamu sudah siap',
-  gateP:c=>`Skor per area dan 2 langkah pertama kamu akan terbuka setelah hasilnya dikirim ke WhatsApp ${c}.`,
+  gateP:c=>`Isi data kamu untuk membuka skor per area dan 2 langkah pertama. ${c} akan menghubungi kamu lewat WhatsApp untuk membahas hasilnya.`,
+  fWa:'Nomor WhatsApp', fEmail:'Email', submit:'Lihat hasil lengkap', consentCheck:c=>`Aku setuju data dan hasil kuis ini disimpan, dan ${c} boleh menghubungi aku lewat WhatsApp atau email.`, errWa:'Masukkan nomor WhatsApp yang benar.', errEmail:'Masukkan alamat email yang benar.', errConsent:'Centang persetujuan dulu ya.', privacy:'Data kamu hanya dipakai oleh coach kamu dan tidak dibagikan ke pihak lain.',
   fName:'Nama panggilan', fCity:'Kota', cities:['Jakarta','Tangerang','Bekasi','Depok','Bogor','Bandung','Kota lain'],
   fMode:'Mau bertemu bagaimana?', modes:['Ketemu langsung (body check Omron)','Online dulu (video call)'],
   send:c=>`Kirim ke WhatsApp ${c}`, errName:'Isi nama panggilan kamu dulu.',
   fallback:'WhatsApp tidak terbuka? Kirim manual ke', copyMsg:'salin pesan', copied:'pesan tersalin', copyFail:'tidak bisa menyalin otomatis', consent:'Dengan menekan tombol ini, nama dan hasil kuis kamu disimpan agar coach bisa menghubungi kamu.',
   focusH:'Dua area yang paling berpengaruh untuk kamu',
   chip:{good:'Kuat',warn:'Cukup',bad:'Perlu perhatian'},
-  nextH:c=>`Langkah berikutnya: ${c} akan membalas WhatsApp kamu`,
+  nextH:c=>`Terima kasih. ${c} akan menghubungi kamu lewat WhatsApp.`,
   nextP:'Siapkan waktu sekitar 30 menit untuk body check dan pembahasan hasil.',
   disc:'Skor ini adalah perkiraan dari jawaban kamu, bukan diagnosis medis. Kalau kamu punya kondisi kesehatan atau sedang minum obat, konsultasikan dengan dokter sebelum mengubah pola makan atau olahraga.',
   retake:'Ulangi kuis',
@@ -262,14 +267,15 @@ const UI = {
   done:'complete', left:n=>n===1?'1 section left.':`${n} sections left.`, cont:'Continue',
   resK:'Your Body Signal Check', score:'score',
   gateH:'Your full results are ready',
-  gateP:c=>`Your area scores and 2 first steps unlock once your results are sent to ${c} on WhatsApp.`,
+  gateP:c=>`Add your details to unlock your area scores and 2 first steps. ${c} will contact you on WhatsApp to go through your results.`,
+  fWa:'WhatsApp number', fEmail:'Email', submit:'See my full results', consentCheck:c=>`I agree that my details and quiz results are saved, and that ${c} may contact me on WhatsApp or email.`, errWa:'Please enter a valid WhatsApp number.', errEmail:'Please enter a valid email address.', errConsent:'Please tick the consent box first.', privacy:'Your details are only used by your coach and are never shared with anyone else.',
   fName:'Your name', fCity:'City', cities:['Jakarta','Tangerang','Bekasi','Depok','Bogor','Bandung','Other city'],
   fMode:'How would you like to meet?', modes:['In person (Omron body check)','Online first (video call)'],
   send:c=>`Send to ${c} on WhatsApp`, errName:'Please add your name first.',
   fallback:'WhatsApp didn’t open? Send it manually to', copyMsg:'copy message', copied:'message copied', copyFail:'couldn’t copy automatically', consent:'By tapping this button, your name and quiz results are saved so your coach can contact you.',
   focusH:'The two areas that matter most for you',
   chip:{good:'Strong',warn:'Okay',bad:'Needs attention'},
-  nextH:c=>`Next: ${c} will reply to your WhatsApp`,
+  nextH:c=>`Thank you. ${c} will contact you on WhatsApp.`,
   nextP:'Set aside about 30 minutes for the body check and results review.',
   disc:'This score is an estimate based on your answers, not a medical diagnosis. If you have a health condition or take medication, talk to your doctor before changing how you eat or exercise.',
   retake:'Retake the quiz',
@@ -374,7 +380,7 @@ const CHECK = '<path d="M5 12.5l4.5 4.5L19 7.5"/>';
 
 let lang = 'id';
 try{ const s = localStorage.getItem('csb-lang'); if(s==='en'||s==='id') lang = s; }catch(e){}
-const S = {view:'landing', i:0, a:{}, interFor:null, lead:{name:'',city:0,mode:0}, unlocked:false};
+const S = {view:'landing', i:0, a:{}, interFor:null, lead:{name:'',city:0,mode:0,cc:'62',wa:'',email:'',consent:false}, unlocked:false};
 let timer = null;
 const app = document.getElementById('app');
 const L = o => o[lang];
@@ -542,15 +548,17 @@ function results(u,c){
         <div class="gatecard">
           <h2 style="font-size:1.45rem">${u.gateH}</h2>
           <p class="lede">${u.gateP(c.name)}</p>
-          <div class="form">
-            <div class="field"><label for="f-name">${u.fName}</label><input id="f-name" autocomplete="given-name" value="${esc(lead.name)}"></div>
+          <form class="form" id="leadform" novalidate>
+            <div class="field full"><label for="f-name">${u.fName}</label><input id="f-name" autocomplete="name" value="${esc(lead.name)}"></div>
+            <div class="field full"><label for="f-wa">${u.fWa}</label><div class="phone"><select id="f-cc" aria-label="Country code">${[['62','ID +62'],['65','SG +65'],['60','MY +60']].map(x=>`<option value="${x[0]}"${lead.cc===x[0]?' selected':''}>${x[1]}</option>`).join('')}</select><input id="f-wa" type="tel" inputmode="tel" autocomplete="tel-national" placeholder="812 3456 7890" value="${esc(lead.wa)}"></div></div>
+            <div class="field full"><label for="f-email">${u.fEmail}</label><input id="f-email" type="email" inputmode="email" autocomplete="email" placeholder="nama@email.com" value="${esc(lead.email)}"></div>
             <div class="field"><label for="f-city">${u.fCity}</label><select id="f-city">${cityOpts}</select></div>
             <div class="field full"><fieldset><legend>${u.fMode}</legend>${modeOpts}</fieldset></div>
-          </div>
-          <p class="err" id="f-err" hidden>${u.errName}</p>
-          <a class="btn primary" id="wa-btn" href="${waHref()}" target="_blank" rel="noopener">${u.send(c.name)} <span aria-hidden="true">↗</span></a>
-          <p class="small">${u.consent}</p>
-          <div class="copyline small">${u.fallback} <span class="sel">${c.pretty}</span> · <button class="linkbtn" data-act="copy" id="copybtn">${u.copyMsg}</button></div>
+            <label class="check full"><input type="checkbox" id="f-consent"${lead.consent?' checked':''}> <span>${u.consentCheck(c.name)}</span></label>
+            <p class="err full" id="f-err" hidden></p>
+            <button class="btn primary full" type="submit">${u.submit} <span aria-hidden="true">→</span></button>
+            <p class="small full">${u.privacy}</p>
+          </form>
         </div>
       </div>
     </div>
@@ -558,43 +566,28 @@ function results(u,c){
   </section>`;
 }
 
-function buildMsg(){
-  const u = UI[lang], m = u.m, c = coach(), sc = scores(), lead = S.lead;
-  const band = BANDS.find(b=>sc.total>=b.min)[lang][0];
-  const pick = j => { const a=S.a[j]; if(Array.isArray(a)) return a.length? a.map(x=>L(Q[j].o[x])).join(', ') : m.none; return typeof a==='number' ? L(Q[j].o[a]) : m.none; };
-  const scored = SECTIONS.filter(s=>s.scored);
-  const weakest = [...scored].sort((a,b)=>sc[a.k]-sc[b.k]).slice(0,2);
-  return [
-    `*${m.title}*`,
-    m.hi(c.name, lead.name || '-', u.cities[lead.city]),
-    '',
-    `*${m.total}: ${sc.total}/100*`,
-    `_${band}_`,
-    '',
-    `*${m.areas}*`,
-    ...scored.map(s=>`${mark(sc[s.k])} ${L(s.n)}: ${sc[s.k]}`),
-    '',
-    `*${m.focus}*`,
-    ...weakest.map((s,i)=>`${i+1}. ${L(s.n)} (${sc[s.k]})`),
-    '',
-    `*${m.profile}*`,
-    `• ${m.age}: ${pick(0)}`,
-    `• ${m.gender}: ${pick(1)}`,
-    `• ${m.goal}: ${pick(2)}`,
-    `• ${m.start}: ${pick(3)}`,
-    `• ${m.tried}: ${pick(4)}`,
-    '',
-    `*${m.want}*`,
-    u.modes[lead.mode]
-  ].join('\n');
-}
-const waHref = () => `https://wa.me/${coach().wa}?text=${encodeURIComponent(buildMsg())}`;
 function syncLead(){
-  const n=document.getElementById('f-name'), c=document.getElementById('f-city'), md=document.querySelector('input[name="mode"]:checked');
-  if(n) S.lead.name = n.value.trim();
-  if(c) S.lead.city = +c.value;
-  if(md) S.lead.mode = +md.value;
-  const b=document.getElementById('wa-btn'); if(b) b.href = waHref();
+  const v=id=>document.getElementById(id);
+  if(v('f-name')) S.lead.name = v('f-name').value.trim();
+  if(v('f-cc')) S.lead.cc = v('f-cc').value;
+  if(v('f-wa')) S.lead.wa = v('f-wa').value.trim();
+  if(v('f-email')) S.lead.email = v('f-email').value.trim();
+  if(v('f-city')) S.lead.city = +v('f-city').value;
+  const md=document.querySelector('input[name="mode"]:checked'); if(md) S.lead.mode = +md.value;
+  if(v('f-consent')) S.lead.consent = v('f-consent').checked;
+}
+function fullWa(){
+  let d = S.lead.wa.replace(/\D/g,'');
+  if(d.startsWith(S.lead.cc) && d.length > 10) d = d.slice(S.lead.cc.length);
+  d = d.replace(/^0+/,'');
+  return (d.length>=8 && d.length<=13) ? S.lead.cc + d : '';
+}
+function leadError(u){
+  if(!S.lead.name) return [u.errName,'f-name'];
+  if(!fullWa()) return [u.errWa,'f-wa'];
+  if(!/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(S.lead.email)) return [u.errEmail,'f-email'];
+  if(!S.lead.consent) return [u.errConsent,'f-consent'];
+  return null;
 }
 
 function logLead(status, withContact){
@@ -605,7 +598,7 @@ function logLead(status, withContact){
   const d = {sid:SID, status, coach:coach().name, lang, total:sc.total, band,
     food:sc.food, energy:sc.energy, sleep:sc.sleep, move:sc.move, trend:sc.trend,
     age:pick(0), gender:pick(1), goal:pick(2), start:pick(3), tried:pick(4),
-    name: withContact ? S.lead.name : '', city: withContact ? u.cities[S.lead.city] : '', mode: withContact ? u.modes[S.lead.mode] : ''};
+    name: withContact ? S.lead.name : '', wa: withContact ? fullWa() : '', email: withContact ? S.lead.email : '', consent: withContact ? 'Ya' : '', city: withContact ? u.cities[S.lead.city] : '', mode: withContact ? u.modes[S.lead.mode] : ''};
   try{ fetch(LEADS_URL, {method:'POST', mode:'no-cors', keepalive:true, headers:{'Content-Type':'text/plain;charset=utf-8'}, body:JSON.stringify(d)}).catch(()=>{}); }catch(e){}
 }
 
@@ -623,13 +616,6 @@ function advance(){
 document.addEventListener('click', e=>{
   const lb = e.target.closest('[data-lang]');
   if(lb){ if(S.view==='results') syncLead(); setLang(lb.dataset.lang); return; }
-  if(e.target.closest('#wa-btn')){
-    syncLead();
-    if(!S.lead.name){ e.preventDefault(); const er=document.getElementById('f-err'); er.hidden=false; document.getElementById('f-name').focus(); return; }
-    logLead('Klik WhatsApp', true);
-    setTimeout(()=>{ S.unlocked=true; render(); scrollTo({top:0}); }, 300);
-    return;
-  }
   const b = e.target.closest('[data-act]'); if(!b) return;
   const act = b.dataset.act;
   if(act==='start'){ S.view='quiz'; S.i=0; render(); scrollTo(0,0); }
@@ -642,16 +628,16 @@ document.addEventListener('click', e=>{
   else if(act==='next'){ advance(); }
   else if(act==='cont'){ clearTimeout(timer); S.i++; S.view='quiz'; render(); }
   else if(act==='retake'){ S.a={}; S.i=0; S.unlocked=false; S.view='quiz'; render(); scrollTo(0,0); }
-  else if(act==='copy'){
-    syncLead();
-    const u = UI[lang];
-    if(!S.lead.name){ const er=document.getElementById('f-err'); er.hidden=false; document.getElementById('f-name').focus(); return; }
-    const ok=()=>{ logLead('Salin pesan', true); b.textContent=u.copied; setTimeout(()=>{ S.unlocked=true; render(); scrollTo({top:0}); }, 900); };
-    const fail=()=>{ b.textContent=u.copyFail; };
-    try{ navigator.clipboard.writeText(buildMsg()).then(ok,fail); }catch(err){ fail(); }
-  }
 });
-document.addEventListener('input', e=>{ if(e.target.closest('.gatecard')){ syncLead(); const er=document.getElementById('f-err'); if(er && S.lead.name) er.hidden=true; } });
+document.addEventListener('input', e=>{ if(e.target.closest('.gatecard')){ syncLead(); const er=document.getElementById('f-err'); if(er) er.hidden=true; } });
+document.addEventListener('submit', e=>{
+  if(e.target.id!=='leadform') return;
+  e.preventDefault(); syncLead();
+  const err = leadError(UI[lang]);
+  if(err){ const er=document.getElementById('f-err'); er.textContent=err[0]; er.hidden=false; const f=document.getElementById(err[1]); if(f) f.focus(); return; }
+  logLead('Lead masuk', true);
+  S.unlocked=true; render(); scrollTo({top:0});
+});
 document.addEventListener('change', e=>{ if(e.target.closest('.gatecard')) syncLead(); });
 window.addEventListener('hashchange', render);
 
