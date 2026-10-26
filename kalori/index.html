@@ -1,0 +1,502 @@
+<!doctype html>
+<html lang="id">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<!-- seo:start (written by scripts/build.py: change titles and descriptions in PAGES there) -->
+<title>Kalkulator Kalori Harian untuk Turun Berat Badan · Alvacy</title>
+<meta name="description" content="Hitung kebutuhan kalori harian, target protein, dan kapan kamu sampai berat target. Gratis, pace aman, pakai rumus Mifflin-St Jeor.">
+<link rel="canonical" href="https://alvacy.com/kalori/">
+<link rel="alternate" hreflang="id" href="https://alvacy.com/kalori/">
+<link rel="alternate" hreflang="en" href="https://alvacy.com/en/kalori/">
+<link rel="alternate" hreflang="x-default" href="https://alvacy.com/kalori/">
+<link rel="icon" href="/images/icon.svg" type="image/svg+xml">
+<link rel="icon" href="/images/icon-192.png" sizes="192x192" type="image/png">
+<link rel="apple-touch-icon" href="/images/apple-touch-icon.png">
+<meta name="theme-color" content="#1E3A8A">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Alvacy">
+<meta property="og:title" content="Kalkulator Kalori Harian untuk Turun Berat Badan · Alvacy">
+<meta property="og:description" content="Hitung kebutuhan kalori harian, target protein, dan kapan kamu sampai berat target. Gratis, pace aman, pakai rumus Mifflin-St Jeor.">
+<meta property="og:url" content="https://alvacy.com/kalori/">
+<meta property="og:image" content="https://alvacy.com/images/og-id.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:locale" content="id_ID">
+<meta property="og:locale:alternate" content="en_US">
+<meta name="twitter:card" content="summary_large_image">
+<script type="application/ld+json">
+{
+ "@context": "https://schema.org",
+ "@graph": [
+  {
+   "@type": "WebPage",
+   "url": "https://alvacy.com/kalori/",
+   "name": "Kalkulator Kalori Harian untuk Turun Berat Badan · Alvacy",
+   "description": "Hitung kebutuhan kalori harian, target protein, dan kapan kamu sampai berat target. Gratis, pace aman, pakai rumus Mifflin-St Jeor.",
+   "inLanguage": "id",
+   "isPartOf": {
+    "@id": "https://alvacy.com/#website"
+   }
+  },
+  {
+   "@type": "WebApplication",
+   "name": "Kalkulator Kalori Alvacy",
+   "url": "https://alvacy.com/kalori/",
+   "description": "Hitung kebutuhan kalori harian, target protein, dan kapan kamu sampai berat target. Gratis, pace aman, pakai rumus Mifflin-St Jeor.",
+   "applicationCategory": "HealthApplication",
+   "operatingSystem": "Any",
+   "inLanguage": "id",
+   "isAccessibleForFree": true,
+   "offers": {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "IDR"
+   }
+  },
+  {
+   "@type": "FAQPage",
+   "url": "https://alvacy.com/kalori/",
+   "inLanguage": "id",
+   "mainEntity": [
+    {
+     "@type": "Question",
+     "name": "Berapa kalori untuk turun 1 kg?",
+     "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "Patokan umumnya sekitar 7.700 kkal defisit untuk 1 kg lemak. Angka ini perkiraan. Di awal diet berat sering turun lebih cepat karena air, lalu melambat."
+     }
+    },
+    {
+     "@type": "Question",
+     "name": "Apakah harus hitung kalori tiap hari?",
+     "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "Nggak harus. Angka ini gunanya jadi patokan. Banyak orang cukup paham porsi dan pilihan makanannya, misalnya pakai Padang builder dan target protein di tools kami."
+     }
+    },
+    {
+     "@type": "Question",
+     "name": "Makan 1.200 kkal sehari aman nggak?",
+     "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "Untuk sebagian wanita dewasa, 1.200 kkal itu batas bawah yang umum dipakai. Di bawah itu susah memenuhi gizi. Kalkulator ini nggak akan menyarankan angka di bawah batas tersebut."
+     }
+    },
+    {
+     "@type": "Question",
+     "name": "Kenapa protein penting waktu diet?",
+     "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "Protein membantu menjaga otot waktu berat turun dan bikin kenyang lebih lama. Di sini kami pakai 1,6 g per kg berat target per hari."
+     }
+    },
+    {
+     "@type": "Question",
+     "name": "Siapa yang sebaiknya nggak pakai kalkulator ini?",
+     "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "Ibu hamil atau menyusui, anak di bawah 18 tahun, dan orang dengan kondisi medis seperti diabetes atau gangguan ginjal sebaiknya konsultasi ke dokter atau ahli gizi dulu."
+     }
+    }
+   ]
+  }
+ ]
+}
+</script>
+<!-- seo:end -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Sora:wght@600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap">
+<link rel="stylesheet" href="/assets/site.css">
+<style>
+/* Layout: intro, then the calculator (questions left, sticky result card right; stacked on phone with the result after the form),
+   then a short explainer, FAQ and sources for search. */
+.intro{padding-block:clamp(28px,6vw,56px) 18px;display:grid;gap:14px;max-width:760px}
+.intro h1 em{font-style:normal;color:var(--hl)}
+.calc{display:grid;grid-template-columns:minmax(0,1fr) 380px;gap:24px;align-items:start;padding-block:12px 40px}
+.side{position:sticky;top:14px;display:grid;gap:14px}
+@media (max-width:900px){ .calc{grid-template-columns:1fr} .side{position:static} }
+
+.form{background:var(--surface);border:1px solid var(--line);border-radius:22px;padding:clamp(18px,3vw,26px);display:grid;gap:22px}
+.ask{display:flex;align-items:center;gap:10px}
+.ask .n{width:26px;height:26px;border-radius:50%;background:var(--accent);color:var(--accent-ink);display:grid;place-items:center;font-size:.78rem;font-weight:800;flex:none}
+.ask h2{font-size:1.25rem}
+.grid2{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}
+@media (max-width:340px){ .grid2{grid-template-columns:1fr} }
+.numin input{min-width:0}
+.bbar{position:fixed;left:0;right:0;bottom:0;background:var(--ink);color:var(--bg);padding:10px max(16px,env(safe-area-inset-right,0px)) calc(10px + env(safe-area-inset-bottom,0px)) max(16px,env(safe-area-inset-left,0px));display:flex;align-items:center;justify-content:space-between;gap:12px;z-index:5;box-shadow:0 -6px 20px rgba(0,0,0,.18)}
+.bbar .v{font-weight:700;font-variant-numeric:tabular-nums;line-height:1.3}
+.bbar .v b{font-family:var(--f-display);font-size:1.3rem}
+.bbar .v small{opacity:.75;font-weight:500}
+.bbar button{background:var(--cta);color:var(--cta-ink);border:0;border-radius:10px;padding:9px 13px;font-weight:800;font-size:.85rem}
+@media (min-width:901px){ .bbar{display:none!important} }
+@media (max-width:900px){ body{padding-bottom:72px} }
+.field{display:grid;gap:7px;align-content:start}
+.field label,.field .lbl{font-weight:700;font-size:.86rem}
+.numin{display:flex;align-items:center;gap:8px}
+.numin input{width:110px;padding:11px 12px;border:1px solid var(--line);border-radius:12px;background:var(--bg);color:var(--ink);font:inherit;font-weight:800;font-size:1.05rem;font-variant-numeric:tabular-nums}
+.numin span{font-size:.85rem;color:var(--muted);font-weight:600}
+.seg{display:flex;flex-wrap:wrap;gap:6px}
+.seg button{border:1px solid var(--line);background:var(--bg);padding:9px 14px;border-radius:999px;font-weight:700;font-size:.85rem}
+.seg button[aria-pressed="true"]{background:var(--accent);border-color:var(--accent);color:var(--accent-ink)}
+.opts{display:grid;gap:8px}
+.opt{border:1.5px solid var(--line);background:var(--bg);border-radius:14px;padding:11px 14px;text-align:left;display:grid;grid-template-columns:minmax(0,1fr) auto;gap:2px 12px;align-items:center}
+.opt b{font-size:.92rem}
+.opt span{grid-column:1;font-size:.78rem;color:var(--muted)}
+.opt em{grid-row:1/3;grid-column:2;font-style:normal;font-size:.74rem;font-weight:800;color:var(--muted);font-variant-numeric:tabular-nums}
+.opt[aria-pressed="true"]{border-color:var(--accent);background:var(--accent-soft)}
+.opt[aria-pressed="true"] em{color:var(--accent)}
+.err{font-size:.82rem;font-weight:700;color:var(--bad);background:var(--bad-soft);border-radius:10px;padding:8px 11px}
+
+.res{background:var(--accent);color:var(--accent-ink);border-radius:22px;padding:22px;display:grid;gap:16px}
+.res .label{font-size:.7rem;letter-spacing:.1em;text-transform:uppercase;font-weight:800;opacity:.8}
+.res .big{font-family:var(--f-display);font-weight:700;font-size:3.1rem;line-height:1;letter-spacing:-.03em;font-variant-numeric:tabular-nums}
+.res .big small{font-size:1rem;font-weight:600;opacity:.8;margin-left:5px;font-family:var(--f-body);letter-spacing:0}
+.res .pair{display:grid;grid-template-columns:1fr 1fr;gap:12px;border-top:1px solid rgba(255,255,255,.18);padding-top:14px}
+.res .mid{font-family:var(--f-display);font-weight:700;font-size:1.45rem;line-height:1.15;font-variant-numeric:tabular-nums}
+.res .mid small{font-size:.8rem;font-weight:600;opacity:.8;font-family:var(--f-body);margin-left:3px}
+.res .sub{font-size:.8rem;opacity:.85}
+.res .msg{font-size:.84rem;background:rgba(255,255,255,.12);border-radius:12px;padding:10px 12px}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:20px;padding:18px;display:grid;gap:12px}
+.card h3{font-size:1rem}
+.chart svg{width:100%;height:auto;display:block}
+.chart .axis{fill:var(--muted);font-size:11px;font-family:var(--f-body)}
+.miles{list-style:none;margin:0;padding:0;display:grid;gap:6px}
+.miles li{display:flex;justify-content:space-between;gap:12px;font-size:.88rem;padding:7px 0;border-top:1px dashed var(--line)}
+.miles li:first-child{border-top:0}
+.miles b{font-variant-numeric:tabular-nums}
+.miles span{color:var(--muted);font-variant-numeric:tabular-nums;white-space:nowrap}
+.miles li.goal b{color:var(--good)}
+.actions{display:flex;gap:8px;flex-wrap:wrap}
+.note{font-size:.76rem;color:var(--muted);margin:0}
+
+.cta{background:var(--sand);border:1px solid var(--line);border-radius:24px;padding:clamp(22px,4vw,34px);display:grid;gap:12px;margin-bottom:clamp(36px,6vw,64px)}
+.cta h2{font-size:clamp(1.4rem,3.5vw,1.9rem)}
+.cta p{color:var(--muted);max-width:620px}
+.cta .row{display:flex;gap:10px;flex-wrap:wrap;margin-top:4px}
+.explain{display:grid;gap:14px;max-width:760px;padding-bottom:clamp(36px,6vw,64px)}
+.explain h2{margin-top:18px}
+.explain p,.explain li{color:var(--muted)}
+.explain ol{margin:0;padding-left:20px;display:grid;gap:6px}
+.explain code{font-family:var(--f-mono);font-size:.86em;background:var(--sand);border-radius:6px;padding:1px 6px;color:var(--ink)}
+.faq{display:grid;gap:10px;margin-top:6px}
+.faq details{background:var(--surface);border:1px solid var(--line);border-radius:16px;padding:16px 18px}
+.faq summary{font-weight:700;cursor:pointer}
+.faq details p{margin-top:10px}
+details.src{background:var(--surface);border:1px solid var(--line);border-radius:16px;padding:14px 16px;margin-top:10px}
+details.src summary{font-weight:800;cursor:pointer}
+details.src ul{margin:10px 0 0;padding-left:18px;display:grid;gap:6px;font-size:.85rem}
+.toast{position:fixed;left:50%;bottom:calc(24px + env(safe-area-inset-bottom,0px));transform:translateX(-50%);background:var(--ink);color:var(--bg);padding:9px 16px;border-radius:999px;font-weight:700;font-size:.85rem;z-index:9}
+</style>
+</head>
+<body>
+<header class="site-top"><div class="wrap">
+  <a class="logo" href="../"><b>Alvacy</b><span id="tagline"></span></a>
+  <nav class="site-nav">
+    <a href="../tools/" class="hide-sm" data-i18n="navTools">Tools gratis</a>
+    <a href="../test/" data-i18n="navTest">Body Age Assessment</a>
+    <span class="lang" role="group" aria-label="Language"><button data-lang="id" aria-pressed="true">ID</button><button data-lang="en" aria-pressed="false">EN</button></span>
+  </nav>
+</div></header>
+
+<main class="wrap">
+<section class="intro">
+  <p class="kicker" data-i18n="kicker">Kalkulator kalori · gratis</p>
+  <h1 data-i18n="h1">Turun berapa kg, <em>kapan?</em></h1>
+  <p class="lede" data-i18n="lede">Hitung jatah kalori harian kamu, target protein, dan perkiraan tanggal sampai berat target. Pace-nya aman, bukan diet ekstrem.</p>
+</section>
+
+<section class="calc" aria-label="Kalkulator">
+  <div class="form">
+    <div class="ask"><span class="n">1</span><h2 data-i18n="q1">Kenalan dulu</h2></div>
+    <div class="field"><span class="lbl" data-i18n="sexLbl">Jenis kelamin</span>
+      <div class="seg" id="sexSeg"><button data-sex="m" aria-pressed="true" data-i18n="male">Pria</button><button data-sex="f" aria-pressed="false" data-i18n="female">Wanita</button></div>
+    </div>
+    <div class="grid2">
+      <div class="field"><label for="age" data-i18n="ageLbl">Umur</label><div class="numin"><input id="age" type="number" inputmode="numeric" min="18" max="80" value="38"><span data-i18n="yr">tahun</span></div></div>
+      <div class="field"><label for="ht" data-i18n="htLbl">Tinggi badan</label><div class="numin"><input id="ht" type="number" inputmode="decimal" min="130" max="220" value="170"><span>cm</span></div></div>
+      <div class="field"><label for="wt" data-i18n="wtLbl">Berat sekarang</label><div class="numin"><input id="wt" type="number" inputmode="decimal" min="35" max="250" step="0.1" value="85"><span>kg</span></div></div>
+      <div class="field"><label for="goal" data-i18n="goalLbl">Berat target</label><div class="numin"><input id="goal" type="number" inputmode="decimal" min="35" max="250" step="0.1" value="72"><span>kg</span></div></div>
+    </div>
+
+    <div class="ask"><span class="n">2</span><h2 data-i18n="q2">Seberapa aktif kamu?</h2></div>
+    <div class="opts" id="actOpts"><button class="opt" data-act="low" aria-pressed="false"><b>Jarang gerak</b><span>Kerja duduk, jarang olahraga</span></button><button class="opt" data-act="light" aria-pressed="true"><b>Ringan</b><span>Olahraga 1–3× seminggu</span></button><button class="opt" data-act="mid" aria-pressed="false"><b>Sedang</b><span>Olahraga 3–5× seminggu</span></button><button class="opt" data-act="high" aria-pressed="false"><b>Aktif banget</b><span>Olahraga hampir tiap hari</span></button></div>
+
+    <div class="ask"><span class="n">3</span><h2 data-i18n="q3">Mau turun secepat apa?</h2></div>
+    <div class="opts" id="paceOpts"><button class="opt" data-pace="slow" aria-pressed="false"><b>Santai</b><span>Paling gampang dijalanin</span><em>0,3 kg/minggu</em></button><button class="opt" data-pace="std" aria-pressed="true"><b>Standar</b><span>Pilihan paling seimbang</span><em>0,5 kg/minggu</em></button><button class="opt" data-pace="fast" aria-pressed="false"><b>Cepat</b><span>Butuh disiplin lebih</span><em>0,8 kg/minggu</em></button></div>
+    <p class="err" id="err" hidden=""></p>
+  </div>
+
+  <div class="side">
+    <div class="res" aria-live="polite">
+      <div><div class="label" data-i18n="resLbl">Jatah kalori kamu</div><div class="big" id="rK">1.830<small>kkal/hari</small></div><div class="sub" id="rKsub">Kebutuhan kamu ±2.380 kkal, dikurangi 550 kkal</div></div>
+      <div class="pair">
+        <div><div class="label" data-i18n="protLbl">Protein</div><div class="mid" id="rP">115<small>g/hari</small></div></div>
+        <div><div class="label" data-i18n="dateLbl">Sampai target</div><div class="mid" id="rD">Apr 2027</div><div class="sub" id="rW">±26 minggu</div></div>
+      </div>
+      <div class="msg" id="rMsg">Timbang seminggu sekali di jam yang sama, lalu update berat kamu di sini. Jatah kalorinya ikut menyesuaikan.</div>
+    </div>
+    <div class="card">
+      <h3 data-i18n="chartH">Perkiraan perjalanan kamu</h3>
+      <div class="chart" id="chart"><svg viewBox="0 0 340 150" role="img" aria-label="Perkiraan perjalanan kamu">
+  <line x1="34" y1="126" x2="332" y2="126" stroke="var(--good)" stroke-dasharray="4 4"></line>
+  <polyline points="34,126 34.0,10.0 45.5,14.5 56.9,18.9 68.4,23.4 79.8,27.8 91.3,32.3 102.8,36.8 114.2,41.2 125.7,45.7 137.2,50.2 148.6,54.6 160.1,59.1 171.5,63.5 183.0,68.0 194.5,72.5 205.9,76.9 217.4,81.4 228.8,85.8 240.3,90.3 251.8,94.8 263.2,99.2 274.7,103.7 286.2,108.2 297.6,112.6 309.1,117.1 320.5,121.5 332.0,126.0 332,126" fill="var(--accent-soft)" stroke="none"></polyline>
+  <polyline points="34.0,10.0 45.5,14.5 56.9,18.9 68.4,23.4 79.8,27.8 91.3,32.3 102.8,36.8 114.2,41.2 125.7,45.7 137.2,50.2 148.6,54.6 160.1,59.1 171.5,63.5 183.0,68.0 194.5,72.5 205.9,76.9 217.4,81.4 228.8,85.8 240.3,90.3 251.8,94.8 263.2,99.2 274.7,103.7 286.2,108.2 297.6,112.6 309.1,117.1 320.5,121.5 332.0,126.0" fill="none" stroke="var(--accent)" stroke-width="3" stroke-linejoin="round" stroke-linecap="round"></polyline>
+  <circle cx="34" cy="10" r="4.5" fill="var(--accent)"></circle><circle cx="332" cy="126" r="4.5" fill="var(--good)"></circle>
+  <text class="axis" x="28" y="14" text-anchor="end">85</text>
+  <text class="axis" x="28" y="130" text-anchor="end">72</text>
+  <text class="axis" x="34" y="144">Sekarang</text>
+  <text class="axis" x="332" y="144" text-anchor="end">Apr 2027</text>
+ </svg></div>
+      <ul class="miles" id="miles"><li><b>85 kg</b><span>Sekarang</span></li><li><b>80 kg</b><span>Jan 2027</span></li><li><b>75 kg</b><span>Mar 2027</span></li><li class="goal"><b>72 kg · Target</b><span>Apr 2027</span></li></ul>
+      <div class="actions"><button class="btn primary small" id="copyBtn" data-i18n="copy">Salin hasil</button><a class="btn quiet small" href="../tools/#padang" data-i18n="usePadang">Pakai di Padang builder →</a></div>
+      <p class="note" data-i18n="saveNote">Isian kamu tersimpan di HP/laptop ini saja, jadi minggu depan tinggal update berat.</p>
+    </div>
+  </div>
+</section>
+
+<section class="cta">
+  <p class="kicker" data-i18n="ctaK">Langkah berikutnya</p>
+  <h2 data-i18n="ctaH">Angka kalori itu baru separuh cerita.</h2>
+  <p data-i18n="ctaP">Yang bikin progress nahan biasanya kebiasaan: tidur, gula, makan di luar. Cek umur badan kamu dalam 3 menit dan lihat area mana yang paling nahan.</p>
+  <div class="row"><a class="btn primary" id="ctaTest" href="../test/" data-i18n="ctaBtn">Cek umur badan aku</a><a class="btn quiet" href="../tools/" data-i18n="ctaTools">Tools gratis lainnya</a></div>
+</section>
+
+<article class="explain">
+  <h2 data-i18n="e1h">Cara hitung kebutuhan kalori harian</h2>
+  <p data-i18n="e1p">Kalkulator ini pakai tiga langkah yang juga dipakai ahli gizi:</p>
+  <ol><li data-i18n="e1a"><b>Kalori basal (BMR)</b>, energi yang dipakai badan saat istirahat, dihitung dengan rumus Mifflin-St Jeor: <code>10 × berat + 6,25 × tinggi − 5 × umur</code>, lalu +5 untuk pria atau −161 untuk wanita.</li><li data-i18n="e1b"><b>Kebutuhan harian (TDEE)</b> = BMR dikali faktor aktivitas, dari 1,2 (jarang gerak) sampai 1,725 (aktif banget).</li><li data-i18n="e1c"><b>Jatah kalori</b> = kebutuhan harian dikurangi defisit. Turun 0,5 kg per minggu butuh defisit sekitar 550 kkal per hari.</li></ol>
+  <h2 data-i18n="e2h">Kenapa jangan turun terlalu cepat</h2>
+  <p data-i18n="e2p">Kalau defisitnya terlalu besar, badan ikut membakar otot, kamu gampang lapar dan lemas, dan beratnya cenderung balik lagi. Makanya kalkulator ini membatasi pace maksimal 1% berat badan per minggu, dan jatah kalorinya nggak pernah di bawah 1.200 kkal (wanita) atau 1.500 kkal (pria).</p>
+  <h2 data-i18n="e3h">Kenapa timeline-nya makin pelan di akhir</h2>
+  <p data-i18n="e3p">Makin ringan badan kamu, makin sedikit energi yang dipakai. Jadi dengan pace yang sama, kilo-kilo terakhir butuh waktu lebih lama. Kalkulator ini menghitung ulang kebutuhan kamu tiap minggu, jadi tanggalnya lebih realistis daripada hitungan lurus.</p>
+  <h2 data-i18n="faqH">Yang sering ditanyain</h2>
+  <div class="faq">
+    <details><summary data-i18n="f1q">Berapa kalori untuk turun 1 kg?</summary><p data-i18n="f1a">Patokan umumnya sekitar 7.700 kkal defisit untuk 1 kg lemak. Angka ini perkiraan. Di awal diet berat sering turun lebih cepat karena air, lalu melambat.</p></details>
+    <details><summary data-i18n="f2q">Apakah harus hitung kalori tiap hari?</summary><p data-i18n="f2a">Nggak harus. Angka ini gunanya jadi patokan. Banyak orang cukup paham porsi dan pilihan makanannya, misalnya pakai Padang builder dan target protein di tools kami.</p></details>
+    <details><summary data-i18n="f3q">Makan 1.200 kkal sehari aman nggak?</summary><p data-i18n="f3a">Untuk sebagian wanita dewasa, 1.200 kkal itu batas bawah yang umum dipakai. Di bawah itu susah memenuhi gizi. Kalkulator ini nggak akan menyarankan angka di bawah batas tersebut.</p></details>
+    <details><summary data-i18n="f4q">Kenapa protein penting waktu diet?</summary><p data-i18n="f4a">Protein membantu menjaga otot waktu berat turun dan bikin kenyang lebih lama. Di sini kami pakai 1,6 g per kg berat target per hari.</p></details>
+    <details><summary data-i18n="f5q">Siapa yang sebaiknya nggak pakai kalkulator ini?</summary><p data-i18n="f5a">Ibu hamil atau menyusui, anak di bawah 18 tahun, dan orang dengan kondisi medis seperti diabetes atau gangguan ginjal sebaiknya konsultasi ke dokter atau ahli gizi dulu.</p></details>
+  </div>
+  <details class="src">
+    <summary data-i18n="srcH">Dari mana angkanya?</summary>
+    <ul>
+      <li><a href="https://pubmed.ncbi.nlm.nih.gov/2305711/" target="_blank" rel="noopener">Mifflin et al., 1990 (American Journal of Clinical Nutrition)</a> · <span data-i18n="s1">rumus kalori basal yang dipakai kalkulator ini</span></li>
+      <li><a href="https://www.niddk.nih.gov/bwp" target="_blank" rel="noopener">NIH Body Weight Planner</a> · <span data-i18n="s2">kenapa penurunan berat melambat seiring waktu</span></li>
+    </ul>
+  </details>
+</article>
+</main>
+
+<footer class="site-foot"><div class="wrap">
+  <nav><a href="../" data-i18n="navHome">Beranda</a><a href="../test/" data-i18n="navTest">Body Age Assessment</a><a href="../tools/" data-i18n="navTools">Tools gratis</a><a href="../privacy/" data-i18n="navPriv">Kebijakan Privasi</a></nav>
+  <span data-i18n="footer">© Alvacy. Konten edukasi, bukan nasihat medis. Hasil tiap orang beda-beda.</span>
+</div></footer>
+<div class="bbar" id="bbar"><div class="v"><small data-i18n="resLbl">Jatah kalori kamu</small><br><b id="bbK">1.830 kkal/hari</b> <small id="bbD">· Apr 2027</small></div><button id="bbGo" data-i18n="bbBtn">Lihat hasil</button></div>
+<div class="toast" id="toast" hidden=""></div>
+
+<script src="/assets/site.js"></script>
+<script>
+const ACT={low:1.2,light:1.375,mid:1.55,high:1.725};
+const PACE={slow:.25,std:.5,fast:.75};
+const KCAL_PER_KG=7700, FLOOR={m:1500,f:1200}, PROT_PER_KG=1.6;
+const T={
+ id:{
+  tagline:c=>'',navHome:'Beranda',navPriv:'Kebijakan Privasi',navTools:'Tools gratis',navTest:'Body Age Assessment',
+  kicker:'Kalkulator kalori · gratis',
+  h1:'Turun berapa kg, <em>kapan?</em>',
+  lede:'Hitung jatah kalori harian kamu, target protein, dan perkiraan tanggal sampai berat target. Pace-nya aman, bukan diet ekstrem.',
+  q1:'Kenalan dulu',sexLbl:'Jenis kelamin',male:'Pria',female:'Wanita',ageLbl:'Umur',yr:'tahun',htLbl:'Tinggi badan',wtLbl:'Berat sekarang',goalLbl:'Berat target',
+  q2:'Seberapa aktif kamu?',
+  act:{low:['Jarang gerak','Kerja duduk, jarang olahraga'],light:['Ringan','Olahraga 1–3× seminggu'],mid:['Sedang','Olahraga 3–5× seminggu'],high:['Aktif banget','Olahraga hampir tiap hari']},
+  q3:'Mau turun secepat apa?',
+  pace:{slow:['Santai','Paling gampang dijalanin'],std:['Standar','Pilihan paling seimbang'],fast:['Cepat','Butuh disiplin lebih']},
+  perWeek:'kg/minggu',
+  resLbl:'Jatah kalori kamu',bbBtn:'Lihat hasil',
+  msgStall:'Dengan aktivitas ini, jatah aman kamu sudah hampir sama dengan kebutuhan badan, jadi target ini susah dicapai lewat makan saja. Tambah gerak, misalnya jalan kaki tiap hari, lalu hitung lagi.',stallDate:'Belum kekejar',kcalDay:'kkal/hari',
+  ksub:(tdee,def)=>`Kebutuhan kamu ±${tdee} kkal, dikurangi ${def} kkal`,
+  protLbl:'Protein',perDay:'g/hari',dateLbl:'Sampai target',
+  weeks:n=>`±${n} minggu`,
+  msgOk:'Timbang seminggu sekali di jam yang sama, lalu update berat kamu di sini. Jatah kalorinya ikut menyesuaikan.',
+  msgFloor:f=>`Jatah kamu sudah di batas bawah aman (${f} kkal), jadi pace-nya kami perlambat. Tambah gerak lebih efektif daripada makan lebih sedikit lagi.`,
+  msgCap:'Pace-nya kami batasi maksimal 1% berat badan per minggu supaya yang turun lemak, bukan otot.',
+  chartH:'Perkiraan perjalanan kamu',
+  start:'Sekarang',goalMile:'Target',
+  copy:'Salin hasil',usePadang:'Pakai di Padang builder →',
+  saveNote:'Isian kamu tersimpan di HP/laptop ini saja, jadi minggu depan tinggal update berat.',
+  errGoal:'Berat target harus lebih rendah dari berat sekarang.',
+  errLow:min=>`Target ini di bawah berat sehat untuk tinggi kamu. Batas bawahnya sekitar ${min} kg, jadi kami pakai angka itu.`,
+  errAge:'Kalkulator ini untuk umur 18 tahun ke atas.',
+  errNum:'Cek lagi angka umur, tinggi, dan berat kamu.',
+  share:(k,p,g,d)=>`Jatah kalori aku: ${k} kkal/hari · protein ${p} g/hari · target ${g} kg sekitar ${d}`,
+  copied:'Tersalin',copyFail:'Gagal menyalin',
+  ctaK:'Langkah berikutnya',ctaH:'Angka kalori itu baru separuh cerita.',
+  ctaP:'Yang bikin progress nahan biasanya kebiasaan: tidur, gula, makan di luar. Cek umur badan kamu dalam 3 menit dan lihat area mana yang paling nahan.',
+  ctaBtn:'Cek umur badan aku',ctaTools:'Tools gratis lainnya',
+  e1h:'Cara hitung kebutuhan kalori harian',
+  e1p:'Kalkulator ini pakai tiga langkah yang juga dipakai ahli gizi:',
+  e1a:'<b>Kalori basal (BMR)</b>, energi yang dipakai badan saat istirahat, dihitung dengan rumus Mifflin-St Jeor: <code>10 × berat + 6,25 × tinggi − 5 × umur</code>, lalu +5 untuk pria atau −161 untuk wanita.',
+  e1b:'<b>Kebutuhan harian (TDEE)</b> = BMR dikali faktor aktivitas, dari 1,2 (jarang gerak) sampai 1,725 (aktif banget).',
+  e1c:'<b>Jatah kalori</b> = kebutuhan harian dikurangi defisit. Turun 0,5 kg per minggu butuh defisit sekitar 550 kkal per hari.',
+  e2h:'Kenapa jangan turun terlalu cepat',
+  e2p:'Kalau defisitnya terlalu besar, badan ikut membakar otot, kamu gampang lapar dan lemas, dan beratnya cenderung balik lagi. Makanya kalkulator ini membatasi pace maksimal 1% berat badan per minggu, dan jatah kalorinya nggak pernah di bawah 1.200 kkal (wanita) atau 1.500 kkal (pria).',
+  e3h:'Kenapa timeline-nya makin pelan di akhir',
+  e3p:'Makin ringan badan kamu, makin sedikit energi yang dipakai. Jadi dengan pace yang sama, kilo-kilo terakhir butuh waktu lebih lama. Kalkulator ini menghitung ulang kebutuhan kamu tiap minggu, jadi tanggalnya lebih realistis daripada hitungan lurus.',
+  faqH:'Yang sering ditanyain',
+  f1q:'Berapa kalori untuk turun 1 kg?',f1a:'Patokan umumnya sekitar 7.700 kkal defisit untuk 1 kg lemak. Angka ini perkiraan. Di awal diet berat sering turun lebih cepat karena air, lalu melambat.',
+  f2q:'Apakah harus hitung kalori tiap hari?',f2a:'Nggak harus. Angka ini gunanya jadi patokan. Banyak orang cukup paham porsi dan pilihan makanannya, misalnya pakai Padang builder dan target protein di tools kami.',
+  f3q:'Makan 1.200 kkal sehari aman nggak?',f3a:'Untuk sebagian wanita dewasa, 1.200 kkal itu batas bawah yang umum dipakai. Di bawah itu susah memenuhi gizi. Kalkulator ini nggak akan menyarankan angka di bawah batas tersebut.',
+  f4q:'Kenapa protein penting waktu diet?',f4a:'Protein membantu menjaga otot waktu berat turun dan bikin kenyang lebih lama. Di sini kami pakai 1,6 g per kg berat target per hari.',
+  f5q:'Siapa yang sebaiknya nggak pakai kalkulator ini?',f5a:'Ibu hamil atau menyusui, anak di bawah 18 tahun, dan orang dengan kondisi medis seperti diabetes atau gangguan ginjal sebaiknya konsultasi ke dokter atau ahli gizi dulu.',
+  srcH:'Dari mana angkanya?',s1:'rumus kalori basal yang dipakai kalkulator ini',s2:'kenapa penurunan berat melambat seiring waktu',
+  footer:'© Alvacy. Konten edukasi, bukan nasihat medis. Hasil tiap orang beda-beda.'
+ },
+ en:{
+  tagline:c=>'',navHome:'Home',navPriv:'Privacy Policy',navTools:'Free tools',navTest:'Body Age Assessment',
+  kicker:'Calorie calculator · free',
+  h1:'How much can you lose, <em>and by when?</em>',
+  lede:'Work out your daily calories, protein target, and an estimated date to reach your goal weight. A safe pace, not a crash diet.',
+  q1:'About you',sexLbl:'Sex',male:'Male',female:'Female',ageLbl:'Age',yr:'years',htLbl:'Height',wtLbl:'Current weight',goalLbl:'Goal weight',
+  q2:'How active are you?',
+  act:{low:['Mostly sitting','Desk job, rarely exercise'],light:['Light','Exercise 1–3× a week'],mid:['Moderate','Exercise 3–5× a week'],high:['Very active','Exercise almost daily']},
+  q3:'How fast do you want to go?',
+  pace:{slow:['Easy','Easiest to stick with'],std:['Standard','The most balanced choice'],fast:['Fast','Needs more discipline']},
+  perWeek:'kg/week',
+  resLbl:'Your daily calories',bbBtn:'See result',
+  msgStall:'At this activity level your safe minimum is already close to what your body burns, so diet alone won’t get you there. Add movement, like a daily walk, then calculate again.',stallDate:'Not reachable yet',kcalDay:'kcal/day',
+  ksub:(tdee,def)=>`You burn about ${tdee} kcal, minus ${def} kcal`,
+  protLbl:'Protein',perDay:'g/day',dateLbl:'Reach your goal',
+  weeks:n=>`about ${n} weeks`,
+  msgOk:'Weigh yourself once a week at the same time, then update your weight here. Your calories adjust with it.',
+  msgFloor:f=>`You’re already at the safe minimum (${f} kcal), so we slowed the pace. Moving more works better than eating even less.`,
+  msgCap:'We cap the pace at 1% of body weight per week so you lose fat, not muscle.',
+  chartH:'Your estimated journey',
+  start:'Now',goalMile:'Goal',
+  copy:'Copy result',usePadang:'Use it in the Padang builder →',
+  saveNote:'Your answers are saved on this device only, so next week you just update your weight.',
+  errGoal:'Your goal weight needs to be lower than your current weight.',
+  errLow:min=>`That goal is below a healthy weight for your height. The lower limit is about ${min} kg, so we used that instead.`,
+  errAge:'This calculator is for ages 18 and up.',
+  errNum:'Check your age, height, and weight again.',
+  share:(k,p,g,d)=>`My daily calories: ${k} kcal · protein ${p} g/day · goal ${g} kg around ${d}`,
+  copied:'Copied',copyFail:'Couldn’t copy',
+  ctaK:'Next step',ctaH:'Calories are only half the story.',
+  ctaP:'What usually holds progress back is habits: sleep, sugar, eating out. Check your body age in 3 minutes and see which area holds you back most.',
+  ctaBtn:'Check my body age',ctaTools:'More free tools',
+  e1h:'How daily calorie needs are calculated',
+  e1p:'This calculator uses the same three steps nutritionists use:',
+  e1a:'<b>Resting calories (BMR)</b>, the energy your body uses at rest, from the Mifflin-St Jeor equation: <code>10 × weight + 6.25 × height − 5 × age</code>, then +5 for men or −161 for women.',
+  e1b:'<b>Daily needs (TDEE)</b> = BMR times an activity factor, from 1.2 (mostly sitting) to 1.725 (very active).',
+  e1c:'<b>Your calories</b> = daily needs minus a deficit. Losing 0.5 kg a week takes a deficit of about 550 kcal a day.',
+  e2h:'Why not lose weight faster',
+  e2p:'With too big a deficit your body burns muscle too, you feel hungry and drained, and the weight tends to come back. So this calculator caps the pace at 1% of body weight per week and never goes below 1,200 kcal (women) or 1,500 kcal (men).',
+  e3h:'Why the timeline slows down at the end',
+  e3p:'The lighter you get, the less energy you burn. At the same pace, the last kilos take longer. This calculator recalculates your needs every week, so the date is more realistic than a straight-line estimate.',
+  faqH:'Common questions',
+  f1q:'How many calories to lose 1 kg?',f1a:'The common rule of thumb is a deficit of about 7,700 kcal per kg of fat. It’s an estimate. Early on, weight often drops faster because of water, then slows.',
+  f2q:'Do I have to count calories every day?',f2a:'No. The number is a guide. Many people do fine just knowing their portions and food choices, for example with the Padang builder and protein target in our tools.',
+  f3q:'Is 1,200 kcal a day safe?',f3a:'For many adult women, 1,200 kcal is the commonly used minimum. Below that it’s hard to meet your nutrient needs. This calculator never suggests less than that.',
+  f4q:'Why does protein matter when dieting?',f4a:'Protein helps keep muscle while you lose weight and keeps you full longer. We use 1.6 g per kg of goal weight per day.',
+  f5q:'Who shouldn’t use this calculator?',f5a:'People who are pregnant or breastfeeding, anyone under 18, and people with medical conditions like diabetes or kidney disease should talk to a doctor or dietitian first.',
+  srcH:'Where do the numbers come from?',s1:'the resting-calorie equation this calculator uses',s2:'why weight loss slows over time',
+  footer:'© Alvacy. Educational content, not medical advice. Individual results vary.'
+ }
+};
+
+const S={lang:ALV.getLang(),sex:'m',act:'light',pace:'std'};
+const $=id=>document.getElementById(id);
+const t=()=>T[S.lang];
+const fmt=n=>Math.round(n).toLocaleString(S.lang==='id'?'id-ID':'en-US');
+const fmt1=n=>(Math.round(n*10)/10).toLocaleString(S.lang==='id'?'id-ID':'en-US');
+const STORE='alv-kalori';
+try{const s=JSON.parse(localStorage.getItem(STORE)||'null'); if(s){['sex','act','pace'].forEach(k=>{if(s[k]) S[k]=s[k];}); ['age','ht','wt','goal'].forEach(k=>{if(s[k]) $(k).value=s[k];});}}catch(e){}
+function save(){try{localStorage.setItem(STORE,JSON.stringify({sex:S.sex,act:S.act,pace:S.pace,age:$('age').value,ht:$('ht').value,wt:$('wt').value,goal:$('goal').value}));}catch(e){}}
+
+const bmr=(w,h,a,sex)=>10*w+6.25*h-5*a+(sex==='m'?5:-161);
+function plan(){
+ const a=+$('age').value, h=+$('ht').value, w0=+$('wt').value; let g=+$('goal').value;
+ if(!a||!h||!w0||h<130||h>220||w0<35||w0>250) return {err:t().errNum};
+ if(a<18) return {err:t().errAge};
+ if(!g||g>=w0) return {err:t().errGoal};
+ const minG=Math.ceil(18.5*(h/100)**2); let warn='';
+ if(g<minG){ if(minG>=w0) return {err:t().errLow(minG)}; warn=t().errLow(minG); g=minG; }
+ const floor=FLOOR[S.sex], f=ACT[S.act], pace=PACE[S.pace];
+ const tdeeOf=w=>bmr(w,h,a,S.sex)*f;
+ const intakeOf=w=>{const def=Math.min(pace,.01*w)*KCAL_PER_KG/7; return Math.max(floor,tdeeOf(w)-def);};
+ const tdee0=tdeeOf(w0), k0=Math.round(intakeOf(w0)/10)*10;
+ const capped=pace>.01*w0, floored=tdeeOf(w0)-Math.min(pace,.01*w0)*KCAL_PER_KG/7<floor;
+ // week by week: needs fall as weight falls
+ const pts=[w0]; let w=w0, wk=0, stalled=false;
+ while(w>g && wk<520){ const loss=(tdeeOf(w)-intakeOf(w))*7/KCAL_PER_KG; if(loss<.03){stalled=true;break;} w=Math.max(g,w-loss); wk++; pts.push(w); }
+ return {a,h,w0,g,warn,tdee0,k0,floor,capped,floored,pts,weeks:wk,stalled,prot:Math.round(g*PROT_PER_KG/5)*5};
+}
+const dateAt=wk=>{const d=new Date(); d.setDate(d.getDate()+wk*7); return d.toLocaleDateString(S.lang==='id'?'id-ID':'en-GB',{month:'short',year:'numeric'});};
+
+function opts(id,data,key,extra){
+ $(id).innerHTML=Object.entries(data).map(([k,[b,s]])=>`<button class="opt" data-${key}="${k}" aria-pressed="${S[key]===k}"><b>${b}</b><span>${s}</span>${extra?`<em>${extra(k)}</em>`:''}</button>`).join('');
+}
+function chart(p){
+ const W=340,H=150,L=34,R=8,Tp=10,B=24, n=p.pts.length-1||1;
+ const hi=p.w0, lo=p.g, span=Math.max(1,hi-lo);
+ const x=i=>L+(W-L-R)*i/n, y=v=>Tp+(H-Tp-B)*(hi-v)/span;
+ const line=p.pts.map((v,i)=>`${x(i).toFixed(1)},${y(v).toFixed(1)}`).join(' ');
+ return `<svg viewBox="0 0 ${W} ${H}" role="img" aria-label="${t().chartH}">
+  <line x1="${L}" y1="${y(lo)}" x2="${W-R}" y2="${y(lo)}" stroke="var(--good)" stroke-dasharray="4 4"/>
+  <polyline points="${L},${H-B} ${line} ${x(n)},${H-B}" fill="var(--accent-soft)" stroke="none"/>
+  <polyline points="${line}" fill="none" stroke="var(--accent)" stroke-width="3" stroke-linejoin="round" stroke-linecap="round"/>
+  <circle cx="${x(0)}" cy="${y(hi)}" r="4.5" fill="var(--accent)"/><circle cx="${x(n)}" cy="${y(p.pts[n])}" r="4.5" fill="var(--good)"/>
+  <text class="axis" x="${L-6}" y="${y(hi)+4}" text-anchor="end">${fmt(hi)}</text>
+  <text class="axis" x="${L-6}" y="${y(lo)+4}" text-anchor="end">${fmt(lo)}</text>
+  <text class="axis" x="${L}" y="${H-6}">${t().start}</text>
+  <text class="axis" x="${W-R}" y="${H-6}" text-anchor="end">${dateAt(p.weeks)}</text>
+ </svg>`;
+}
+let last=null;
+function render(){
+ const p=plan(); last=p;
+ opts('actOpts',t().act,'act');
+ opts('paceOpts',t().pace,'pace',k=>`${fmt1(PACE[k])} ${t().perWeek}`);
+ document.querySelectorAll('#sexSeg button').forEach(b=>b.setAttribute('aria-pressed',b.dataset.sex===S.sex));
+ const err=$('err');
+ if(p.err){ $('bbK').textContent='—'; $('bbD').textContent=''; err.textContent=p.err; err.hidden=false; ['rK','rKsub','rP','rD','rW','rMsg','chart','miles'].forEach(i=>$(i).innerHTML='—'); $('rKsub').textContent=''; $('rW').textContent=''; $('rMsg').textContent=''; $('miles').innerHTML=''; $('chart').innerHTML=''; return; }
+ err.hidden=!p.warn; err.textContent=p.warn;
+ $('rK').innerHTML=`${fmt(p.k0)}<small>${t().kcalDay}</small>`;
+ $('rKsub').textContent=t().ksub(fmt(Math.round(p.tdee0/10)*10),fmt(Math.round((p.tdee0-p.k0)/10)*10));
+ $('rP').innerHTML=`${fmt(p.prot)}<small>${t().perDay}</small>`;
+ $('rD').textContent=p.stalled?t().stallDate:dateAt(p.weeks);
+ $('rW').textContent=p.stalled?'':t().weeks(p.weeks);
+ $('rMsg').textContent=p.stalled?t().msgStall:p.floored?t().msgFloor(fmt(p.floor)):p.capped?t().msgCap:t().msgOk;
+ $('bbK').textContent=`${fmt(p.k0)} ${t().kcalDay}`; $('bbD').textContent='· '+$('rD').textContent;
+ $('chart').innerHTML=chart(p);
+ const miles=[]; for(let m=Math.floor((p.w0-.01)/5)*5; m>p.g; m-=5){ const i=p.pts.findIndex(v=>v<=m); if(i>0) miles.push([m,i]); }
+ $('miles').innerHTML=`<li><b>${fmt1(p.w0)} kg</b><span>${t().start}</span></li>`+miles.map(([m,i])=>`<li><b>${m} kg</b><span>${dateAt(i)}</span></li>`).join('')+(p.stalled?'':`<li class="goal"><b>${fmt1(p.g)} kg · ${t().goalMile}</b><span>${dateAt(p.weeks)}</span></li>`);
+}
+function applyText(){
+ document.documentElement.lang=S.lang;
+ document.querySelectorAll('[data-i18n]').forEach(el=>{const v=t()[el.dataset.i18n]; if(typeof v==='string') el.innerHTML=v;});
+ document.querySelectorAll('.lang button').forEach(b=>b.setAttribute('aria-pressed',b.dataset.lang===S.lang));
+ $('tagline').textContent=t().tagline(ALV.coach().name);
+ const code=ALV.coachCode(); $('ctaTest').href='../test/'+(code!==ALV.DEFAULT?'#'+code:'');
+}
+function toast(m){const el=$('toast');el.textContent=m;el.hidden=false;clearTimeout(toast.t);toast.t=setTimeout(()=>el.hidden=true,1800);}
+
+document.addEventListener('click',e=>{
+ const lg=e.target.closest('[data-lang]'); if(lg){S.lang=lg.dataset.lang;ALV.setLang(S.lang);applyText();render();return;}
+ const sx=e.target.closest('[data-sex]'); if(sx){S.sex=sx.dataset.sex;save();render();return;}
+ const ac=e.target.closest('[data-act]'); if(ac){S.act=ac.dataset.act;save();render();return;}
+ const pc=e.target.closest('[data-pace]'); if(pc){S.pace=pc.dataset.pace;save();render();return;}
+});
+['age','ht','wt','goal'].forEach(id=>$(id).addEventListener('input',()=>{save();render();}));
+$('copyBtn').addEventListener('click',()=>{
+ if(!last||last.err) return;
+ const text=t().share(fmt(last.k0),fmt(last.prot),fmt1(last.g),dateAt(last.weeks))+'\nalvacy.com/'+(S.lang==='en'?'en/':'')+'kalori';
+ try{navigator.clipboard.writeText(text).then(()=>toast(t().copied),()=>toast(t().copyFail));}catch(e){toast(t().copyFail);}
+ ALV.track('CalorieCalc',{},null,true);
+});
+$('bbGo').addEventListener('click',()=>document.querySelector('.res').scrollIntoView({behavior:matchMedia('(prefers-reduced-motion: reduce)').matches?'auto':'smooth',block:'start'}));
+window.addEventListener('hashchange',applyText);
+applyText(); render();
+</script>
+</body>
+</html>

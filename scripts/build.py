@@ -54,6 +54,13 @@ PAGES = [
                'desc': 'Free calculators: count the calories in nasi Padang and order lighter, audit the sugar in your drinks, and find your daily protein target.'},
     },
     {
+        'path': 'kalori/', 'kind': 'calc',
+        'id': {'title': 'Kalkulator Kalori Harian untuk Turun Berat Badan · Alvacy',
+               'desc': 'Hitung kebutuhan kalori harian, target protein, dan kapan kamu sampai berat target. Gratis, pace aman, pakai rumus Mifflin-St Jeor.'},
+        'en': {'title': 'Weight Loss Calorie Calculator & Goal Date · Alvacy',
+               'desc': 'Work out your daily calories, protein target, and when you could reach your goal weight. Free, safe pace, Mifflin-St Jeor equation.'},
+    },
+    {
         'path': 'privacy/', 'kind': 'privacy',
         'id': {'title': 'Kebijakan Privasi · Alvacy',
                'desc': 'Bagaimana Alvacy mengumpulkan, memakai, dan menjaga data kamu.'},
@@ -96,13 +103,13 @@ def schema(page, lang, faq):
                       'inLanguage': ['id', 'en'], 'publisher': {'@id': f'{SITE}/#org'}})
     graph.append({'@type': 'WebPage', 'url': u, 'name': t['title'], 'description': t['desc'], 'inLanguage': lang,
                   'isPartOf': {'@id': f'{SITE}/#website'}})
-    if page['kind'] in ('tools', 'test'):
-        name = {'tools': 'Transform Toolkit', 'test': 'Body Age Assessment'}[page['kind']]
+    if page['kind'] in ('tools', 'test', 'calc'):
+        name = {'tools': 'Transform Toolkit', 'test': 'Body Age Assessment', 'calc': 'Kalkulator Kalori Alvacy'}[page['kind']]
         graph.append({'@type': 'WebApplication', 'name': name, 'url': u, 'description': t['desc'],
                       'applicationCategory': 'HealthApplication', 'operatingSystem': 'Any', 'inLanguage': lang,
                       'isAccessibleForFree': True,
                       'offers': {'@type': 'Offer', 'price': '0', 'priceCurrency': 'IDR'}})
-    if faq and page['kind'] in ('home', 'test'):  # tools/ uses <details> for its source list, not a FAQ
+    if faq and page['kind'] in ('home', 'test', 'calc'):  # tools/ uses <details> for its source list, not a FAQ
         graph.append({'@type': 'FAQPage', 'url': u, 'inLanguage': lang, 'mainEntity': [
             {'@type': 'Question', 'name': q, 'acceptedAnswer': {'@type': 'Answer', 'text': a}} for q, a in faq]})
     data = json.dumps({'@context': 'https://schema.org', '@graph': graph}, ensure_ascii=False, indent=1)
@@ -166,7 +173,7 @@ SNAPSHOT_JS = r"""() => {
     if (n.nodeType === 1 && n.tagName === 'SCRIPT') break;
     if (n.nodeType === 1) out += n.outerHTML; else if (n.nodeType === 3) out += esc(n.textContent);
   }
-  const faq = [...document.querySelectorAll('details')].map(d => {
+  const faq = [...document.querySelectorAll('.faq details')].map(d => {
     const s = d.querySelector('summary'); if (!s) return null;
     const a = [...d.children].filter(c => c !== s).map(c => c.textContent.trim()).join(' ').trim();
     return a ? [s.textContent.trim(), a] : null;
