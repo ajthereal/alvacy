@@ -175,6 +175,14 @@
 .cta h2{font-size:clamp(1.4rem,3.5vw,1.9rem)}
 .cta p{color:var(--muted);max-width:620px}
 .cta .row{display:flex;gap:10px;flex-wrap:wrap;margin-top:4px}
+.meta-card{background:var(--warm-soft);border:1px solid var(--line);border-radius:20px;padding:18px;display:grid;gap:10px}
+.meta-card h3{font-family:var(--f-display);font-size:1.15rem;line-height:1.25;color:var(--head)}
+.meta-card p{font-size:.9rem}
+.meta-card ul{margin:0;padding:0;list-style:none;display:grid;gap:6px;font-size:.88rem}
+.meta-card li{display:grid;grid-template-columns:18px minmax(0,1fr);gap:8px}
+.meta-card li::before{content:"!";width:18px;height:18px;border-radius:50%;background:var(--warm);color:#fff;font-size:.7rem;font-weight:800;display:grid;place-items:center;margin-top:3px}
+.meta-card .btn{justify-self:start}
+.meta-card .row{display:flex;gap:8px;flex-wrap:wrap}
 .explain{display:grid;gap:14px;max-width:760px;padding-bottom:clamp(36px,6vw,64px)}
 .explain h2{margin-top:18px}
 .explain p,.explain li{color:var(--muted)}
@@ -237,6 +245,15 @@ details.src ul{margin:10px 0 0;padding-left:18px;display:grid;gap:6px;font-size:
       </div>
       <div class="msg" id="rMsg">Timbang seminggu sekali di jam yang sama, lalu update berat kamu di sini. Jatah kalorinya ikut menyesuaikan.</div>
     </div>
+    <div class="meta-card">
+      <p class="kicker" style="color:var(--warm)" data-i18n="mK">Penting dibaca</p>
+      <h3 data-i18n="mH">Defisit kalori aja nggak membereskan metabolisme.</h3>
+      <p data-i18n="mP">Angka di atas itu matematika energi. Kalau metabolisme kamu lagi nggak beres, makan lebih sedikit bisa bikin badan makin hemat energi, dan yang hilang malah otot. Hasilnya berat stuck, terus balik lagi.</p>
+      <ul><li data-i18n="m1">Otot yang berkurang bikin pembakaran harian ikut turun.</li><li data-i18n="m2">Kurang tidur dan stres bikin gampang lapar dan lemak lebih gampang disimpan.</li><li data-i18n="m3">Pola gula darah yang naik-turun bikin lemas, ngantuk, dan ngidam manis.</li></ul>
+      <p data-i18n="mClose">Makanya sebelum mulai defisit, ngobrol dulu sama coach buat cari tahu apa yang sebenarnya nahan progress kamu.</p>
+      <div class="row"><a class="btn primary small js-wa" target="_blank" rel="noopener" href="https://wa.me/628170241185?text=Halo%20Coach%20AJ%2C%20aku%20habis%20pakai%20kalkulator%20kalori%20di%20alvacy.com.%20Jatah%20aku%201.830%20kkal%2Fhari%2C%20target%2072%20kg.%20Aku%20mau%20konsultasi%20soal%20metabolisme%20dan%20program%20yang%20cocok%20buat%20aku."><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12a8 8 0 0 1-11.6 7.1L4 20l1-4.6A8 8 0 1 1 21 12z"></path></svg><span data-i18n="waBtn">Konsultasi via WhatsApp</span></a><a class="btn quiet small js-test" href="../test/" data-i18n="mTest">Cek umur badan dulu</a></div>
+      <p class="note" data-i18n="waNote">Gratis dan tanpa kewajiban apa-apa.</p>
+    </div>
     <div class="card">
       <h3 data-i18n="chartH">Perkiraan perjalanan kamu</h3>
       <div class="chart" id="chart"><svg viewBox="0 0 340 150" role="img" aria-label="Perkiraan perjalanan kamu">
@@ -257,10 +274,11 @@ details.src ul{margin:10px 0 0;padding-left:18px;display:grid;gap:6px;font-size:
 </section>
 
 <section class="cta">
-  <p class="kicker" data-i18n="ctaK">Langkah berikutnya</p>
-  <h2 data-i18n="ctaH">Angka kalori itu baru separuh cerita.</h2>
-  <p data-i18n="ctaP">Yang bikin progress nahan biasanya kebiasaan: tidur, gula, makan di luar. Cek umur badan kamu dalam 3 menit dan lihat area mana yang paling nahan.</p>
-  <div class="row"><a class="btn primary" id="ctaTest" href="../test/" data-i18n="ctaBtn">Cek umur badan aku</a><a class="btn quiet" href="../tools/" data-i18n="ctaTools">Tools gratis lainnya</a></div>
+  <p class="kicker" data-i18n="ctaK">Konsultasi</p>
+  <h2 data-i18n="ctaH">Mau tahu kenapa badan kamu susah turun?</h2>
+  <p data-i18n="ctaP">Coach kamu bantu cek pola makan, tidur, stres, dan komposisi badan pakai timbangan Omron (lemak, otot, lemak visceral, metabolisme). Dari situ baru disusun program 90 hari yang cocok sama jadwal kamu.</p>
+  <div class="row"><a class="btn primary js-wa" target="_blank" rel="noopener" href="https://wa.me/628170241185?text=Halo%20Coach%20AJ%2C%20aku%20habis%20pakai%20kalkulator%20kalori%20di%20alvacy.com.%20Jatah%20aku%201.830%20kkal%2Fhari%2C%20target%2072%20kg.%20Aku%20mau%20konsultasi%20soal%20metabolisme%20dan%20program%20yang%20cocok%20buat%20aku."><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12a8 8 0 0 1-11.6 7.1L4 20l1-4.6A8 8 0 1 1 21 12z"></path></svg><span data-i18n="waBtn">Konsultasi via WhatsApp</span></a><a class="btn quiet js-test" id="ctaTest" href="../test/" data-i18n="ctaBtn">Cek umur badan aku</a></div>
+  <p class="small" data-i18n="waNote">Gratis dan tanpa kewajiban apa-apa.</p>
 </section>
 
 <article class="explain">
@@ -331,9 +349,17 @@ const T={
   errNum:'Cek lagi angka umur, tinggi, dan berat kamu.',
   share:(k,p,g,d)=>`Jatah kalori aku: ${k} kkal/hari · protein ${p} g/hari · target ${g} kg sekitar ${d}`,
   copied:'Tersalin',copyFail:'Gagal menyalin',
-  ctaK:'Langkah berikutnya',ctaH:'Angka kalori itu baru separuh cerita.',
-  ctaP:'Yang bikin progress nahan biasanya kebiasaan: tidur, gula, makan di luar. Cek umur badan kamu dalam 3 menit dan lihat area mana yang paling nahan.',
-  ctaBtn:'Cek umur badan aku',ctaTools:'Tools gratis lainnya',
+  mK:'Penting dibaca',mH:'Defisit kalori aja nggak membereskan metabolisme.',
+  mP:'Angka di atas itu matematika energi. Kalau metabolisme kamu lagi nggak beres, makan lebih sedikit bisa bikin badan makin hemat energi, dan yang hilang malah otot. Hasilnya berat stuck, terus balik lagi.',
+  m1:'Otot yang berkurang bikin pembakaran harian ikut turun.',
+  m2:'Kurang tidur dan stres bikin gampang lapar dan lemak lebih gampang disimpan.',
+  m3:'Pola gula darah yang naik-turun bikin lemas, ngantuk, dan ngidam manis.',
+  mClose:'Makanya sebelum mulai defisit, ngobrol dulu sama coach buat cari tahu apa yang sebenarnya nahan progress kamu.',
+  waBtn:'Konsultasi via WhatsApp',mTest:'Cek umur badan dulu',waNote:'Gratis dan tanpa kewajiban apa-apa.',
+  waMsg:(c,k,g)=>`Halo ${c}, aku habis pakai kalkulator kalori di alvacy.com.${k?` Jatah aku ${k} kkal/hari, target ${g} kg.`:''} Aku mau konsultasi soal metabolisme dan program yang cocok buat aku.`,
+  ctaK:'Konsultasi',ctaH:'Mau tahu kenapa badan kamu susah turun?',
+  ctaP:'Coach kamu bantu cek pola makan, tidur, stres, dan komposisi badan pakai timbangan Omron (lemak, otot, lemak visceral, metabolisme). Dari situ baru disusun program 90 hari yang cocok sama jadwal kamu.',
+  ctaBtn:'Cek umur badan aku',
   e1h:'Cara hitung kebutuhan kalori harian',
   e1p:'Kalkulator ini pakai tiga langkah yang juga dipakai ahli gizi:',
   e1a:'<b>Kalori basal (BMR)</b>, energi yang dipakai badan saat istirahat, dihitung dengan rumus Mifflin-St Jeor: <code>10 × berat + 6,25 × tinggi − 5 × umur</code>, lalu +5 untuk pria atau −161 untuk wanita.',
@@ -381,9 +407,17 @@ const T={
   errNum:'Check your age, height, and weight again.',
   share:(k,p,g,d)=>`My daily calories: ${k} kcal · protein ${p} g/day · goal ${g} kg around ${d}`,
   copied:'Copied',copyFail:'Couldn’t copy',
-  ctaK:'Next step',ctaH:'Calories are only half the story.',
-  ctaP:'What usually holds progress back is habits: sleep, sugar, eating out. Check your body age in 3 minutes and see which area holds you back most.',
-  ctaBtn:'Check my body age',ctaTools:'More free tools',
+  mK:'Please read',mH:'A calorie deficit alone doesn’t fix your metabolism.',
+  mP:'The numbers above are energy math. If your metabolism isn’t working well, eating less can make your body save energy, and what you lose is muscle. The result: the scale gets stuck, then the weight comes back.',
+  m1:'Losing muscle lowers how much you burn every day.',
+  m2:'Short sleep and stress make you hungrier and make fat easier to store.',
+  m3:'Blood sugar swings leave you drained, sleepy, and craving sweets.',
+  mClose:'So before you start a deficit, talk to a coach to find out what’s really holding your progress back.',
+  waBtn:'Consult on WhatsApp',mTest:'Check my body age first',waNote:'Free, with no obligation.',
+  waMsg:(c,k,g)=>`Hi ${c}, I just used the calorie calculator on alvacy.com.${k?` My daily calories are ${k} kcal, goal ${g} kg.`:''} I’d like to talk about my metabolism and a program that fits me.`,
+  ctaK:'Consultation',ctaH:'Want to know why your body won’t budge?',
+  ctaP:'Your coach checks your eating, sleep, stress, and body composition on an Omron scale (fat, muscle, visceral fat, metabolism). Then you get a 90-day program built around your schedule.',
+  ctaBtn:'Check my body age',
   e1h:'How daily calorie needs are calculated',
   e1p:'This calculator uses the same three steps nutritionists use:',
   e1a:'<b>Resting calories (BMR)</b>, the energy your body uses at rest, from the Mifflin-St Jeor equation: <code>10 × weight + 6.25 × height − 5 × age</code>, then +5 for men or −161 for women.',
@@ -454,7 +488,7 @@ function chart(p){
 }
 let last=null;
 function render(){
- const p=plan(); last=p;
+ const p=plan(); last=p; setWa();
  opts('actOpts',t().act,'act');
  opts('paceOpts',t().pace,'pace',k=>`${fmt1(PACE[k])} ${t().perWeek}`);
  document.querySelectorAll('#sexSeg button').forEach(b=>b.setAttribute('aria-pressed',b.dataset.sex===S.sex));
@@ -472,12 +506,18 @@ function render(){
  const miles=[]; for(let m=Math.floor((p.w0-.01)/5)*5; m>p.g; m-=5){ const i=p.pts.findIndex(v=>v<=m); if(i>0) miles.push([m,i]); }
  $('miles').innerHTML=`<li><b>${fmt1(p.w0)} kg</b><span>${t().start}</span></li>`+miles.map(([m,i])=>`<li><b>${m} kg</b><span>${dateAt(i)}</span></li>`).join('')+(p.stalled?'':`<li class="goal"><b>${fmt1(p.g)} kg · ${t().goalMile}</b><span>${dateAt(p.weeks)}</span></li>`);
 }
+function setWa(){
+ const c=ALV.coach(), ok=last&&!last.err;
+ const msg=t().waMsg(c.name, ok?fmt(last.k0):'', ok?fmt1(last.g):'');
+ document.querySelectorAll('.js-wa').forEach(a=>a.href=`https://wa.me/${c.wa}?text=${encodeURIComponent(msg)}`);
+}
 function applyText(){
  document.documentElement.lang=S.lang;
  document.querySelectorAll('[data-i18n]').forEach(el=>{const v=t()[el.dataset.i18n]; if(typeof v==='string') el.innerHTML=v;});
  document.querySelectorAll('.lang button').forEach(b=>b.setAttribute('aria-pressed',b.dataset.lang===S.lang));
  $('tagline').textContent=t().tagline(ALV.coach().name);
- const code=ALV.coachCode(); $('ctaTest').href='../test/'+(code!==ALV.DEFAULT?'#'+code:'');
+ const code=ALV.coachCode(); document.querySelectorAll('.js-test').forEach(a=>a.href='../test/'+(code!==ALV.DEFAULT?'#'+code:''));
+ setWa();
 }
 function toast(m){const el=$('toast');el.textContent=m;el.hidden=false;clearTimeout(toast.t);toast.t=setTimeout(()=>el.hidden=true,1800);}
 
@@ -494,6 +534,7 @@ $('copyBtn').addEventListener('click',()=>{
  try{navigator.clipboard.writeText(text).then(()=>toast(t().copied),()=>toast(t().copyFail));}catch(e){toast(t().copyFail);}
  ALV.track('CalorieCalc',{},null,true);
 });
+document.addEventListener('click',e=>{ if(e.target.closest('.js-wa')) ALV.track('Contact',{content_name:'Calorie calculator'},null,false); });
 $('bbGo').addEventListener('click',()=>document.querySelector('.res').scrollIntoView({behavior:matchMedia('(prefers-reduced-motion: reduce)').matches?'auto':'smooth',block:'start'}));
 window.addEventListener('hashchange',applyText);
 applyText(); render();
