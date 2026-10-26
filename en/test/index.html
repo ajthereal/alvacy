@@ -1,0 +1,802 @@
+<!doctype html>
+<html lang="en" data-page-lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<!-- seo:start (written by scripts/build.py: change titles and descriptions in PAGES there) -->
+<title>Free Body Age Assessment, 3 Minutes · Alvacy</title>
+<meta name="description" content="How old is your body, really? 30 quick questions, 3 minutes, free. See which area is holding your progress back.">
+<link rel="canonical" href="https://alvacy.com/en/test/">
+<link rel="alternate" hreflang="id" href="https://alvacy.com/test/">
+<link rel="alternate" hreflang="en" href="https://alvacy.com/en/test/">
+<link rel="alternate" hreflang="x-default" href="https://alvacy.com/test/">
+<link rel="icon" href="/images/icon.svg" type="image/svg+xml">
+<link rel="icon" href="/images/icon-192.png" sizes="192x192" type="image/png">
+<link rel="apple-touch-icon" href="/images/apple-touch-icon.png">
+<meta name="theme-color" content="#1E3A8A">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Alvacy">
+<meta property="og:title" content="Free Body Age Assessment, 3 Minutes · Alvacy">
+<meta property="og:description" content="How old is your body, really? 30 quick questions, 3 minutes, free. See which area is holding your progress back.">
+<meta property="og:url" content="https://alvacy.com/en/test/">
+<meta property="og:image" content="https://alvacy.com/images/og-en.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:locale" content="en_US">
+<meta property="og:locale:alternate" content="id_ID">
+<meta name="twitter:card" content="summary_large_image">
+<script type="application/ld+json">
+{
+ "@context": "https://schema.org",
+ "@graph": [
+  {
+   "@type": "WebPage",
+   "url": "https://alvacy.com/en/test/",
+   "name": "Free Body Age Assessment, 3 Minutes · Alvacy",
+   "description": "How old is your body, really? 30 quick questions, 3 minutes, free. See which area is holding your progress back.",
+   "inLanguage": "en",
+   "isPartOf": {
+    "@id": "https://alvacy.com/#website"
+   }
+  },
+  {
+   "@type": "WebApplication",
+   "name": "Body Age Assessment",
+   "url": "https://alvacy.com/en/test/",
+   "description": "How old is your body, really? 30 quick questions, 3 minutes, free. See which area is holding your progress back.",
+   "applicationCategory": "HealthApplication",
+   "operatingSystem": "Any",
+   "inLanguage": "en",
+   "isAccessibleForFree": true,
+   "offers": {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "IDR"
+   }
+  },
+  {
+   "@type": "FAQPage",
+   "url": "https://alvacy.com/en/test/",
+   "inLanguage": "en",
+   "mainEntity": [
+    {
+     "@type": "Question",
+     "name": "Is this a medical diagnosis?",
+     "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "No. It’s a lifestyle questionnaire, so the results are signals, not a verdict. If you have a medical condition, keep talking to your doctor."
+     }
+    },
+    {
+     "@type": "Question",
+     "name": "Can a quiz know my body age?",
+     "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "It can’t give you an exact number, and we won’t pretend it can. It reads the habits that usually make a body feel “older” than its age. The real number is measured in the full assessment."
+     }
+    },
+    {
+     "@type": "Question",
+     "name": "Why do I need to add my contact?",
+     "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "So Coach AJ can walk you through your result and next step. No obligation after that."
+     }
+    },
+    {
+     "@type": "Question",
+     "name": "What happens in the full assessment?",
+     "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "You’re measured on a body composition monitor: body fat, muscle, visceral fat, resting metabolism, and body age. The numbers are estimates, so they’re always measured under the same conditions to compare fairly."
+     }
+    }
+   ]
+  }
+ ]
+}
+</script>
+<!-- seo:end -->
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Sora:wght@600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap">
+<style>
+/* Layout: calm, centered, mobile-first wellness page. One column of content, navy brand, orange CTA, generous white space. Works for any coach on the team. */
+:root{
+  --bg:#F8FAFC; --surface:#FFFFFF; --ink:#0F172A; --head:#172554; --muted:#475569; --line:#E2E8F0;
+  --accent:#1E3A8A; --accent-ink:#FFFFFF; --accent-soft:#EAF0FB; --sand:#F1F5F9;
+  --cta:#F97316; --cta-ink:#172554; --hl:#EA580C;
+  --warm:#EA580C; --warm-soft:#FFEDD5;
+  --good:#0F766E; --warn:#B45309; --bad:#B91C1C;
+  --good-soft:#E3F5F2; --warn-soft:#FEF3C7; --bad-soft:#FEE2E2;
+  --paper:#FFFDF8; --paper-ink:#1E293B; --paper-line:#D6D3CC;
+  --f-display:"Sora","Plus Jakarta Sans","Segoe UI",system-ui,sans-serif;
+  --f-body:"Plus Jakarta Sans","Segoe UI",system-ui,sans-serif;
+  --f-mono:ui-monospace,"SFMono-Regular",Menlo,Consolas,monospace;
+  --r:18px;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --bg:#0B1220; --surface:#121B2E; --ink:#E2E8F0; --head:#F8FAFC; --muted:#94A3B8; --line:#1F2A44;
+    --accent:#93B4FF; --accent-ink:#0B1220; --accent-soft:#18264A; --sand:#0F1828;
+    --cta:#FB923C; --cta-ink:#1A0E05; --hl:#FB923C;
+    --warm:#FB923C; --warm-soft:#3A2414;
+    --good:#2DD4BF; --warn:#FBBF24; --bad:#F87171;
+    --good-soft:#0F2E2C; --warn-soft:#3A2E12; --bad-soft:#3B1A1A;
+    --paper:#16213A; --paper-ink:#E2E8F0; --paper-line:#2B3A5C;
+    color-scheme:dark;
+  }
+}
+:root[data-theme="dark"]{
+    --bg:#0B1220; --surface:#121B2E; --ink:#E2E8F0; --head:#F8FAFC; --muted:#94A3B8; --line:#1F2A44;
+    --accent:#93B4FF; --accent-ink:#0B1220; --accent-soft:#18264A; --sand:#0F1828;
+    --cta:#FB923C; --cta-ink:#1A0E05; --hl:#FB923C;
+    --warm:#FB923C; --warm-soft:#3A2414;
+    --good:#2DD4BF; --warn:#FBBF24; --bad:#F87171;
+    --good-soft:#0F2E2C; --warn-soft:#3A2E12; --bad-soft:#3B1A1A;
+    --paper:#16213A; --paper-ink:#E2E8F0; --paper-line:#2B3A5C;
+    color-scheme:dark;
+}
+*{box-sizing:border-box}
+:root{padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+body{margin:0}
+img{max-width:100%}
+[hidden]{display:none!important}
+body{background:var(--bg);color:var(--ink);font-family:var(--f-body);font-size:16px;line-height:1.65;-webkit-font-smoothing:antialiased}
+h1,h2,h3{margin:0;text-wrap:balance}
+h1,h2{font-family:var(--f-display);font-weight:700;letter-spacing:-.025em;line-height:1.12;color:var(--head)}
+h1{font-size:clamp(2.1rem,6vw,3.4rem)}
+h2{font-size:clamp(1.5rem,4vw,2.1rem)}
+h3{font-size:1.05rem;font-weight:700;line-height:1.3}
+p{margin:0}
+.num{font-variant-numeric:tabular-nums}
+.wrap{max-width:1040px;margin-inline:auto;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+.narrow{max-width:720px}
+.center{text-align:center}
+.kicker{font-size:.78rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--accent)}
+.lede{font-size:1.08rem;color:var(--muted)}
+button{font:inherit;color:inherit;cursor:pointer}
+:focus-visible{outline:3px solid var(--accent);outline-offset:3px;border-radius:10px}
+
+.top{padding-block:16px;border-bottom:1px solid var(--line);background:var(--bg)}
+.top .wrap{display:flex;align-items:center;justify-content:space-between;gap:12px}
+.brand{display:grid;line-height:1.25}
+.brand b{font-family:var(--f-display);font-size:1.15rem;font-weight:600}
+.brand span{font-size:.8rem;color:var(--muted)}
+.lang{display:inline-flex;border:1px solid var(--line);border-radius:999px;padding:3px;background:var(--surface)}
+.lang button{border:0;background:none;padding:5px 12px;border-radius:999px;font-size:.78rem;font-weight:700;color:var(--muted)}
+.lang button[aria-pressed="true"]{background:var(--accent);color:var(--accent-ink)}
+
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;border:0;border-radius:14px;padding:16px 26px;font-weight:700;font-size:1rem;text-decoration:none;transition:transform .15s ease,filter .15s ease}
+.btn.primary{background:var(--cta);color:var(--cta-ink)}
+.btn.primary:hover{filter:brightness(1.06);transform:translateY(-1px)}
+.btn.quiet{background:var(--surface);border:1px solid var(--line);color:var(--ink)}
+.btn[disabled]{opacity:.45;cursor:not-allowed;transform:none}
+.ghost{border:0;background:none;color:var(--muted);font-weight:600;padding:6px 0}
+.ghost:hover{color:var(--ink)}
+
+.hero{padding-block:clamp(40px,8vw,88px) clamp(32px,6vw,56px);display:grid;gap:22px;justify-items:center}
+.hero h1 em{font-style:normal;color:var(--hl)}
+.hero .lede{max-width:56ch}
+.ticks{list-style:none;margin:0;padding:0;display:flex;flex-wrap:wrap;justify-content:center;gap:8px 20px;font-size:.88rem;color:var(--muted)}
+.ticks li{display:flex;align-items:center;gap:7px}
+.ticks svg{color:var(--accent)}
+
+.areas{display:grid;grid-template-columns:repeat(5,1fr);gap:12px;padding-bottom:clamp(40px,7vw,72px)}
+.area{background:var(--surface);border:1px solid var(--line);border-radius:var(--r);padding:20px 16px;display:grid;gap:10px;justify-items:center;text-align:center;align-content:start}
+.area .ic{width:44px;height:44px;border-radius:12px;background:var(--accent-soft);color:var(--accent);display:grid;place-items:center}
+.area p{font-size:.85rem;color:var(--muted);line-height:1.45}
+
+.band{padding-block:clamp(44px,7vw,80px)}
+.band.alt{background:var(--sand)}
+.stack{display:grid;gap:14px}
+.mirror{list-style:none;margin:24px 0 0;padding:0;display:grid;gap:10px;text-align:left}
+.mirror li{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:16px 18px}
+.closer{margin-top:22px;font-family:var(--f-display);font-size:1.25rem;font-weight:600}
+.steps{list-style:none;margin:28px 0 0;padding:0;display:grid;grid-template-columns:repeat(3,1fr);gap:14px;text-align:left}
+.step{background:var(--surface);border:1px solid var(--line);border-radius:var(--r);padding:22px;display:grid;gap:8px;align-content:start}
+.step .n{width:30px;height:30px;border-radius:50%;background:var(--accent);color:var(--accent-ink);display:grid;place-items:center;font-weight:700;font-size:.85rem}
+.step p{color:var(--muted);font-size:.95rem}
+.coach{display:grid;grid-template-columns:auto 1fr;gap:18px;align-items:center;background:var(--surface);border:1px solid var(--line);border-radius:var(--r);padding:22px;text-align:left;margin-top:24px}
+.avatar img{width:100%;height:100%;object-fit:cover;border-radius:50%}
+.avatar{width:64px;height:64px;border-radius:50%;overflow:hidden;background:var(--accent);color:var(--accent-ink);display:grid;place-items:center;font-family:var(--f-display);font-size:1.5rem;font-weight:600}
+.coach p{color:var(--muted);font-size:.95rem}
+.faq{display:grid;gap:10px;margin-top:24px;text-align:left}
+.faq details{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:16px 18px}
+.faq summary{font-weight:700;cursor:pointer}
+.faq details p{margin-top:10px;color:var(--muted)}
+.final{padding-block:clamp(44px,7vw,80px)}
+.final .box h2{color:inherit}
+.final .box{background:var(--accent);color:var(--accent-ink);border-radius:24px;padding:clamp(28px,5vw,48px);display:grid;gap:18px;justify-items:center;text-align:center}
+.final .btn{background:var(--cta);color:var(--cta-ink)}
+.foot{padding-block:26px 34px;font-size:.82rem;color:var(--muted);border-top:1px solid var(--line)}
+.foot .wrap{display:grid;gap:6px;text-align:center}
+
+.quiz{padding-block:18px 64px}
+.qbar{display:flex;justify-content:space-between;align-items:center;gap:12px}
+.qcount{font-size:.88rem;color:var(--muted);font-weight:600}
+.segs{display:grid;grid-template-columns:repeat(6,1fr);gap:5px;margin:12px 0 22px}
+.seg{height:6px;border-radius:3px;background:var(--line);overflow:hidden}
+.seg i{display:block;height:100%;background:var(--accent);transition:width .3s ease}
+.qcard{background:var(--surface);border:1px solid var(--line);border-radius:24px;padding:clamp(22px,4vw,36px);display:grid;gap:12px}
+.qcard h2{font-size:clamp(1.35rem,3.6vw,1.8rem)}
+.why{font-size:.92rem;color:var(--muted)}
+.opts{display:grid;gap:10px;margin-top:8px}
+.opt{display:flex;align-items:center;gap:12px;text-align:left;padding:15px 16px;border:1.5px solid var(--line);border-radius:14px;background:var(--bg);font-weight:500;transition:border-color .15s ease,background .15s ease}
+.opt:hover{border-color:var(--accent)}
+.opt .dot{flex:none;width:20px;height:20px;border-radius:50%;border:2px solid var(--line);display:grid;place-items:center}
+.opt.multi .dot{border-radius:6px}
+.opt.on{border-color:var(--accent);background:var(--accent-soft)}
+.opt.on .dot{border-color:var(--accent);background:var(--accent)}
+.opt.on .dot::after{content:"";width:6px;height:6px;border-radius:50%;background:var(--accent-ink)}
+.qnext{justify-self:start;margin-top:6px}
+.inter{min-height:58vh;display:grid;place-content:center;text-align:center;gap:14px;padding-block:40px}
+.inter .tick{width:64px;height:64px;border-radius:50%;background:var(--accent-soft);color:var(--accent);display:grid;place-items:center;margin-inline:auto}
+.inter p{color:var(--muted)}
+
+.results{padding-block:24px 64px;display:grid;gap:22px}
+.scorecard{background:var(--surface);border:1px solid var(--line);border-radius:24px;padding:clamp(24px,4vw,36px);display:grid;gap:14px;justify-items:center;text-align:center}
+.ring{width:150px;height:150px}
+.ring .track{stroke:var(--line)}
+.ring .val{stroke:var(--accent);transition:stroke-dashoffset 1s ease}
+.ring text{fill:var(--ink);font-family:var(--f-body);font-weight:700}
+.ring .sub{fill:var(--muted);font-size:11px;font-weight:500}
+.locked{position:relative;border-radius:24px;overflow:hidden;max-height:320px}
+.locked::after{content:"";position:absolute;inset:auto 0 0;height:90px;background:linear-gradient(transparent,var(--bg))}
+.locked .behind{filter:blur(7px);opacity:.55;pointer-events:none;user-select:none}
+.locked .gate{position:absolute;inset:0;display:grid;place-items:center;padding:16px;z-index:1}
+.lockpill{display:inline-flex;align-items:center;gap:8px;background:var(--surface);border:1px solid var(--line);border-radius:999px;padding:10px 16px;font-weight:700;font-size:.9rem;box-shadow:0 10px 24px -14px rgba(20,40,36,.45)}
+.lockpill svg{color:var(--accent)}
+.detail{display:grid;gap:18px}
+.pillars{display:grid;gap:14px;background:var(--surface);border:1px solid var(--line);border-radius:var(--r);padding:clamp(18px,3vw,26px)}
+.pil{display:grid;grid-template-columns:minmax(110px,170px) 1fr auto;gap:12px;align-items:center}
+.pil-name{font-weight:600}
+.pil-bar{height:10px;border-radius:5px;background:var(--line);overflow:hidden}
+.pil-bar i{display:block;height:100%;border-radius:5px}
+.pil-val{display:flex;gap:8px;align-items:center;justify-content:flex-end}
+.chip{font-size:.7rem;font-weight:700;padding:3px 9px;border-radius:999px;white-space:nowrap}
+.c-good{background:var(--good-soft);color:var(--good)}.c-warn{background:var(--warn-soft);color:var(--warn)}.c-bad{background:var(--bad-soft);color:var(--bad)}
+.b-good{background:var(--good)}.b-warn{background:var(--warn)}.b-bad{background:var(--bad)}
+.focus{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.tip{border:1px solid var(--line);border-radius:var(--r);padding:20px;display:grid;gap:8px;background:var(--surface)}
+.tip p{color:var(--muted)}
+.gatecard{width:100%;background:var(--surface);border:1px solid var(--line);border-radius:22px;padding:clamp(20px,4vw,30px);display:grid;gap:14px;box-shadow:0 24px 48px -28px rgba(20,40,36,.45)}
+.gatecard .lede{font-size:.98rem}
+.form{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.field{display:grid;gap:6px;min-width:0}
+.field label,.field legend{font-size:.82rem;font-weight:600;color:var(--muted);padding:0}
+.field input,.field select{font:inherit;padding:12px 14px;border-radius:12px;border:1px solid var(--line);background:var(--bg);color:var(--ink);width:100%}
+.field fieldset{border:0;margin:0;padding:0;display:grid;gap:8px}
+.radio{display:flex;gap:10px;align-items:center;font-size:.95rem}
+.radio input{accent-color:var(--accent);width:18px;height:18px}
+.full{grid-column:1/-1}
+.err{color:var(--bad);font-size:.85rem;font-weight:600}
+.phone{display:grid;grid-template-columns:auto 1fr;gap:8px}
+.phone select{width:auto}
+.check{display:flex;gap:10px;align-items:flex-start;font-size:.88rem;color:var(--muted);line-height:1.5}
+.check input{accent-color:var(--accent);width:18px;height:18px;margin-top:2px;flex:none}
+.small{font-size:.82rem;color:var(--muted)}
+.copyline{display:flex;flex-wrap:wrap;gap:8px 12px;align-items:center}
+.linkbtn{border:0;background:none;color:var(--accent);font-weight:700;padding:0;text-decoration:underline}
+.sel{user-select:all;font-weight:600}
+.agesig{display:grid;gap:4px;justify-items:center;text-align:center;background:var(--surface);border:1px solid var(--line);border-left:4px solid var(--warm);border-radius:14px;padding:14px 18px;max-width:52ch}
+.agesig strong{font-family:var(--f-display);font-size:1.15rem;color:var(--head)}
+.agesig.a-good{border-left-color:var(--good)}
+.agesig.a-bad{border-left-color:var(--bad)}
+.next{background:var(--accent-soft);border-radius:var(--r);padding:20px;display:grid;gap:6px}
+.disc{font-size:.85rem;color:var(--muted)}
+
+@media (max-width:900px){ .areas{grid-template-columns:repeat(3,1fr)} }
+@media (max-width:760px){ .steps,.focus{grid-template-columns:1fr} .areas{grid-template-columns:repeat(2,1fr)} }
+@media (max-width:520px){
+  .form{grid-template-columns:1fr}
+  .locked{max-height:260px}
+  .pil{grid-template-columns:1fr auto}
+  .pil-bar{grid-column:1/-1;grid-row:2}
+}
+@media (prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}
+</style>
+</head>
+<body>
+<header class="top"><div class="wrap">
+  <a class="brand" href="../" style="color:inherit;text-decoration:none"><b id="brand-name">Alvacy</b><span id="tagline">Body Age Assessment</span></a>
+  <div class="lang" role="group" aria-label="Language">
+    <button id="l-id" data-lang="id" aria-pressed="false">ID</button>
+    <button id="l-en" data-lang="en" aria-pressed="true">EN</button>
+  </div>
+</div></header>
+<main id="app">
+<section class="wrap narrow hero center">
+  <p class="kicker">Free · 3 minutes · your first step</p>
+  <h1>How old is your body, <em>really?</em></h1>
+  <p class="lede">The age on your ID isn’t always your body’s age. This short assessment is the first step to find out, plus which area is holding your progress back most.</p>
+  <button class="btn primary" data-act="start">Start the free assessment <span aria-hidden="true">→</span></button>
+  <ul class="ticks"><li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"></path></svg>Free</li><li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"></path></svg>Just 3 minutes</li><li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"></path></svg>Not a medical diagnosis</li></ul>
+</section>
+<section class="wrap areas"><div class="area"><span class="ic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 11h16a8 8 0 0 1-16 0z"></path><path d="M9 7c0-1.5 1-2 1-3.5M13 7c0-1.5 1-2 1-3.5"></path></svg></span><h3>Eating</h3><p>Eating out, protein, sweet drinks</p></div><div class="area"><span class="ic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M13 3L5 14h6l-1 7 8-11h-6z"></path></svg></span><h3>Energy</h3><p>Afternoon dips, mornings, stamina</p></div><div class="area"><span class="ic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 14.5A8 8 0 1 1 9.5 4a6.5 6.5 0 0 0 10.5 10.5z"></path></svg></span><h3>Sleep &amp; stress</h3><p>Hours, work stress, waking at night</p></div><div class="area"><span class="ic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 12h4l3-7 4 14 3-7h4"></path></svg></span><h3>Movement &amp; muscle</h3><p>Daily steps, strength training, stairs</p></div><div class="area"><span class="ic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 20h16M7 20V10M12 20V5M17 20v-7"></path></svg></span><h3>Body trend</h3><p>Weight, waistline, diet history</p></div></section>
+<section class="band alt"><div class="wrap narrow center">
+  <h2>Sound familiar?</h2>
+  <ul class="mirror"><li>Meetings from morning, client dinners at night, and the scale creeping up every year.</li><li>You dieted, you hit the gym. Lost a little, then it came back.</li><li>By 3pm you need a second coffee to make it to the evening.</li><li>Your pants feel tighter, even though you feel like you eat normally.</li></ul>
+  <p class="closer">It isn’t a discipline problem. Your body is sending signals that just haven’t been read yet.</p>
+</div></section>
+<section class="band"><div class="wrap center">
+  <p class="kicker">How it works</p>
+  <h2 style="margin-top:8px">From guessing to a clear next step</h2>
+  <ol class="steps"><li class="step"><span class="n">1</span><h3>Answer 30 questions</h3><p>About your eating, energy, sleep, movement, and body changes. Just 3 minutes.</p></li><li class="step"><span class="n">2</span><h3>See your result</h3><p>You instantly see your body age signal and score. Add your name and contact to unlock area scores and first steps.</p></li><li class="step"><span class="n">3</span><h3>Full assessment with your coach</h3><p>This is only the first step. The real numbers, from body fat, muscle and visceral fat to body age, we measure together. Free.</p></li></ol>
+</div></section>
+<section class="band alt"><div class="wrap narrow center">
+  <p class="kicker">Your coach</p>
+  <div class="coach">
+    <span class="avatar" aria-hidden="true"><img src="/images/coach-aj-face.jpg" alt=""></span>
+    <div class="stack" style="gap:4px"><h3>Coach AJ</h3><p>I was busy running a game development startup, raising 3 kids, and gaining “sympathy weight” every time my wife was pregnant. Together with my wife, I lost 18 kg in 90 days without stepping away from work. Now I help busy professionals find a way that fits their schedule.</p><p class="small">Full assessment &amp; free consultation</p></div>
+  </div>
+</div></section>
+<section class="band"><div class="wrap narrow center">
+  <h2>Common questions</h2>
+  <div class="faq"><details><summary>Is this a medical diagnosis?</summary><p>No. It’s a lifestyle questionnaire, so the results are signals, not a verdict. If you have a medical condition, keep talking to your doctor.</p></details><details><summary>Can a quiz know my body age?</summary><p>It can’t give you an exact number, and we won’t pretend it can. It reads the habits that usually make a body feel “older” than its age. The real number is measured in the full assessment.</p></details><details><summary>Why do I need to add my contact?</summary><p>So Coach AJ can walk you through your result and next step. No obligation after that.</p></details><details><summary>What happens in the full assessment?</summary><p>You’re measured on a body composition monitor: body fat, muscle, visceral fat, resting metabolism, and body age. The numbers are estimates, so they’re always measured under the same conditions to compare fairly.</p></details></div>
+</div></section>
+<section class="final"><div class="wrap"><div class="box">
+  <h2>How old is your body? Find out in 3 minutes.</h2>
+  <button class="btn" data-act="start">Start the free assessment <span aria-hidden="true">→</span></button>
+</div></div></section>
+<footer class="foot"><div class="wrap"><span>This questionnaire is for lifestyle education and does not replace medical advice.</span><span>Run by the Success Together coaching team. · <a href="../privacy/" style="color:inherit">Privacy Policy</a></span></div></footer></main>
+
+<script src="/assets/site.js"></script>
+<script>
+const COACHES = ALV.COACHES;
+const DEFAULT_COACH = ALV.DEFAULT;
+function coachCode(){ return ALV.coachCode(); }
+/* Google Apps Script web app URL that writes each quiz result to the leads Google Sheet. Empty = logging off. */
+const LEADS_URL = 'https://script.google.com/macros/s/AKfycbzHYCy85pcm4xrpc_WEtsaBsibqSqL1nnCM9J73-kLUhlQXbolvuyQogj7fnDmW17WiRg/exec';
+const SID = (self.crypto && crypto.randomUUID) ? crypto.randomUUID() : String(Date.now())+Math.random().toString(36).slice(2);
+
+const UI = {
+ id:{
+  tagline:c=>'Body Age Assessment',
+  eyebrow:'Gratis · 3 menit · langkah pertama',
+  h1:'Berapa umur badan kamu <em>sebenarnya?</em>',
+  lede:'Umur di KTP belum tentu sama dengan umur badan kamu. Assessment singkat ini langkah pertama buat cari tahu, plus area mana yang paling nahan progress kamu.',
+  cta:'Mulai assessment gratis', ticks:['Gratis','Cuma 3 menit','Bukan diagnosis medis'],
+  areas:[['Pola makan','Makan di luar, protein, minuman manis'],['Energi','Drop sore, bangun pagi, stamina'],['Tidur & stres','Jam tidur, stres kerja, kebangun malam'],['Gerak & otot','Langkah harian, latihan beban, naik tangga'],['Tren badan','Berat, lingkar perut, riwayat diet']],
+  patH:'Relate nggak?',
+  pat:['Meeting dari pagi, client dinner malamnya, berat naik pelan-pelan tiap tahun.','Udah diet, udah nge-gym. Turun dikit, terus naik lagi.','Jam 3 sore udah butuh kopi kedua biar kuat sampai malam.','Celana makin sesak, padahal rasanya makan biasa aja.'],
+  patClose:'Bukan karena kamu kurang disiplin. Badan kamu cuma lagi kasih sinyal yang belum kebaca.',
+  howK:'Cara kerjanya', howH:'Dari nebak-nebak ke langkah yang jelas',
+  steps:[['Jawab 30 pertanyaan','Soal makan, energi, tidur, gerak, dan perubahan badan kamu. Cuma 3 menit.'],['Lihat hasil kamu','Kamu langsung lihat sinyal umur badan dan skor kamu. Isi nama dan kontak buat buka skor per area dan langkah pertama.'],['Assessment lengkap bareng coach','Ini baru langkah pertama. Angka pastinya, dari body fat, otot, visceral fat sampai body age, kita ukur bareng. Gratis.']],
+  coachK:'Coach kamu', coachLine:'Assessment lengkap & konsultasi gratis',
+  faqH:'Yang sering ditanyain',
+  faq:c=>[['Ini diagnosis medis?','Bukan. Ini kuesioner gaya hidup, jadi hasilnya berupa sinyal, bukan vonis. Kalau kamu punya kondisi medis, tetap konsultasi ke dokter ya.'],['Kuis bisa tahu umur badan aku?','Kuis nggak bisa kasih angka pastinya, dan kami nggak akan pura-pura bisa. Kuis ini baca kebiasaan yang biasanya bikin badan terasa "lebih tua" dari umurnya. Angka pastinya diukur waktu assessment lengkap.'],['Kenapa harus isi kontak?',`Biar ${c} bisa bantu jelasin hasil kamu dan langkah berikutnya. Nggak ada kewajiban apa-apa setelahnya.`],['Assessment lengkapnya ngapain aja?','Kamu diukur pakai timbangan komposisi tubuh: body fat, otot, visceral fat, metabolisme basal, dan body age. Angkanya perkiraan, jadi selalu diukur di kondisi yang sama biar bisa dibandingin.']],
+  finalH:'Umur badan kamu berapa? Cari tahu dalam 3 menit.',
+  foot:'Kuesioner ini untuk edukasi gaya hidup, bukan pengganti nasihat medis.', team:'Dikelola oleh tim coach Success Together.',
+  ageK:'Sinyal umur badan', ageV:{good:'Kemungkinan sejalan dengan umur kamu, atau lebih muda',warn:'Kemungkinan lebih tua dari umur kamu',bad:'Kemungkinan jauh lebih tua dari umur kamu'},
+  ageNote:'Ini perkiraan arah dari kebiasaan kamu, bukan angka. Angka pastinya diukur di assessment lengkap.',
+  bookP:'Mau lebih cepat? Pilih sendiri jadwal assessment kamu.', bookBtn:'Pilih jadwal assessment', privacyLink:'Kebijakan Privasi',
+  back:'Kembali', why:'Kenapa ditanya:', next:'Lanjut', multiHint:'Boleh pilih lebih dari satu.',
+  done:'selesai', left:n=>n===1?'Tinggal 1 bagian lagi.':`Tinggal ${n} bagian lagi.`, cont:'Lanjut',
+  resK:'Hasil Body Age Assessment', score:'skor',
+  gateH:'Hasil lengkap kamu udah siap',
+  gateP:c=>`Isi data kamu buat buka skor per area dan 2 langkah pertama. ${c} nanti hubungin kamu lewat WhatsApp buat bahas hasilnya.`,
+  fWa:'Nomor WhatsApp', fEmail:'Email', submit:'Lihat hasil lengkap', lockPill:'Terkunci · isi data di bawah untuk membuka', consentCheck:c=>`Aku setuju data dan hasil kuis ini disimpan, dan ${c} boleh menghubungi aku lewat WhatsApp atau email.`, errWa:'Masukkan nomor WhatsApp yang benar.', errEmail:'Masukkan alamat email yang benar.', errConsent:'Centang persetujuan dulu ya.', privacy:'Data kamu hanya dipakai oleh coach kamu dan tidak dibagikan ke pihak lain.',
+  fName:'Nama panggilan', fCity:'Kota', cities:['Jakarta','Tangerang','Bekasi','Depok','Bogor','Bandung','Kota lain'],
+  fMode:'Mau bertemu bagaimana?', modes:['Ketemu langsung (assessment lengkap)','Online dulu (video call)'],
+  send:c=>`Kirim ke WhatsApp ${c}`, errName:'Isi nama panggilan kamu dulu.',
+  fallback:'WhatsApp tidak terbuka? Kirim manual ke', copyMsg:'salin pesan', copied:'pesan tersalin', copyFail:'tidak bisa menyalin otomatis', consent:'Dengan menekan tombol ini, nama dan hasil kuis kamu disimpan agar coach bisa menghubungi kamu.',
+  focusH:'Dua area yang paling ngaruh buat kamu',
+  chip:{good:'Kuat',warn:'Cukup',bad:'Perlu perhatian'},
+  nextH:c=>`Makasih! ${c} bakal hubungin kamu lewat WhatsApp.`,
+  nextP:'Siapin waktu sekitar 30 menit buat assessment lengkap dan bahas hasilnya.',
+  disc:'Skor ini adalah perkiraan dari jawaban kamu, bukan diagnosis medis. Kalau kamu punya kondisi kesehatan atau sedang minum obat, konsultasikan dengan dokter sebelum mengubah pola makan atau olahraga.',
+  retake:'Ulangi kuis',
+  m:{title:'BODY AGE ASSESSMENT', hi:(c,n,city)=>`Halo ${c}, aku *${n}* dari ${city}. Ini hasil cek aku:`, total:'Skor total', areas:'Skor per area', focus:'Paling perlu perhatian', profile:'Profil', age:'Usia', gender:'Gender', goal:'Goal', start:'Mulai', tried:'Pernah coba', want:'Yang aku mau', none:'-'}
+ },
+ en:{
+  tagline:c=>'Body Age Assessment',
+  eyebrow:'Free · 3 minutes · your first step',
+  h1:'How old is your body, <em>really?</em>',
+  lede:'The age on your ID isn’t always your body’s age. This short assessment is the first step to find out, plus which area is holding your progress back most.',
+  cta:'Start the free assessment', ticks:['Free','Just 3 minutes','Not a medical diagnosis'],
+  areas:[['Eating','Eating out, protein, sweet drinks'],['Energy','Afternoon dips, mornings, stamina'],['Sleep & stress','Hours, work stress, waking at night'],['Movement & muscle','Daily steps, strength training, stairs'],['Body trend','Weight, waistline, diet history']],
+  patH:'Sound familiar?',
+  pat:['Meetings from morning, client dinners at night, and the scale creeping up every year.','You dieted, you hit the gym. Lost a little, then it came back.','By 3pm you need a second coffee to make it to the evening.','Your pants feel tighter, even though you feel like you eat normally.'],
+  patClose:'It isn’t a discipline problem. Your body is sending signals that just haven’t been read yet.',
+  howK:'How it works', howH:'From guessing to a clear next step',
+  steps:[['Answer 30 questions','About your eating, energy, sleep, movement, and body changes. Just 3 minutes.'],['See your result','You instantly see your body age signal and score. Add your name and contact to unlock area scores and first steps.'],['Full assessment with your coach','This is only the first step. The real numbers, from body fat, muscle and visceral fat to body age, we measure together. Free.']],
+  coachK:'Your coach', coachLine:'Full assessment & free consultation',
+  faqH:'Common questions',
+  faq:c=>[['Is this a medical diagnosis?','No. It’s a lifestyle questionnaire, so the results are signals, not a verdict. If you have a medical condition, keep talking to your doctor.'],['Can a quiz know my body age?','It can’t give you an exact number, and we won’t pretend it can. It reads the habits that usually make a body feel “older” than its age. The real number is measured in the full assessment.'],['Why do I need to add my contact?',`So ${c} can walk you through your result and next step. No obligation after that.`],['What happens in the full assessment?','You’re measured on a body composition monitor: body fat, muscle, visceral fat, resting metabolism, and body age. The numbers are estimates, so they’re always measured under the same conditions to compare fairly.']],
+  finalH:'How old is your body? Find out in 3 minutes.',
+  foot:'This questionnaire is for lifestyle education and does not replace medical advice.', team:'Run by the Success Together coaching team.',
+  ageK:'Body age signal', ageV:{good:'Likely in line with your age, or younger',warn:'Likely older than your age',bad:'Likely much older than your age'},
+  ageNote:'This is a direction based on your habits, not a number. The real number is measured in the full assessment.',
+  bookP:'Want to move faster? Pick your own assessment time.', bookBtn:'Pick an assessment time', privacyLink:'Privacy Policy',
+  back:'Back', why:'Why we ask:', next:'Next', multiHint:'Pick as many as apply.',
+  done:'complete', left:n=>n===1?'1 section left.':`${n} sections left.`, cont:'Continue',
+  resK:'Your Body Age Assessment', score:'score',
+  gateH:'Your full results are ready',
+  gateP:c=>`Add your details to unlock your area scores and 2 first steps. ${c} will contact you on WhatsApp to go through your results.`,
+  fWa:'WhatsApp number', fEmail:'Email', submit:'See my full results', lockPill:'Locked · add your details below to unlock', consentCheck:c=>`I agree that my details and quiz results are saved, and that ${c} may contact me on WhatsApp or email.`, errWa:'Please enter a valid WhatsApp number.', errEmail:'Please enter a valid email address.', errConsent:'Please tick the consent box first.', privacy:'Your details are only used by your coach and are never shared with anyone else.',
+  fName:'Your name', fCity:'City', cities:['Jakarta','Tangerang','Bekasi','Depok','Bogor','Bandung','Other city'],
+  fMode:'How would you like to meet?', modes:['In person (full assessment)','Online first (video call)'],
+  send:c=>`Send to ${c} on WhatsApp`, errName:'Please add your name first.',
+  fallback:'WhatsApp didn’t open? Send it manually to', copyMsg:'copy message', copied:'message copied', copyFail:'couldn’t copy automatically', consent:'By tapping this button, your name and quiz results are saved so your coach can contact you.',
+  focusH:'The two areas that matter most for you',
+  chip:{good:'Strong',warn:'Okay',bad:'Needs attention'},
+  nextH:c=>`Thank you. ${c} will contact you on WhatsApp.`,
+  nextP:'Set aside about 30 minutes for the full assessment and results review.',
+  disc:'This score is an estimate based on your answers, not a medical diagnosis. If you have a health condition or take medication, talk to your doctor before changing how you eat or exercise.',
+  retake:'Retake the quiz',
+  m:{title:'BODY AGE ASSESSMENT', hi:(c,n,city)=>`Hi ${c}, I’m *${n}* from ${city}. Here are my results:`, total:'Total score', areas:'Area scores', focus:'Needs the most attention', profile:'Profile', age:'Age', gender:'Gender', goal:'Goal', start:'Start', tried:'Tried before', want:'What I’d like', none:'-'}
+ }
+};
+
+const SECTIONS = [
+ {k:'profile', n:{id:'Tentang kamu',en:'About you'}, scored:false},
+ {k:'food', n:{id:'Pola makan',en:'Eating'}, scored:true,
+  tip:{id:'Mulai dari dua hal: ada protein di setiap makan, dan ganti satu minuman manis per hari jadi air atau kopi tanpa gula.',en:'Start with two things: protein at every meal, and swap one sweet drink a day for water or unsweetened coffee.'}},
+ {k:'energy', n:{id:'Energi',en:'Energy'}, scored:true,
+  tip:{id:'Coba urutan makan siang: sayur dan protein dulu, nasi belakangan. Dan batasi kopi setelah jam 2 siang.',en:'Try reordering lunch: vegetables and protein first, rice last. And keep coffee before 2pm.'}},
+ {k:'sleep', n:{id:'Tidur & stres',en:'Sleep & stress'}, scored:true,
+  tip:{id:'Kunci 30 menit tanpa layar sebelum tidur, dan bangun di jam yang sama tiap hari, termasuk weekend.',en:'Keep 30 screen-free minutes before bed, and wake at the same time every day, weekends included.'}},
+ {k:'move', n:{id:'Gerak & otot',en:'Movement & muscle'}, scored:true,
+  tip:{id:'Target 7.000 langkah sehari dan dua sesi latihan beban 20 menit seminggu. Otot itu mesin pembakar kamu.',en:'Aim for 7,000 steps a day and two 20-minute strength sessions a week. Muscle is your fat-burning engine.'}},
+ {k:'trend', n:{id:'Tren badan',en:'Body trend'}, scored:true,
+  tip:{id:'Timbangan aja ga cukup. Ukur lemak, otot, dan visceral fat biar kamu tahu apa yang sebenarnya berubah.',en:'The scale alone isn’t enough. Measure fat, muscle, and visceral fat so you know what’s really changing.'}}
+];
+
+const o4 = (a,b,c,d) => [a,b,c,d].map((x,i)=>({id:x[0],en:x[1],v:3-i}));
+const Q = [
+ // About you (not scored)
+ {s:0,q:{id:'Berapa usia kamu?',en:'How old are you?'},h:{id:'Setelah 35, badan berubah pelan-pelan. Ini bantu baca hasil kamu.',en:'Bodies change gradually after 35. This helps read your results.'},
+  o:[['30–34','30–34'],['35–39','35–39'],['40–44','40–44'],['45–49','45–49'],['50+','50+']].map(x=>({id:x[0],en:x[1],v:0}))},
+ {s:0,q:{id:'Jenis kelamin',en:'Gender'},h:{id:'Pola lemak dan otot pria dan wanita beda.',en:'Men and women store fat and build muscle differently.'},
+  o:[['Pria','Male'],['Wanita','Female'],['Lebih baik tidak disebut','Prefer not to say']].map(x=>({id:x[0],en:x[1],v:0}))},
+ {s:0,q:{id:'Apa goal utama kamu?',en:'What’s your main goal?'},h:{id:'Biar saran di akhir sesuai yang kamu mau.',en:'So the advice at the end fits what you want.'},
+  o:[['Turun lemak, terutama perut','Lose fat, especially belly fat'],['Energi balik kayak dulu','Get my energy back'],['Badan lebih kencang dan kuat','A firmer, stronger body'],['Lebih sehat jangka panjang','Better long-term health']].map(x=>({id:x[0],en:x[1],v:0}))},
+ {s:0,q:{id:'Kapan kamu pengen mulai?',en:'When would you like to start?'},h:{id:'Ga ada jawaban yang salah.',en:'There’s no wrong answer.'},
+  o:[['Secepatnya','As soon as possible'],['Dalam bulan ini','This month'],['1–3 bulan lagi','In 1–3 months'],['Cuma lihat-lihat dulu','Just exploring for now']].map(x=>({id:x[0],en:x[1],v:0}))},
+ {s:0,multi:true,q:{id:'Apa aja yang udah pernah kamu coba?',en:'What have you tried before?'},h:{id:'Biar kita ga ngulang cara yang udah ga works buat kamu.',en:'So we don’t repeat what already didn’t work for you.'},
+  o:[['Diet ketat atau hitung kalori','Strict diet or calorie counting'],['Gym atau olahraga rutin','Gym or regular exercise'],['Puasa intermiten','Intermittent fasting'],['Program atau produk diet lain','Other diet programs or products'],['Belum pernah serius coba','Never seriously tried']].map(x=>({id:x[0],en:x[1],v:0}))},
+ // Eating
+ {s:1,q:{id:'Seminggu, berapa kali kamu makan di luar, client dinner, atau pesan online?',en:'How many times a week do you eat out, have client dinners, or order delivery?'},h:{id:'Makanan luar biasanya nyimpen kalori, minyak, dan gula yang ga kelihatan.',en:'Restaurant food usually hides extra calories, oil, and sugar.'},
+  o:o4(['0–2 kali','0–2 times'],['3–5 kali','3–5 times'],['6–9 kali','6–9 times'],['10 kali atau lebih','10 times or more'])},
+ {s:1,q:{id:'Seberapa sering ada protein (telur, ayam, ikan, tahu, tempe) di piring kamu?',en:'How often is there protein (eggs, chicken, fish, tofu, tempeh) on your plate?'},h:{id:'Protein bikin kenyang lebih lama dan jaga otot, mesin pembakar kamu.',en:'Protein keeps you full longer and protects muscle, your fat-burning engine.'},
+  o:o4(['Hampir setiap makan','Almost every meal'],['Sekali sehari','Once a day'],['Jarang','Rarely'],['Ga pernah kepikiran','Never really think about it'])},
+ {s:1,q:{id:'Berapa minuman manis per hari? (kopi susu gula aren, teh manis, boba, soda)',en:'How many sweet drinks a day? (sweetened iced coffee, sweet tea, bubble tea, soda)'},h:{id:'Gula dari minuman paling gampang masuk tanpa terasa.',en:'Sugar from drinks slips in without you noticing.'},
+  o:o4(['Ga ada','None'],['1','1'],['2','2'],['3 atau lebih','3 or more'])},
+ {s:1,q:{id:'Seberapa sering kamu ngemil karena stres atau lapar mata, bukan lapar beneran?',en:'How often do you snack from stress or boredom rather than real hunger?'},h:{id:'Ngemil karena stres itu sinyal, bukan kurang niat.',en:'Stress snacking is a signal, not a lack of willpower.'},
+  o:o4(['Jarang','Rarely'],['Kadang-kadang','Sometimes'],['Sering','Often'],['Hampir tiap hari','Almost every day'])},
+ {s:1,q:{id:'Kalau telat makan, biasanya kamu…',en:'When a meal is late, you usually…'},h:{id:'Ini kasih gambaran seberapa stabil rasa lapar dan energi kamu.',en:'This gives a sense of how steady your hunger and energy are.'},
+  o:o4(['Santai aja','Feel fine'],['Agak lapar, tapi masih oke','Get a bit hungry, still okay'],['Gampang bete atau lemes','Get irritable or shaky'],['Langsung kalap pas akhirnya makan','Overeat once I finally eat'])},
+ // Energy
+ {s:2,q:{id:'Jam 2–4 sore, energi kamu gimana?',en:'How is your energy between 2 and 4pm?'},h:{id:'Energi drop sore sering nyambung ke menu makan siang dan kualitas tidur.',en:'An afternoon crash is often linked to lunch and sleep quality.'},
+  o:o4(['Stabil','Steady'],['Turun dikit, masih oke','Dips a little, still fine'],['Butuh kopi atau yang manis','Need coffee or something sweet'],['Ngantuk berat, susah fokus','Very sleepy, hard to focus'])},
+ {s:2,q:{id:'Berapa gelas kopi atau minuman berkafein per hari?',en:'How many cups of coffee or caffeinated drinks a day?'},h:{id:'Kafein bisa nutupin capek yang sebenarnya.',en:'Caffeine can mask real tiredness.'},
+  o:o4(['0–1','0–1'],['2','2'],['3','3'],['4 atau lebih','4 or more'])},
+ {s:2,q:{id:'Waktu bangun pagi, rasanya?',en:'How do you feel when you wake up?'},h:{id:'Cara kamu bangun nunjukin kualitas istirahat semalam.',en:'How you wake up shows how well you rested.'},
+  o:o4(['Segar','Refreshed'],['Lumayan','Okay'],['Masih capek','Still tired'],['Kayak belum tidur','Like I never slept'])},
+ {s:2,q:{id:'Dibanding 5 tahun lalu, stamina kamu?',en:'Compared to 5 years ago, your stamina is…'},h:{id:'Bandingin sama diri kamu sendiri, bukan orang lain.',en:'Compare with yourself, not with others.'},
+  o:o4(['Sama atau lebih baik','The same or better'],['Turun sedikit','A little lower'],['Turun jelas','Clearly lower'],['Jauh banget turunnya','Much lower'])},
+ {s:2,q:{id:'Fokus dan kejernihan pikiran kamu pas kerja?',en:'Your focus and mental clarity at work?'},h:{id:'Energi badan dan fokus otak biasanya jalan bareng.',en:'Body energy and mental focus usually move together.'},
+  o:o4(['Tajam','Sharp'],['Kebanyakan oke','Mostly fine'],['Sering blank atau gampang teralihkan','Often blank or distracted'],['Brain fog hampir tiap hari','Brain fog almost every day'])},
+ // Sleep & stress
+ {s:3,q:{id:'Rata-rata kamu tidur berapa jam per malam?',en:'On average, how many hours do you sleep a night?'},h:{id:'Kurang tidur bikin lebih gampang lapar dan pengen yang manis.',en:'Short sleep makes you hungrier and crave sweets.'},
+  o:o4(['7 jam atau lebih','7 hours or more'],['6–7 jam','6–7 hours'],['5–6 jam','5–6 hours'],['Kurang dari 5 jam','Less than 5 hours'])},
+ {s:3,q:{id:'Biasanya berapa lama sampai kamu tertidur?',en:'How long does it usually take you to fall asleep?'},h:{id:'Susah tidur sering tanda kepala masih di mode kerja.',en:'Trouble falling asleep often means your mind is still in work mode.'},
+  o:o4(['Kurang dari 15 menit','Under 15 minutes'],['15–30 menit','15–30 minutes'],['30–60 menit','30–60 minutes'],['Lebih dari 1 jam','Over an hour'])},
+ {s:3,q:{id:'Menjelang tidur, kamu masih cek HP atau email kerja?',en:'Do you still check your phone or work email right before bed?'},h:{id:'Layar dan notifikasi bikin otak susah switch off.',en:'Screens and notifications make it hard for your brain to switch off.'},
+  o:o4(['Jarang','Rarely'],['Kadang-kadang','Sometimes'],['Sering','Often'],['Selalu','Always'])},
+ {s:3,q:{id:'Level stres kerja kamu seminggu terakhir?',en:'Your work stress level this past week?'},h:{id:'Stres terus-terusan bikin badan cenderung nyimpen lemak, terutama di perut.',en:'Constant stress makes the body more likely to store fat, especially around the belly.'},
+  o:o4(['Rendah','Low'],['Sedang','Moderate'],['Tinggi','High'],['Overwhelmed','Overwhelmed'])},
+ {s:3,q:{id:'Seberapa sering kamu kebangun tengah malam?',en:'How often do you wake up during the night?'},h:{id:'Tidur yang kepotong-potong bikin pemulihan ga maksimal.',en:'Broken sleep means your body doesn’t recover fully.'},
+  o:o4(['Jarang','Rarely'],['Sekali, gampang tidur lagi','Once, easy to fall back asleep'],['2–3 kali','2–3 times'],['Sering, dan susah tidur lagi','Often, and hard to fall back asleep'])},
+ // Movement & muscle
+ {s:4,q:{id:'Kira-kira berapa langkah kaki kamu per hari?',en:'Roughly how many steps do you take a day?'},h:{id:'Gerak harian sering lebih ngaruh dari sesi gym seminggu sekali.',en:'Daily movement often matters more than a weekly gym session.'},
+  o:o4(['8.000 atau lebih','8,000 or more'],['5.000–8.000','5,000–8,000'],['3.000–5.000','3,000–5,000'],['Kurang dari 3.000 atau ga tahu','Under 3,000 or not sure'])},
+ {s:4,q:{id:'Berapa kali seminggu kamu latihan beban atau strength?',en:'How many times a week do you do strength training?'},h:{id:'Otot itu mesin pembakar. Setelah 35, otot pelan-pelan berkurang kalau ga dilatih.',en:'Muscle is your fat-burning engine. After 35, it slowly declines if you don’t train it.'},
+  o:o4(['2 kali atau lebih','2 or more times'],['1 kali','Once'],['Jarang','Rarely'],['Belum pernah','Never'])},
+ {s:4,q:{id:'Total berapa jam kamu duduk per hari? (kerja, mobil, sofa)',en:'How many hours do you sit in total each day? (work, car, sofa)'},h:{id:'Hitung semua, termasuk macet di jalan.',en:'Count everything, including time stuck in traffic.'},
+  o:o4(['Kurang dari 6 jam','Under 6 hours'],['6–8 jam','6–8 hours'],['8–10 jam','8–10 hours'],['Lebih dari 10 jam','Over 10 hours'])},
+ {s:4,q:{id:'Naik tangga 3 lantai, rasanya gimana?',en:'Climbing 3 flights of stairs feels…'},h:{id:'Tes sederhana buat kebugaran jantung dan kaki.',en:'A simple test of heart and leg fitness.'},
+  o:o4(['Santai','Easy'],['Agak ngos-ngosan','A bit out of breath'],['Harus berhenti di tengah','I need to stop halfway'],['Mending naik lift','I’d rather take the lift'])},
+ {s:4,q:{id:'Seberapa sering pegal atau kaku di punggung, leher, atau lutut?',en:'How often do you get aches or stiffness in your back, neck, or knees?'},h:{id:'Pegal sering tanda kurang gerak, bukan cuma faktor umur.',en:'Aches are often a sign of too little movement, not just age.'},
+  o:o4(['Jarang','Rarely'],['Kadang-kadang','Sometimes'],['Sering','Often'],['Hampir tiap hari','Almost every day'])},
+ // Body trend
+ {s:5,q:{id:'Berat badan kamu dalam 3 tahun terakhir?',en:'Your weight over the past 3 years?'},h:{id:'Naik pelan-pelan itu yang paling sering ga disadari.',en:'Slow gain is the kind people notice least.'},
+  o:o4(['Stabil','Stable'],['Naik 1–3 kg','Up 1–3 kg'],['Naik 4–7 kg','Up 4–7 kg'],['Naik 8 kg atau lebih','Up 8 kg or more'])},
+ {s:5,q:{id:'Gimana lingkar perut atau ukuran celana kamu?',en:'How about your waist or pants size?'},h:{id:'Lingkar perut sering lebih jujur dari angka timbangan.',en:'Your waistline is often more honest than the scale.'},
+  o:o4(['Sama aja','Same as before'],['Agak sesak','A bit tighter'],['Naik 1 ukuran','Up 1 size'],['Naik 2 ukuran atau lebih','Up 2 sizes or more'])},
+ {s:5,q:{id:'Berapa kali kamu diet, lalu beratnya balik lagi?',en:'How many times have you dieted and then regained the weight?'},h:{id:'Kalau sering balik lagi, biasanya caranya yang ga cocok, bukan kamu.',en:'If it keeps coming back, it’s usually the method, not you.'},
+  o:o4(['Belum pernah, atau berhasil bertahan','Never, or it stayed off'],['Sekali','Once'],['2–3 kali','2–3 times'],['Udah ga kehitung','I’ve lost count'])},
+ {s:5,q:{id:'Pernah ukur komposisi tubuh (lemak, otot, visceral fat)?',en:'Have you ever measured your body composition (fat, muscle, visceral fat)?'},h:{id:'Timbangan cuma kasih satu angka. Komposisi tubuh kasih tahu lemak vs otot.',en:'A scale gives one number. Body composition shows fat versus muscle.'},
+  o:o4(['Rutin','Regularly'],['Pernah sekali','Once'],['Cuma timbang berat','Only my weight'],['Belum pernah','Never'])},
+ {s:5,q:{id:'Seberapa yakin kamu tahu kenapa badan kamu kayak sekarang?',en:'How sure are you about why your body is the way it is now?'},h:{id:'Tahu penyebabnya itu setengah dari solusinya.',en:'Knowing the cause is half the solution.'},
+  o:o4(['Yakin banget','Very sure'],['Lumayan yakin','Fairly sure'],['Bingung','Confused'],['Ga tahu sama sekali','No idea at all'])}
+];
+
+
+const ICONS = [
+ '<path d="M4 11h16a8 8 0 0 1-16 0z"/><path d="M9 7c0-1.5 1-2 1-3.5M13 7c0-1.5 1-2 1-3.5"/>',
+ '<path d="M13 3L5 14h6l-1 7 8-11h-6z"/>',
+ '<path d="M20 14.5A8 8 0 1 1 9.5 4a6.5 6.5 0 0 0 10.5 10.5z"/>',
+ '<path d="M3 12h4l3-7 4 14 3-7h4"/>',
+ '<path d="M4 20h16M7 20V10M12 20V5M17 20v-7"/>'
+];
+const svg = (p,s=22)=>`<svg width="${s}" height="${s}" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">${p}</svg>`;
+const CHECK = '<path d="M5 12.5l4.5 4.5L19 7.5"/>';
+
+let lang = ALV.getLang();
+const S = {view:'landing', i:0, a:{}, interFor:null, lead:{name:'',city:0,mode:0,cc:'62',wa:'',email:'',consent:false}, unlocked:false};
+let timer = null;
+const app = document.getElementById('app');
+const L = o => o[lang];
+const esc = s => String(s).replace(/[&<>"]/g, c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+const coach = () => COACHES[coachCode()];
+
+function setLang(l){
+  lang = l;
+  ALV.setLang(l);
+  document.getElementById('l-id').setAttribute('aria-pressed', l==='id');
+  document.getElementById('l-en').setAttribute('aria-pressed', l==='en');
+  render();
+}
+
+function render(){
+  const u = UI[lang], c = coach();
+  document.getElementById('tagline').textContent = u.tagline(c.name);
+  if(S.view==='landing') app.innerHTML = landing(u,c);
+  else if(S.view==='quiz') app.innerHTML = quiz(u);
+  else if(S.view==='inter') app.innerHTML = inter(u);
+  else app.innerHTML = results(u,c);
+  if(S.view==='results') requestAnimationFrame(()=>{ const v=app.querySelector('.ring .val'); if(v) v.style.strokeDashoffset = v.dataset.off; });
+}
+
+function landing(u,c){
+  const initials = c.name.replace(/^Coach\s+/i,'').slice(0,2).toUpperCase();
+  return `
+<section class="wrap narrow hero center">
+  <p class="kicker">${u.eyebrow}</p>
+  <h1>${u.h1}</h1>
+  <p class="lede">${u.lede}</p>
+  <button class="btn primary" data-act="start">${u.cta} <span aria-hidden="true">→</span></button>
+  <ul class="ticks">${u.ticks.map(t=>`<li>${svg(CHECK,16)}${t}</li>`).join('')}</ul>
+</section>
+<section class="wrap areas">${u.areas.map((a,i)=>`<div class="area"><span class="ic">${svg(ICONS[i])}</span><h3>${a[0]}</h3><p>${a[1]}</p></div>`).join('')}</section>
+<section class="band alt"><div class="wrap narrow center">
+  <h2>${u.patH}</h2>
+  <ul class="mirror">${u.pat.map(p=>`<li>${p}</li>`).join('')}</ul>
+  <p class="closer">${u.patClose}</p>
+</div></section>
+<section class="band"><div class="wrap center">
+  <p class="kicker">${u.howK}</p>
+  <h2 style="margin-top:8px">${u.howH}</h2>
+  <ol class="steps">${u.steps.map((s,i)=>`<li class="step"><span class="n">${i+1}</span><h3>${s[0]}</h3><p>${s[1]}</p></li>`).join('')}</ol>
+</div></section>
+<section class="band alt"><div class="wrap narrow center">
+  <p class="kicker">${u.coachK}</p>
+  <div class="coach">
+    <span class="avatar" aria-hidden="true">${c.face?`<img src="/images/${c.face}" alt="">`:esc(initials)}</span>
+    <div class="stack" style="gap:4px"><h3>${esc(c.name)}</h3>${c.story?`<p>${L(c.story)}</p>`:''}<p class="small">${u.coachLine}</p></div>
+  </div>
+</div></section>
+<section class="band"><div class="wrap narrow center">
+  <h2>${u.faqH}</h2>
+  <div class="faq">${u.faq(c.name).map(f=>`<details><summary>${f[0]}</summary><p>${f[1]}</p></details>`).join('')}</div>
+</div></section>
+<section class="final"><div class="wrap"><div class="box">
+  <h2>${u.finalH}</h2>
+  <button class="btn" data-act="start">${u.cta} <span aria-hidden="true">→</span></button>
+</div></div></section>
+<footer class="foot"><div class="wrap"><span>${u.foot}</span><span>${u.team} · <a href="../privacy/" style="color:inherit">${u.privacyLink}</a></span></div></footer>`;
+}
+
+function quiz(u){
+  const q = Q[S.i], sec = SECTIONS[q.s];
+  const segs = SECTIONS.map((s,k)=>{
+    const idx = Q.map((x,j)=>x.s===k?j:-1).filter(j=>j>=0);
+    const doneN = idx.filter(j=>j<S.i).length;
+    return `<span class="seg"><i style="width:${doneN/idx.length*100}%"></i></span>`;
+  }).join('');
+  const ans = S.a[S.i];
+  const opts = q.o.map((o,idx)=>{
+    const on = q.multi ? (Array.isArray(ans)&&ans.includes(idx)) : ans===idx;
+    return `<button class="opt${q.multi?' multi':''}${on?' on':''}" data-act="pick" data-v="${idx}" aria-pressed="${on}"><span class="dot" aria-hidden="true"></span><span>${L(o)}</span></button>`;
+  }).join('');
+  const canNext = q.multi && Array.isArray(ans) && ans.length>0;
+  return `
+<section class="quiz wrap narrow">
+  <div class="qbar"><button class="ghost" data-act="back">← ${u.back}</button><span class="qcount num">${S.i+1} / ${Q.length}</span></div>
+  <div class="segs" aria-hidden="true">${segs}</div>
+  <article class="qcard">
+    <p class="kicker">${L(sec.n)}</p>
+    <h2>${L(q.q)}</h2>
+    <p class="why">${u.why} ${L(q.h)}${q.multi?' '+u.multiHint:''}</p>
+    <div class="opts" role="group" aria-label="${esc(L(q.q))}">${opts}</div>
+    ${q.multi?`<button class="btn primary qnext" data-act="next"${canNext?'':' disabled'}>${u.next} <span aria-hidden="true">→</span></button>`:''}
+  </article>
+</section>`;
+}
+
+function inter(u){
+  const k = S.interFor, left = SECTIONS.length-1-k;
+  return `
+<section class="inter wrap narrow">
+  <div class="tick">${svg(CHECK,28)}</div>
+  <h2>${L(SECTIONS[k].n)} ${u.done}</h2>
+  <p>${u.left(left)}</p>
+  <div><button class="btn primary" data-act="cont">${u.cont} <span aria-hidden="true">→</span></button></div>
+</section>`;
+}
+
+function scores(){
+  const out = {};
+  SECTIONS.forEach((s,k)=>{
+    if(!s.scored) return;
+    let sum=0, max=0;
+    Q.forEach((q,j)=>{ if(q.s===k){ max+=3; const a=S.a[j]; if(typeof a==='number') sum+=q.o[a].v; } });
+    out[s.k] = Math.round(sum/max*100);
+  });
+  const vals = Object.values(out);
+  out.total = Math.round(vals.reduce((a,b)=>a+b,0)/vals.length);
+  return out;
+}
+const BANDS = [
+  {min:80,id:['Mesin kamu jalan bagus','Banyak kebiasaan kamu sudah mendukung. Fokusnya sekarang menjaga konsistensi dan memastikan otot tidak turun.'],en:['Your engine is running well','Most of your habits already work for you. The focus now is staying consistent and keeping your muscle.']},
+  {min:60,id:['Ada sinyal kecil','Dasarnya sudah oke, tapi ada satu atau dua area yang diam-diam menahan progress kamu.'],en:['A few small signals','Your base is solid, but one or two areas are quietly holding you back.']},
+  {min:40,id:['Sinyalnya jelas','Beberapa kebiasaan sedang bekerja melawan kamu. Kabar baiknya, semua ini bisa diubah satu per satu.'],en:['Clear signals','Several habits are working against you. The good news is all of this can change, one step at a time.']},
+  {min:0,id:['Badan kamu sedang minta perhatian','Banyak area yang sedang berat, dan itu bukan salah kamu. Mulai dari satu hal kecil. Kalau ada keluhan kesehatan, bicarakan juga dengan dokter.'],en:['Your body is asking for attention','A lot is weighing on you right now, and it isn’t your fault. Start with one small thing. If you have health concerns, talk to your doctor too.']}
+];
+const level = v => v>=75?'good':v>=50?'warn':'bad';
+const mark = v => v>=75?'🟢':v>=50?'🟡':'🔴';
+
+function detailHTML(u, sc){
+  const scored = SECTIONS.filter(s=>s.scored);
+  const pil = scored.map(s=>{ const v=sc[s.k], l=level(v); return `<div class="pil"><span class="pil-name">${L(s.n)}</span><span class="pil-bar"><i class="b-${l}" style="width:${Math.max(v,3)}%"></i></span><span class="pil-val"><span class="num">${v}</span><span class="chip c-${l}">${u.chip[l]}</span></span></div>`; }).join('');
+  const weakest = [...scored].sort((a,b)=>sc[a.k]-sc[b.k]).slice(0,2);
+  return `<div class="detail">
+    <div class="pillars">${pil}</div>
+    <h2 style="font-size:1.4rem">${u.focusH}</h2>
+    <div class="focus">${weakest.map(s=>`<div class="tip"><span class="chip c-${level(sc[s.k])}" style="justify-self:start">${L(s.n)} · ${sc[s.k]}</span><p>${L(s.tip)}</p></div>`).join('')}</div>
+  </div>`;
+}
+
+function results(u,c){
+  const sc = scores();
+  const band = BANDS.find(b=>sc.total>=b.min)[lang];
+  const C = 2*Math.PI*52, off = C*(1-sc.total/100);
+  const lead = S.lead;
+  const top = `
+  <div class="scorecard">
+    <p class="kicker">${u.resK}</p>
+    <svg class="ring" viewBox="0 0 120 120" role="img" aria-label="${u.score} ${sc.total}/100">
+      <circle class="track" cx="60" cy="60" r="52" fill="none" stroke-width="10"/>
+      <circle class="val" cx="60" cy="60" r="52" fill="none" stroke-width="10" stroke-linecap="round" transform="rotate(-90 60 60)" stroke-dasharray="${C.toFixed(2)}" stroke-dashoffset="${C.toFixed(2)}" data-off="${off.toFixed(2)}"/>
+      <text x="60" y="64" text-anchor="middle" font-size="32">${sc.total}</text>
+      <text class="sub" x="60" y="82" text-anchor="middle">/ 100</text>
+    </svg>
+    <h1 style="font-size:clamp(1.8rem,5vw,2.5rem)">${band[0]}</h1>
+    <p class="lede" style="max-width:52ch">${band[1]}</p>
+    <div class="agesig a-${level(sc.total)}"><span class="kicker">${u.ageK}</span><strong>${u.ageV[level(sc.total)]}</strong><span class="small">${u.ageNote}</span></div>
+  </div>`;
+  if(S.unlocked){
+    return `<section class="results wrap narrow">${top}${detailHTML(u,sc)}
+      <div class="next"><h3>${u.nextH(c.name)}</h3><p class="small">${u.nextP}</p>${c.booking?`<p class="small" style="margin-top:6px">${u.bookP}</p><a class="btn primary" style="justify-self:start;margin-top:6px" href="${esc(bookUrl(c.booking))}" target="_blank" rel="noopener" data-book>${u.bookBtn} <span aria-hidden="true">→</span></a>`:''}</div>
+      <p class="disc">${u.disc}</p>
+      <div><button class="btn quiet" data-act="retake">${u.retake}</button></div>
+    </section>`;
+  }
+  const cityOpts = u.cities.map((x,i)=>`<option value="${i}"${lead.city==i?' selected':''}>${x}</option>`).join('');
+  const modeOpts = u.modes.map((m,i)=>`<label class="radio"><input type="radio" name="mode" id="mode-${i}" value="${i}"${lead.mode==i?' checked':''}> ${m}</label>`).join('');
+  return `<section class="results wrap narrow">${top}
+    <div class="locked">
+      <div class="behind" aria-hidden="true">${detailHTML(u,sc)}</div>
+      <div class="gate"><span class="lockpill">${svg('<rect x="5" y="11" width="14" height="10" rx="2"/><path d="M8 11V8a4 4 0 0 1 8 0v3"/>',18)}${u.lockPill}</span></div>
+    </div>
+        <div class="gatecard">
+          <h2 style="font-size:1.45rem">${u.gateH}</h2>
+          <p class="lede">${u.gateP(c.name)}</p>
+          <form class="form" id="leadform" novalidate>
+            <div class="field full"><label for="f-name">${u.fName}</label><input id="f-name" autocomplete="name" value="${esc(lead.name)}"></div>
+            <div class="field full"><label for="f-wa">${u.fWa}</label><div class="phone"><select id="f-cc" aria-label="Country code">${[['62','ID +62'],['65','SG +65'],['60','MY +60']].map(x=>`<option value="${x[0]}"${lead.cc===x[0]?' selected':''}>${x[1]}</option>`).join('')}</select><input id="f-wa" type="tel" inputmode="tel" autocomplete="tel-national" placeholder="812 3456 7890" value="${esc(lead.wa)}"></div></div>
+            <div class="field full"><label for="f-email">${u.fEmail}</label><input id="f-email" type="email" inputmode="email" autocomplete="email" placeholder="nama@email.com" value="${esc(lead.email)}"></div>
+            <div class="field"><label for="f-city">${u.fCity}</label><select id="f-city">${cityOpts}</select></div>
+            <div class="field full"><fieldset><legend>${u.fMode}</legend>${modeOpts}</fieldset></div>
+            <label class="check full"><input type="checkbox" id="f-consent"${lead.consent?' checked':''}> <span>${u.consentCheck(c.name)}</span></label>
+            <p class="err full" id="f-err" hidden></p>
+            <button class="btn primary full" type="submit">${u.submit} <span aria-hidden="true">→</span></button>
+            <p class="small full">${u.privacy} <a href="../privacy/" target="_blank" rel="noopener">${u.privacyLink}</a></p>
+          </form>
+        </div>
+    <p class="disc">${u.disc}</p>
+  </section>`;
+}
+
+function bookUrl(base){
+  /* Calendly accepts name/email in the link, so the lead doesn't retype them. */
+  if(!/calendly\.com/.test(base)) return base;
+  const q = new URLSearchParams({name:S.lead.name||'', email:S.lead.email||''});
+  return base + (base.includes('?')?'&':'?') + q.toString();
+}
+function syncLead(){
+  const v=id=>document.getElementById(id);
+  if(v('f-name')) S.lead.name = v('f-name').value.trim();
+  if(v('f-cc')) S.lead.cc = v('f-cc').value;
+  if(v('f-wa')) S.lead.wa = v('f-wa').value.trim();
+  if(v('f-email')) S.lead.email = v('f-email').value.trim();
+  if(v('f-city')) S.lead.city = +v('f-city').value;
+  const md=document.querySelector('input[name="mode"]:checked'); if(md) S.lead.mode = +md.value;
+  if(v('f-consent')) S.lead.consent = v('f-consent').checked;
+}
+function fullWa(){
+  let d = S.lead.wa.replace(/\D/g,'');
+  if(d.startsWith(S.lead.cc) && d.length > 10) d = d.slice(S.lead.cc.length);
+  d = d.replace(/^0+/,'');
+  return (d.length>=8 && d.length<=13) ? S.lead.cc + d : '';
+}
+function leadError(u){
+  if(!S.lead.name) return [u.errName,'f-name'];
+  if(!fullWa()) return [u.errWa,'f-wa'];
+  if(!/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(S.lead.email)) return [u.errEmail,'f-email'];
+  if(!S.lead.consent) return [u.errConsent,'f-consent'];
+  return null;
+}
+
+function logLead(status, withContact){
+  if(!LEADS_URL) return;
+  const sc = scores(), u = UI[lang];
+  const band = BANDS.find(b=>sc.total>=b.min)[lang][0];
+  const pick = j => { const a=S.a[j]; if(Array.isArray(a)) return a.map(x=>L(Q[j].o[x])).join(', '); return typeof a==='number' ? L(Q[j].o[a]) : ''; };
+  const d = {sid:SID, status, coach:coach().name, lang, total:sc.total, band,
+    food:sc.food, energy:sc.energy, sleep:sc.sleep, move:sc.move, trend:sc.trend,
+    age:pick(0), gender:pick(1), goal:pick(2), start:pick(3), tried:pick(4),
+    src:[ALV.source().source,ALV.source().medium].filter(Boolean).join(' / '), campaign:ALV.source().campaign, content:ALV.source().content, landing:ALV.source().landing,
+    name: withContact ? S.lead.name : '', wa: withContact ? fullWa() : '', email: withContact ? S.lead.email : '', consent: withContact ? 'Ya' : '', city: withContact ? u.cities[S.lead.city] : '', mode: withContact ? u.modes[S.lead.mode] : ''};
+  try{ fetch(LEADS_URL, {method:'POST', mode:'no-cors', keepalive:true, headers:{'Content-Type':'text/plain;charset=utf-8'}, body:JSON.stringify(d)}).catch(()=>{}); }catch(e){}
+}
+
+function advance(){
+  const cur = Q[S.i];
+  if(S.i === Q.length-1){ S.view='results'; render(); scrollTo(0,0); logLead('Selesai kuis', false); ALV.track('QuizComplete', {}, null, true); return; }
+  if(Q[S.i+1].s !== cur.s){
+    S.interFor = cur.s; S.view='inter'; render();
+    clearTimeout(timer); timer = setTimeout(()=>{ if(S.view==='inter'){ S.i++; S.view='quiz'; render(); } }, 1600);
+    return;
+  }
+  S.i++; render();
+}
+
+document.addEventListener('click', e=>{
+  if(e.target.closest('[data-book]')){ ALV.track('Schedule', {}, null, false); return; }
+  const lb = e.target.closest('[data-lang]');
+  if(lb){ if(S.view==='results') syncLead(); setLang(lb.dataset.lang); return; }
+  const b = e.target.closest('[data-act]'); if(!b) return;
+  const act = b.dataset.act;
+  if(act==='start'){ S.view='quiz'; S.i=0; render(); scrollTo(0,0); ALV.track('StartAssessment', {}, null, true); }
+  else if(act==='back'){ clearTimeout(timer); if(S.i>0){ S.i--; render(); } else { S.view='landing'; render(); } }
+  else if(act==='pick'){
+    const v=+b.dataset.v, q=Q[S.i];
+    if(q.multi){ const arr=Array.isArray(S.a[S.i])?S.a[S.i]:[]; S.a[S.i]=arr.includes(v)?arr.filter(x=>x!==v):[...arr,v]; render(); }
+    else { S.a[S.i]=v; render(); clearTimeout(timer); timer=setTimeout(advance,230); }
+  }
+  else if(act==='next'){ advance(); }
+  else if(act==='cont'){ clearTimeout(timer); S.i++; S.view='quiz'; render(); }
+  else if(act==='retake'){ S.a={}; S.i=0; S.unlocked=false; S.view='quiz'; render(); scrollTo(0,0); }
+});
+document.addEventListener('input', e=>{ if(e.target.closest('.gatecard')){ syncLead(); const er=document.getElementById('f-err'); if(er) er.hidden=true; } });
+document.addEventListener('submit', e=>{
+  if(e.target.id!=='leadform') return;
+  e.preventDefault(); syncLead();
+  const err = leadError(UI[lang]);
+  if(err){ const er=document.getElementById('f-err'); er.textContent=err[0]; er.hidden=false; const f=document.getElementById(err[1]); if(f) f.focus(); return; }
+  logLead('Lead masuk', true);
+  ALV.track('Lead', {content_name:'Body Age Assessment', value:scores().total}, SID);
+  S.unlocked=true; render(); scrollTo({top:0});
+});
+document.addEventListener('change', e=>{ if(e.target.closest('.gatecard')) syncLead(); });
+window.addEventListener('hashchange', render);
+
+setLang(lang);
+</script>
+
+</body>
+</html>

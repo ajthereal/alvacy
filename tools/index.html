@@ -3,12 +3,65 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-<title>Transform Toolkit · Alvacy</title>
-<meta name="description" content="Kalkulator gratis: pesan nasi Padang lebih ringan, audit gula dari minuman, dan target protein harian.">
+<!-- seo:start (written by scripts/build.py: change titles and descriptions in PAGES there) -->
+<title>Kalkulator Kalori Nasi Padang, Gula Minuman &amp; Protein · Alvacy</title>
+<meta name="description" content="Kalkulator gratis: hitung kalori nasi Padang dan pesan yang lebih ringan, audit gula dari minuman, dan target protein harian kamu.">
+<link rel="canonical" href="https://alvacy.com/tools/">
+<link rel="alternate" hreflang="id" href="https://alvacy.com/tools/">
+<link rel="alternate" hreflang="en" href="https://alvacy.com/en/tools/">
+<link rel="alternate" hreflang="x-default" href="https://alvacy.com/tools/">
+<link rel="icon" href="/images/icon.svg" type="image/svg+xml">
+<link rel="icon" href="/images/icon-192.png" sizes="192x192" type="image/png">
+<link rel="apple-touch-icon" href="/images/apple-touch-icon.png">
+<meta name="theme-color" content="#1E3A8A">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Alvacy">
+<meta property="og:title" content="Kalkulator Kalori Nasi Padang, Gula Minuman &amp; Protein · Alvacy">
+<meta property="og:description" content="Kalkulator gratis: hitung kalori nasi Padang dan pesan yang lebih ringan, audit gula dari minuman, dan target protein harian kamu.">
+<meta property="og:url" content="https://alvacy.com/tools/">
+<meta property="og:image" content="https://alvacy.com/images/og-id.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:locale" content="id_ID">
+<meta property="og:locale:alternate" content="en_US">
+<meta name="twitter:card" content="summary_large_image">
+<script type="application/ld+json">
+{
+ "@context": "https://schema.org",
+ "@graph": [
+  {
+   "@type": "WebPage",
+   "url": "https://alvacy.com/tools/",
+   "name": "Kalkulator Kalori Nasi Padang, Gula Minuman & Protein · Alvacy",
+   "description": "Kalkulator gratis: hitung kalori nasi Padang dan pesan yang lebih ringan, audit gula dari minuman, dan target protein harian kamu.",
+   "inLanguage": "id",
+   "isPartOf": {
+    "@id": "https://alvacy.com/#website"
+   }
+  },
+  {
+   "@type": "WebApplication",
+   "name": "Transform Toolkit",
+   "url": "https://alvacy.com/tools/",
+   "description": "Kalkulator gratis: hitung kalori nasi Padang dan pesan yang lebih ringan, audit gula dari minuman, dan target protein harian kamu.",
+   "applicationCategory": "HealthApplication",
+   "operatingSystem": "Any",
+   "inLanguage": "id",
+   "isAccessibleForFree": true,
+   "offers": {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "IDR"
+   }
+  }
+ ]
+}
+</script>
+<!-- seo:end -->
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Sora:wght@600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap">
-<link rel="stylesheet" href="../assets/site.css">
+<link rel="stylesheet" href="/assets/site.css">
 <style>
 /* Layout: page intro + pill tabs. Padang = order steps on the left, calorie "bon" sticky on the right; on phone a bottom bar shows the running total. */
 .intro{padding-block:clamp(28px,6vw,56px) 18px;display:grid;gap:14px}
@@ -133,129 +186,208 @@ details.src ul{margin:10px 0 0;padding-left:18px;display:grid;gap:6px;font-size:
 <header class="site-top"><div class="wrap">
   <a class="logo" href="../"><b>Alvacy</b><span id="tagline"></span></a>
   <nav class="site-nav">
-    <a href="../test/" class="hide-sm" data-i18n="navTest"></a>
-    <a href="./" aria-current="page" data-i18n="navTools"></a>
+    <a href="../test/" class="hide-sm" data-i18n="navTest">Body Age Assessment</a>
+    <a href="./" aria-current="page" data-i18n="navTools">Tools gratis</a>
     <span class="lang" role="group" aria-label="Language"><button id="lang-id" data-lang="id" aria-pressed="true">ID</button><button id="lang-en" data-lang="en" aria-pressed="false">EN</button></span>
   </nav>
 </div></header>
 
 <section class="wrap intro">
-  <p class="kicker" data-i18n="kicker"></p>
-  <h1 data-i18n="h1"></h1>
-  <p class="lede" data-i18n="lede"></p>
+  <p class="kicker" data-i18n="kicker">Transform Toolkit · gratis</p>
+  <h1 data-i18n="h1">Makan enak, <em>tetap turun lemak.</em></h1>
+  <p class="lede" data-i18n="lede">Tiga alat kecil untuk keputusan sehari-hari: pesan nasi Padang yang lebih ringan, cek gula dari minuman, dan hitung target protein kamu.</p>
   <nav class="tabs" role="tablist">
-    <button role="tab" id="tab-padang" data-tab="padang" data-i18n="tabPadang"></button>
-    <button role="tab" id="tab-gula" data-tab="gula" data-i18n="tabGula"></button>
-    <button role="tab" id="tab-protein" data-tab="protein" data-i18n="tabProtein"></button>
+    <button role="tab" id="tab-padang" data-tab="padang" data-i18n="tabPadang" aria-selected="true">Pesan Padang</button>
+    <button role="tab" id="tab-gula" data-tab="gula" data-i18n="tabGula" aria-selected="false">Audit Gula</button>
+    <button role="tab" id="tab-protein" data-tab="protein" data-i18n="tabProtein" aria-selected="false">Target Protein</button>
   </nav>
 </section>
 
 <main class="wrap toolarea">
   <section class="panel" id="p-padang" role="tabpanel">
     <div class="flow">
-      <div class="step"><div class="ask"><span class="n">1</span><div><h2 data-i18n="qNasi"></h2></div></div><div class="choices" id="riceCh"></div></div>
-      <div class="step"><div class="ask"><span class="n">2</span><div><h2 data-i18n="qLauk"></h2><div class="sub" data-i18n="qLaukSub"></div></div></div><div class="etalase" id="etalase"></div></div>
-      <div class="step"><div class="ask"><span class="n">3</span><div><h2 data-i18n="qKuah"></h2></div></div><div class="choices" id="kuahCh"></div><div class="choices" id="extraCh"></div><p class="hint" data-i18n="extraHint"></p></div>
-      <div class="step"><div class="ask"><span class="n">4</span><div><h2 data-i18n="qMinum"></h2></div></div><div class="choices" id="minumCh"></div></div>
+      <div class="step"><div class="ask"><span class="n">1</span><div><h2 data-i18n="qNasi">Nasinya, Da?</h2></div></div><div class="choices" id="riceCh"><button class="choice" data-g="rice" data-v="full" aria-pressed="true"><b>Nasi penuh</b><span>175–260 kkal</span></button><button class="choice" data-g="rice" data-v="half" aria-pressed="false"><b>Nasi setengah</b><span>90–130 kkal</span></button><button class="choice" data-g="rice" data-v="none" aria-pressed="false"><b>Tanpa nasi</b><span>0 kkal</span></button></div></div>
+      <div class="step"><div class="ask"><span class="n">2</span><div><h2 data-i18n="qLauk">Lauknya apa?</h2><div class="sub" data-i18n="qLaukSub">Tap lauk di etalase. Tap lagi untuk tambah.</div></div></div><div class="etalase" id="etalase"><div class="shelf"><div class="shelf-lbl">Ayam</div><button class="dish" data-dish="ayampop" aria-label="Ayam pop">
+     <span class="plate"><i style="background:radial-gradient(circle at 35% 35%, #EFDDBBcc, #EFDDBB)"></i></span>
+     <span><b>Ayam pop</b><small>130–170 · 18g P</small></span>
+     
+   </button><button class="dish" data-dish="ayambakar" aria-label="Ayam bakar">
+     <span class="plate"><i style="background:radial-gradient(circle at 35% 35%, #9A4A22cc, #9A4A22)"></i></span>
+     <span><b>Ayam bakar</b><small>230–370 · 20g P</small></span>
+     
+   </button><button class="dish" data-dish="ayamgoreng" aria-label="Ayam goreng">
+     <span class="plate"><i style="background:radial-gradient(circle at 35% 35%, #C7862Ecc, #C7862E)"></i></span>
+     <span><b>Ayam goreng</b><small>240–330 · 24g P</small></span>
+     
+   </button><button class="dish" data-dish="gulaiayam" aria-label="Gulai ayam">
+     <span class="plate"><i style="background:radial-gradient(circle at 35% 35%, #E2A42Acc, #E2A42A)"></i></span>
+     <span><b>Gulai ayam</b><small>185–250 · 16g P</small></span>
+     
+   </button></div><div class="shelf"><div class="shelf-lbl">Daging &amp; jeroan</div><button class="dish on" data-dish="rendang" aria-label="Rendang ×1">
+     <span class="plate"><i style="background:radial-gradient(circle at 35% 35%, #4E2616cc, #4E2616)"></i></span>
+     <span><b>Rendang</b><small>195–250 · 16g P</small></span>
+     <span class="qty"><em>1</em><span data-minus="rendang" role="button" aria-label="−">−</span></span>
+   </button><button class="dish" data-dish="dendeng" aria-label="Dendeng balado">
+     <span class="plate"><i style="background:radial-gradient(circle at 35% 35%, #B3261Ecc, #B3261E)"></i></span>
+     <span><b>Dendeng balado</b><small>120–210 · 12g P</small></span>
+     
+   </button><button class="dish" data-dish="paru" aria-label="Paru goreng">
+     <span class="plate"><i style="background:radial-gradient(circle at 35% 35%, #5E2F22cc, #5E2F22)"></i></span>
+     <span><b>Paru goreng</b><small>200–300 · 20g P</small></span>
+     
+   </button><button class="dish" data-dish="tunjang" aria-label="Gulai tunjang">
+     <span class="plate"><i style="background:radial-gradient(circle at 35% 35%, #D9A441cc, #D9A441)"></i></span>
+     <span><b>Gulai tunjang</b><small>120–200 · 14g P</small></span>
+     
+   </button><button class="dish" data-dish="otak" aria-label="Gulai otak">
+     <span class="plate"><i style="background:radial-gradient(circle at 35% 35%, #EDCF7Acc, #EDCF7A)"></i></span>
+     <span><b>Gulai otak</b><small>150–220 · 10g P</small></span>
+     
+   </button></div><div class="shelf"><div class="shelf-lbl">Ikan &amp; telur</div><button class="dish" data-dish="ikanbakar" aria-label="Ikan bakar">
+     <span class="plate"><i style="background:radial-gradient(circle at 35% 35%, #7C4B24cc, #7C4B24)"></i></span>
+     <span><b>Ikan bakar</b><small>150–220 · 24g P</small></span>
+     
+   </button><button class="dish" data-dish="gulaiikan" aria-label="Gulai ikan">
+     <span class="plate"><i style="background:radial-gradient(circle at 35% 35%, #E8B23Acc, #E8B23A)"></i></span>
+     <span><b>Gulai ikan</b><small>180–250 · 18g P</small></span>
+     
+   </button><button class="dish" data-dish="telurbalado" aria-label="Telur balado">
+     <span class="plate"><i style="background:radial-gradient(circle at 35% 35%, #D9481Ccc, #D9481C)"></i></span>
+     <span><b>Telur balado</b><small>120–180 · 7g P</small></span>
+     
+   </button><button class="dish" data-dish="telurdadar" aria-label="Telur dadar">
+     <span class="plate"><i style="background:radial-gradient(circle at 35% 35%, #E7C25Acc, #E7C25A)"></i></span>
+     <span><b>Telur dadar</b><small>200–300 · 9g P</small></span>
+     
+   </button><button class="dish" data-dish="perkedel" aria-label="Perkedel">
+     <span class="plate"><i style="background:radial-gradient(circle at 35% 35%, #BF8B45cc, #BF8B45)"></i></span>
+     <span><b>Perkedel</b><small>100–150 · 2g P</small></span>
+     
+   </button></div></div></div>
+      <div class="step"><div class="ask"><span class="n">3</span><div><h2 data-i18n="qKuah">Kuahnya?</h2></div></div><div class="choices" id="kuahCh"><button class="choice" data-g="kuah" data-v="banyak" aria-pressed="true"><b>Kuah banyak</b><span>60–120 kkal</span></button><button class="choice" data-g="kuah" data-v="sedikit" aria-pressed="false"><b>Kuah sedikit</b><span>30–50 kkal</span></button><button class="choice" data-g="kuah" data-v="pisah" aria-pressed="false"><b>Kuah dipisah</b><span>0 kkal</span></button></div><div class="choices" id="extraCh"><button class="choice" data-g="ex" data-v="daun" aria-pressed="true"><b>Daun singkong</b><span>20–40 kkal</span></button><button class="choice" data-g="ex" data-v="sambal" aria-pressed="true"><b>Sambal ijo</b><span>25–50 kkal</span></button><button class="choice" data-g="ex" data-v="nangka" aria-pressed="false"><b>Gulai nangka</b><span>50–100 kkal</span></button><button class="choice" data-g="ex" data-v="kerupuk" aria-pressed="false"><b>Kerupuk kulit</b><span>60–100 kkal</span></button></div><p class="hint" data-i18n="extraHint">Daun singkong &amp; sambal ijo biasanya ikut. Tap untuk lepas.</p></div>
+      <div class="step"><div class="ask"><span class="n">4</span><div><h2 data-i18n="qMinum">Minumnya?</h2></div></div><div class="choices" id="minumCh"><button class="choice" data-g="minum" data-v="air" aria-pressed="false"><b>Air putih</b><span>0 kkal</span></button><button class="choice" data-g="minum" data-v="tawar" aria-pressed="false"><b>Teh tawar</b><span>0–5 kkal</span></button><button class="choice" data-g="minum" data-v="esteh" aria-pressed="true"><b>Es teh manis</b><span>80–120 kkal</span></button><button class="choice" data-g="minum" data-v="jeruk" aria-pressed="false"><b>Es jeruk</b><span>90–140 kkal</span></button></div></div>
     </div>
     <aside class="side" id="bonSide">
       <div class="bon">
-        <h3 data-i18n="bonTitle"></h3>
-        <div class="shop" data-i18n="bonShop"></div>
-        <hr><div id="bonLines"></div><hr>
-        <div class="tot"><span data-i18n="total"></span><span class="k" id="bonK"></span></div>
-        <div class="range" id="bonR"></div>
-        <div class="ln" style="margin-top:8px"><span data-i18n="protein"></span><span id="bonP"></span></div>
+        <h3 data-i18n="bonTitle">BON KALORI</h3>
+        <div class="shop" data-i18n="bonShop">RM Transform · Kalori, bukan Rupiah</div>
+        <hr><div id="bonLines"><div class="ln"><span>Nasi penuh</span><span>175–260</span></div><div class="ln"><span>Rendang</span><span>195–250</span></div><div class="ln"><span>Kuah banyak</span><span>60–120</span></div><div class="ln"><span>Daun singkong</span><span>20–40</span></div><div class="ln"><span>Sambal ijo</span><span>25–50</span></div><div class="ln"><span>Es teh manis</span><span>80–120</span></div></div><hr>
+        <div class="tot"><span data-i18n="total">TOTAL</span><span class="k" id="bonK">698<small>kkal</small></span></div>
+        <div class="range" id="bonR">555–840 kkal</div>
+        <div class="ln" style="margin-top:8px"><span data-i18n="protein">PROTEIN</span><span id="bonP">±24 g</span></div>
         <hr>
-        <div style="display:flex;justify-content:space-between;align-items:center;gap:8px;flex-wrap:wrap"><span class="badge" id="bonBadge"></span><span style="font-size:.7rem;opacity:.7" data-i18n="bonEst"></span></div>
+        <div style="display:flex;justify-content:space-between;align-items:center;gap:8px;flex-wrap:wrap"><span class="badge" id="bonBadge">Masih oke</span><span style="font-size:.7rem;opacity:.7" data-i18n="bonEst">perkiraan tengah</span></div>
       </div>
-      <div><p class="say-h" data-i18n="sayH"></p><ul class="say" id="sayList"></ul></div>
-      <div class="actions"><button class="btn primary small" id="padCopy" data-i18n="copyResult"></button><button class="btn quiet small" id="padReset" data-i18n="reset"></button></div>
+      <div><p class="say-h" data-i18n="sayH">Mau lebih ringan? Bilang ke uda:</p><ul class="say" id="sayList"><li><q>Nasinya setengah aja, Da.</q><span>hemat ±108 kkal</span></li><li><q>Minumnya teh tawar aja.</q><span>hemat ±100 kkal</span></li><li><q>Da, kuahnya dipisah ya.</q><span>hemat ±90 kkal</span></li></ul></div>
+      <div class="actions"><button class="btn primary small" id="padCopy" data-i18n="copyResult">Salin hasil</button><button class="btn quiet small" id="padReset" data-i18n="reset">Reset</button></div>
     </aside>
   </section>
 
-  <section class="panel" id="p-gula" role="tabpanel" hidden>
-    <div class="flow"><div class="step"><div class="ask"><span class="n">1</span><div><h2 data-i18n="gQ"></h2><div class="sub" data-i18n="gSub"></div></div></div><div class="list" id="gulaList"></div></div></div>
+  <section class="panel" id="p-gula" role="tabpanel" hidden="">
+    <div class="flow"><div class="step"><div class="ask"><span class="n">1</span><div><h2 data-i18n="gQ">Seminggu ini minum apa saja?</h2><div class="sub" data-i18n="gSub">Hitung berapa kali per minggu. Jujur saja, ini cuma buat kamu.</div></div></div><div class="list" id="gulaList"><div class="row on"><div><div class="nm">Kopi susu gula aren</div><div class="meta">1 cup reguler · ±25 g gula</div></div>
+ <div class="stepper"><button aria-label="−" data-k="gula" data-id="kopsus" data-d="-1">−</button><output>5</output><button class="plus" aria-label="+" data-k="gula" data-id="kopsus" data-d="1">+</button></div></div><div class="row on"><div><div class="nm">Es teh manis</div><div class="meta">1 gelas · ±25 g gula</div></div>
+ <div class="stepper"><button aria-label="−" data-k="gula" data-id="esteh" data-d="-1">−</button><output>7</output><button class="plus" aria-label="+" data-k="gula" data-id="esteh" data-d="1">+</button></div></div><div class="row on"><div><div class="nm">Boba milk tea</div><div class="meta">1 cup besar · ±47 g gula</div></div>
+ <div class="stepper"><button aria-label="−" data-k="gula" data-id="boba" data-d="-1">−</button><output>1</output><button class="plus" aria-label="+" data-k="gula" data-id="boba" data-d="1">+</button></div></div><div class="row"><div><div class="nm">Thai tea</div><div class="meta">1 cup · ±35 g gula</div></div>
+ <div class="stepper"><button aria-label="−" data-k="gula" data-id="thai" data-d="-1">−</button><output>0</output><button class="plus" aria-label="+" data-k="gula" data-id="thai" data-d="1">+</button></div></div><div class="row"><div><div class="nm">Matcha latte manis</div><div class="meta">1 cup · ±30 g gula</div></div>
+ <div class="stepper"><button aria-label="−" data-k="gula" data-id="matcha" data-d="-1">−</button><output>0</output><button class="plus" aria-label="+" data-k="gula" data-id="matcha" data-d="1">+</button></div></div><div class="row"><div><div class="nm">Teh kemasan botol</div><div class="meta">±350–450 ml · ±24 g gula</div></div>
+ <div class="stepper"><button aria-label="−" data-k="gula" data-id="tehbotol" data-d="-1">−</button><output>0</output><button class="plus" aria-label="+" data-k="gula" data-id="tehbotol" data-d="1">+</button></div></div><div class="row"><div><div class="nm">Soda</div><div class="meta">1 kaleng 330 ml · ±35 g gula</div></div>
+ <div class="stepper"><button aria-label="−" data-k="gula" data-id="soda" data-d="-1">−</button><output>0</output><button class="plus" aria-label="+" data-k="gula" data-id="soda" data-d="1">+</button></div></div><div class="row"><div><div class="nm">Minuman isotonik</div><div class="meta">1 botol 500 ml · ±30 g gula</div></div>
+ <div class="stepper"><button aria-label="−" data-k="gula" data-id="iso" data-d="-1">−</button><output>0</output><button class="plus" aria-label="+" data-k="gula" data-id="iso" data-d="1">+</button></div></div><div class="row"><div><div class="nm">Jus buah + gula</div><div class="meta">1 gelas · ±30 g gula</div></div>
+ <div class="stepper"><button aria-label="−" data-k="gula" data-id="jus" data-d="-1">−</button><output>0</output><button class="plus" aria-label="+" data-k="gula" data-id="jus" data-d="1">+</button></div></div><div class="row"><div><div class="nm">Susu cokelat kotak</div><div class="meta">200 ml · ±20 g gula</div></div>
+ <div class="stepper"><button aria-label="−" data-k="gula" data-id="susukotak" data-d="-1">−</button><output>0</output><button class="plus" aria-label="+" data-k="gula" data-id="susukotak" data-d="1">+</button></div></div><div class="row"><div><div class="nm">Es kopi susu botol</div><div class="meta">1 botol · ±20 g gula</div></div>
+ <div class="stepper"><button aria-label="−" data-k="gula" data-id="kopibotol" data-d="-1">−</button><output>0</output><button class="plus" aria-label="+" data-k="gula" data-id="kopibotol" data-d="1">+</button></div></div><div class="row"><div><div class="nm">Es campur / es buah</div><div class="meta">1 mangkuk · ±45 g gula</div></div>
+ <div class="stepper"><button aria-label="−" data-k="gula" data-id="escampur" data-d="-1">−</button><output>0</output><button class="plus" aria-label="+" data-k="gula" data-id="escampur" data-d="1">+</button></div></div></div></div></div>
     <aside class="side">
       <div class="card">
-        <div><div class="label" data-i18n="weekSugar"></div><div class="big" id="gW"></div></div>
-        <div><div class="label" id="gCubeLbl" style="margin-bottom:8px"></div><div class="cubes" id="gCubes"></div></div>
+        <div><div class="label" data-i18n="weekSugar">Gula dari minuman per minggu</div><div class="big" id="gW">347<small>g / minggu</small></div></div>
+        <div><div class="label" id="gCubeLbl" style="margin-bottom:8px">87 sendok teh gula. Satu kotak = 1 sdt (4 g)</div><div class="cubes" id="gCubes"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div></div>
         <div>
-          <div class="label" data-i18n="dailyAvg" style="margin-bottom:8px"></div>
-          <div class="bar" id="gBar"><i id="gFill"></i><span class="tick" style="left:33.33%"></span><span class="tick" style="left:66.66%"></span></div>
+          <div class="label" data-i18n="dailyAvg" style="margin-bottom:8px">Rata-rata per hari</div>
+          <div class="bar hot" id="gBar"><i id="gFill" style="width: 66.0952%;"></i><span class="tick" style="left:33.33%"></span><span class="tick" style="left:66.66%"></span></div>
           <div class="ticklbl"><span style="left:33.33%">25 g</span><span style="left:66.66%">50 g</span></div>
-          <div class="meta" id="gDay" style="margin-top:4px"></div>
+          <div class="meta" id="gDay" style="margin-top:4px">50 g gula per hari, dari minuman saja</div>
         </div>
-        <span class="badge" id="gBadge" style="justify-self:start"></span>
-        <div class="pair"><div><div class="label" data-i18n="kcalWeek"></div><div class="big" style="font-size:1.7rem" id="gK"></div></div><div><div class="label" data-i18n="kcalYear"></div><div class="big" style="font-size:1.7rem" id="gY"></div></div></div>
-        <p class="note" id="gFat"></p>
-        <div class="actions"><button class="btn primary small" id="gCopy" data-i18n="copyResult"></button><button class="btn quiet small" id="gReset" data-i18n="reset"></button></div>
-        <p class="note" data-i18n="whoNote"></p>
+        <span class="badge" id="gBadge" style="justify-self:start">Lewat batas ideal</span>
+        <div class="pair"><div><div class="label" data-i18n="kcalWeek">Kkal / minggu</div><div class="big" style="font-size:1.7rem" id="gK">1.850</div></div><div><div class="label" data-i18n="kcalYear">Kkal / tahun</div><div class="big" style="font-size:1.7rem" id="gY">96.200</div></div></div>
+        <p class="note" id="gFat">Kalau kebiasaan ini tidak berubah, energinya setara ±12,5 kg lemak tubuh per tahun (hitungan kasar).</p>
+        <div class="actions"><button class="btn primary small" id="gCopy" data-i18n="copyResult">Salin hasil</button><button class="btn quiet small" id="gReset" data-i18n="reset">Reset</button></div>
+        <p class="note" data-i18n="whoNote">Garis 25 g = anjuran ideal WHO untuk gula tambahan per hari. 50 g = batas maksimal.</p>
       </div>
     </aside>
   </section>
 
-  <section class="panel" id="p-protein" role="tabpanel" hidden>
+  <section class="panel" id="p-protein" role="tabpanel" hidden="">
     <div class="flow">
       <div class="step">
-        <div class="ask"><span class="n">1</span><div><h2 data-i18n="pQ1"></h2></div></div>
+        <div class="ask"><span class="n">1</span><div><h2 data-i18n="pQ1">Kenalan dulu</h2></div></div>
         <div class="ctrls">
-          <div class="field"><label for="wt" data-i18n="weightLbl"></label><div class="numin"><input id="wt" type="number" inputmode="decimal" min="30" max="250" value="70"><span class="meta">kg</span></div><span class="note" data-i18n="weightHint"></span></div>
-          <div class="field"><span class="lbl" data-i18n="goalLbl"></span><div class="seg" id="goalSeg"><button id="g-loss" data-goal="loss" aria-pressed="true" data-i18n="goalLoss"></button><button id="g-keep" data-goal="keep" aria-pressed="false" data-i18n="goalKeep"></button><button id="g-build" data-goal="build" aria-pressed="false" data-i18n="goalBuild"></button></div></div>
-          <div class="field"><span class="lbl" data-i18n="mealsLbl"></span><div class="seg" id="mealSeg"><button id="m-2" data-meals="2" aria-pressed="false">2×</button><button id="m-3" data-meals="3" aria-pressed="true">3×</button><button id="m-4" data-meals="4" aria-pressed="false">4×</button></div></div>
+          <div class="field"><label for="wt" data-i18n="weightLbl">Berat badan</label><div class="numin"><input id="wt" type="number" inputmode="decimal" min="30" max="250" value="70"><span class="meta">kg</span></div><span class="note" data-i18n="weightHint">Kalau berat badanmu jauh di atas target, isi berat target agar angkanya realistis.</span></div>
+          <div class="field"><span class="lbl" data-i18n="goalLbl">Tujuan</span><div class="seg" id="goalSeg"><button id="g-loss" data-goal="loss" aria-pressed="true" data-i18n="goalLoss">Turun lemak</button><button id="g-keep" data-goal="keep" aria-pressed="false" data-i18n="goalKeep">Jaga berat</button><button id="g-build" data-goal="build" aria-pressed="false" data-i18n="goalBuild">Bangun otot</button></div></div>
+          <div class="field"><span class="lbl" data-i18n="mealsLbl">Makan berapa kali sehari?</span><div class="seg" id="mealSeg"><button id="m-2" data-meals="2" aria-pressed="false">2×</button><button id="m-3" data-meals="3" aria-pressed="true">3×</button><button id="m-4" data-meals="4" aria-pressed="false">4×</button></div></div>
         </div>
       </div>
       <div class="step">
-        <div class="ask"><span class="n">2</span><div><h2 data-i18n="pQ2"></h2></div></div>
-        <div class="seg" id="modeSeg"><button id="mode-meal" data-mode="meal" aria-pressed="true" data-i18n="modeMeal"></button><button id="mode-day" data-mode="day" aria-pressed="false" data-i18n="modeDay"></button></div>
-        <div class="list" id="protList"></div>
+        <div class="ask"><span class="n">2</span><div><h2 data-i18n="pQ2">Susun proteinmu</h2></div></div>
+        <div class="seg" id="modeSeg"><button id="mode-meal" data-mode="meal" aria-pressed="true" data-i18n="modeMeal">1 kali makan</button><button id="mode-day" data-mode="day" aria-pressed="false" data-i18n="modeDay">1 hari penuh</button></div>
+        <div class="list" id="protList"><div class="row on"><div><div class="nm">Telur</div><div class="meta">1 butir · 6 g · 77 kkal</div></div>
+ <div class="stepper"><button aria-label="−" data-k="prot" data-id="telur" data-d="-1">−</button><output>2</output><button class="plus" aria-label="+" data-k="prot" data-id="telur" data-d="1">+</button></div></div><div class="row"><div><div class="nm">Dada ayam tanpa kulit</div><div class="meta">100 g matang · 31 g · 165 kkal</div></div>
+ <div class="stepper"><button aria-label="−" data-k="prot" data-id="dada" data-d="-1">−</button><output>0</output><button class="plus" aria-label="+" data-k="prot" data-id="dada" data-d="1">+</button></div></div><div class="row"><div><div class="nm">Ikan bakar / kukus</div><div class="meta">100 g · 21 g · 140 kkal</div></div>
+ <div class="stepper"><button aria-label="−" data-k="prot" data-id="ikan" data-d="-1">−</button><output>0</output><button class="plus" aria-label="+" data-k="prot" data-id="ikan" data-d="1">+</button></div></div><div class="row"><div><div class="nm">Udang</div><div class="meta">100 g · 24 g · 100 kkal</div></div>
+ <div class="stepper"><button aria-label="−" data-k="prot" data-id="udang" data-d="-1">−</button><output>0</output><button class="plus" aria-label="+" data-k="prot" data-id="udang" data-d="1">+</button></div></div><div class="row"><div><div class="nm">Daging sapi tanpa lemak</div><div class="meta">100 g · 26 g · 200 kkal</div></div>
+ <div class="stepper"><button aria-label="−" data-k="prot" data-id="sapi" data-d="-1">−</button><output>0</output><button class="plus" aria-label="+" data-k="prot" data-id="sapi" data-d="1">+</button></div></div><div class="row on"><div><div class="nm">Tempe</div><div class="meta">100 g · 21 g · 201 kkal</div></div>
+ <div class="stepper"><button aria-label="−" data-k="prot" data-id="tempe" data-d="-1">−</button><output>1</output><button class="plus" aria-label="+" data-k="prot" data-id="tempe" data-d="1">+</button></div></div><div class="row"><div><div class="nm">Tahu</div><div class="meta">100 g · 11 g · 80 kkal</div></div>
+ <div class="stepper"><button aria-label="−" data-k="prot" data-id="tahu" data-d="-1">−</button><output>0</output><button class="plus" aria-label="+" data-k="prot" data-id="tahu" data-d="1">+</button></div></div><div class="row"><div><div class="nm">Edamame</div><div class="meta">100 g · 11 g · 120 kkal</div></div>
+ <div class="stepper"><button aria-label="−" data-k="prot" data-id="edamame" data-d="-1">−</button><output>0</output><button class="plus" aria-label="+" data-k="prot" data-id="edamame" data-d="1">+</button></div></div><div class="row"><div><div class="nm">Susu</div><div class="meta">250 ml · 8 g · 150 kkal</div></div>
+ <div class="stepper"><button aria-label="−" data-k="prot" data-id="susu" data-d="-1">−</button><output>0</output><button class="plus" aria-label="+" data-k="prot" data-id="susu" data-d="1">+</button></div></div><div class="row"><div><div class="nm">Greek yogurt</div><div class="meta">150 g · 15 g · 120 kkal</div></div>
+ <div class="stepper"><button aria-label="−" data-k="prot" data-id="yogurt" data-d="-1">−</button><output>0</output><button class="plus" aria-label="+" data-k="prot" data-id="yogurt" data-d="1">+</button></div></div><div class="row"><div><div class="nm">Nasi putih</div><div class="meta">1 porsi · 5 g · 220 kkal</div></div>
+ <div class="stepper"><button aria-label="−" data-k="prot" data-id="nasi" data-d="-1">−</button><output>0</output><button class="plus" aria-label="+" data-k="prot" data-id="nasi" data-d="1">+</button></div></div></div>
       </div>
     </div>
     <aside class="side">
       <div class="card">
-        <div class="pair"><div><div class="label" data-i18n="dailyTarget"></div><div class="big" id="pDay"></div></div><div><div class="label" data-i18n="perMeal"></div><div class="big" id="pMeal"></div></div></div>
-        <div class="note" id="pEggs"></div>
-        <div><div class="label" id="pBuildLbl" style="margin-bottom:8px"></div><div class="bar" id="pBar"><i id="pFill"></i></div><div class="meta" id="pProg" style="margin-top:6px"></div></div>
-        <span class="badge" id="pBadge" style="justify-self:start"></span>
-        <ul class="tips" id="pTips"></ul>
-        <div class="actions"><button class="btn primary small" id="pCopy" data-i18n="copyResult"></button><button class="btn quiet small" id="pReset" data-i18n="reset"></button></div>
-        <p class="note" data-i18n="protNote"></p>
+        <div class="pair"><div><div class="label" data-i18n="dailyTarget">Target per hari</div><div class="big" id="pDay">112<small>g</small></div></div><div><div class="label" data-i18n="perMeal">Per makan</div><div class="big" id="pMeal">37<small>g</small></div></div></div>
+        <div class="note" id="pEggs">Setara ±19 butir telur per hari. Makanya perlu direncanakan.</div>
+        <div><div class="label" id="pBuildLbl" style="margin-bottom:8px">Isi 1 kali makan</div><div class="bar" id="pBar"><i id="pFill" style="width: 89.1892%;"></i></div><div class="meta" id="pProg" style="margin-top:6px">33 g dari 37 g · 355 kkal</div></div>
+        <span class="badge" id="pBadge" style="justify-self:start">Hampir</span>
+        <ul class="tips" id="pTips"><li>Kurang 4 g. Coba tambah <b>dada ayam 100 g</b> (31 g) atau <b>tempe 100 g</b> (21 g).</li></ul>
+        <div class="actions"><button class="btn primary small" id="pCopy" data-i18n="copyResult">Salin hasil</button><button class="btn quiet small" id="pReset" data-i18n="reset">Reset</button></div>
+        <p class="note" data-i18n="protNote">Panduan umum untuk orang dewasa sehat. Punya gangguan ginjal? Tanya dokter dulu.</p>
       </div>
     </aside>
   </section>
 
   <section class="cta">
-    <h2 data-i18n="ctaH"></h2>
-    <p data-i18n="ctaP"></p>
-    <a class="btn" id="ctaQuiz" href="../test/" data-i18n="ctaBtn"></a>
+    <h2 data-i18n="ctaH">Berapa umur badan kamu sebenarnya?</h2>
+    <p data-i18n="ctaP">Body Age Assessment: 30 pertanyaan singkat soal makan, energi, tidur, gerak, dan tren badan. Gratis, cuma 3 menit.</p>
+    <a class="btn" id="ctaQuiz" href="../test/" data-i18n="ctaBtn">Cek umur badan aku →</a>
   </section>
 
   <details class="src">
-    <summary data-i18n="srcH"></summary>
-    <p class="note" style="margin-top:8px" data-i18n="srcP"></p>
+    <summary data-i18n="srcH">Dari mana angkanya?</summary>
+    <p class="note" style="margin-top:8px" data-i18n="srcP">Kalori masakan Padang sangat bervariasi tergantung rumah makan, bagian ayam, dan banyaknya santan atau minyak. Karena itu tiap lauk ditampilkan sebagai rentang, dan total memakai nilai tengah.</p>
     <ul>
-      <li><a href="https://www.alodokter.com/nasi-padang-ketahui-kandungan-kalori-dan-cara-sehat-menyantapnya" target="_blank" rel="noopener">Alodokter</a> · <span data-i18n="s1"></span></li>
-      <li><a href="https://keslan.kemkes.go.id/view_artikel/2741/bolehkah-makan-nasi-padang-saat-diet" target="_blank" rel="noopener">Kemenkes (Keslan)</a> · <span data-i18n="s2"></span></li>
-      <li><a href="https://www.fatsecret.co.id/kalori-gizi/search?q=rumah+makan+sederhana" target="_blank" rel="noopener">FatSecret Indonesia</a> · <span data-i18n="s3"></span></li>
-      <li><a href="https://health.detik.com/diet/d-8440165/tempe-vs-tahu-mana-yang-lebih-unggul-nutrisinya/amp" target="_blank" rel="noopener">detikHealth (TKPI)</a> · <span data-i18n="s4"></span></li>
-      <li><a href="https://e-journal.unair.ac.id/AMNT/article/view/39783" target="_blank" rel="noopener">Amerta Nutrition (Unair)</a> · <span data-i18n="s5"></span></li>
-      <li><a href="https://www.who.int/publications/i/item/9789241549028" target="_blank" rel="noopener">WHO</a> · <span data-i18n="s6"></span></li>
+      <li><a href="https://www.alodokter.com/nasi-padang-ketahui-kandungan-kalori-dan-cara-sehat-menyantapnya" target="_blank" rel="noopener">Alodokter</a> · <span data-i18n="s1">rentang kalori nasi, rendang, ayam pop, gulai ayam, telur balado, kuah, daun singkong</span></li>
+      <li><a href="https://keslan.kemkes.go.id/view_artikel/2741/bolehkah-makan-nasi-padang-saat-diet" target="_blank" rel="noopener">Kemenkes (Keslan)</a> · <span data-i18n="s2">saran memilih lauk dan mengurangi kuah saat diet</span></li>
+      <li><a href="https://www.fatsecret.co.id/kalori-gizi/search?q=rumah+makan+sederhana" target="_blank" rel="noopener">FatSecret Indonesia</a> · <span data-i18n="s3">data menu RM Sederhana (ayam bakar, gulai ayam, dendeng, paru, sayur nangka)</span></li>
+      <li><a href="https://health.detik.com/diet/d-8440165/tempe-vs-tahu-mana-yang-lebih-unggul-nutrisinya/amp" target="_blank" rel="noopener">detikHealth (TKPI)</a> · <span data-i18n="s4">nilai tempe &amp; tahu dari Tabel Komposisi Pangan Indonesia</span></li>
+      <li><a href="https://e-journal.unair.ac.id/AMNT/article/view/39783" target="_blank" rel="noopener">Amerta Nutrition (Unair)</a> · <span data-i18n="s5">kadar gula boba milk tea (±47 g per gelas besar)</span></li>
+      <li><a href="https://www.who.int/publications/i/item/9789241549028" target="_blank" rel="noopener">WHO</a> · <span data-i18n="s6">pedoman asupan gula tambahan</span></li>
     </ul>
   </details>
 </main>
 
 <footer class="site-foot"><div class="wrap">
-  <nav><a href="../" data-i18n="navHome"></a><a href="../test/" data-i18n="navTest"></a><a href="./" data-i18n="navTools"></a><a href="../privacy/" data-i18n="navPriv"></a></nav>
-  <span data-i18n="footer"></span>
+  <nav><a href="../" data-i18n="navHome">Beranda</a><a href="../test/" data-i18n="navTest">Body Age Assessment</a><a href="./" data-i18n="navTools">Tools gratis</a><a href="../privacy/" data-i18n="navPriv">Kebijakan Privasi</a></nav>
+  <span data-i18n="footer">Semua angka adalah perkiraan edukatif, bukan nasihat medis.</span>
 </div></footer>
 
 <div class="bbar" id="bbar">
-  <div class="v"><small data-i18n="bbarLbl"></small><br><b id="bbK">0</b> kkal · <span id="bbP">0</span> g protein</div>
-  <button id="bbGo" data-i18n="bbarBtn"></button>
+  <div class="v"><small data-i18n="bbarLbl">Bon kamu</small><br><b id="bbK">698</b> kkal · <span id="bbP">24</span> g protein</div>
+  <button id="bbGo" data-i18n="bbarBtn">Lihat bon</button>
 </div>
-<div class="toast" id="toast" hidden></div>
+<div class="toast" id="toast" hidden=""></div>
 
-<script src="../assets/site.js"></script>
+<script src="/assets/site.js"></script>
 <script>
 const T={
  id:{

@@ -1,0 +1,706 @@
+<!doctype html>
+<html lang="en" data-page-lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<!-- seo:start (written by scripts/build.py: change titles and descriptions in PAGES there) -->
+<title>Nasi Padang Calorie Calculator, Drink Sugar &amp; Protein · Alvacy</title>
+<meta name="description" content="Free calculators: count the calories in nasi Padang and order lighter, audit the sugar in your drinks, and find your daily protein target.">
+<link rel="canonical" href="https://alvacy.com/en/tools/">
+<link rel="alternate" hreflang="id" href="https://alvacy.com/tools/">
+<link rel="alternate" hreflang="en" href="https://alvacy.com/en/tools/">
+<link rel="alternate" hreflang="x-default" href="https://alvacy.com/tools/">
+<link rel="icon" href="/images/icon.svg" type="image/svg+xml">
+<link rel="icon" href="/images/icon-192.png" sizes="192x192" type="image/png">
+<link rel="apple-touch-icon" href="/images/apple-touch-icon.png">
+<meta name="theme-color" content="#1E3A8A">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Alvacy">
+<meta property="og:title" content="Nasi Padang Calorie Calculator, Drink Sugar &amp; Protein · Alvacy">
+<meta property="og:description" content="Free calculators: count the calories in nasi Padang and order lighter, audit the sugar in your drinks, and find your daily protein target.">
+<meta property="og:url" content="https://alvacy.com/en/tools/">
+<meta property="og:image" content="https://alvacy.com/images/og-en.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:locale" content="en_US">
+<meta property="og:locale:alternate" content="id_ID">
+<meta name="twitter:card" content="summary_large_image">
+<script type="application/ld+json">
+{
+ "@context": "https://schema.org",
+ "@graph": [
+  {
+   "@type": "WebPage",
+   "url": "https://alvacy.com/en/tools/",
+   "name": "Nasi Padang Calorie Calculator, Drink Sugar & Protein · Alvacy",
+   "description": "Free calculators: count the calories in nasi Padang and order lighter, audit the sugar in your drinks, and find your daily protein target.",
+   "inLanguage": "en",
+   "isPartOf": {
+    "@id": "https://alvacy.com/#website"
+   }
+  },
+  {
+   "@type": "WebApplication",
+   "name": "Transform Toolkit",
+   "url": "https://alvacy.com/en/tools/",
+   "description": "Free calculators: count the calories in nasi Padang and order lighter, audit the sugar in your drinks, and find your daily protein target.",
+   "applicationCategory": "HealthApplication",
+   "operatingSystem": "Any",
+   "inLanguage": "en",
+   "isAccessibleForFree": true,
+   "offers": {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "IDR"
+   }
+  }
+ ]
+}
+</script>
+<!-- seo:end -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Sora:wght@600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap">
+<link rel="stylesheet" href="/assets/site.css">
+<style>
+/* Layout: page intro + pill tabs. Padang = order steps on the left, calorie "bon" sticky on the right; on phone a bottom bar shows the running total. */
+.intro{padding-block:clamp(28px,6vw,56px) 18px;display:grid;gap:14px}
+.intro h1 em{font-style:normal;color:var(--hl)}
+.tabs{display:flex;gap:8px;overflow-x:auto;scrollbar-width:none;padding-block:6px 2px}
+.tabs::-webkit-scrollbar{display:none}
+.tabs button{border:1px solid var(--line);background:var(--surface);color:var(--ink);padding:10px 16px;border-radius:999px;font-weight:700;font-size:.92rem;white-space:nowrap}
+.tabs button[aria-selected="true"]{background:var(--accent);border-color:var(--accent);color:var(--accent-ink)}
+.toolarea{padding-block:18px 120px}
+.panel{display:grid;grid-template-columns:minmax(0,1fr) 360px;gap:24px;align-items:start}
+.side{position:sticky;top:14px;display:grid;gap:14px}
+.flow{min-width:0;display:grid;gap:24px}
+@media (max-width:900px){ .panel{grid-template-columns:1fr} .side{position:static} }
+
+.step{display:grid;gap:10px}
+.ask{display:flex;align-items:baseline;gap:10px}
+.ask .n{width:26px;height:26px;border-radius:50%;background:var(--accent);color:var(--accent-ink);display:grid;place-items:center;font-size:.78rem;font-weight:800;flex:none;align-self:center}
+.ask h2{font-size:1.35rem}
+.ask .sub{color:var(--muted);font-size:.88rem}
+.choices{display:flex;flex-wrap:wrap;gap:8px}
+.choice{border:1.5px solid var(--line);background:var(--surface);border-radius:14px;padding:10px 14px;text-align:left;display:grid;gap:1px;min-width:0}
+.choice b{font-weight:700;font-size:.92rem}
+.choice span{font-size:.74rem;color:var(--muted);font-variant-numeric:tabular-nums}
+.choice[aria-pressed="true"]{border-color:var(--accent);background:var(--accent-soft)}
+
+.etalase{background:var(--sand);border:1px solid var(--line);border-radius:18px;padding:12px;display:grid;gap:10px}
+.shelf{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:8px;padding-bottom:10px;border-bottom:1px solid var(--line)}
+.shelf:last-child{border-bottom:0;padding-bottom:0}
+.shelf-lbl{font-size:.7rem;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);font-weight:800;grid-column:1/-1}
+.dish{position:relative;border:1.5px solid transparent;background:var(--surface);border-radius:14px;padding:10px;display:grid;grid-template-columns:42px minmax(0,1fr);gap:10px;align-items:center;text-align:left;min-height:64px;transition:transform .12s}
+.dish:active{transform:scale(.97)}
+.dish.on{border-color:var(--warm)}
+.plate{width:42px;height:42px;border-radius:50%;background:#F6F3EE;box-shadow:inset 0 0 0 3px #E4DED3,0 1px 2px rgba(0,0,0,.12);display:grid;place-items:center}
+.plate i{width:26px;height:26px;border-radius:50%;display:block}
+.dish b{display:block;font-size:.85rem;font-weight:700;line-height:1.2}
+.dish small{font-size:.7rem;color:var(--muted);font-variant-numeric:tabular-nums}
+.qty{position:absolute;top:-7px;right:-6px;display:flex;align-items:center;background:var(--warm);color:#fff;border-radius:999px;font-weight:800;font-size:.75rem;box-shadow:0 2px 6px rgba(0,0,0,.18)}
+.qty em{font-style:normal;padding:2px 2px 2px 9px}
+.qty span{width:24px;height:24px;display:grid;place-items:center;font-size:15px;line-height:1;border-radius:50%}
+.hint{font-size:.8rem;color:var(--muted);margin:0}
+
+.bon{background:var(--paper);color:var(--paper-ink);border-radius:6px;padding:20px 18px 16px;font-family:var(--f-mono);font-size:.82rem;box-shadow:0 1px 0 var(--paper-line),0 10px 24px -14px rgba(10,30,25,.35);position:relative}
+.bon::after{content:"";position:absolute;left:0;right:0;bottom:-8px;height:8px;background:linear-gradient(-45deg,transparent 6px,var(--paper) 0) 0 0/12px 8px,linear-gradient(45deg,transparent 6px,var(--paper) 0) 0 0/12px 8px}
+.bon h3{font-family:var(--f-display);font-size:1.15rem;text-align:center;letter-spacing:.02em}
+.bon .shop{text-align:center;font-size:.7rem;opacity:.7;margin-top:2px}
+.bon hr{border:0;border-top:1.5px dashed var(--paper-line);margin:12px 0}
+.ln{display:flex;justify-content:space-between;gap:10px;padding:2px 0}
+.ln span:first-child{min-width:0}
+.ln span:last-child{white-space:nowrap;font-variant-numeric:tabular-nums}
+.ln.mute{opacity:.6}
+.tot{display:flex;justify-content:space-between;align-items:baseline;gap:10px}
+.tot .k{font-family:var(--f-display);font-weight:600;font-size:2.3rem;letter-spacing:-.02em;font-variant-numeric:tabular-nums;line-height:1}
+.tot .k small{font-size:.85rem;font-family:var(--f-mono);margin-left:3px}
+.range{font-size:.72rem;opacity:.7;text-align:right}
+.badge{display:inline-flex;font-family:var(--f-body);font-size:.78rem;font-weight:800;padding:4px 10px;border-radius:999px;background:var(--warn-soft);color:var(--warn)}
+.badge.good{background:var(--good-soft);color:var(--good)} .badge.bad{background:var(--bad-soft);color:var(--bad)}
+.say{display:grid;gap:8px;margin:0;padding:0;list-style:none}
+.say li{font-size:.85rem;background:var(--surface);color:var(--ink);border:1px solid var(--line);border-radius:12px 12px 12px 4px;padding:9px 11px;display:grid;gap:2px}
+.say li q{font-weight:700;quotes:"“" "”"}
+.say li span{font-size:.72rem;color:var(--good);font-weight:700}
+.say-h{font-size:.7rem;letter-spacing:.1em;text-transform:uppercase;font-weight:800;color:var(--muted);margin:0 0 8px}
+.actions{display:flex;gap:8px;flex-wrap:wrap}
+
+.bbar{position:fixed;left:0;right:0;bottom:0;background:var(--ink);color:var(--bg);padding:10px max(16px,env(safe-area-inset-right,0px)) calc(10px + env(safe-area-inset-bottom,0px)) max(16px,env(safe-area-inset-left,0px));display:flex;align-items:center;justify-content:space-between;gap:12px;z-index:5;box-shadow:0 -6px 20px rgba(0,0,0,.18)}
+.bbar .v{font-weight:700;font-variant-numeric:tabular-nums}
+.bbar .v b{font-family:var(--f-display);font-size:1.35rem}
+.bbar .v small{opacity:.7;font-weight:500}
+.bbar button{background:var(--accent);color:var(--accent-ink);border:0;border-radius:10px;padding:9px 13px;font-weight:800;font-size:.85rem}
+@media (min-width:901px){ .bbar{display:none!important} .toolarea{padding-block:24px 48px} }
+
+.list{background:var(--surface);border:1px solid var(--line);border-radius:16px;overflow:hidden}
+.row{display:grid;grid-template-columns:minmax(0,1fr) auto;align-items:center;gap:10px;padding:11px 12px;border-top:1px solid var(--line)}
+.row:first-child{border-top:0}
+.row.on{background:var(--accent-soft)}
+.nm{font-weight:700}
+.meta{font-size:.76rem;color:var(--muted);font-variant-numeric:tabular-nums}
+.stepper{display:flex;align-items:center;gap:2px}
+.stepper button{width:36px;height:36px;border-radius:11px;border:1px solid var(--line);background:var(--surface);font-size:18px;font-weight:700;line-height:1}
+.stepper button.plus{background:var(--accent);border-color:var(--accent);color:var(--accent-ink)}
+.stepper output{min-width:30px;text-align:center;font-weight:800;font-variant-numeric:tabular-nums}
+
+.card{background:var(--surface);border:1px solid var(--line);border-radius:18px;padding:18px;display:grid;gap:14px}
+.label{font-size:.7rem;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);font-weight:800}
+.big{font-family:var(--f-display);font-weight:600;font-size:2.5rem;line-height:1;letter-spacing:-.02em;font-variant-numeric:tabular-nums}
+.big small{font-size:.9rem;font-weight:600;color:var(--muted);margin-left:4px;font-family:var(--f-body)}
+.pair{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.bar{height:12px;border-radius:99px;background:var(--line);position:relative}
+.bar i{display:block;height:100%;border-radius:99px;background:var(--good);transition:width .3s}
+.bar.hot i{background:var(--warm)}
+.tick{position:absolute;top:-4px;bottom:-4px;width:2px;background:var(--ink);opacity:.5}
+.ticklbl{position:relative;height:16px;font-size:.7rem;color:var(--muted);margin-top:4px}
+.ticklbl span{position:absolute;transform:translateX(-50%)}
+.cubes{display:flex;flex-wrap:wrap;gap:3px}
+.cubes i{width:11px;height:11px;border-radius:2px;background:#F5F1E8;box-shadow:inset 0 0 0 1px #D8CFBE}
+.cubes .more{font-size:.7rem;color:var(--muted);align-self:center;margin-left:4px}
+.tips{display:grid;gap:8px;margin:0;padding:0;list-style:none}
+.tips li{font-size:.85rem;padding:9px 11px;border-radius:10px;background:var(--accent-soft)}
+.tips b{color:var(--accent)}
+.note{font-size:.76rem;color:var(--muted);margin:0}
+.ctrls{background:var(--surface);border:1px solid var(--line);border-radius:16px;padding:14px;display:grid;gap:14px}
+.field{display:grid;gap:7px}
+.field label,.field .lbl{font-weight:700;font-size:.85rem}
+.numin{display:flex;align-items:center;gap:8px}
+.numin input{width:100px;padding:10px;border:1px solid var(--line);border-radius:11px;background:var(--bg);color:var(--ink);font:inherit;font-weight:800;font-variant-numeric:tabular-nums}
+.seg{display:flex;flex-wrap:wrap;gap:6px}
+.seg button{border:1px solid var(--line);background:var(--bg);padding:8px 13px;border-radius:999px;font-weight:700;font-size:.82rem}
+.seg button[aria-pressed="true"]{background:var(--accent);border-color:var(--accent);color:var(--accent-ink)}
+
+.cta{margin-top:28px;background:var(--accent);color:var(--accent-ink);border-radius:24px;padding:clamp(22px,4vw,34px);display:grid;gap:12px}
+.cta h2{font-size:clamp(1.4rem,3.5vw,1.9rem)}
+.cta p{opacity:.88}
+.cta h2{color:inherit}
+.cta .btn{background:var(--cta);color:var(--cta-ink);justify-self:start}
+details.src{margin-top:16px;background:var(--surface);border:1px solid var(--line);border-radius:16px;padding:14px 16px}
+details.src summary{font-weight:800;cursor:pointer}
+details.src ul{margin:10px 0 0;padding-left:18px;display:grid;gap:6px;font-size:.85rem}
+.toast{position:fixed;left:50%;bottom:calc(80px + env(safe-area-inset-bottom,0px));transform:translateX(-50%);background:var(--ink);color:var(--bg);padding:9px 16px;border-radius:999px;font-weight:700;font-size:.85rem;z-index:9}
+@media (prefers-reduced-motion:reduce){ .bar i,.dish{transition:none} }
+</style>
+</head>
+<body>
+<header class="site-top"><div class="wrap">
+  <a class="logo" href="../"><b>Alvacy</b><span id="tagline"></span></a>
+  <nav class="site-nav">
+    <a href="../test/" class="hide-sm" data-i18n="navTest">Body Age Assessment</a>
+    <a href="./" aria-current="page" data-i18n="navTools">Free tools</a>
+    <span class="lang" role="group" aria-label="Language"><button id="lang-id" data-lang="id" aria-pressed="false">ID</button><button id="lang-en" data-lang="en" aria-pressed="true">EN</button></span>
+  </nav>
+</div></header>
+
+<section class="wrap intro">
+  <p class="kicker" data-i18n="kicker">Transform Toolkit · free</p>
+  <h1 data-i18n="h1">Eat well, <em>still lose fat.</em></h1>
+  <p class="lede" data-i18n="lede">Three small tools for everyday decisions: order a lighter Padang meal, check the sugar in your drinks, and work out your protein target.</p>
+  <nav class="tabs" role="tablist">
+    <button role="tab" id="tab-padang" data-tab="padang" data-i18n="tabPadang" aria-selected="true">Order Padang</button>
+    <button role="tab" id="tab-gula" data-tab="gula" data-i18n="tabGula" aria-selected="false">Sugar Audit</button>
+    <button role="tab" id="tab-protein" data-tab="protein" data-i18n="tabProtein" aria-selected="false">Protein Target</button>
+  </nav>
+</section>
+
+<main class="wrap toolarea">
+  <section class="panel" id="p-padang" role="tabpanel">
+    <div class="flow">
+      <div class="step"><div class="ask"><span class="n">1</span><div><h2 data-i18n="qNasi">Rice?</h2></div></div><div class="choices" id="riceCh"><button class="choice" data-g="rice" data-v="full" aria-pressed="true"><b>Full rice</b><span>175–260 kcal</span></button><button class="choice" data-g="rice" data-v="half" aria-pressed="false"><b>Half rice</b><span>90–130 kcal</span></button><button class="choice" data-g="rice" data-v="none" aria-pressed="false"><b>No rice</b><span>0 kcal</span></button></div></div>
+      <div class="step"><div class="ask"><span class="n">2</span><div><h2 data-i18n="qLauk">Which dishes?</h2><div class="sub" data-i18n="qLaukSub">Tap dishes in the display case. Tap again to add more.</div></div></div><div class="etalase" id="etalase"><div class="shelf"><div class="shelf-lbl">Chicken</div><button class="dish" data-dish="ayampop" aria-label="Ayam pop">
+     <span class="plate"><i style="background:radial-gradient(circle at 35% 35%, #EFDDBBcc, #EFDDBB)"></i></span>
+     <span><b>Ayam pop</b><small>130–170 · 18g P</small></span>
+     
+   </button><button class="dish" data-dish="ayambakar" aria-label="Ayam bakar">
+     <span class="plate"><i style="background:radial-gradient(circle at 35% 35%, #9A4A22cc, #9A4A22)"></i></span>
+     <span><b>Ayam bakar</b><small>230–370 · 20g P</small></span>
+     
+   </button><button class="dish" data-dish="ayamgoreng" aria-label="Ayam goreng">
+     <span class="plate"><i style="background:radial-gradient(circle at 35% 35%, #C7862Ecc, #C7862E)"></i></span>
+     <span><b>Ayam goreng</b><small>240–330 · 24g P</small></span>
+     
+   </button><button class="dish" data-dish="gulaiayam" aria-label="Gulai ayam">
+     <span class="plate"><i style="background:radial-gradient(circle at 35% 35%, #E2A42Acc, #E2A42A)"></i></span>
+     <span><b>Gulai ayam</b><small>185–250 · 16g P</small></span>
+     
+   </button></div><div class="shelf"><div class="shelf-lbl">Beef &amp; offal</div><button class="dish on" data-dish="rendang" aria-label="Rendang ×1">
+     <span class="plate"><i style="background:radial-gradient(circle at 35% 35%, #4E2616cc, #4E2616)"></i></span>
+     <span><b>Rendang</b><small>195–250 · 16g P</small></span>
+     <span class="qty"><em>1</em><span data-minus="rendang" role="button" aria-label="−">−</span></span>
+   </button><button class="dish" data-dish="dendeng" aria-label="Dendeng balado">
+     <span class="plate"><i style="background:radial-gradient(circle at 35% 35%, #B3261Ecc, #B3261E)"></i></span>
+     <span><b>Dendeng balado</b><small>120–210 · 12g P</small></span>
+     
+   </button><button class="dish" data-dish="paru" aria-label="Paru goreng">
+     <span class="plate"><i style="background:radial-gradient(circle at 35% 35%, #5E2F22cc, #5E2F22)"></i></span>
+     <span><b>Paru goreng</b><small>200–300 · 20g P</small></span>
+     
+   </button><button class="dish" data-dish="tunjang" aria-label="Gulai tunjang">
+     <span class="plate"><i style="background:radial-gradient(circle at 35% 35%, #D9A441cc, #D9A441)"></i></span>
+     <span><b>Gulai tunjang</b><small>120–200 · 14g P</small></span>
+     
+   </button><button class="dish" data-dish="otak" aria-label="Gulai otak">
+     <span class="plate"><i style="background:radial-gradient(circle at 35% 35%, #EDCF7Acc, #EDCF7A)"></i></span>
+     <span><b>Gulai otak</b><small>150–220 · 10g P</small></span>
+     
+   </button></div><div class="shelf"><div class="shelf-lbl">Fish &amp; egg</div><button class="dish" data-dish="ikanbakar" aria-label="Ikan bakar">
+     <span class="plate"><i style="background:radial-gradient(circle at 35% 35%, #7C4B24cc, #7C4B24)"></i></span>
+     <span><b>Ikan bakar</b><small>150–220 · 24g P</small></span>
+     
+   </button><button class="dish" data-dish="gulaiikan" aria-label="Gulai ikan">
+     <span class="plate"><i style="background:radial-gradient(circle at 35% 35%, #E8B23Acc, #E8B23A)"></i></span>
+     <span><b>Gulai ikan</b><small>180–250 · 18g P</small></span>
+     
+   </button><button class="dish" data-dish="telurbalado" aria-label="Telur balado">
+     <span class="plate"><i style="background:radial-gradient(circle at 35% 35%, #D9481Ccc, #D9481C)"></i></span>
+     <span><b>Telur balado</b><small>120–180 · 7g P</small></span>
+     
+   </button><button class="dish" data-dish="telurdadar" aria-label="Telur dadar">
+     <span class="plate"><i style="background:radial-gradient(circle at 35% 35%, #E7C25Acc, #E7C25A)"></i></span>
+     <span><b>Telur dadar</b><small>200–300 · 9g P</small></span>
+     
+   </button><button class="dish" data-dish="perkedel" aria-label="Perkedel">
+     <span class="plate"><i style="background:radial-gradient(circle at 35% 35%, #BF8B45cc, #BF8B45)"></i></span>
+     <span><b>Perkedel</b><small>100–150 · 2g P</small></span>
+     
+   </button></div></div></div>
+      <div class="step"><div class="ask"><span class="n">3</span><div><h2 data-i18n="qKuah">Gravy?</h2></div></div><div class="choices" id="kuahCh"><button class="choice" data-g="kuah" data-v="banyak" aria-pressed="true"><b>Lots of gravy</b><span>60–120 kcal</span></button><button class="choice" data-g="kuah" data-v="sedikit" aria-pressed="false"><b>A little gravy</b><span>30–50 kcal</span></button><button class="choice" data-g="kuah" data-v="pisah" aria-pressed="false"><b>Gravy on the side</b><span>0 kcal</span></button></div><div class="choices" id="extraCh"><button class="choice" data-g="ex" data-v="daun" aria-pressed="true"><b>Daun singkong</b><span>20–40 kcal</span></button><button class="choice" data-g="ex" data-v="sambal" aria-pressed="true"><b>Sambal ijo</b><span>25–50 kcal</span></button><button class="choice" data-g="ex" data-v="nangka" aria-pressed="false"><b>Gulai nangka</b><span>50–100 kcal</span></button><button class="choice" data-g="ex" data-v="kerupuk" aria-pressed="false"><b>Kerupuk kulit</b><span>60–100 kcal</span></button></div><p class="hint" data-i18n="extraHint">Cassava leaves &amp; green sambal usually come with it. Tap to remove.</p></div>
+      <div class="step"><div class="ask"><span class="n">4</span><div><h2 data-i18n="qMinum">Drink?</h2></div></div><div class="choices" id="minumCh"><button class="choice" data-g="minum" data-v="air" aria-pressed="false"><b>Water</b><span>0 kcal</span></button><button class="choice" data-g="minum" data-v="tawar" aria-pressed="false"><b>Plain tea</b><span>0–5 kcal</span></button><button class="choice" data-g="minum" data-v="esteh" aria-pressed="true"><b>Sweet iced tea</b><span>80–120 kcal</span></button><button class="choice" data-g="minum" data-v="jeruk" aria-pressed="false"><b>Iced orange</b><span>90–140 kcal</span></button></div></div>
+    </div>
+    <aside class="side" id="bonSide">
+      <div class="bon">
+        <h3 data-i18n="bonTitle">CALORIE BILL</h3>
+        <div class="shop" data-i18n="bonShop">RM Transform · Calories, not Rupiah</div>
+        <hr><div id="bonLines"><div class="ln"><span>Full rice</span><span>175–260</span></div><div class="ln"><span>Rendang</span><span>195–250</span></div><div class="ln"><span>Lots of gravy</span><span>60–120</span></div><div class="ln"><span>Daun singkong</span><span>20–40</span></div><div class="ln"><span>Sambal ijo</span><span>25–50</span></div><div class="ln"><span>Sweet iced tea</span><span>80–120</span></div></div><hr>
+        <div class="tot"><span data-i18n="total">TOTAL</span><span class="k" id="bonK">698<small>kcal</small></span></div>
+        <div class="range" id="bonR">555–840 kcal</div>
+        <div class="ln" style="margin-top:8px"><span data-i18n="protein">PROTEIN</span><span id="bonP">±24 g</span></div>
+        <hr>
+        <div style="display:flex;justify-content:space-between;align-items:center;gap:8px;flex-wrap:wrap"><span class="badge" id="bonBadge">Still okay</span><span style="font-size:.7rem;opacity:.7" data-i18n="bonEst">mid estimate</span></div>
+      </div>
+      <div><p class="say-h" data-i18n="sayH">Want it lighter? Tell the server:</p><ul class="say" id="sayList"><li><q>Just half rice, please.</q><span>save ±108 kcal</span></li><li><q>Plain tea instead.</q><span>save ±100 kcal</span></li><li><q>Gravy on the side, please.</q><span>save ±90 kcal</span></li></ul></div>
+      <div class="actions"><button class="btn primary small" id="padCopy" data-i18n="copyResult">Copy result</button><button class="btn quiet small" id="padReset" data-i18n="reset">Reset</button></div>
+    </aside>
+  </section>
+
+  <section class="panel" id="p-gula" role="tabpanel" hidden="">
+    <div class="flow"><div class="step"><div class="ask"><span class="n">1</span><div><h2 data-i18n="gQ">What did you drink this week?</h2><div class="sub" data-i18n="gSub">Count how many times per week. Be honest, this is just for you.</div></div></div><div class="list" id="gulaList"><div class="row on"><div><div class="nm">Kopi susu gula aren</div><div class="meta">1 regular cup · ±25 g sugar</div></div>
+ <div class="stepper"><button aria-label="−" data-k="gula" data-id="kopsus" data-d="-1">−</button><output>5</output><button class="plus" aria-label="+" data-k="gula" data-id="kopsus" data-d="1">+</button></div></div><div class="row on"><div><div class="nm">Es teh manis</div><div class="meta">1 glass · ±25 g sugar</div></div>
+ <div class="stepper"><button aria-label="−" data-k="gula" data-id="esteh" data-d="-1">−</button><output>7</output><button class="plus" aria-label="+" data-k="gula" data-id="esteh" data-d="1">+</button></div></div><div class="row on"><div><div class="nm">Boba milk tea</div><div class="meta">1 large cup · ±47 g sugar</div></div>
+ <div class="stepper"><button aria-label="−" data-k="gula" data-id="boba" data-d="-1">−</button><output>1</output><button class="plus" aria-label="+" data-k="gula" data-id="boba" data-d="1">+</button></div></div><div class="row"><div><div class="nm">Thai tea</div><div class="meta">1 cup · ±35 g sugar</div></div>
+ <div class="stepper"><button aria-label="−" data-k="gula" data-id="thai" data-d="-1">−</button><output>0</output><button class="plus" aria-label="+" data-k="gula" data-id="thai" data-d="1">+</button></div></div><div class="row"><div><div class="nm">Matcha latte manis</div><div class="meta">1 cup · ±30 g sugar</div></div>
+ <div class="stepper"><button aria-label="−" data-k="gula" data-id="matcha" data-d="-1">−</button><output>0</output><button class="plus" aria-label="+" data-k="gula" data-id="matcha" data-d="1">+</button></div></div><div class="row"><div><div class="nm">Teh kemasan botol</div><div class="meta">±350–450 ml · ±24 g sugar</div></div>
+ <div class="stepper"><button aria-label="−" data-k="gula" data-id="tehbotol" data-d="-1">−</button><output>0</output><button class="plus" aria-label="+" data-k="gula" data-id="tehbotol" data-d="1">+</button></div></div><div class="row"><div><div class="nm">Soda</div><div class="meta">1 can 330 ml · ±35 g sugar</div></div>
+ <div class="stepper"><button aria-label="−" data-k="gula" data-id="soda" data-d="-1">−</button><output>0</output><button class="plus" aria-label="+" data-k="gula" data-id="soda" data-d="1">+</button></div></div><div class="row"><div><div class="nm">Minuman isotonik</div><div class="meta">1 bottle 500 ml · ±30 g sugar</div></div>
+ <div class="stepper"><button aria-label="−" data-k="gula" data-id="iso" data-d="-1">−</button><output>0</output><button class="plus" aria-label="+" data-k="gula" data-id="iso" data-d="1">+</button></div></div><div class="row"><div><div class="nm">Jus buah + gula</div><div class="meta">1 glass · ±30 g sugar</div></div>
+ <div class="stepper"><button aria-label="−" data-k="gula" data-id="jus" data-d="-1">−</button><output>0</output><button class="plus" aria-label="+" data-k="gula" data-id="jus" data-d="1">+</button></div></div><div class="row"><div><div class="nm">Susu cokelat kotak</div><div class="meta">200 ml · ±20 g sugar</div></div>
+ <div class="stepper"><button aria-label="−" data-k="gula" data-id="susukotak" data-d="-1">−</button><output>0</output><button class="plus" aria-label="+" data-k="gula" data-id="susukotak" data-d="1">+</button></div></div><div class="row"><div><div class="nm">Es kopi susu botol</div><div class="meta">1 bottle · ±20 g sugar</div></div>
+ <div class="stepper"><button aria-label="−" data-k="gula" data-id="kopibotol" data-d="-1">−</button><output>0</output><button class="plus" aria-label="+" data-k="gula" data-id="kopibotol" data-d="1">+</button></div></div><div class="row"><div><div class="nm">Es campur / es buah</div><div class="meta">1 bowl · ±45 g sugar</div></div>
+ <div class="stepper"><button aria-label="−" data-k="gula" data-id="escampur" data-d="-1">−</button><output>0</output><button class="plus" aria-label="+" data-k="gula" data-id="escampur" data-d="1">+</button></div></div></div></div></div>
+    <aside class="side">
+      <div class="card">
+        <div><div class="label" data-i18n="weekSugar">Sugar from drinks per week</div><div class="big" id="gW">347<small>g / week</small></div></div>
+        <div><div class="label" id="gCubeLbl" style="margin-bottom:8px">87 teaspoons of sugar. One cube = 1 tsp (4 g)</div><div class="cubes" id="gCubes"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div></div>
+        <div>
+          <div class="label" data-i18n="dailyAvg" style="margin-bottom:8px">Average per day</div>
+          <div class="bar hot" id="gBar"><i id="gFill" style="width: 66.0952%;"></i><span class="tick" style="left:33.33%"></span><span class="tick" style="left:66.66%"></span></div>
+          <div class="ticklbl"><span style="left:33.33%">25 g</span><span style="left:66.66%">50 g</span></div>
+          <div class="meta" id="gDay" style="margin-top:4px">50 g sugar per day, from drinks alone</div>
+        </div>
+        <span class="badge" id="gBadge" style="justify-self:start">Over the ideal</span>
+        <div class="pair"><div><div class="label" data-i18n="kcalWeek">Kcal / week</div><div class="big" style="font-size:1.7rem" id="gK">1,850</div></div><div><div class="label" data-i18n="kcalYear">Kcal / year</div><div class="big" style="font-size:1.7rem" id="gY">96,200</div></div></div>
+        <p class="note" id="gFat">If this habit doesn’t change, that energy equals roughly 12.5 kg of body fat per year (rough math).</p>
+        <div class="actions"><button class="btn primary small" id="gCopy" data-i18n="copyResult">Copy result</button><button class="btn quiet small" id="gReset" data-i18n="reset">Reset</button></div>
+        <p class="note" data-i18n="whoNote">25 g line = WHO ideal for added sugar per day. 50 g = upper limit.</p>
+      </div>
+    </aside>
+  </section>
+
+  <section class="panel" id="p-protein" role="tabpanel" hidden="">
+    <div class="flow">
+      <div class="step">
+        <div class="ask"><span class="n">1</span><div><h2 data-i18n="pQ1">About you</h2></div></div>
+        <div class="ctrls">
+          <div class="field"><label for="wt" data-i18n="weightLbl">Body weight</label><div class="numin"><input id="wt" type="number" inputmode="decimal" min="30" max="250" value="70"><span class="meta">kg</span></div><span class="note" data-i18n="weightHint">If you’re well above your goal weight, enter the goal weight for a realistic number.</span></div>
+          <div class="field"><span class="lbl" data-i18n="goalLbl">Goal</span><div class="seg" id="goalSeg"><button id="g-loss" data-goal="loss" aria-pressed="true" data-i18n="goalLoss">Lose fat</button><button id="g-keep" data-goal="keep" aria-pressed="false" data-i18n="goalKeep">Maintain</button><button id="g-build" data-goal="build" aria-pressed="false" data-i18n="goalBuild">Build muscle</button></div></div>
+          <div class="field"><span class="lbl" data-i18n="mealsLbl">Meals per day?</span><div class="seg" id="mealSeg"><button id="m-2" data-meals="2" aria-pressed="false">2×</button><button id="m-3" data-meals="3" aria-pressed="true">3×</button><button id="m-4" data-meals="4" aria-pressed="false">4×</button></div></div>
+        </div>
+      </div>
+      <div class="step">
+        <div class="ask"><span class="n">2</span><div><h2 data-i18n="pQ2">Build your protein</h2></div></div>
+        <div class="seg" id="modeSeg"><button id="mode-meal" data-mode="meal" aria-pressed="true" data-i18n="modeMeal">One meal</button><button id="mode-day" data-mode="day" aria-pressed="false" data-i18n="modeDay">A full day</button></div>
+        <div class="list" id="protList"><div class="row on"><div><div class="nm">Telur</div><div class="meta">1 egg · 6 g · 77 kcal</div></div>
+ <div class="stepper"><button aria-label="−" data-k="prot" data-id="telur" data-d="-1">−</button><output>2</output><button class="plus" aria-label="+" data-k="prot" data-id="telur" data-d="1">+</button></div></div><div class="row"><div><div class="nm">Dada ayam tanpa kulit</div><div class="meta">100 g cooked · 31 g · 165 kcal</div></div>
+ <div class="stepper"><button aria-label="−" data-k="prot" data-id="dada" data-d="-1">−</button><output>0</output><button class="plus" aria-label="+" data-k="prot" data-id="dada" data-d="1">+</button></div></div><div class="row"><div><div class="nm">Ikan bakar / kukus</div><div class="meta">100 g · 21 g · 140 kcal</div></div>
+ <div class="stepper"><button aria-label="−" data-k="prot" data-id="ikan" data-d="-1">−</button><output>0</output><button class="plus" aria-label="+" data-k="prot" data-id="ikan" data-d="1">+</button></div></div><div class="row"><div><div class="nm">Udang</div><div class="meta">100 g · 24 g · 100 kcal</div></div>
+ <div class="stepper"><button aria-label="−" data-k="prot" data-id="udang" data-d="-1">−</button><output>0</output><button class="plus" aria-label="+" data-k="prot" data-id="udang" data-d="1">+</button></div></div><div class="row"><div><div class="nm">Daging sapi tanpa lemak</div><div class="meta">100 g lean · 26 g · 200 kcal</div></div>
+ <div class="stepper"><button aria-label="−" data-k="prot" data-id="sapi" data-d="-1">−</button><output>0</output><button class="plus" aria-label="+" data-k="prot" data-id="sapi" data-d="1">+</button></div></div><div class="row on"><div><div class="nm">Tempe</div><div class="meta">100 g · 21 g · 201 kcal</div></div>
+ <div class="stepper"><button aria-label="−" data-k="prot" data-id="tempe" data-d="-1">−</button><output>1</output><button class="plus" aria-label="+" data-k="prot" data-id="tempe" data-d="1">+</button></div></div><div class="row"><div><div class="nm">Tahu</div><div class="meta">100 g · 11 g · 80 kcal</div></div>
+ <div class="stepper"><button aria-label="−" data-k="prot" data-id="tahu" data-d="-1">−</button><output>0</output><button class="plus" aria-label="+" data-k="prot" data-id="tahu" data-d="1">+</button></div></div><div class="row"><div><div class="nm">Edamame</div><div class="meta">100 g · 11 g · 120 kcal</div></div>
+ <div class="stepper"><button aria-label="−" data-k="prot" data-id="edamame" data-d="-1">−</button><output>0</output><button class="plus" aria-label="+" data-k="prot" data-id="edamame" data-d="1">+</button></div></div><div class="row"><div><div class="nm">Susu</div><div class="meta">250 ml · 8 g · 150 kcal</div></div>
+ <div class="stepper"><button aria-label="−" data-k="prot" data-id="susu" data-d="-1">−</button><output>0</output><button class="plus" aria-label="+" data-k="prot" data-id="susu" data-d="1">+</button></div></div><div class="row"><div><div class="nm">Greek yogurt</div><div class="meta">150 g · 15 g · 120 kcal</div></div>
+ <div class="stepper"><button aria-label="−" data-k="prot" data-id="yogurt" data-d="-1">−</button><output>0</output><button class="plus" aria-label="+" data-k="prot" data-id="yogurt" data-d="1">+</button></div></div><div class="row"><div><div class="nm">Nasi putih</div><div class="meta">1 serving · 5 g · 220 kcal</div></div>
+ <div class="stepper"><button aria-label="−" data-k="prot" data-id="nasi" data-d="-1">−</button><output>0</output><button class="plus" aria-label="+" data-k="prot" data-id="nasi" data-d="1">+</button></div></div></div>
+      </div>
+    </div>
+    <aside class="side">
+      <div class="card">
+        <div class="pair"><div><div class="label" data-i18n="dailyTarget">Daily target</div><div class="big" id="pDay">112<small>g</small></div></div><div><div class="label" data-i18n="perMeal">Per meal</div><div class="big" id="pMeal">37<small>g</small></div></div></div>
+        <div class="note" id="pEggs">That’s like 19 eggs a day. This is why it needs a plan.</div>
+        <div><div class="label" id="pBuildLbl" style="margin-bottom:8px">Fill one meal</div><div class="bar" id="pBar"><i id="pFill" style="width: 89.1892%;"></i></div><div class="meta" id="pProg" style="margin-top:6px">33 g of 37 g · 355 kcal</div></div>
+        <span class="badge" id="pBadge" style="justify-self:start">Almost there</span>
+        <ul class="tips" id="pTips"><li>4 g to go. Try adding <b>100 g chicken breast</b> (31 g) or <b>100 g tempeh</b> (21 g).</li></ul>
+        <div class="actions"><button class="btn primary small" id="pCopy" data-i18n="copyResult">Copy result</button><button class="btn quiet small" id="pReset" data-i18n="reset">Reset</button></div>
+        <p class="note" data-i18n="protNote">General guidance for healthy adults. Kidney condition? Ask your doctor first.</p>
+      </div>
+    </aside>
+  </section>
+
+  <section class="cta">
+    <h2 data-i18n="ctaH">How old is your body, really?</h2>
+    <p data-i18n="ctaP">Body Age Assessment: 30 short questions about eating, energy, sleep, movement, and body trend. Free, just 3 minutes.</p>
+    <a class="btn" id="ctaQuiz" href="../test/" data-i18n="ctaBtn">Check my body age →</a>
+  </section>
+
+  <details class="src">
+    <summary data-i18n="srcH">Where do the numbers come from?</summary>
+    <p class="note" style="margin-top:8px" data-i18n="srcP">Padang food calories vary a lot by restaurant, chicken cut, and how much coconut milk or oil is used. So each dish shows a range, and the total uses the midpoint.</p>
+    <ul>
+      <li><a href="https://www.alodokter.com/nasi-padang-ketahui-kandungan-kalori-dan-cara-sehat-menyantapnya" target="_blank" rel="noopener">Alodokter</a> · <span data-i18n="s1">calorie ranges for rice, rendang, ayam pop, gulai ayam, telur balado, gravy, cassava leaves</span></li>
+      <li><a href="https://keslan.kemkes.go.id/view_artikel/2741/bolehkah-makan-nasi-padang-saat-diet" target="_blank" rel="noopener">Kemenkes (Keslan)</a> · <span data-i18n="s2">advice on choosing dishes and cutting gravy when dieting</span></li>
+      <li><a href="https://www.fatsecret.co.id/kalori-gizi/search?q=rumah+makan+sederhana" target="_blank" rel="noopener">FatSecret Indonesia</a> · <span data-i18n="s3">RM Sederhana menu data (ayam bakar, gulai ayam, dendeng, paru, jackfruit curry)</span></li>
+      <li><a href="https://health.detik.com/diet/d-8440165/tempe-vs-tahu-mana-yang-lebih-unggul-nutrisinya/amp" target="_blank" rel="noopener">detikHealth (TKPI)</a> · <span data-i18n="s4">tempeh &amp; tofu values from the Indonesian Food Composition Table</span></li>
+      <li><a href="https://e-journal.unair.ac.id/AMNT/article/view/39783" target="_blank" rel="noopener">Amerta Nutrition (Unair)</a> · <span data-i18n="s5">boba milk tea sugar (±47 g per large cup)</span></li>
+      <li><a href="https://www.who.int/publications/i/item/9789241549028" target="_blank" rel="noopener">WHO</a> · <span data-i18n="s6">guideline on added sugar intake</span></li>
+    </ul>
+  </details>
+</main>
+
+<footer class="site-foot"><div class="wrap">
+  <nav><a href="../" data-i18n="navHome">Home</a><a href="../test/" data-i18n="navTest">Body Age Assessment</a><a href="./" data-i18n="navTools">Free tools</a><a href="../privacy/" data-i18n="navPriv">Privacy Policy</a></nav>
+  <span data-i18n="footer">All numbers are educational estimates, not medical advice.</span>
+</div></footer>
+
+<div class="bbar" id="bbar">
+  <div class="v"><small data-i18n="bbarLbl">Your bill</small><br><b id="bbK">698</b> kkal · <span id="bbP">24</span> g protein</div>
+  <button id="bbGo" data-i18n="bbarBtn">See bill</button>
+</div>
+<div class="toast" id="toast" hidden=""></div>
+
+<script src="/assets/site.js"></script>
+<script>
+const T={
+ id:{
+  tagline:c=>'', navHome:'Beranda',navPriv:'Kebijakan Privasi', navTest:'Body Age Assessment', navTools:'Tools gratis',
+  kicker:'Transform Toolkit · gratis', h1:'Makan enak, <em>tetap turun lemak.</em>',
+  lede:'Tiga alat kecil untuk keputusan sehari-hari: pesan nasi Padang yang lebih ringan, cek gula dari minuman, dan hitung target protein kamu.',
+  tabPadang:'Pesan Padang',tabGula:'Audit Gula',tabProtein:'Target Protein',
+  qNasi:'Nasinya, Da?',qLauk:'Lauknya apa?',qLaukSub:'Tap lauk di etalase. Tap lagi untuk tambah.',
+  qKuah:'Kuahnya?',extraHint:'Daun singkong & sambal ijo biasanya ikut. Tap untuk lepas.',qMinum:'Minumnya?',
+  bonTitle:'BON KALORI',bonShop:'RM Transform · Kalori, bukan Rupiah',total:'TOTAL',protein:'PROTEIN',
+  bonEst:'perkiraan tengah',sayH:'Mau lebih ringan? Bilang ke uda:',
+  copyResult:'Salin hasil',reset:'Reset', bbarLbl:'Bon kamu',bbarBtn:'Lihat bon',
+  vLight:'Ringan & kaya protein',vOk:'Masih oke',vHeavy:'Berat. Cukup sesekali',vEmpty:'Belum pesan apa-apa',
+  sayNone:'Pesananmu sudah rapi. Pertahankan.',
+  rice:{full:'Nasi penuh',half:'Nasi setengah',none:'Tanpa nasi'},
+  kuah:{banyak:'Kuah banyak',sedikit:'Kuah sedikit',pisah:'Kuah dipisah'},
+  minum:{air:'Air putih',tawar:'Teh tawar',esteh:'Es teh manis',jeruk:'Es jeruk'},
+  gQ:'Seminggu ini minum apa saja?',gSub:'Hitung berapa kali per minggu. Jujur saja, ini cuma buat kamu.',
+  weekSugar:'Gula dari minuman per minggu',dailyAvg:'Rata-rata per hari',kcalWeek:'Kkal / minggu',kcalYear:'Kkal / tahun',
+  whoNote:'Garis 25 g = anjuran ideal WHO untuk gula tambahan per hari. 50 g = batas maksimal.',
+  cubeLbl:(n)=>`${n} sendok teh gula. Satu kotak = 1 sdt (4 g)`,
+  day:(g)=>`${g} g gula per hari, dari minuman saja`,
+  gOk:'Masih aman',gMid:'Lewat batas ideal',gHigh:'Lewat batas maksimal',gZero:'Belum ada minuman manis',
+  fat:(kg)=>`Kalau kebiasaan ini tidak berubah, energinya setara ±${kg} kg lemak tubuh per tahun (hitungan kasar).`,
+  pQ1:'Kenalan dulu',pQ2:'Susun proteinmu',
+  weightLbl:'Berat badan',weightHint:'Kalau berat badanmu jauh di atas target, isi berat target agar angkanya realistis.',
+  goalLbl:'Tujuan',goalLoss:'Turun lemak',goalKeep:'Jaga berat',goalBuild:'Bangun otot',
+  mealsLbl:'Makan berapa kali sehari?',modeMeal:'1 kali makan',modeDay:'1 hari penuh',
+  dailyTarget:'Target per hari',perMeal:'Per makan',
+  eggs:(n)=>`Setara ±${n} butir telur per hari. Makanya perlu direncanakan.`,
+  buildMeal:'Isi 1 kali makan',buildDay:'Isi 1 hari',
+  prog:(a,b,k)=>`${a} g dari ${b} g · ${k} kkal`,
+  pDone:'Target tercapai',pClose:'Hampir',pLow:'Masih kurang',
+  pTipCombo:(g)=>`Kurang ${g} g. Coba tambah <b>dada ayam 100 g</b> (31 g) atau <b>tempe 100 g</b> (21 g).`,
+  pTipOver:'Sudah lebih dari cukup. Protein berlebih tetap dihitung kalori.',
+  pTipRice:'Nasi boleh, tapi 1 porsi nasi cuma ±5 g protein.',
+  protNote:'Panduan umum untuk orang dewasa sehat. Punya gangguan ginjal? Tanya dokter dulu.',
+  ctaH:'Berapa umur badan kamu sebenarnya?',
+  ctaP:'Body Age Assessment: 30 pertanyaan singkat soal makan, energi, tidur, gerak, dan tren badan. Gratis, cuma 3 menit.',
+  ctaBtn:'Cek umur badan aku →',
+  srcH:'Dari mana angkanya?',
+  srcP:'Kalori masakan Padang sangat bervariasi tergantung rumah makan, bagian ayam, dan banyaknya santan atau minyak. Karena itu tiap lauk ditampilkan sebagai rentang, dan total memakai nilai tengah.',
+  s1:'rentang kalori nasi, rendang, ayam pop, gulai ayam, telur balado, kuah, daun singkong',
+  s2:'saran memilih lauk dan mengurangi kuah saat diet',
+  s3:'data menu RM Sederhana (ayam bakar, gulai ayam, dendeng, paru, sayur nangka)',
+  s4:'nilai tempe & tahu dari Tabel Komposisi Pangan Indonesia',
+  s5:'kadar gula boba milk tea (±47 g per gelas besar)',
+  s6:'pedoman asupan gula tambahan',
+  footer:'Semua angka adalah perkiraan edukatif, bukan nasihat medis.',
+  share:{pad:'Bon Padang saya',gula:'Audit Gula saya',prot:'Target Protein saya'},
+  perWeek:'/ minggu',sugar:'gula',kk:'kkal', copied:'Tersalin',copyFail:'Gagal menyalin. Tekan lama untuk memilih teks.'
+ },
+ en:{
+  tagline:c=>'', navHome:'Home',navPriv:'Privacy Policy', navTest:'Body Age Assessment', navTools:'Free tools',
+  kicker:'Transform Toolkit · free', h1:'Eat well, <em>still lose fat.</em>',
+  lede:'Three small tools for everyday decisions: order a lighter Padang meal, check the sugar in your drinks, and work out your protein target.',
+  tabPadang:'Order Padang',tabGula:'Sugar Audit',tabProtein:'Protein Target',
+  qNasi:'Rice?',qLauk:'Which dishes?',qLaukSub:'Tap dishes in the display case. Tap again to add more.',
+  qKuah:'Gravy?',extraHint:'Cassava leaves & green sambal usually come with it. Tap to remove.',qMinum:'Drink?',
+  bonTitle:'CALORIE BILL',bonShop:'RM Transform · Calories, not Rupiah',total:'TOTAL',protein:'PROTEIN',
+  bonEst:'mid estimate',sayH:'Want it lighter? Tell the server:',
+  copyResult:'Copy result',reset:'Reset', bbarLbl:'Your bill',bbarBtn:'See bill',
+  vLight:'Light & protein-rich',vOk:'Still okay',vHeavy:'Heavy. Keep it occasional',vEmpty:'Nothing ordered yet',
+  sayNone:'Your order looks clean. Keep it up.',
+  rice:{full:'Full rice',half:'Half rice',none:'No rice'},
+  kuah:{banyak:'Lots of gravy',sedikit:'A little gravy',pisah:'Gravy on the side'},
+  minum:{air:'Water',tawar:'Plain tea',esteh:'Sweet iced tea',jeruk:'Iced orange'},
+  gQ:'What did you drink this week?',gSub:'Count how many times per week. Be honest, this is just for you.',
+  weekSugar:'Sugar from drinks per week',dailyAvg:'Average per day',kcalWeek:'Kcal / week',kcalYear:'Kcal / year',
+  whoNote:'25 g line = WHO ideal for added sugar per day. 50 g = upper limit.',
+  cubeLbl:(n)=>`${n} teaspoons of sugar. One cube = 1 tsp (4 g)`,
+  day:(g)=>`${g} g sugar per day, from drinks alone`,
+  gOk:'Within range',gMid:'Over the ideal',gHigh:'Over the upper limit',gZero:'No sweet drinks yet',
+  fat:(kg)=>`If this habit doesn’t change, that energy equals roughly ${kg} kg of body fat per year (rough math).`,
+  pQ1:'About you',pQ2:'Build your protein',
+  weightLbl:'Body weight',weightHint:'If you’re well above your goal weight, enter the goal weight for a realistic number.',
+  goalLbl:'Goal',goalLoss:'Lose fat',goalKeep:'Maintain',goalBuild:'Build muscle',
+  mealsLbl:'Meals per day?',modeMeal:'One meal',modeDay:'A full day',
+  dailyTarget:'Daily target',perMeal:'Per meal',
+  eggs:(n)=>`That’s like ${n} eggs a day. This is why it needs a plan.`,
+  buildMeal:'Fill one meal',buildDay:'Fill your day',
+  prog:(a,b,k)=>`${a} g of ${b} g · ${k} kcal`,
+  pDone:'Target hit',pClose:'Almost there',pLow:'Still short',
+  pTipCombo:(g)=>`${g} g to go. Try adding <b>100 g chicken breast</b> (31 g) or <b>100 g tempeh</b> (21 g).`,
+  pTipOver:'More than enough. Extra protein still counts as calories.',
+  pTipRice:'Rice is fine, but one serving has only ±5 g protein.',
+  protNote:'General guidance for healthy adults. Kidney condition? Ask your doctor first.',
+  ctaH:'How old is your body, really?',
+  ctaP:'Body Age Assessment: 30 short questions about eating, energy, sleep, movement, and body trend. Free, just 3 minutes.',
+  ctaBtn:'Check my body age →',
+  srcH:'Where do the numbers come from?',
+  srcP:'Padang food calories vary a lot by restaurant, chicken cut, and how much coconut milk or oil is used. So each dish shows a range, and the total uses the midpoint.',
+  s1:'calorie ranges for rice, rendang, ayam pop, gulai ayam, telur balado, gravy, cassava leaves',
+  s2:'advice on choosing dishes and cutting gravy when dieting',
+  s3:'RM Sederhana menu data (ayam bakar, gulai ayam, dendeng, paru, jackfruit curry)',
+  s4:'tempeh & tofu values from the Indonesian Food Composition Table',
+  s5:'boba milk tea sugar (±47 g per large cup)',
+  s6:'guideline on added sugar intake',
+  footer:'All numbers are educational estimates, not medical advice.',
+  share:{pad:'My Padang bill',gula:'My Sugar Audit',prot:'My Protein Target'},
+  perWeek:'/ week',sugar:'sugar',kk:'kcal', copied:'Copied',copyFail:'Couldn’t copy. Long-press to select the text.'
+ }
+};
+
+const RICE={full:{lo:175,hi:260,p:5},half:{lo:90,hi:130,p:2.5},none:{lo:0,hi:0,p:0}};
+const KUAH={banyak:{lo:60,hi:120,p:1},sedikit:{lo:30,hi:50,p:.5},pisah:{lo:0,hi:0,p:0}};
+const MINUM={air:{lo:0,hi:0},tawar:{lo:0,hi:5},esteh:{lo:80,hi:120},jeruk:{lo:90,hi:140}};
+const SHELVES=[
+ {lbl:{id:'Ayam',en:'Chicken'},items:[
+  {id:'ayampop',n:'Ayam pop',c:'#EFDDBB',lo:130,hi:170,p:18},
+  {id:'ayambakar',n:'Ayam bakar',c:'#9A4A22',lo:230,hi:370,p:20},
+  {id:'ayamgoreng',n:'Ayam goreng',c:'#C7862E',lo:240,hi:330,p:24},
+  {id:'gulaiayam',n:'Gulai ayam',c:'#E2A42A',lo:185,hi:250,p:16}]},
+ {lbl:{id:'Daging & jeroan',en:'Beef & offal'},items:[
+  {id:'rendang',n:'Rendang',c:'#4E2616',lo:195,hi:250,p:16},
+  {id:'dendeng',n:'Dendeng balado',c:'#B3261E',lo:120,hi:210,p:12},
+  {id:'paru',n:'Paru goreng',c:'#5E2F22',lo:200,hi:300,p:20},
+  {id:'tunjang',n:'Gulai tunjang',c:'#D9A441',lo:120,hi:200,p:14},
+  {id:'otak',n:'Gulai otak',c:'#EDCF7A',lo:150,hi:220,p:10}]},
+ {lbl:{id:'Ikan & telur',en:'Fish & egg'},items:[
+  {id:'ikanbakar',n:'Ikan bakar',c:'#7C4B24',lo:150,hi:220,p:24},
+  {id:'gulaiikan',n:'Gulai ikan',c:'#E8B23A',lo:180,hi:250,p:18},
+  {id:'telurbalado',n:'Telur balado',c:'#D9481C',lo:120,hi:180,p:7},
+  {id:'telurdadar',n:'Telur dadar',c:'#E7C25A',lo:200,hi:300,p:9},
+  {id:'perkedel',n:'Perkedel',c:'#BF8B45',lo:100,hi:150,p:2}]}
+];
+const LAUK=Object.fromEntries(SHELVES.flatMap(s=>s.items).map(x=>[x.id,x]));
+const EXTRAS=[{id:'daun',n:'Daun singkong',lo:20,hi:40,p:2},{id:'sambal',n:'Sambal ijo',lo:25,hi:50,p:0},{id:'nangka',n:'Gulai nangka',lo:50,hi:100,p:1},{id:'kerupuk',n:'Kerupuk kulit',lo:60,hi:100,p:4}];
+const EX=Object.fromEntries(EXTRAS.map(x=>[x.id,x]));
+const PAD0=()=>({rice:'full',lauk:{rendang:1},kuah:'banyak',ex:{daun:1,sambal:1},minum:'esteh'});
+const DRINKS=[
+ ['kopsus','Kopi susu gula aren',{id:'1 cup reguler',en:'1 regular cup'},25,160],
+ ['esteh','Es teh manis',{id:'1 gelas',en:'1 glass'},25,100],
+ ['boba','Boba milk tea',{id:'1 cup besar',en:'1 large cup'},47,350],
+ ['thai','Thai tea',{id:'1 cup',en:'1 cup'},35,250],
+ ['matcha','Matcha latte manis',{id:'1 cup',en:'1 cup'},30,220],
+ ['tehbotol','Teh kemasan botol',{id:'±350–450 ml',en:'±350–450 ml'},24,100],
+ ['soda','Soda',{id:'1 kaleng 330 ml',en:'1 can 330 ml'},35,140],
+ ['iso','Minuman isotonik',{id:'1 botol 500 ml',en:'1 bottle 500 ml'},30,125],
+ ['jus','Jus buah + gula',{id:'1 gelas',en:'1 glass'},30,170],
+ ['susukotak','Susu cokelat kotak',{id:'200 ml',en:'200 ml'},20,150],
+ ['kopibotol','Es kopi susu botol',{id:'1 botol',en:'1 bottle'},20,130],
+ ['escampur','Es campur / es buah',{id:'1 mangkuk',en:'1 bowl'},45,280]];
+const GULA0=()=>({kopsus:5,esteh:7,boba:1});
+const PFOODS=[
+ ['telur','Telur',{id:'1 butir',en:'1 egg'},6,77],
+ ['dada','Dada ayam tanpa kulit',{id:'100 g matang',en:'100 g cooked'},31,165],
+ ['ikan','Ikan bakar / kukus',{id:'100 g',en:'100 g'},21,140],
+ ['udang','Udang',{id:'100 g',en:'100 g'},24,100],
+ ['sapi','Daging sapi tanpa lemak',{id:'100 g',en:'100 g lean'},26,200],
+ ['tempe','Tempe',{id:'100 g',en:'100 g'},21,201],
+ ['tahu','Tahu',{id:'100 g',en:'100 g'},11,80],
+ ['edamame','Edamame',{id:'100 g',en:'100 g'},11,120],
+ ['susu','Susu',{id:'250 ml',en:'250 ml'},8,150],
+ ['yogurt','Greek yogurt',{id:'150 g',en:'150 g'},15,120],
+ ['nasi','Nasi putih',{id:'1 porsi',en:'1 serving'},5,220]];
+const PROT0=()=>({telur:2,tempe:1});
+const GOALS={loss:1.6,keep:1.2,build:1.8};
+
+const S={lang:ALV.getLang(),tab:'padang',pad:PAD0(),gula:GULA0(),prot:PROT0(),goal:'loss',meals:3,mode:'meal',wt:70};
+try{const s=localStorage.getItem('tt-tab'); if(s) S.tab=s;}catch(e){}
+const hsh=(location.hash||'').slice(1); if(['padang','gula','protein'].includes(hsh)) S.tab=hsh;
+const saveTab=()=>{try{localStorage.setItem('tt-tab',S.tab)}catch(e){}};
+const t=()=>T[S.lang];
+const $=id=>document.getElementById(id);
+const mid=x=>(x.lo+x.hi)/2;
+const fmt=n=>Math.round(n).toLocaleString(S.lang==='id'?'id-ID':'en-US');
+const rng=x=>x.hi?`${x.lo}–${x.hi}`:'0';
+
+function padCalc(){
+ const P=S.pad, lines=[]; let lo=0,hi=0,p=0;
+ const add=(label,x,n=1,mute=false)=>{lo+=x.lo*n;hi+=x.hi*n;p+=(x.p||0)*n;lines.push({label,lo:x.lo*n,hi:x.hi*n,mute});};
+ if(P.rice!=='none') add(t().rice[P.rice],RICE[P.rice]);
+ Object.entries(P.lauk).forEach(([id,n])=>{ if(n) add((n>1?n+'× ':'')+LAUK[id].n,LAUK[id],n); });
+ if(P.kuah!=='pisah') add(t().kuah[P.kuah],KUAH[P.kuah]);
+ Object.keys(P.ex).forEach(id=>{ if(P.ex[id]) add(EX[id].n,EX[id]); });
+ if(P.minum!=='air') add(t().minum[P.minum],MINUM[P.minum],1,MINUM[P.minum].hi===0);
+ return {lines,lo,hi,k:(lo+hi)/2,p};
+}
+function padSwaps(r){
+ const P=S.pad, out=[], L=S.lang==='id';
+ const push=(say,save)=>out.push({say,save});
+ if(P.kuah==='banyak') push(L?'Da, kuahnya dipisah ya.':'Gravy on the side, please.',mid(KUAH.banyak));
+ if(P.rice==='full') push(L?'Nasinya setengah aja, Da.':'Just half rice, please.',mid(RICE.full)-mid(RICE.half));
+ if(P.minum==='esteh'||P.minum==='jeruk') push(L?'Minumnya teh tawar aja.':'Plain tea instead.',mid(MINUM[P.minum]));
+ const n=id=>P.lauk[id]||0;
+ if(n('ayambakar')) push(L?'Ayam bakarnya ganti ayam pop ya.':'Swap ayam bakar for ayam pop.',(mid(LAUK.ayambakar)-mid(LAUK.ayampop))*n('ayambakar'));
+ if(n('ayamgoreng')) push(L?'Ayam gorengnya ganti ikan bakar.':'Swap fried chicken for grilled fish.',(mid(LAUK.ayamgoreng)-mid(LAUK.ikanbakar))*n('ayamgoreng'));
+ if(n('telurdadar')) push(L?'Telur dadarnya ganti telur balado.':'Swap telur dadar for telur balado.',(mid(LAUK.telurdadar)-mid(LAUK.telurbalado))*n('telurdadar'));
+ if(n('paru')) push(L?'Parunya skip dulu, ganti ikan bakar.':'Skip the paru, take grilled fish.',(mid(LAUK.paru)-mid(LAUK.ikanbakar))*n('paru'));
+ if(P.ex.nangka) push(L?'Sayurnya daun singkong aja.':'Just the cassava leaves for veg.',mid(EX.nangka));
+ if(P.ex.kerupuk) push(L?'Kerupuknya nggak usah.':'No crackers, thanks.',mid(EX.kerupuk));
+ out.sort((a,b)=>b.save-a.save);
+ const res=out.filter(x=>x.save>=20).slice(0,3);
+ if(r.k>0 && r.p<20) res.unshift({say:L?'Tambah ikan bakar satu, Da.':'Add one grilled fish, please.',plus:true});
+ return res;
+}
+function choiceBtn(group,key,label,sub,on){ return `<button class="choice" data-g="${group}" data-v="${key}" aria-pressed="${on}"><b>${label}</b><span>${sub}</span></button>`; }
+function renderPadang(){
+ const P=S.pad, L=S.lang, kk=t().kk;
+ $('riceCh').innerHTML=Object.keys(RICE).map(k=>choiceBtn('rice',k,t().rice[k],`${rng(RICE[k])} ${kk}`,P.rice===k)).join('');
+ $('etalase').innerHTML=SHELVES.map(s=>`<div class="shelf"><div class="shelf-lbl">${s.lbl[L]}</div>${s.items.map(d=>{
+   const n=P.lauk[d.id]||0;
+   return `<button class="dish${n?' on':''}" data-dish="${d.id}" aria-label="${d.n}${n?' ×'+n:''}">
+     <span class="plate"><i style="background:radial-gradient(circle at 35% 35%, ${d.c}cc, ${d.c})"></i></span>
+     <span><b>${d.n}</b><small>${d.lo}–${d.hi} · ${d.p}g P</small></span>
+     ${n?`<span class="qty"><em>${n}</em><span data-minus="${d.id}" role="button" aria-label="−">−</span></span>`:''}
+   </button>`;}).join('')}</div>`).join('');
+ $('kuahCh').innerHTML=Object.keys(KUAH).map(k=>choiceBtn('kuah',k,t().kuah[k],`${rng(KUAH[k])} ${kk}`,P.kuah===k)).join('');
+ $('extraCh').innerHTML=EXTRAS.map(x=>choiceBtn('ex',x.id,x.n,`${rng(x)} ${kk}`,!!P.ex[x.id])).join('');
+ $('minumCh').innerHTML=Object.keys(MINUM).map(k=>choiceBtn('minum',k,t().minum[k],`${rng(MINUM[k])} ${kk}`,P.minum===k)).join('');
+ const r=padCalc();
+ $('bonLines').innerHTML=r.lines.length?r.lines.map(l=>`<div class="ln${l.mute?' mute':''}"><span>${l.label}</span><span>${l.hi?l.lo+'–'+l.hi:'0'}</span></div>`).join(''):`<div class="ln mute"><span>—</span><span>0</span></div>`;
+ $('bonK').innerHTML=`${fmt(r.k)}<small>${kk}</small>`;
+ $('bonR').textContent=r.hi?`${fmt(r.lo)}–${fmt(r.hi)} ${kk}`:'';
+ $('bonP').textContent=`±${fmt(r.p)} g`;
+ const b=$('bonBadge'), dens=r.k?r.p/r.k*100:0;
+ if(!r.k){b.className='badge';b.textContent=t().vEmpty}
+ else if(r.k<=600 && dens>=5){b.className='badge good';b.textContent=t().vLight}
+ else if(r.k<=850){b.className='badge';b.textContent=t().vOk}
+ else{b.className='badge bad';b.textContent=t().vHeavy}
+ const sw=padSwaps(r);
+ $('sayList').innerHTML=sw.length?sw.map(s=>`<li><q>${s.say}</q><span>${s.plus?'+24 g protein':(L==='id'?'hemat ±':'save ±')+fmt(s.save)+' '+kk}</span></li>`).join(''):`<li><q>${t().sayNone}</q></li>`;
+ $('bbK').textContent=fmt(r.k); $('bbP').textContent=fmt(r.p);
+ return r;
+}
+function stepRow(key,id,name,sub,count){
+ return `<div class="row${count?' on':''}"><div><div class="nm">${name}</div><div class="meta">${sub}</div></div>
+ <div class="stepper"><button aria-label="−" data-k="${key}" data-id="${id}" data-d="-1">−</button><output>${count||0}</output><button class="plus" aria-label="+" data-k="${key}" data-id="${id}" data-d="1">+</button></div></div>`;
+}
+function renderGula(){
+ const L=S.lang;
+ $('gulaList').innerHTML=DRINKS.map(([id,n,p,g])=>stepRow('gula',id,n,`${p[L]} · ±${g} g ${t().sugar}`,S.gula[id])).join('');
+ let G=0,K=0; DRINKS.forEach(([id,,,g,k])=>{const c=S.gula[id]||0;G+=g*c;K+=k*c;});
+ const day=G/7, tsp=Math.round(G/4);
+ $('gW').innerHTML=`${fmt(G)}<small>g ${t().perWeek}</small>`;
+ $('gCubeLbl').textContent=t().cubeLbl(fmt(tsp));
+ const show=Math.min(tsp,160);
+ $('gCubes').innerHTML='<i></i>'.repeat(show)+(tsp>show?`<span class="more">+${tsp-show}</span>`:'');
+ $('gFill').style.width=Math.min(100,day/75*100)+'%';
+ $('gBar').classList.toggle('hot',day>25);
+ $('gDay').textContent=t().day(fmt(day));
+ const b=$('gBadge');
+ if(!G){b.className='badge';b.textContent=t().gZero}
+ else if(day<=25){b.className='badge good';b.textContent=t().gOk}
+ else if(day<=50){b.className='badge';b.textContent=t().gMid}
+ else{b.className='badge bad';b.textContent=t().gHigh}
+ $('gK').textContent=fmt(K); $('gY').textContent=fmt(K*52);
+ const kg=(K*52/7700).toFixed(1); $('gFat').textContent=K?t().fat(S.lang==='id'?kg.replace('.',','):kg):'';
+ return {G,K,tsp};
+}
+function renderProt(){
+ const L=S.lang;
+ $('protList').innerHTML=PFOODS.map(([id,n,p,pr,k])=>stepRow('prot',id,n,`${p[L]} · ${pr} g · ${k} ${t().kk}`,S.prot[id])).join('');
+ const wt=Math.max(30,Math.min(250,+S.wt||0));
+ const dayT=Math.round(wt*GOALS[S.goal]), mealT=Math.round(dayT/S.meals);
+ $('pDay').innerHTML=`${dayT}<small>g</small>`; $('pMeal').innerHTML=`${mealT}<small>g</small>`;
+ $('pEggs').textContent=t().eggs(Math.round(dayT/6));
+ const target=S.mode==='day'?dayT:mealT;
+ $('pBuildLbl').textContent=S.mode==='day'?t().buildDay:t().buildMeal;
+ let P=0,K=0; PFOODS.forEach(([id,,,pr,k])=>{const c=S.prot[id]||0;P+=pr*c;K+=k*c;});
+ $('pFill').style.width=Math.min(100,P/target*100)+'%';
+ $('pProg').textContent=t().prog(fmt(P),fmt(target),fmt(K));
+ const b=$('pBadge'), r=P/target;
+ if(r>=1){b.className='badge good';b.textContent=t().pDone}
+ else if(r>=.8){b.className='badge';b.textContent=t().pClose}
+ else{b.className='badge bad';b.textContent=t().pLow}
+ const tips=[]; if(r<1) tips.push(t().pTipCombo(fmt(target-P))); if(r>1.3) tips.push(t().pTipOver); if(S.prot.nasi) tips.push(t().pTipRice);
+ $('pTips').innerHTML=tips.map(x=>`<li>${x}</li>`).join('');
+ return {dayT,mealT};
+}
+function applyText(){
+ document.documentElement.lang=S.lang;
+ document.querySelectorAll('[data-i18n]').forEach(el=>{const v=t()[el.dataset.i18n]; if(typeof v==='string') el.innerHTML=v;});
+ document.querySelectorAll('.lang button').forEach(b=>b.setAttribute('aria-pressed',b.dataset.lang===S.lang));
+ $('tagline').textContent=t().tagline(ALV.coach().name);
+ const code=ALV.coachCode(); $('ctaQuiz').href='../test/'+(code!==ALV.DEFAULT?'#'+code:'');
+}
+function showTab(){
+ ['padang','gula','protein'].forEach(k=>{$('p-'+k).hidden=k!==S.tab; $('tab-'+k).setAttribute('aria-selected',k===S.tab);});
+ $('bbar').hidden=S.tab!=='padang';
+}
+function segSel(seg,key){document.querySelectorAll('#'+seg+' button').forEach(b=>b.setAttribute('aria-pressed',String(b.dataset[key])===String(S[key])));}
+function renderAll(){applyText();showTab();renderPadang();renderGula();renderProt();}
+
+document.addEventListener('click',e=>{
+ const minus=e.target.closest('[data-minus]');
+ if(minus){const id=minus.dataset.minus; S.pad.lauk[id]=Math.max(0,(S.pad.lauk[id]||0)-1); if(!S.pad.lauk[id]) delete S.pad.lauk[id]; renderPadang(); return;}
+ const dish=e.target.closest('[data-dish]');
+ if(dish){const id=dish.dataset.dish; S.pad.lauk[id]=Math.min(5,(S.pad.lauk[id]||0)+1); renderPadang(); return;}
+ const ch=e.target.closest('[data-g]');
+ if(ch){const g=ch.dataset.g,v=ch.dataset.v; if(g==='ex') S.pad.ex[v]=S.pad.ex[v]?0:1; else S.pad[g]=v; renderPadang(); return;}
+ const st=e.target.closest('[data-k]');
+ if(st){const m=S[st.dataset.k], id=st.dataset.id; m[id]=Math.max(0,Math.min(28,(m[id]||0)+ +st.dataset.d)); (st.dataset.k==='gula'?renderGula:renderProt)(); return;}
+ const tb=e.target.closest('[data-tab]'); if(tb){S.tab=tb.dataset.tab;saveTab();showTab();return;}
+ const lg=e.target.closest('[data-lang]'); if(lg){S.lang=lg.dataset.lang;ALV.setLang(S.lang);renderAll();return;}
+ const gl=e.target.closest('[data-goal]'); if(gl){S.goal=gl.dataset.goal;segSel('goalSeg','goal');renderProt();return;}
+ const ml=e.target.closest('[data-meals]'); if(ml){S.meals=+ml.dataset.meals;segSel('mealSeg','meals');renderProt();return;}
+ const md=e.target.closest('[data-mode]'); if(md){S.mode=md.dataset.mode;segSel('modeSeg','mode');renderProt();return;}
+});
+$('wt').addEventListener('input',e=>{S.wt=e.target.value;renderProt();});
+$('bbGo').addEventListener('click',()=>$('bonSide').scrollIntoView({behavior:matchMedia('(prefers-reduced-motion: reduce)').matches?'auto':'smooth',block:'start'}));
+function toast(m){const el=$('toast');el.textContent=m;el.hidden=false;clearTimeout(toast.t);toast.t=setTimeout(()=>el.hidden=true,1800);}
+function copy(text){try{navigator.clipboard.writeText(text).then(()=>toast(t().copied),()=>toast(t().copyFail));}catch(e){toast(t().copyFail);}}
+const tag='\nalvacy.com/tools';
+$('padCopy').addEventListener('click',()=>{const r=renderPadang(); copy(`${t().share.pad}:\n`+r.lines.map(l=>`- ${l.label}`).join('\n')+`\n= ±${fmt(r.k)} ${t().kk} · ±${fmt(r.p)} g protein`+tag);});
+$('gCopy').addEventListener('click',()=>{const r=renderGula(); copy(`${t().share.gula}: ${fmt(r.G)} g ${t().perWeek} · ${fmt(r.K*52)} ${t().kk}/${S.lang==='id'?'tahun':'year'}`+tag);});
+$('pCopy').addEventListener('click',()=>{const r=renderProt(); copy(`${t().share.prot}: ${r.dayT} g/${S.lang==='id'?'hari':'day'} · ${r.mealT} g × ${S.meals}`+tag);});
+$('padReset').addEventListener('click',()=>{S.pad={rice:'full',lauk:{},kuah:'pisah',ex:{},minum:'air'};renderPadang();});
+$('gReset').addEventListener('click',()=>{S.gula={};renderGula();});
+$('pReset').addEventListener('click',()=>{S.prot={};renderProt();});
+window.addEventListener('hashchange',()=>{const h=(location.hash||'').slice(1); if(['padang','gula','protein'].includes(h)){S.tab=h;showTab();} else applyText();});
+renderAll();
+</script>
+</body>
+</html>

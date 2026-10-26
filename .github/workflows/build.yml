@@ -1,0 +1,35 @@
+name: Build search-friendly pages
+
+# Reruns scripts/build.py whenever the source pages change, so the text Google reads,
+# the English pages under /en/, and the sitemap never fall behind the live site.
+on:
+  push:
+    branches: [main]
+    paths-ignore: ['en/**', 'sitemap.xml', 'robots.txt']
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: build
+  cancel-in-progress: false
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - run: pip install playwright pillow && python -m playwright install --with-deps chromium
+      - run: python scripts/build.py
+      - name: Commit rebuilt pages
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -A
+          if git diff --cached --quiet; then echo "Already up to date"; exit 0; fi
+          git commit -m "Rebuild search-friendly pages"
+          git push

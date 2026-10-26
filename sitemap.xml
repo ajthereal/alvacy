@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">
+  <url>
+    <loc>https://alvacy.com/</loc>
+    <xhtml:link rel="alternate" hreflang="id" href="https://alvacy.com/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://alvacy.com/en/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://alvacy.com/"/>
+  </url>
+  <url>
+    <loc>https://alvacy.com/en/</loc>
+    <xhtml:link rel="alternate" hreflang="id" href="https://alvacy.com/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://alvacy.com/en/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://alvacy.com/"/>
+  </url>
+  <url>
+    <loc>https://alvacy.com/test/</loc>
+    <xhtml:link rel="alternate" hreflang="id" href="https://alvacy.com/test/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://alvacy.com/en/test/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://alvacy.com/test/"/>
+  </url>
+  <url>
+    <loc>https://alvacy.com/en/test/</loc>
+    <xhtml:link rel="alternate" hreflang="id" href="https://alvacy.com/test/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://alvacy.com/en/test/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://alvacy.com/test/"/>
+  </url>
+  <url>
+    <loc>https://alvacy.com/tools/</loc>
+    <xhtml:link rel="alternate" hreflang="id" href="https://alvacy.com/tools/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://alvacy.com/en/tools/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://alvacy.com/tools/"/>
+  </url>
+  <url>
+    <loc>https://alvacy.com/en/tools/</loc>
+    <xhtml:link rel="alternate" hreflang="id" href="https://alvacy.com/tools/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://alvacy.com/en/tools/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://alvacy.com/tools/"/>
+  </url>
+  <url>
+    <loc>https://alvacy.com/privacy/</loc>
+    <xhtml:link rel="alternate" hreflang="id" href="https://alvacy.com/privacy/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://alvacy.com/en/privacy/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://alvacy.com/privacy/"/>
+  </url>
+  <url>
+    <loc>https://alvacy.com/en/privacy/</loc>
+    <xhtml:link rel="alternate" hreflang="id" href="https://alvacy.com/privacy/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://alvacy.com/en/privacy/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://alvacy.com/privacy/"/>
+  </url>
+</urlset>
