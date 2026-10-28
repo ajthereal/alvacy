@@ -32,4 +32,9 @@ jobs:
           git add -A
           if git diff --cached --quiet; then echo "Already up to date"; exit 0; fi
           git commit -m "Rebuild search-friendly pages"
-          git push
+          # Coaches publish to main while this job runs, so the branch can move. Rebase onto it and retry.
+          for i in 1 2 3; do
+            git push && exit 0
+            git pull --rebase origin main || exit 1
+          done
+          exit 1
