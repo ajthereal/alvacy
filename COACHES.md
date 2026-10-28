@@ -9,7 +9,7 @@ dan cerita pembuka berganti sesuai link coach-nya, misalnya `alvacy.com/transfor
 2. Angka awal dan akhir: berat (kg), lemak tubuh (%), lemak visceral (VFA).
 3. Satu cerita pendek dengan kata-katanya sendiri.
 4. Persetujuan coach bahwa fotonya tampil.
-5. Untuk link pribadi: nomor WhatsApp, kota, foto potret (opsional), dan pilihan warna.
+5. Untuk link pribadi: nomor WhatsApp, foto potret (opsional), dan pilihan warna. Kota boleh dikosongkan, dan di halaman ini memang tidak ditampilkan.
 
 ## Langkah
 

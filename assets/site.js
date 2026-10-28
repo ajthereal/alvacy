@@ -17,7 +17,13 @@ window.ALV = (function () {
                  en: 'I was busy running a game development startup, raising 3 kids, and gaining “sympathy weight” every time my wife was pregnant. Together with my wife, I lost 18 kg without stepping away from work. Now I help busy professionals find a way that fits their schedule.' } },
       stat: { value: '−18 kg', id: 'dalam 90 hari, bareng istri, tanpa berhenti kerja', en: 'in 90 days, with my wife, without stepping away from work' },
       story: { id: 'Dulu aku sibuk jalanin startup game development, punya 3 anak, dan ikutan “hamil” tiap istri hamil, sampai akhirnya kegemukan. Bareng istri, aku turun 18 kg dalam 90 hari tanpa berhenti kerja. Sekarang aku bantu profesional sibuk menemukan cara yang muat di jadwal mereka.',
-               en: 'I was busy running a game development startup, raising 3 kids, and gaining “sympathy weight” every time my wife was pregnant. Together with my wife, I lost 18 kg in 90 days without stepping away from work. Now I help busy professionals find a way that fits their schedule.' } }
+               en: 'I was busy running a game development startup, raising 3 kids, and gaining “sympathy weight” every time my wife was pregnant. Together with my wife, I lost 18 kg in 90 days without stepping away from work. Now I help busy professionals find a way that fits their schedule.' } },
+    nova: { name: 'dr. Nova', wa: '628989180720', pretty: '+62 898-9180-720', city: '', photo: 'coach-novalia.jpg', face: 'coach-novalia-face.jpg', booking: '',
+      palette: 'rose',
+      transform: {
+        proof: { value: '−10 kg', id: 'sambil tetap menyusui', en: 'while still breastfeeding' },
+        story: { id: 'Sebagai dokter, saya terbiasa merawat orang lain, tapi sering lupa merawat diri sendiri. Sebagai ibu, saya ingin memberikan yang terbaik untuk anak, dan itu berarti saya juga harus sehat dan tercukupi nutrisinya.',
+                 en: 'As a doctor I’m used to caring for others, but I often forget to care for myself. As a mother I want to give my child the best, and that means I have to be healthy and well nourished too.' } } }
   };
   const DEFAULT = 'aj';
 

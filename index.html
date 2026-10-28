@@ -460,7 +460,7 @@ function render(){
  const av=document.getElementById('avatar');
  av.innerHTML=c.photo?`<img src="/images/${c.photo}" alt="${c.name}" width="260" height="325" loading="lazy">`:c.name.replace(/^Coach\s+/i,'').slice(0,2).toUpperCase();
  document.getElementById('coachStory').textContent=c.story?c.story[lang]:'';
- document.getElementById('coachWho').textContent=`${c.name} · ${c.city||''}`;
+ document.getElementById('coachWho').textContent=[c.name,c.city].filter(Boolean).join(' · ');
  const st=document.getElementById('coachStat');
  st.hidden=!c.stat; document.getElementById('coachKicker').hidden=!!c.stat;
  if(c.stat){document.getElementById('statV').textContent=c.stat.value;document.getElementById('statL').textContent=c.stat[lang]||'';}

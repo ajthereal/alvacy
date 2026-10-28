@@ -282,7 +282,7 @@ blockquote{margin:0;font-size:.95rem;line-height:1.5;color:var(--ink)}
     <div class="avatar" id="avatar"><img src="/images/coach-aj.jpg" alt="Coach AJ" width="260" height="325" loading="lazy"></div>
     <div class="copy">
       <blockquote id="coachStory">Dulu aku sibuk jalanin startup game development, punya 3 anak, dan ikutan “hamil” tiap istri hamil, sampai akhirnya kegemukan. Bareng istri, aku turun 18 kg tanpa berhenti kerja. Sekarang aku bantu profesional sibuk menemukan cara yang muat di jadwal mereka.</blockquote>
-      <p class="who" id="coachWho">Coach AJ · Jakarta</p>
+      <p class="who" id="coachWho">Coach AJ</p>
       <div><a class="btn primary small js-test" href="../test/" data-i18n="ctaTest">Cek umur badan aku</a></div>
     </div>
   </div>
@@ -405,7 +405,7 @@ const CASES=[
   m:[{from:57,to:50,suf:' kg',u:'mKg',d:'dKg',k:1},{from:28,to:19,suf:'%',u:'mFat',d:'dPt'},{from:3,to:1.5,u:'mVfa2',d:'dLv'}],
   quote:{id:'Sebagai dokter estetik yang harus estetik, tindakan “beauty is pain” sudah sering aku lakukan, ubah lifestyle is a must. But the result, nggak signifikan. Sampai akhirnya #transformwithST bikin prosesnya jadi mudah, and the rest is history.',
          en:'As an aesthetic doctor I’m supposed to look the part, so I’ve done plenty of “beauty is pain” treatments, and changing my lifestyle was a must. But the results weren’t significant. Until #transformwithST made the process easy, and the rest is history.'}},
- {name:'dr. Novalia Sutjiady',before:'/images/results/novalia-before.jpg',after:'/images/results/novalia-after.jpg',
+ {coach:'nova',name:'dr. Novalia Sutjiady',before:'/images/results/novalia-before.jpg',after:'/images/results/novalia-after.jpg',
   m:[{from:60.5,to:50.5,suf:' kg',u:'mKg',d:'dKg',k:1},{from:27.7,to:20.5,suf:'%',u:'mFat',d:'dPt'},{from:3.5,to:1.5,u:'mVfa2',d:'dLv'}],
   quote:{id:'Sebagai dokter, saya terbiasa merawat orang lain, tapi sering lupa merawat diri sendiri. Lewat #transformwithST saya belajar merawat diri dengan lebih terarah. Yang paling berarti, saya bisa menjalani program sambil tetap menyusui dengan ASI yang melimpah dan berkualitas. Merawat diri ternyata tidak mengurangi perhatian untuk anak, justru membantu saya memberikan yang terbaik untuknya.',
          en:'As a doctor I’m used to caring for others, but I often forget to care for myself. Through #transformwithST I learned to look after myself in a more focused way. What meant the most was being able to do the program while still breastfeeding, with plenty of good-quality milk. Taking care of myself doesn’t take attention away from my child. It helps me give them my best.'}}
@@ -543,7 +543,7 @@ function render(){
  const portrait=c.photo?'/images/'+c.photo:(own&&own.after)||'';
  document.getElementById('avatar').innerHTML=portrait?`<img src="${esc(portrait)}" alt="${esc(c.name)}" width="260" height="325" loading="lazy">`:'';
  if(tr.story)document.getElementById('coachStory').textContent=tr.story[lang];
- document.getElementById('coachWho').textContent=[c.name,c.city].filter(Boolean).join(' · ');
+ document.getElementById('coachWho').textContent=c.name; /* no city on purpose: the business is global */
  document.getElementById('waBtn').href=`https://wa.me/${c.wa}?text=${encodeURIComponent(t.waMsg(c.name))}`;
 
  /* totals, only from real results and only when there are enough of them */
