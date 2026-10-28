@@ -139,7 +139,7 @@ blockquote{margin:0;font-size:.95rem;line-height:1.5;color:var(--ink)}
 .stat .l{font-size:1.05rem;color:var(--muted);max-width:420px}
 .coach{display:grid;grid-template-columns:260px minmax(0,1fr);gap:clamp(20px,4vw,44px);align-items:center;padding:clamp(20px,4vw,40px)}
 .avatar{width:260px;aspect-ratio:4/5;border-radius:var(--r);background:var(--surface);overflow:hidden;box-shadow:var(--lift-img)}
-.avatar img{width:100%;height:100%;object-fit:cover;display:block}
+.avatar img{width:100%;height:100%;object-fit:cover;object-position:50% 6%;display:block}
 .coach .copy{display:grid;gap:14px}
 .coach blockquote{font-weight:500;color:var(--head);font-size:clamp(1.1rem,2.2vw,1.35rem);letter-spacing:-.01em}
 .coach .who{font-size:.9rem;color:var(--muted)}
@@ -397,11 +397,11 @@ const CASES=[
   m:[{from:85.1,to:67,suf:' kg',u:'mKg',d:'dKg',k:1},{from:23.7,to:9.9,suf:'%',u:'mFat',d:'dPt'},{from:13.5,to:5.5,u:'mVfa',d:'dLv'}],
   quote:{id:'Dulu pernah diet sendiri dengan OMAD, lari seminggu 4 kali, water fasting, tapi meskipun turun, gampang banget naik lagi. #transformwithST yang akhirnya jadi solusi turun sehat, lemak turun, otot naik, dan sustainable.',
          en:'I used to diet on my own with OMAD, running four times a week and water fasting. The weight came off, but it came back very easily. #transformwithST is what finally gave me a healthy, sustainable way to lose fat while my muscle went up.'}},
- {name:'dr. Jevon Darmawan',before:'/images/results/jevon-before.jpg',after:'/images/results/jevon-after.jpg',
+ {coach:'jevon',name:'dr. Jevon Darmawan',before:'/images/results/jevon-before.jpg',after:'/images/results/jevon-after.jpg',
   m:[{from:78.1,to:60,suf:' kg',u:'mKg',d:'dKg',k:1},{from:22.8,to:12,suf:'%',u:'mFat',d:'dPt'},{from:11,to:4,u:'mVfa2',d:'dLv'}],
   quote:{id:'Dulu sudah coba segala cara. Gym 4 sampai 5 kali seminggu, catering sehat, sampai suntik kurus, tapi dalam 6 bulan cuma turun 2 kg. Beruntung ketemu #transformwithST, dalam 3 bulan turun lebih dari 15 kg dengan cara yang enjoy.',
          en:'I tried everything. Gym four to five times a week, healthy catering, even weight-loss injections, and in six months I lost only 2 kg. Luckily I found #transformwithST, and in 3 months I lost more than 15 kg in a way I actually enjoyed.'}},
- {name:'dr. Emanuella Tamara',before:'/images/results/emanuella-before.jpg',after:'/images/results/emanuella-after.jpg',
+ {coach:'lala',name:'dr. Emanuella Tamara',before:'/images/results/emanuella-before.jpg',after:'/images/results/emanuella-after.jpg',
   m:[{from:57,to:50,suf:' kg',u:'mKg',d:'dKg',k:1},{from:28,to:19,suf:'%',u:'mFat',d:'dPt'},{from:3,to:1.5,u:'mVfa2',d:'dLv'}],
   quote:{id:'Sebagai dokter estetik yang harus estetik, tindakan “beauty is pain” sudah sering aku lakukan, ubah lifestyle is a must. But the result, nggak signifikan. Sampai akhirnya #transformwithST bikin prosesnya jadi mudah, and the rest is history.',
          en:'As an aesthetic doctor I’m supposed to look the part, so I’ve done plenty of “beauty is pain” treatments, and changing my lifestyle was a must. But the results weren’t significant. Until #transformwithST made the process easy, and the rest is history.'}},
@@ -539,7 +539,7 @@ function render(){
  const tr=c.transform||{},own=CASES.find(x=>x.coach===code);
  document.getElementById('story').hidden=!tr.story;
  document.getElementById('coachStat').hidden=!tr.proof;
- if(tr.proof){document.getElementById('statV').textContent=tr.proof.value;document.getElementById('statL').textContent=tr.proof[lang]}
+ if(tr.proof){document.getElementById('statV').textContent=typeof tr.proof.value==='object'?tr.proof.value[lang]:tr.proof.value;document.getElementById('statL').textContent=tr.proof[lang]}
  const portrait=c.photo?'/images/'+c.photo:(own&&own.after)||'';
  document.getElementById('avatar').innerHTML=portrait?`<img src="${esc(portrait)}" alt="${esc(c.name)}" width="260" height="325" loading="lazy">`:'';
  if(tr.story)document.getElementById('coachStory').textContent=tr.story[lang];

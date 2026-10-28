@@ -23,7 +23,19 @@ window.ALV = (function () {
       transform: {
         proof: { value: '−10 kg', id: 'sambil tetap menyusui', en: 'while still breastfeeding' },
         story: { id: 'Sebagai dokter, saya terbiasa merawat orang lain, tapi sering lupa merawat diri sendiri. Sebagai ibu, saya ingin memberikan yang terbaik untuk anak, dan itu berarti saya juga harus sehat dan tercukupi nutrisinya.',
-                 en: 'As a doctor I’m used to caring for others, but I often forget to care for myself. As a mother I want to give my child the best, and that means I have to be healthy and well nourished too.' } } }
+                 en: 'As a doctor I’m used to caring for others, but I often forget to care for myself. As a mother I want to give my child the best, and that means I have to be healthy and well nourished too.' } } },
+    lala: { name: 'dr. Lala', wa: '6281809999918', pretty: '+62 818-0999-9918', city: '', photo: 'coach-lala.jpg', face: 'coach-lala-face.jpg', booking: '',
+      palette: 'rose',
+      transform: {
+        proof: { value: '−7 kg', id: 'dan prosesnya akhirnya jadi mudah', en: 'and the process finally got easy' },
+        story: { id: 'Sebagai dokter estetik yang harus estetik, tindakan “beauty is pain” sudah sering aku lakukan dan ubah lifestyle is a must. But the result, nggak signifikan. Sampai akhirnya #transformwithST bikin prosesnya jadi mudah.',
+                 en: 'As an aesthetic doctor I’m supposed to look the part, so I’ve done plenty of “beauty is pain” treatments, and changing my lifestyle was a must. But the results weren’t significant, until #transformwithST made the process easy.' } } },
+    jevon: { name: 'dr. Jevon', wa: '6281809521794', pretty: '+62 818-0952-1794', city: '', photo: 'coach-jevon.jpg', face: 'coach-jevon-face.jpg', booking: '',
+      palette: 'sky',
+      transform: {
+        proof: { value: { id: '−18,1 kg', en: '−18.1 kg' }, id: 'dengan cara yang enjoy', en: 'in a way he actually enjoyed' },
+        story: { id: 'Dulu sudah coba segala cara. Gym 4 sampai 5 kali seminggu, catering sehat, sampai suntik kurus, tapi dalam 6 bulan cuma turun 2 kg. Beruntung ketemu #transformwithST, dan turun dengan cara yang enjoy.',
+                 en: 'I tried everything. Gym four to five times a week, healthy catering, even weight-loss injections, and in six months I lost only 2 kg. Luckily I found #transformwithST, and the weight came off in a way I actually enjoyed.' } } }
   };
   const DEFAULT = 'aj';
 

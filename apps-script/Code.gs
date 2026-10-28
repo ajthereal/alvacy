@@ -18,7 +18,7 @@ const SRC_KEYS = ['src','campaign','content','landing'];
 /* Who gets an email when a new lead arrives, by coach name shown on the site (COACHES[...].name in assets/site.js).
    Coaches' own addresses are NOT kept here, because this file is in a public repo. Put them in the Sheet's Apps Script:
    Project Settings -> Script properties -> add COACH_EMAILS with a value like
-   {"dr. Nova":"name@example.com","Coach Lala":"lala@example.com"}
+   {"dr. Nova":"a@example.com","dr. Lala":"b@example.com","dr. Jevon":"c@example.com"}
    AJ gets a copy of every coach's alert (cc). Coaches without an entry go to DEFAULT_EMAIL only. */
 const COACH_EMAILS = { 'Coach AJ': 'aj.thereal@gmail.com' };
 const DEFAULT_EMAIL = 'aj.thereal@gmail.com';
