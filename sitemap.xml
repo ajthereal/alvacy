@@ -37,6 +37,18 @@
     <xhtml:link rel="alternate" hreflang="x-default" href="https://alvacy.com/tools/"/>
   </url>
   <url>
+    <loc>https://alvacy.com/lunch/</loc>
+    <xhtml:link rel="alternate" hreflang="id" href="https://alvacy.com/lunch/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://alvacy.com/en/lunch/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://alvacy.com/lunch/"/>
+  </url>
+  <url>
+    <loc>https://alvacy.com/en/lunch/</loc>
+    <xhtml:link rel="alternate" hreflang="id" href="https://alvacy.com/lunch/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://alvacy.com/en/lunch/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://alvacy.com/lunch/"/>
+  </url>
+  <url>
     <loc>https://alvacy.com/kalori/</loc>
     <xhtml:link rel="alternate" hreflang="id" href="https://alvacy.com/kalori/"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://alvacy.com/en/kalori/"/>
