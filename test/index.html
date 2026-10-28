@@ -343,6 +343,7 @@ const UI = {
   chip:{good:'Kuat',warn:'Cukup',bad:'Perlu perhatian'},
   nextH:c=>`Makasih! ${c} bakal hubungin kamu lewat WhatsApp.`,
   nextP:'Siapin waktu sekitar 30 menit buat assessment lengkap dan bahas hasilnya.',
+  sendP:'Pesannya sudah terisi dengan hasil dan datamu. Tinggal tekan kirim di WhatsApp.',
   disc:'Skor ini adalah perkiraan dari jawaban kamu, bukan diagnosis medis. Kalau kamu punya kondisi kesehatan atau sedang minum obat, konsultasikan dengan dokter sebelum mengubah pola makan atau olahraga.',
   retake:'Ulangi kuis',
   m:{title:'BODY AGE ASSESSMENT', hi:(c,n,city)=>`Halo ${c}, aku *${n}* dari ${city}. Ini hasil cek aku:`, total:'Skor total', areas:'Skor per area', focus:'Paling perlu perhatian', profile:'Profil', age:'Usia', gender:'Gender', goal:'Goal', start:'Mulai', tried:'Pernah coba', want:'Yang aku mau', none:'-'}
@@ -381,6 +382,7 @@ const UI = {
   chip:{good:'Strong',warn:'Okay',bad:'Needs attention'},
   nextH:c=>`Thank you. ${c} will contact you on WhatsApp.`,
   nextP:'Set aside about 30 minutes for the full assessment and results review.',
+  sendP:'The message is already filled in with your results and details. Just tap send in WhatsApp.',
   disc:'This score is an estimate based on your answers, not a medical diagnosis. If you have a health condition or take medication, talk to your doctor before changing how you eat or exercise.',
   retake:'Retake the quiz',
   m:{title:'BODY AGE ASSESSMENT', hi:(c,n,city)=>`Hi ${c}, I’m *${n}* from ${city}. Here are my results:`, total:'Total score', areas:'Area scores', focus:'Needs the most attention', profile:'Profile', age:'Age', gender:'Gender', goal:'Goal', start:'Start', tried:'Tried before', want:'What I’d like', none:'-'}
@@ -717,6 +719,37 @@ function detailHTML(u, sc){
   </div>`;
 }
 
+/* WhatsApp: a ready-made message with the person's results, so they can message their coach right away. */
+function ansText(j){
+  const a=S.a[j];
+  if(a&&typeof a==='object'&&!Array.isArray(a)) return a.n!=null?String(a.n):'';
+  if(Array.isArray(a)) return a.map(x=>L(Q[j].o[x])).join(', ');
+  return typeof a==='number' ? L(Q[j].o[a]) : '';
+}
+function waMessage(c){
+  const u=UI[lang], m=u.m, sc=scores();
+  const band = BANDS.find(b=>sc.total>=b.min)[lang][0];
+  const scored = SECTIONS.filter(s=>s.scored);
+  const weakest = [...scored].sort((a,b)=>sc[a.k]-sc[b.k]).slice(0,2);
+  const row = (k,v)=> v ? `${k}: ${v}` : '';
+  const h = ansText(2), w = ansText(3);
+  const lines = [
+    m.hi(c.name, S.lead.name, u.cities[S.lead.city]), '',
+    `*${m.title}*`,
+    `${m.total}: *${sc.total}/100* (${band})`, '',
+    `${m.areas}:`,
+    ...scored.map(s=>`- ${L(s.n)}: ${sc[s.k]}`), '',
+    `${m.focus}: ${weakest.map(s=>L(s.n)).join(', ')}`, '',
+    `${m.profile}:`,
+    row(m.age, ansText(0)), row(m.gender, ansText(1)),
+    row(lang==='id'?'Tinggi':'Height', h?h+' cm':''), row(lang==='id'?'Berat':'Weight', w?w+' kg':''),
+    row(m.goal, ansText(4)), row(m.start, ansText(5)), row(m.tried, ansText(6)),
+    row(m.want, u.modes[S.lead.mode])
+  ].filter((x,i,arr)=>x!==''||(i>0&&arr[i-1]!==''));
+  return lines.join('\n').trim();
+}
+function waUrl(c){ return 'https://wa.me/'+String(c.wa||'').replace(/\D/g,'')+'?text='+encodeURIComponent(waMessage(c)); }
+
 function results(u,c){
   const sc = scores();
   const band = BANDS.find(b=>sc.total>=b.min)[lang];
@@ -738,7 +771,7 @@ function results(u,c){
   </div>`;
   if(S.unlocked){
     return `<section class="results wrap narrow">${top}${detailHTML(u,sc)}
-      <div class="next"><h3>${u.nextH(c.name)}</h3><p class="small">${u.nextP}</p>${c.booking?`<p class="small" style="margin-top:6px">${u.bookP}</p><a class="btn primary" style="justify-self:start;margin-top:6px" href="${esc(bookUrl(c.booking))}" target="_blank" rel="noopener" data-book>${u.bookBtn} <span aria-hidden="true">→</span></a>`:''}</div>
+      <div class="next"><h3>${u.nextH(c.name)}</h3><p class="small">${u.nextP}</p>${c.wa?`<a class="btn primary" style="justify-self:start;margin-top:6px" href="${esc(waUrl(c))}" target="_blank" rel="noopener" data-wa>${u.send(c.name)} <span aria-hidden="true">→</span></a><p class="small" style="margin-top:2px">${u.sendP}</p>`:''}${c.booking?`<p class="small" style="margin-top:6px">${u.bookP}</p><a class="btn" style="justify-self:start;margin-top:6px" href="${esc(bookUrl(c.booking))}" target="_blank" rel="noopener" data-book>${u.bookBtn} <span aria-hidden="true">→</span></a>`:''}</div>
       <p class="disc">${u.disc}</p>
       <div><button class="btn quiet" data-act="retake">${u.retake}</button></div>
     </section>`;
@@ -825,6 +858,7 @@ function advance(){
 
 document.addEventListener('click', e=>{
   if(e.target.closest('[data-book]')){ ALV.track('Schedule', {}, null, false); return; }
+  if(e.target.closest('[data-wa]')){ ALV.track('Contact', {content_name:'Body Age Assessment'}, null, false); return; }
   const lb = e.target.closest('[data-lang]');
   if(lb){ if(S.view==='results') syncLead(); setLang(lb.dataset.lang); return; }
   const b = e.target.closest('[data-act]'); if(!b) return;
