@@ -554,7 +554,7 @@ function commitFiles_(files, message) {
   }
 }
 /* Rebuilds data/coaches.js from every approved row and uploads the photos that are new. One commit. */
-function publish_(message) {
+function publish_(message, forceImages) {
   const lock = coachLock_(30000);
   try {
     const sh = coachSheet_();
@@ -564,13 +564,15 @@ function publish_(message) {
     rows.forEach(r => { const p = toPublic_(r); if (p) list.push(p); else skipped.push(r.code); });
     const b64 = s => Utilities.base64Encode(Utilities.newBlob(s, 'text/plain').getBytes());
     const files = [{ path: 'data/coaches.js', b64: b64('window.ALV_EXTRA=' + JSON.stringify({ v: 1, updated: new Date().toISOString(), coaches: list }) + ';\n') }];
-    rows.filter(r => r.imgNew === 'TRUE').forEach(r => {
+    /* Google Sheets can turn the text TRUE into a real boolean, so compare loosely. A coach that never went live always gets its photos. */
+    const withImg = rows.filter(r => !!forceImages || String(r.imgNew).toUpperCase() === 'TRUE' || !r.published);
+    withImg.forEach(r => {
       let f = {}; try { f = JSON.parse(r.files || '{}'); } catch (e) {}
       IMG_KEYS.forEach(k => { if (f[k] && f[k].id) files.push({ path: siteDir_(k) + f[k].name, b64: Utilities.base64Encode(DriveApp.getFileById(f[k].id).getBlob().getBytes()) }); });
     });
     const sha = commitFiles_(files, message || 'Update coaches (via /join)');
     const now = new Date().toISOString();
-    rows.forEach(r => { r.published = now; if (r.imgNew === 'TRUE') r.imgNew = ''; if (skipped.indexOf(r.code) >= 0) r.note = 'Tidak dipublish: file gambar belum lengkap'; writeCoach_(sh, r); });
+    rows.forEach(r => { r.published = now; if (withImg.indexOf(r) >= 0) r.imgNew = ''; if (skipped.indexOf(r.code) >= 0) r.note = 'Tidak dipublish: file gambar belum lengkap'; writeCoach_(sh, r); });
     return { commit: sha, count: list.length, skipped: skipped };
   } finally { lock.releaseLock(); }
 }
@@ -610,6 +612,12 @@ function setupCoaches() {
 function publishNow() {
   const r = publish_('Update coaches (manual)');
   return r.count + ' coach tayang' + (r.skipped.length ? ', dilewati (gambar belum lengkap): ' + r.skipped.join(', ') : '');
+}
+
+/* Sends the photos of every approved coach to the website again (use if a photo is missing on the site). */
+function publishAllImages() {
+  const r = publish_('Kirim ulang semua gambar coach', true);
+  return r.count + ' coach tayang, gambar dikirim ulang';
 }
 
 function approvalMail_(row) {
