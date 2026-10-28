@@ -16,7 +16,7 @@ FONT = '/usr/share/fonts/truetype/google-fonts/Poppins-Bold.ttf'
 MARK = '#transformwithST'
 
 
-def prepare(src, dst, corner, width=900, top=None):
+def prepare(src, dst, corner, width=900, top=None, tone=None):
     im = ImageOps.exif_transpose(Image.open(src)).convert('RGB')
     w, h = im.size
     ch = round(w * 5 / 4)
@@ -26,7 +26,7 @@ def prepare(src, dst, corner, width=900, top=None):
     if im.size[0] > width:
         im = im.resize((width, round(width * im.size[1] / im.size[0])), Image.LANCZOS)
     w, h = im.size
-    size = max(14, round(w * 0.036))
+    size = max(9, round(w * 0.036))
     font = ImageFont.truetype(FONT, size)
     pad = round(w * 0.04)
     x0, y0, x1, y1 = font.getbbox(MARK)
@@ -36,6 +36,7 @@ def prepare(src, dst, corner, width=900, top=None):
     # light backgrounds get dark text, dark backgrounds get white text
     patch = im.crop((max(0, x - 4), max(0, y), min(w, x + tw + 4), min(h, y + th + 8))).convert('L')
     bright = patch.resize((1, 1), Image.BOX).getpixel((0, 0)) > 165
+    if tone: bright = tone == 'dark'  # force dark text ('dark') or white text ('light')
     ink, halo = ((35, 35, 35, 185), (255, 255, 255, 140)) if bright else ((255, 255, 255, 170), (0, 0, 0, 150))
     shadow = Image.new('RGBA', im.size, (0, 0, 0, 0))
     ImageDraw.Draw(shadow).text((x, y + 1), MARK, font=font, fill=halo)
@@ -51,6 +52,7 @@ if __name__ == '__main__':
     ap = argparse.ArgumentParser()
     ap.add_argument('src'); ap.add_argument('dst')
     ap.add_argument('--corner', choices=['left', 'right'], required=True)
+    ap.add_argument('--tone', choices=['dark', 'light'], default=None, help='force the watermark colour when the automatic pick is hard to read')
     ap.add_argument('--top', type=int, default=None, help='first row to keep when cropping a tall photo')
     a = ap.parse_args()
-    print(a.dst, prepare(a.src, a.dst, a.corner, top=a.top))
+    print(a.dst, prepare(a.src, a.dst, a.corner, top=a.top, tone=a.tone))

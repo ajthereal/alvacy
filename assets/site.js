@@ -35,7 +35,13 @@ window.ALV = (function () {
       transform: {
         proof: { value: { id: '−18,1 kg', en: '−18.1 kg' }, id: 'dengan cara yang enjoy', en: 'in a way he actually enjoyed' },
         story: { id: 'Dulu sudah coba segala cara. Gym 4 sampai 5 kali seminggu, catering sehat, sampai suntik kurus, tapi dalam 6 bulan cuma turun 2 kg. Beruntung ketemu #transformwithST, dan turun dengan cara yang enjoy.',
-                 en: 'I tried everything. Gym four to five times a week, healthy catering, even weight-loss injections, and in six months I lost only 2 kg. Luckily I found #transformwithST, and the weight came off in a way I actually enjoyed.' } } }
+                 en: 'I tried everything. Gym four to five times a week, healthy catering, even weight-loss injections, and in six months I lost only 2 kg. Luckily I found #transformwithST, and the weight came off in a way I actually enjoyed.' } } },
+    melita: { name: 'dr. Melita', wa: '6281317223077', pretty: '+62 813-1722-3077', city: '', photo: 'coach-melita.jpg', face: 'coach-melita-face.jpg', booking: '',
+      palette: 'rose',
+      transform: {
+        proof: { value: '−11 kg', id: 'dan bebas beli baju yang aku suka', en: 'and free to wear the clothes I love' },
+        story: { id: 'Dulu aku juga pikir aku nggak perlu diet. Setelah #transformwithST, aku happy banget bisa bebas beli baju yang aku suka, bahkan jadi ibu yang lebih baik dan tentunya lebih fit buat anak-anak perempuanku.',
+                 en: 'I used to think I didn’t need to diet either. After #transformwithST I’m so happy to be free to buy the clothes I love, and even to be a better mom, and of course fitter for my daughters.' } } }
   };
   const DEFAULT = 'aj';
 
