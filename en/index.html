@@ -113,7 +113,10 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Geist+Mono:wght@500&display=swap">
+<script>document.documentElement.setAttribute('data-theme','light')</script>
 <link rel="stylesheet" href="/assets/site.css">
+<link rel="stylesheet" href="/assets/palettes.css">
+<link rel="stylesheet" href="/assets/results.css">
 <style>
 section{padding-block:clamp(56px,10vw,112px)}
 .head{display:grid;gap:14px;max-width:720px;margin:0 auto clamp(28px,5vw,48px);text-align:center;justify-items:center}
@@ -200,7 +203,9 @@ a.rung:hover{transform:translateY(-3px);border-color:var(--accent)}
 @media (max-width:680px){ .coach{grid-template-columns:1fr} .avatar{width:100%;max-width:300px;aspect-ratio:1} }
 
 /* become a coach */
-.door{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:20px;align-items:center;background:#172554;color:#EAF0FA;border-radius:var(--r);padding:clamp(24px,4vw,36px)}
+.doorbtns{display:flex;flex-wrap:wrap;gap:10px}
+.fine{margin:18px auto 0;font-size:.82rem;color:var(--muted);max-width:620px;text-align:center;padding-inline:16px}
+.door{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:20px;align-items:center;background:var(--head);color:#EAF0FA;border-radius:var(--r);padding:clamp(24px,4vw,36px)}
 .door h3{color:#fff;font-size:1.4rem;letter-spacing:-.025em}
 .door p{color:#C3CDE3;font-size:.95rem;margin-top:6px}
 .door .btn.quiet{background:transparent;border-color:#8FA0C8;color:#EAF0FA}
@@ -227,6 +232,7 @@ a.rung:hover{transform:translateY(-3px);border-color:var(--accent)}
 <header class="site-top"><div class="wrap">
   <a class="logo" href="./"><b>Alvacy</b><span id="tagline"></span></a>
   <nav class="site-nav">
+    <a href="#hasil" class="hide-sm" data-i18n="navRes">Results</a>
     <a href="#gratis" class="hide-sm" data-i18n="navFree">Free</a>
     <a href="tools/" class="hide-sm" data-i18n="navTools">Tools</a>
     <a href="test/" data-i18n="navTest">Body Age Assessment</a>
@@ -258,7 +264,65 @@ a.rung:hover{transform:translateY(-3px);border-color:var(--accent)}
   </div>
 </div></div>
 
-<section><div class="wrap">
+<section id="hasil"><div>
+  <div class="head wrap"><p class="kicker" data-i18n="resK">Our coaches’ results</p><h2 data-i18n="resH">They started from the same place too.</h2><p class="lede" data-i18n="resP">Real photos, real numbers, and their own words. Tap a photo or drag the line to compare.</p></div>
+  <div id="results"><div class="strip wrap reveal"><div class="s"><span class="v" data-k="people">5</span><span class="l" data-k="lp">coaches</span></div><div class="s"><span class="v" data-k="kg">64</span><span class="l" data-k="lk">kg lost in total</span></div></div>
+<div class="stage"><div class="rail" tabindex="0" aria-label="Before and after results"><article class="rc on" style="transform: scale(1); opacity: 1; z-index: 2;">
+  <div class="cmp" style="--p:50">
+   <div class="ph before"><img src="/images/results/aj-before.jpg" alt="AJ Jonathan Ong, Before" loading="lazy" draggable="false"></div><div class="ph after"><img src="/images/results/aj-after.jpg" alt="AJ Jonathan Ong, After" loading="lazy" draggable="false"></div>
+   <span class="line"></span><span class="chip b">Before</span><span class="chip a">After</span>
+   <button type="button" class="grip" role="slider" aria-label="Drag to compare the before and after photos" aria-valuemin="0" aria-valuemax="100" aria-valuenow="50"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 7l-5 5 5 5M15 7l5 5-5 5"></path></svg></button>
+  </div>
+  <div class="body">
+   <div class="top"><span class="name">AJ Jonathan Ong</span><span class="tag">Coach</span></div>
+   <div class="nums"><div class="row"><small>weight</small><span class="num"><b class="cu" data-to="85.1" data-dec="1">85.1</b> → <b class="cu" data-to="67" data-dec="0">67</b> kg</span><span class="drop">−<b class="cu" data-to="18.1" data-dec="1">18.1</b> kg</span></div><div class="row"><small>body fat</small><span class="num"><b class="cu" data-to="23.7" data-dec="1">23.7</b> → <b class="cu" data-to="9.9" data-dec="1">9.9</b>%</span><span class="drop">−<b class="cu" data-to="13.8" data-dec="1">13.8</b> pts</span></div><div class="row"><small>visceral fat (VFA), measured on an <span style="white-space:nowrap">Omron HBF-375</span></small><span class="num"><b class="cu" data-to="13.5" data-dec="1">13.5</b> → <b class="cu" data-to="5.5" data-dec="1">5.5</b></span><span class="drop">−<b class="cu" data-to="8" data-dec="0">8</b> levels</span></div></div>
+   <blockquote>I used to diet on my own with OMAD, running four times a week and water fasting. The weight came off, but it came back very easily. #transformwithST is what finally gave me a healthy, sustainable way to lose fat while my muscle went up.</blockquote>
+  </div></article><article class="rc" style="transform: scale(0.83); opacity: 0.5; z-index: 1;">
+  <div class="cmp" style="--p:50">
+   <div class="ph before"><img src="/images/results/jevon-before.jpg" alt="dr. Jevon Darmawan, Before" loading="lazy" draggable="false"></div><div class="ph after"><img src="/images/results/jevon-after.jpg" alt="dr. Jevon Darmawan, After" loading="lazy" draggable="false"></div>
+   <span class="line"></span><span class="chip b">Before</span><span class="chip a">After</span>
+   <button type="button" class="grip" role="slider" aria-label="Drag to compare the before and after photos" aria-valuemin="0" aria-valuemax="100" aria-valuenow="50"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 7l-5 5 5 5M15 7l5 5-5 5"></path></svg></button>
+  </div>
+  <div class="body">
+   <div class="top"><span class="name">dr. Jevon Darmawan</span><span class="tag">Coach</span></div>
+   <div class="nums"><div class="row"><small>weight</small><span class="num"><b class="cu" data-to="78.1" data-dec="1">78.1</b> → <b class="cu" data-to="60" data-dec="0">60</b> kg</span><span class="drop">−<b class="cu" data-to="18.1" data-dec="1">18.1</b> kg</span></div><div class="row"><small>body fat</small><span class="num"><b class="cu" data-to="22.8" data-dec="1">22.8</b> → <b class="cu" data-to="12" data-dec="0">12</b>%</span><span class="drop">−<b class="cu" data-to="10.8" data-dec="1">10.8</b> pts</span></div><div class="row"><small>visceral fat (VFA)</small><span class="num"><b class="cu" data-to="11" data-dec="0">11</b> → <b class="cu" data-to="4" data-dec="0">4</b></span><span class="drop">−<b class="cu" data-to="7" data-dec="0">7</b> levels</span></div></div>
+   <blockquote>I tried everything. Gym four to five times a week, healthy catering, even weight-loss injections, and in six months I lost only 2 kg. Luckily I found #transformwithST, and in 3 months I lost more than 15 kg in a way I actually enjoyed.</blockquote>
+  </div></article><article class="rc" style="transform: scale(0.83); opacity: 0.5; z-index: 1;">
+  <div class="cmp" style="--p:50">
+   <div class="ph before"><img src="/images/results/emanuella-before.jpg" alt="dr. Emanuella Tamara, Before" loading="lazy" draggable="false"></div><div class="ph after"><img src="/images/results/emanuella-after.jpg" alt="dr. Emanuella Tamara, After" loading="lazy" draggable="false"></div>
+   <span class="line"></span><span class="chip b">Before</span><span class="chip a">After</span>
+   <button type="button" class="grip" role="slider" aria-label="Drag to compare the before and after photos" aria-valuemin="0" aria-valuemax="100" aria-valuenow="50"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 7l-5 5 5 5M15 7l5 5-5 5"></path></svg></button>
+  </div>
+  <div class="body">
+   <div class="top"><span class="name">dr. Emanuella Tamara</span><span class="tag">Coach</span></div>
+   <div class="nums"><div class="row"><small>weight</small><span class="num"><b class="cu" data-to="57" data-dec="0">57</b> → <b class="cu" data-to="50" data-dec="0">50</b> kg</span><span class="drop">−<b class="cu" data-to="7" data-dec="0">7</b> kg</span></div><div class="row"><small>body fat</small><span class="num"><b class="cu" data-to="28" data-dec="0">28</b> → <b class="cu" data-to="19" data-dec="0">19</b>%</span><span class="drop">−<b class="cu" data-to="9" data-dec="0">9</b> pts</span></div><div class="row"><small>visceral fat (VFA)</small><span class="num"><b class="cu" data-to="3" data-dec="0">3</b> → <b class="cu" data-to="1.5" data-dec="1">1.5</b></span><span class="drop">−<b class="cu" data-to="1.5" data-dec="1">1.5</b> levels</span></div></div>
+   <blockquote>As an aesthetic doctor I’m supposed to look the part, so I’ve done plenty of “beauty is pain” treatments, and changing my lifestyle was a must. But the results weren’t significant. Until #transformwithST made the process easy, and the rest is history.</blockquote>
+  </div></article><article class="rc" style="transform: scale(0.83); opacity: 0.5; z-index: 1;">
+  <div class="cmp" style="--p:50">
+   <div class="ph before"><img src="/images/results/novalia-before.jpg" alt="dr. Novalia Sutjiady, Before" loading="lazy" draggable="false"></div><div class="ph after"><img src="/images/results/novalia-after.jpg" alt="dr. Novalia Sutjiady, After" loading="lazy" draggable="false"></div>
+   <span class="line"></span><span class="chip b">Before</span><span class="chip a">After</span>
+   <button type="button" class="grip" role="slider" aria-label="Drag to compare the before and after photos" aria-valuemin="0" aria-valuemax="100" aria-valuenow="50"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 7l-5 5 5 5M15 7l5 5-5 5"></path></svg></button>
+  </div>
+  <div class="body">
+   <div class="top"><span class="name">dr. Novalia Sutjiady</span><span class="tag">Coach</span></div>
+   <div class="nums"><div class="row"><small>weight</small><span class="num"><b class="cu" data-to="60.5" data-dec="1">60.5</b> → <b class="cu" data-to="50.5" data-dec="1">50.5</b> kg</span><span class="drop">−<b class="cu" data-to="10" data-dec="0">10</b> kg</span></div><div class="row"><small>body fat</small><span class="num"><b class="cu" data-to="27.7" data-dec="1">27.7</b> → <b class="cu" data-to="20.5" data-dec="1">20.5</b>%</span><span class="drop">−<b class="cu" data-to="7.2" data-dec="1">7.2</b> pts</span></div><div class="row"><small>visceral fat (VFA)</small><span class="num"><b class="cu" data-to="3.5" data-dec="1">3.5</b> → <b class="cu" data-to="1.5" data-dec="1">1.5</b></span><span class="drop">−<b class="cu" data-to="2" data-dec="0">2</b> levels</span></div></div>
+   <blockquote>As a doctor I’m used to caring for others, but I often forget to care for myself. Through #transformwithST I learned to look after myself in a more focused way. What meant the most was being able to do the program while still breastfeeding, with plenty of good-quality milk. Taking care of myself doesn’t take attention away from my child. It helps me give them my best.</blockquote>
+  </div></article><article class="rc" style="transform: scale(0.83); opacity: 0.5; z-index: 1;">
+  <div class="cmp" style="--p:50">
+   <div class="ph before"><img src="/images/results/melita-before.jpg" alt="dr. Melita Sutjiady, Before" loading="lazy" draggable="false"></div><div class="ph after"><img src="/images/results/melita-after.jpg" alt="dr. Melita Sutjiady, After" loading="lazy" draggable="false"></div>
+   <span class="line"></span><span class="chip b">Before</span><span class="chip a">After</span>
+   <button type="button" class="grip" role="slider" aria-label="Drag to compare the before and after photos" aria-valuemin="0" aria-valuemax="100" aria-valuenow="50"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 7l-5 5 5 5M15 7l5 5-5 5"></path></svg></button>
+  </div>
+  <div class="body">
+   <div class="top"><span class="name">dr. Melita Sutjiady</span><span class="tag">Coach</span></div>
+   <div class="nums"><div class="row"><small>weight</small><span class="num"><b class="cu" data-to="65.3" data-dec="1">65.3</b> → <b class="cu" data-to="54.3" data-dec="1">54.3</b> kg</span><span class="drop">−<b class="cu" data-to="11" data-dec="0">11</b> kg</span></div><div class="row"><small>body fat</small><span class="num"><b class="cu" data-to="34.9" data-dec="1">34.9</b> → <b class="cu" data-to="27.7" data-dec="1">27.7</b>%</span><span class="drop">−<b class="cu" data-to="7.2" data-dec="1">7.2</b> pts</span></div><div class="row"><small>visceral fat (VFA)</small><span class="num"><b class="cu" data-to="8.5" data-dec="1">8.5</b> → <b class="cu" data-to="4.5" data-dec="1">4.5</b></span><span class="drop">−<b class="cu" data-to="4" data-dec="0">4</b> levels</span></div></div>
+   <blockquote>Already taken, and that’s fine, what matters is being healthy. I used to think I didn’t need to diet either, but after #transformwithST I’m so happy to be free to buy the clothes I love, and even to be a better mom, and of course fitter for my daughters.</blockquote>
+  </div></article></div>
+<div class="railbar"><div class="prog"><i style="width: 47.3373%; left: 0%;"></i></div><div class="nav2"><button type="button" data-dir="-1" disabled="" aria-label="Previous"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 6l-6 6 6 6"></path></svg></button><button type="button" data-dir="1" aria-label="Next"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 6l6 6-6 6"></path></svg></button></div></div></div></div>
+  <p class="fine" data-i18n="resFine">Results vary from person to person. Only our coaches appear here, so joining the program never means being photographed.</p>
+</div></section>
+
+<section style="padding-top:0"><div class="wrap">
   <div class="head"><p class="kicker" data-i18n="painK">Sound familiar?</p><h2 data-i18n="painH">Your willpower didn’t change. Your situation did.</h2></div>
   <div class="pains">
     <div class="pain cloud reveal"><q data-i18n="p1q">I eat the same as before, so why is my belly growing?</q><p data-i18n="p1">After 35, muscle tends to decline unless trained, and your energy needs shift with it.</p></div>
@@ -320,12 +384,12 @@ a.rung:hover{transform:translateY(-3px);border-color:var(--accent)}
 </div></section>
 
 <section style="padding-top:0"><div class="wrap">
-  <div class="stat reveal" id="coachStat"><p class="kicker" data-i18n="coachK">Your coach</p><span class="v" id="statV">−18 kg</span><span class="l" id="statL">in 90 days, with my wife, without stepping away from work</span></div>
+  <div class="stat reveal" id="coachStat"><p class="kicker" data-i18n="coachK">Your coach</p><span class="v" id="statV">−18 kg</span><span class="l" id="statL">with my wife, without stepping away from work</span></div>
   <div class="coach cloud reveal">
     <div class="avatar" id="avatar"><img src="/images/coach-aj.jpg" alt="Coach AJ" width="260" height="325" loading="lazy"></div>
     <div class="copy">
       <p class="kicker" id="coachKicker" data-i18n="coachK" hidden="">Your coach</p>
-      <blockquote id="coachStory">I was busy running a game development startup, raising 3 kids, and gaining “sympathy weight” every time my wife was pregnant. Together with my wife, I lost 18 kg in 90 days without stepping away from work. Now I help busy professionals find a way that fits their schedule.</blockquote>
+      <blockquote id="coachStory">I was busy running a game development startup, raising 3 kids, and gaining “sympathy weight” every time my wife was pregnant. Together with my wife, I lost 18 kg without stepping away from work. Now I help busy professionals find a way that fits their schedule.</blockquote>
       <p class="who" id="coachWho">Coach AJ</p>
       <div><a class="btn primary small js-test" href="test/" data-i18n="coachCta">Check my body age</a></div>
     </div>
@@ -335,7 +399,7 @@ a.rung:hover{transform:translateY(-3px);border-color:var(--accent)}
 <section style="padding-top:0"><div class="wrap">
   <div class="door reveal">
     <div><h3 data-i18n="doorH">Curious about helping others too?</h3><p data-i18n="doorP">Some of our clients went on to become coaches. If you’re curious how, let’s just talk. No pressure.</p></div>
-    <a class="btn quiet small" id="doorBtn" target="_blank" rel="noopener" data-i18n="doorBtn" href="https://wa.me/628170241185?text=Hi%20Coach%20AJ%2C%20I%E2%80%99m%20curious%20about%20becoming%20a%20coach%20with%20Alvacy.%20Can%20we%20chat%3F">Chat on WhatsApp</a>
+    <div class="doorbtns"><a class="btn primary small" id="doorTeam" href="transform/#tim" data-i18n="doorTeam">See their journey</a><a class="btn quiet small" id="doorBtn" target="_blank" rel="noopener" data-i18n="doorBtn" href="https://wa.me/628170241185?text=Hi%20Coach%20AJ%2C%20I%E2%80%99m%20curious%20about%20becoming%20a%20coach%20with%20Alvacy.%20Can%20we%20chat%3F">Chat on WhatsApp</a></div>
   </div>
 </div></section>
 
@@ -363,10 +427,12 @@ a.rung:hover{transform:translateY(-3px);border-color:var(--accent)}
 </div></footer>
 
 <script src="/assets/site.js"></script>
+<script src="/assets/results.js"></script>
 <script>
 const T={
  id:{
-  tagline:c=>'',navHome:'Beranda',navPriv:'Kebijakan Privasi',navFree:'Gratis',navTools:'Tools',navTest:'Body Age Assessment',
+  tagline:c=>'',navHome:'Beranda',navPriv:'Kebijakan Privasi',navFree:'Gratis',navRes:'Hasil',navTools:'Tools',navTest:'Body Age Assessment',
+  resK:'Hasil para coach kami',resH:'Mereka juga mulai dari titik yang sama.',resP:'Foto asli, angka asli, dan cerita mereka sendiri. Tap foto atau tarik garisnya buat bandingin.',resFine:'Hasil tiap orang berbeda. Yang tampil di sini cuma para coach, jadi ikut program nggak berarti harus difoto.',doorTeam:'Lihat perjalanan mereka',
   kicker:'Buat kamu yang 35+ dan super sibuk',
   h1:'Udah diet, udah nge‑gym, tapi balik lagi? <em>Itu bukan salah kamu.</em>',
   lede:'Meeting dari pagi, client dinner, tidur kurang. Wajar kalau badan ikut berubah. Mulai dari yang simpel dulu: cek umur badan kamu, terus ambil langkah yang beneran muat di schedule kamu.',
@@ -407,7 +473,8 @@ const T={
   footer:'© Alvacy. Konten edukasi, bukan nasihat medis. Hasil tiap orang beda-beda.'
  },
  en:{
-  tagline:c=>'',navHome:'Home',navPriv:'Privacy Policy',navFree:'Free',navTools:'Tools',navTest:'Body Age Assessment',
+  tagline:c=>'',navHome:'Home',navPriv:'Privacy Policy',navFree:'Free',navRes:'Results',navTools:'Tools',navTest:'Body Age Assessment',
+  resK:'Our coaches’ results',resH:'They started from the same place too.',resP:'Real photos, real numbers, and their own words. Tap a photo or drag the line to compare.',resFine:'Results vary from person to person. Only our coaches appear here, so joining the program never means being photographed.',doorTeam:'See their journey',
   kicker:'For busy professionals 35+',
   h1:'Dieted, hit the gym, and it came back? <em>That’s not your fault.</em>',
   lede:'Packed schedule, eating out, short sleep. Start small here: check your body signals, then take steps that fit your calendar.',
@@ -449,6 +516,7 @@ const T={
  }
 };
 let lang=ALV.getLang();
+ALVResults.mount(document.getElementById('results'));
 function render(){
  const t=T[lang], c=ALV.coach(), code=ALV.coachCode();
  document.documentElement.lang=lang;
@@ -457,13 +525,19 @@ function render(){
  document.getElementById('tagline').textContent=t.tagline(c.name);
  const suffix=code!==ALV.DEFAULT?'#'+code:'';
  document.querySelectorAll('.js-test').forEach(a=>a.href='test/'+suffix);
+ ALV.applyPalette();
  const av=document.getElementById('avatar');
  av.innerHTML=c.photo?`<img src="/images/${c.photo}" alt="${c.name}" width="260" height="325" loading="lazy">`:c.name.replace(/^Coach\s+/i,'').slice(0,2).toUpperCase();
- document.getElementById('coachStory').textContent=c.story?c.story[lang]:'';
- document.getElementById('coachWho').textContent=[c.name,c.city].filter(Boolean).join(' · ');
+ const tr=c.transform||{};
+ const proof=tr.proof||c.stat, story=tr.story||c.story;
+ document.getElementById('coachStory').textContent=story?story[lang]:'';
+ document.getElementById('coachWho').textContent=c.name; /* no city: the business is global */
  const st=document.getElementById('coachStat');
- st.hidden=!c.stat; document.getElementById('coachKicker').hidden=!!c.stat;
- if(c.stat){document.getElementById('statV').textContent=c.stat.value;document.getElementById('statL').textContent=c.stat[lang]||'';}
+ st.hidden=!proof; document.getElementById('coachKicker').hidden=!!proof;
+ if(proof){const v=proof.value;document.getElementById('statV').textContent=typeof v==='object'?v[lang]:v;document.getElementById('statL').textContent=proof[lang]||'';}
+ document.getElementById('doorTeam').href='transform/#'+(ALV.hasCoach()?code:'tim');
+ if(ALV.hasCoach())document.getElementById('doorTeam').href='transform/#'+code;
+ ALVResults.render(lang);
  document.getElementById('doorBtn').href=`https://wa.me/${c.wa}?text=${encodeURIComponent(t.doorMsg(c.name))}`;
 }
 document.addEventListener('click',e=>{const b=e.target.closest('[data-lang]'); if(b){lang=b.dataset.lang;ALV.setLang(lang);render();}});
