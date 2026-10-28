@@ -307,10 +307,10 @@ OG_TEXT = {
     # #transformwithST share cards: their own brand, no Alvacy name or logo mark
     'transform-id': {'brand': '#transformwithST', 'h1': 'Mereka mulai dari titik yang <em>sama kayak kamu.</em>',
                      'p': 'Foto sebelum dan sesudah, lengkap dengan angka dan cerita mereka.',
-                     'cta': 'Lihat hasilnya', 'who': 'AJ Jonathan Ong · turun 18,1 kg'},
+                     'cta': 'Lihat hasilnya', 'who': 'AJ Jonathan Ong · turun 18 kg'},
     'transform-en': {'brand': '#transformwithST', 'h1': 'They started from the <em>same place you are.</em>',
                      'p': 'Before and after photos, with their numbers and their own words.',
-                     'cta': 'See the results', 'who': 'AJ Jonathan Ong · lost 18.1 kg'},
+                     'cta': 'See the results', 'who': 'AJ Jonathan Ong · lost 18 kg'},
 }
 
 
