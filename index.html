@@ -113,7 +113,10 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Geist+Mono:wght@500&display=swap">
+<script>document.documentElement.setAttribute('data-theme','light')</script>
 <link rel="stylesheet" href="/assets/site.css">
+<link rel="stylesheet" href="/assets/palettes.css">
+<link rel="stylesheet" href="/assets/results.css">
 <style>
 section{padding-block:clamp(56px,10vw,112px)}
 .head{display:grid;gap:14px;max-width:720px;margin:0 auto clamp(28px,5vw,48px);text-align:center;justify-items:center}
@@ -200,7 +203,9 @@ a.rung:hover{transform:translateY(-3px);border-color:var(--accent)}
 @media (max-width:680px){ .coach{grid-template-columns:1fr} .avatar{width:100%;max-width:300px;aspect-ratio:1} }
 
 /* become a coach */
-.door{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:20px;align-items:center;background:#172554;color:#EAF0FA;border-radius:var(--r);padding:clamp(24px,4vw,36px)}
+.doorbtns{display:flex;flex-wrap:wrap;gap:10px}
+.fine{margin:18px auto 0;font-size:.82rem;color:var(--muted);max-width:620px;text-align:center;padding-inline:16px}
+.door{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:20px;align-items:center;background:var(--head);color:#EAF0FA;border-radius:var(--r);padding:clamp(24px,4vw,36px)}
 .door h3{color:#fff;font-size:1.4rem;letter-spacing:-.025em}
 .door p{color:#C3CDE3;font-size:.95rem;margin-top:6px}
 .door .btn.quiet{background:transparent;border-color:#8FA0C8;color:#EAF0FA}
@@ -227,6 +232,7 @@ a.rung:hover{transform:translateY(-3px);border-color:var(--accent)}
 <header class="site-top"><div class="wrap">
   <a class="logo" href="./"><b>Alvacy</b><span id="tagline"></span></a>
   <nav class="site-nav">
+    <a href="#hasil" class="hide-sm" data-i18n="navRes">Hasil</a>
     <a href="#gratis" class="hide-sm" data-i18n="navFree">Gratis</a>
     <a href="tools/" class="hide-sm" data-i18n="navTools">Tools</a>
     <a href="test/" data-i18n="navTest">Body Age Assessment</a>
@@ -258,7 +264,13 @@ a.rung:hover{transform:translateY(-3px);border-color:var(--accent)}
   </div>
 </div></div>
 
-<section><div class="wrap">
+<section id="hasil"><div>
+  <div class="head wrap"><p class="kicker" data-i18n="resK">Hasil para coach kami</p><h2 data-i18n="resH">Mereka juga mulai dari titik yang sama.</h2><p class="lede" data-i18n="resP">Foto asli, angka asli, dan cerita mereka sendiri. Tap foto atau tarik garisnya buat bandingin.</p></div>
+  <div id="results"></div>
+  <p class="fine" data-i18n="resFine">Hasil tiap orang berbeda. Yang tampil di sini cuma para coach, jadi ikut program nggak berarti harus difoto.</p>
+</div></section>
+
+<section style="padding-top:0"><div class="wrap">
   <div class="head"><p class="kicker" data-i18n="painK">Relate nggak?</p><h2 data-i18n="painH">Niat kamu nggak berubah. Keadaannya yang beda.</h2></div>
   <div class="pains">
     <div class="pain cloud reveal"><q data-i18n="p1q">Makan segini-gini aja, kok perut makin maju?</q><p data-i18n="p1">Lewat 35, otot pelan-pelan berkurang kalau nggak dilatih. Otot itu mesin pembakar kamu. Mesinnya mengecil, porsinya tetap.</p></div>
@@ -335,7 +347,7 @@ a.rung:hover{transform:translateY(-3px);border-color:var(--accent)}
 <section style="padding-top:0"><div class="wrap">
   <div class="door reveal">
     <div><h3 data-i18n="doorH">Penasaran bantu orang lain juga?</h3><p data-i18n="doorP">Beberapa klien kami akhirnya ikut jadi coach. Kalau kamu penasaran caranya, ngobrol aja dulu. No pressure.</p></div>
-    <a class="btn quiet small" id="doorBtn" target="_blank" rel="noopener" data-i18n="doorBtn" href="https://wa.me/628170241185?text=Halo%20Coach%20AJ%2C%20aku%20penasaran%20soal%20jadi%20coach%20di%20Alvacy.%20Boleh%20ngobrol%3F">Ngobrol via WhatsApp</a>
+    <div class="doorbtns"><a class="btn primary small" id="doorTeam" href="transform/#tim" data-i18n="doorTeam">Lihat perjalanan mereka</a><a class="btn quiet small" id="doorBtn" target="_blank" rel="noopener" data-i18n="doorBtn" href="https://wa.me/628170241185?text=Halo%20Coach%20AJ%2C%20aku%20penasaran%20soal%20jadi%20coach%20di%20Alvacy.%20Boleh%20ngobrol%3F">Ngobrol via WhatsApp</a></div>
   </div>
 </div></section>
 
@@ -363,10 +375,12 @@ a.rung:hover{transform:translateY(-3px);border-color:var(--accent)}
 </div></footer>
 
 <script src="/assets/site.js"></script>
+<script src="/assets/results.js"></script>
 <script>
 const T={
  id:{
-  tagline:c=>'',navHome:'Beranda',navPriv:'Kebijakan Privasi',navFree:'Gratis',navTools:'Tools',navTest:'Body Age Assessment',
+  tagline:c=>'',navHome:'Beranda',navPriv:'Kebijakan Privasi',navFree:'Gratis',navRes:'Hasil',navTools:'Tools',navTest:'Body Age Assessment',
+  resK:'Hasil para coach kami',resH:'Mereka juga mulai dari titik yang sama.',resP:'Foto asli, angka asli, dan cerita mereka sendiri. Tap foto atau tarik garisnya buat bandingin.',resFine:'Hasil tiap orang berbeda. Yang tampil di sini cuma para coach, jadi ikut program nggak berarti harus difoto.',doorTeam:'Lihat perjalanan mereka',
   kicker:'Buat kamu yang 35+ dan super sibuk',
   h1:'Udah diet, udah nge‑gym, tapi balik lagi? <em>Itu bukan salah kamu.</em>',
   lede:'Meeting dari pagi, client dinner, tidur kurang. Wajar kalau badan ikut berubah. Mulai dari yang simpel dulu: cek umur badan kamu, terus ambil langkah yang beneran muat di schedule kamu.',
@@ -407,7 +421,8 @@ const T={
   footer:'© Alvacy. Konten edukasi, bukan nasihat medis. Hasil tiap orang beda-beda.'
  },
  en:{
-  tagline:c=>'',navHome:'Home',navPriv:'Privacy Policy',navFree:'Free',navTools:'Tools',navTest:'Body Age Assessment',
+  tagline:c=>'',navHome:'Home',navPriv:'Privacy Policy',navFree:'Free',navRes:'Results',navTools:'Tools',navTest:'Body Age Assessment',
+  resK:'Our coaches’ results',resH:'They started from the same place too.',resP:'Real photos, real numbers, and their own words. Tap a photo or drag the line to compare.',resFine:'Results vary from person to person. Only our coaches appear here, so joining the program never means being photographed.',doorTeam:'See their journey',
   kicker:'For busy professionals 35+',
   h1:'Dieted, hit the gym, and it came back? <em>That’s not your fault.</em>',
   lede:'Packed schedule, eating out, short sleep. Start small here: check your body signals, then take steps that fit your calendar.',
@@ -449,6 +464,7 @@ const T={
  }
 };
 let lang=ALV.getLang();
+ALVResults.mount(document.getElementById('results'));
 function render(){
  const t=T[lang], c=ALV.coach(), code=ALV.coachCode();
  document.documentElement.lang=lang;
@@ -457,13 +473,19 @@ function render(){
  document.getElementById('tagline').textContent=t.tagline(c.name);
  const suffix=code!==ALV.DEFAULT?'#'+code:'';
  document.querySelectorAll('.js-test').forEach(a=>a.href='test/'+suffix);
+ ALV.applyPalette();
  const av=document.getElementById('avatar');
  av.innerHTML=c.photo?`<img src="/images/${c.photo}" alt="${c.name}" width="260" height="325" loading="lazy">`:c.name.replace(/^Coach\s+/i,'').slice(0,2).toUpperCase();
- document.getElementById('coachStory').textContent=c.story?c.story[lang]:'';
- document.getElementById('coachWho').textContent=[c.name,c.city].filter(Boolean).join(' · ');
+ const tr=c.transform||{};
+ const proof=tr.proof||c.stat, story=tr.story||c.story;
+ document.getElementById('coachStory').textContent=story?story[lang]:'';
+ document.getElementById('coachWho').textContent=c.name; /* no city: the business is global */
  const st=document.getElementById('coachStat');
- st.hidden=!c.stat; document.getElementById('coachKicker').hidden=!!c.stat;
- if(c.stat){document.getElementById('statV').textContent=c.stat.value;document.getElementById('statL').textContent=c.stat[lang]||'';}
+ st.hidden=!proof; document.getElementById('coachKicker').hidden=!!proof;
+ if(proof){const v=proof.value;document.getElementById('statV').textContent=typeof v==='object'?v[lang]:v;document.getElementById('statL').textContent=proof[lang]||'';}
+ document.getElementById('doorTeam').href='transform/#'+(ALV.hasCoach()?code:'tim');
+ if(ALV.hasCoach())document.getElementById('doorTeam').href='transform/#'+code;
+ ALVResults.render(lang);
  document.getElementById('doorBtn').href=`https://wa.me/${c.wa}?text=${encodeURIComponent(t.doorMsg(c.name))}`;
 }
 document.addEventListener('click',e=>{const b=e.target.closest('[data-lang]'); if(b){lang=b.dataset.lang;ALV.setLang(lang);render();}});

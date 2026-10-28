@@ -38,3 +38,19 @@ dan cerita pembuka berganti sesuai link coach-nya, misalnya `alvacy.com/transfor
 5. **Build dan kirim.** `python3 scripts/build.py`, lalu commit dan push.
 
 Link pribadi `#nama` juga membawa nama dan WhatsApp coach itu ke halaman test, kalori, dan tools.
+
+## Link pendek per coach (untuk Threads / Instagram / TikTok)
+
+Setiap coach di `assets/site.js` otomatis punya link `alvacy.com/<kode>` (contoh `alvacy.com/nova`).
+Halaman-halamannya dibuat oleh `scripts/build.py`, jadi tidak perlu dibuat manual.
+
+- `alvacy.com/nova` membuka tes umur badan, warna halaman mengikuti palet coach, dan lead masuk ke coach itu.
+- `alvacy.com/nova?to=home` membuka halaman utama, `?to=hasil` membuka /transform.
+- Tambah `?utm_source=threads` (atau instagram / tiktok) supaya sumbernya tercatat di Sheet.
+- Selama pengunjung masih di alvacy.com, coach-nya terus terbawa (localStorage dan `#kode` di tautan antar halaman).
+
+## Hasil coach (carousel)
+
+Data hasil dan carouselnya ada di satu tempat: `assets/results.js` (blok `CASES`) dan `assets/results.css`.
+Halaman utama dan /transform memakai modul yang sama. Urutan kartu acak tiap kunjungan, kartu coach yang mengundang tampil
+pertama, dan auto-roll berhenti permanen begitu pengunjung menyentuh carousel.
