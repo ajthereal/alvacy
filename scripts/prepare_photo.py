@@ -33,11 +33,15 @@ def prepare(src, dst, corner, width=900, top=None):
     tw, th = x1 - x0, y1 - y0
     x = pad if corner == 'left' else w - pad - tw
     y = h - pad - th - y0
+    # light backgrounds get dark text, dark backgrounds get white text
+    patch = im.crop((max(0, x - 4), max(0, y), min(w, x + tw + 4), min(h, y + th + 8))).convert('L')
+    bright = patch.resize((1, 1), Image.BOX).getpixel((0, 0)) > 165
+    ink, halo = ((35, 35, 35, 185), (255, 255, 255, 140)) if bright else ((255, 255, 255, 170), (0, 0, 0, 150))
     shadow = Image.new('RGBA', im.size, (0, 0, 0, 0))
-    ImageDraw.Draw(shadow).text((x, y + 1), MARK, font=font, fill=(0, 0, 0, 150))
+    ImageDraw.Draw(shadow).text((x, y + 1), MARK, font=font, fill=halo)
     shadow = shadow.filter(ImageFilter.GaussianBlur(max(1, size * 0.09)))
     text = Image.new('RGBA', im.size, (0, 0, 0, 0))
-    ImageDraw.Draw(text).text((x, y), MARK, font=font, fill=(255, 255, 255, 170))
+    ImageDraw.Draw(text).text((x, y), MARK, font=font, fill=ink)
     out = Image.alpha_composite(Image.alpha_composite(im.convert('RGBA'), shadow), text).convert('RGB')
     out.save(dst, quality=84, optimize=True, progressive=True)
     return out.size
