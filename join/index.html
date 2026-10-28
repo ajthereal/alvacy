@@ -1,0 +1,644 @@
+<!doctype html>
+<html lang="id">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Gabung sebagai coach · #transformwithST</title>
+<meta name="description" content="Isi data, foto sebelum dan sesudah, dan ceritamu. Kartu hasilmu tampil di alvacy.com setelah dicek AJ.">
+<meta name="robots" content="noindex, nofollow">
+<link rel="icon" href="/images/icon.svg" type="image/svg+xml">
+<link rel="icon" href="/images/icon-192.png" sizes="192x192" type="image/png">
+<link rel="apple-touch-icon" href="/images/apple-touch-icon.png">
+<meta name="theme-color" content="#1E3A8A">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Geist+Mono:wght@500&display=swap">
+<link rel="stylesheet" href="/assets/site.css?v=1793167738">
+<link rel="stylesheet" href="/assets/palettes.css?v=1793167738">
+<link rel="stylesheet" href="/assets/results.css?v=1793167738">
+<script>document.documentElement.setAttribute('data-theme','light')</script>
+<style>
+.jn{max-width:720px;margin-inline:auto;padding:28px 16px 80px;display:grid;gap:22px}
+.jn>div:first-child{display:grid;gap:14px}
+.jn h1{font-size:clamp(2rem,6vw,3.1rem)}
+.jn h1 em{font-style:normal;color:var(--hl)}
+.jn .lede{max-width:56ch}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:var(--r);padding:clamp(18px,4vw,28px);display:grid;gap:16px;box-shadow:var(--lift)}
+.card>h2{font-size:1.35rem;letter-spacing:-.02em;line-height:1.15}
+.card>h2 span{display:inline-grid;place-items:center;width:28px;height:28px;border-radius:50%;background:var(--accent);color:var(--accent-ink,#fff);font-size:.85rem;margin-right:8px;vertical-align:2px;letter-spacing:0}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+@media (max-width:560px){.grid2{grid-template-columns:1fr}}
+.field{display:grid;gap:6px;min-width:0;align-content:start}
+.field>label,.field>legend,.lab{font-size:.84rem;font-weight:600;color:var(--head)}
+.field .hint{font-size:.8rem;color:var(--muted);line-height:1.4}
+.field input[type=text],.field input[type=email],.field input[type=tel],.field input[type=url],.field input[type=number],.field textarea{
+  font:inherit;padding:12px 14px;border-radius:12px;border:1.5px solid var(--line);background:var(--bg);color:var(--ink);width:100%}
+.field textarea{min-height:150px;resize:vertical;line-height:1.5}
+.field input:focus,.field textarea:focus{outline:2px solid var(--accent);outline-offset:1px;border-color:var(--accent)}
+.field.bad input,.field.bad textarea{border-color:var(--bad)}
+.err{color:var(--bad);font-size:.82rem;font-weight:600}
+.metric.bad{border-color:var(--bad)}
+.check.bad{color:var(--bad)}
+.full{grid-column:1/-1}
+.pre{display:grid;grid-template-columns:auto 1fr;align-items:center;border:1.5px solid var(--line);border-radius:12px;background:var(--bg);overflow:hidden}
+.pre:focus-within{outline:2px solid var(--accent);outline-offset:1px;border-color:var(--accent)}
+.field.bad .pre{border-color:var(--bad)}
+.pre span{padding:12px 0 12px 14px;color:var(--muted);font-size:.95rem;white-space:nowrap}
+.pre input{border:0!important;outline:0!important;padding-left:2px!important;background:transparent!important;border-radius:0!important}
+.pair{display:grid;grid-template-columns:1fr auto 1fr;gap:10px;align-items:end}
+.pair i{font-style:normal;color:var(--muted);padding-bottom:12px}
+.unit{display:grid;grid-template-columns:1fr auto;align-items:center;gap:8px}
+.unit b{color:var(--muted);font-weight:600;font-size:.9rem}
+.metric{border:1px solid var(--line);border-radius:16px;padding:16px;display:grid;gap:10px;background:var(--sand)}
+.metric h3{font-size:1rem}
+.swatches{display:flex;gap:10px;flex-wrap:wrap}
+.sw{display:flex;align-items:center;gap:10px;border:1.5px solid var(--line);border-radius:999px;padding:8px 16px 8px 8px;background:var(--bg);font-weight:600;color:var(--head)}
+.sw i{width:26px;height:26px;border-radius:50%;display:block}
+.sw[aria-pressed=true]{border-color:var(--accent);background:var(--accent-soft)}
+.cbs{display:grid;gap:16px}
+.cropbox{border:1px solid var(--line);border-radius:18px;padding:16px;display:grid;gap:12px;background:var(--sand)}
+.cropbox.has{background:var(--surface)}
+.cropbox.bad{border-color:var(--bad)}
+.cb-top{display:flex;justify-content:space-between;align-items:center;gap:10px}
+.cb-top h3{font-size:1.05rem}
+.badge{font-size:.7rem;font-weight:700;letter-spacing:.06em;text-transform:uppercase;padding:4px 10px;border-radius:999px;background:var(--cloud);border:1px solid var(--cloud-line);color:var(--muted);white-space:nowrap}
+.badge.ok{background:var(--good-soft);border-color:transparent;color:var(--good)}
+.tips{margin:0;padding:0 0 0 18px;display:grid;gap:4px;font-size:.88rem;color:var(--muted);line-height:1.45}
+.rowb{display:flex;flex-wrap:wrap;gap:8px 10px;align-items:center}
+.stage{display:grid;gap:10px;justify-items:center}
+.frame{position:relative;width:min(100%,300px);background:#222;border-radius:14px;overflow:hidden;touch-action:none;cursor:grab;user-select:none;-webkit-user-select:none}
+.frame:active{cursor:grabbing}
+.frame canvas{position:absolute;inset:0;display:block;width:100%;height:100%}
+.frame svg{position:absolute;inset:0;width:100%;height:100%;pointer-events:none}
+.frame .cap{position:absolute;left:50%;transform:translateX(-50%);top:8px;font-size:.68rem;font-weight:700;color:#fff;background:rgba(0,0,0,.5);padding:3px 9px;border-radius:999px;pointer-events:none;white-space:nowrap}
+.ctl{display:grid;grid-template-columns:auto 1fr auto auto;gap:10px;align-items:center;width:min(100%,300px)}
+.ctl input[type=range]{width:100%;accent-color:var(--accent)}
+.ib{width:40px;height:40px;border-radius:50%;border:1px solid var(--line);background:var(--surface);color:var(--head);display:grid;place-items:center;font-size:1.2rem;font-weight:700;padding:0;line-height:1}
+.ib:hover{border-color:var(--muted)}
+.note{font-size:.82rem;color:var(--muted);text-align:center}
+.warn{font-size:.84rem;font-weight:600;color:var(--warn);background:var(--warn-soft);border-radius:10px;padding:8px 12px;max-width:300px}
+.ex{display:grid;gap:10px;justify-items:start}
+.ex img{width:min(100%,200px);border-radius:12px;display:block;aspect-ratio:4/5;object-fit:cover;background:var(--sand)}
+.ex img.sq{aspect-ratio:1;border-radius:50%;width:110px}
+.counter{font-size:.78rem;color:var(--muted);text-align:right}
+.counter.bad{color:var(--bad);font-weight:700}
+.check{display:flex;gap:12px;align-items:flex-start;font-size:.92rem;color:var(--ink);line-height:1.5}
+.check input{accent-color:var(--accent);width:20px;height:20px;margin-top:2px;flex:none}
+.prevwrap{display:flex;justify-content:center;--cw:min(86vw,340px)}
+.prevwrap .rc{flex:0 0 var(--cw);width:var(--cw)}
+.mini{display:grid;grid-template-columns:auto 1fr;gap:14px;align-items:center;border:1px solid var(--line);border-radius:18px;padding:14px;background:var(--sand)}
+.mini .face{width:64px;height:64px;border-radius:50%;background:var(--accent);overflow:hidden;display:grid;place-items:center;color:var(--accent-ink,#fff);font-weight:700}
+.mini .face img{width:100%;height:100%;object-fit:cover}
+.mini b{color:var(--head)}
+.mini p{font-size:.88rem;color:var(--muted)}
+.sub{display:grid;gap:10px}
+.sub .btn{width:100%}
+.sub .btn[disabled]{opacity:.55;cursor:progress}
+.status{border-radius:14px;padding:12px 16px;font-size:.92rem;font-weight:600}
+.status.ok{background:var(--good-soft);color:var(--good)}
+.status.wait{background:var(--warn-soft);color:var(--warn)}
+.status.no{background:var(--bad-soft);color:var(--bad)}
+.done{display:grid;gap:16px}
+.linkbox{display:flex;gap:10px;align-items:center;flex-wrap:wrap;border:1.5px dashed var(--accent);border-radius:14px;padding:12px 14px;background:var(--accent-soft)}
+.linkbox code{font-family:var(--f-mono);font-size:.82rem;word-break:break-all;color:var(--head);flex:1 1 220px}
+.lock{display:grid;gap:14px;text-align:center;justify-items:center;padding-block:40px}
+.top2{padding:12px 0 0}
+.top2 .wrap{display:flex;align-items:center;justify-content:space-between}
+.spin{width:22px;height:22px;border-radius:50%;border:3px solid var(--line);border-top-color:var(--accent);animation:sp .8s linear infinite;display:inline-block;vertical-align:-5px;margin-right:8px}
+@keyframes sp{to{transform:rotate(360deg)}}
+</style>
+</head>
+<body>
+<header class="site-top"><div class="wrap"><a class="logo" href="/"><b>#transformwithST</b><span>untuk coach</span></a></div></header>
+
+<main class="jn" id="app">
+  <div id="loading" class="lock"><p class="lede"><span class="spin"></span>Sebentar ya…</p></div>
+</main>
+
+<script src="/data/coaches.js"></script>
+<script src="/assets/site.js?v=1793167738"></script>
+<script src="/assets/results.js?v=1793167738"></script>
+<script>
+(() => {
+'use strict';
+
+/* ----------------------------------------------------------------------------------------------------------------
+   Coach sign-up and edit page (alvacy.com/join). Talks to the same Google Apps Script as the quiz (apps-script/Code.gs).
+   Create:  alvacy.com/join/?i=<invite code from AJ>
+   Edit:    alvacy.com/join/?edit=<token from the email>
+   ---------------------------------------------------------------------------------------------------------------- */
+const LIVE_API = 'https://script.google.com/macros/s/AKfycbzHYCy85pcm4xrpc_WEtsaBsibqSqL1nnCM9J73-kLUhlQXbolvuyQogj7fnDmW17WiRg/exec';
+const QS = new URLSearchParams(location.search);
+/* ?api=... only works on a local test server, so nobody can send a coach's photos somewhere else with a crafted link */
+const API = (/^(localhost|127\.0\.0\.1)$/.test(location.hostname) && QS.get('api')) || LIVE_API;
+const EDIT_TOKEN = (QS.get('edit') || '').replace(/[^a-zA-Z0-9]/g, '').slice(0, 80);
+const INVITE = (QS.get('i') || '').slice(0, 40);
+const RESERVED = ['aj','nova','lala','jevon','melita','lucky','test','kalori','lunch','tools','privacy','transform','en','images','assets','scripts','data','join','body-age','index','api','admin','coach','coaches','www','alvacy','github','apps-script','tim'];
+
+const $ = (s, r) => (r || document).querySelector(s);
+const esc = s => String(s == null ? '' : s).replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
+const app = $('#app');
+const editing = !!EDIT_TOKEN;
+let serverCoach = null;            /* what the server holds (edit mode) */
+const PALETTES = [['sky', 'Biru', '#2F55D4'], ['rose', 'Rose', '#C2417A'], ['sage', 'Hijau', '#2F8F6B']];
+
+/* ----------------------------------------------------------------------------------------------------------------
+   Photo cropper: fixed frame with guides, drag to move, slider or pinch to zoom, rotate. Output is a JPEG.
+   ---------------------------------------------------------------------------------------------------------------- */
+const MAXSRC = 3000;
+function loadImageSrc(src) {
+  return new Promise((ok, bad) => {
+    const img = new Image();
+    img.onload = () => {
+      const w = img.naturalWidth, h = img.naturalHeight;
+      if (!w || !h) return bad(new Error('empty'));
+      const k = Math.min(1, MAXSRC / Math.max(w, h)), c = document.createElement('canvas');
+      c.width = Math.round(w * k); c.height = Math.round(h * k);
+      c.getContext('2d').drawImage(img, 0, 0, c.width, c.height);
+      ok(c);
+    };
+    img.onerror = () => bad(new Error('decode'));
+    img.src = src;
+  });
+}
+async function fileToCanvas(file) {
+  const url = URL.createObjectURL(file);
+  try { return await loadImageSrc(url); } finally { setTimeout(() => URL.revokeObjectURL(url), 4000); }
+}
+
+const GUIDES = {
+  body: `<svg viewBox="0 0 100 125" preserveAspectRatio="none" aria-hidden="true">
+    <g fill="none" stroke-linecap="round">
+    <ellipse cx="50" cy="27" rx="15" ry="18" stroke="rgba(0,0,0,.45)" stroke-width="2.4"/><ellipse cx="50" cy="27" rx="15" ry="18" stroke="#fff" stroke-width=".9" stroke-dasharray="3 2.2"/>
+    <path d="M6 108h88" stroke="rgba(0,0,0,.45)" stroke-width="2.2"/><path d="M6 108h88" stroke="#fff" stroke-width=".8" stroke-dasharray="3 2.2"/>
+    </g><text x="50" y="104" text-anchor="middle" font-size="4" font-weight="700" fill="#fff" style="paint-order:stroke;stroke:rgba(0,0,0,.55);stroke-width:1.2px">pinggang kira-kira di sini</text></svg>
+    <span class="cap">Kepala di dalam oval</span>`,
+  face: `<svg viewBox="0 0 100 100" preserveAspectRatio="none" aria-hidden="true">
+    <g fill="none"><circle cx="50" cy="50" r="42" stroke="rgba(0,0,0,.45)" stroke-width="2.4"/><circle cx="50" cy="50" r="42" stroke="#fff" stroke-width=".9" stroke-dasharray="3 2.2"/></g></svg>
+    <span class="cap">Wajah penuh di dalam lingkaran</span>`
+};
+
+function Cropper(host, o) {
+  /* o: key, title, tips[], aspect (w/h), outW, outH, guide, mark, extra (html for extra buttons), kind */
+  const S = { img: null, z: 1, cx: 0, cy: 0, state: 'empty', exist: null, dirty: false, ver: 0, onchange: () => {} };
+  host.classList.add('cropbox');
+  host.innerHTML = `
+    <div class="cb-top"><h3>${esc(o.title)}</h3><span class="badge" data-badge>Belum ada foto</span></div>
+    <ul class="tips">${o.tips.map(t => `<li>${t}</li>`).join('')}</ul>
+    <div class="rowb" data-empty><button type="button" class="btn primary small" data-pick>Pilih foto</button>${o.extra || ''}</div>
+    <div class="ex" data-ex hidden><img alt="" ${o.kind === 'face' ? 'class="sq"' : ''}><div class="rowb"><button type="button" class="btn quiet small" data-pick>Ganti foto</button></div></div>
+    <div class="stage" data-ed hidden>
+      <div class="frame" style="aspect-ratio:${o.aspect}"><canvas></canvas>${GUIDES[o.guide]}</div>
+      <div class="ctl"><button type="button" class="ib" data-z="-1" aria-label="Perkecil">−</button><input type="range" min="1" max="4" step="0.01" value="1" aria-label="Perbesar"><button type="button" class="ib" data-z="1" aria-label="Perbesar">+</button><button type="button" class="ib" data-rot aria-label="Putar 90 derajat">↻</button></div>
+      <p class="note">Geser foto di dalam bingkai. Dua jari atau slider untuk memperbesar.</p>
+      <p class="warn" data-warn hidden></p>
+      <div class="rowb"><button type="button" class="btn quiet small" data-pick>Ganti foto</button></div>
+    </div>
+    <p class="err" data-err hidden></p>
+    <input type="file" accept="image/*" hidden>`;
+  const file = $('input[type=file]', host), frame = $('.frame', host), cv = $('canvas', host), rng = $('input[type=range]', host);
+  const ctx = cv.getContext('2d');
+
+  const geo = () => {
+    const iw = S.img.width, ih = S.img.height, A = o.aspect;
+    const base = iw / ih <= A ? iw : ih * A, w = base / S.z, h = w / A;
+    return { iw, ih, w, h };
+  };
+  const clamp = () => { const g = geo(); S.cx = Math.max(g.w / 2, Math.min(g.iw - g.w / 2, S.cx)); S.cy = Math.max(g.h / 2, Math.min(g.ih - g.h / 2, S.cy)); };
+  function draw() {
+    if (!S.img) return;
+    clamp();
+    const g = geo(), dpr = Math.min(2, window.devicePixelRatio || 1), W = Math.max(60, Math.round(frame.clientWidth * dpr)), H = Math.round(W / o.aspect);
+    if (cv.width !== W || cv.height !== H) { cv.width = W; cv.height = H; }
+    ctx.imageSmoothingQuality = 'high';
+    ctx.drawImage(S.img, S.cx - g.w / 2, S.cy - g.h / 2, g.w, g.h, 0, 0, W, H);
+    const small = g.w < o.outW * 0.55, warn = $('[data-warn]', host);
+    warn.hidden = !small;
+    if (small) warn.textContent = 'Fotonya agak kecil di bagian ini, hasilnya bisa kurang tajam. Kalau ada file aslinya, pakai itu ya.';
+    rng.value = S.z;
+  }
+  function ui() {
+    const has = S.state !== 'empty';
+    host.classList.toggle('has', has);
+    $('[data-empty]', host).hidden = has;
+    $('[data-ex]', host).hidden = S.state !== 'existing';
+    $('[data-ed]', host).hidden = S.state !== 'edit';
+    const b = $('[data-badge]', host);
+    b.textContent = has ? 'Siap' : 'Belum ada foto'; b.classList.toggle('ok', has);
+    host.classList.remove('bad'); $('[data-err]', host).hidden = true;
+    if (S.state === 'edit') requestAnimationFrame(draw);
+  }
+  function setSource(canvas, def) {
+    S.img = canvas; S.z = 1; S.state = 'edit'; S.dirty = true; S.ver++;
+    S.cx = canvas.width / 2; S.cy = canvas.height / 2;
+    if (def) { S.z = def.z; S.cx = canvas.width * def.x; S.cy = canvas.height * def.y; }
+    ui(); S.onchange();
+  }
+  async function pick(f) {
+    const er = $('[data-err]', host);
+    try { setSource(await fileToCanvas(f), o.defaultCrop); }
+    catch (e) { er.textContent = 'Foto ini tidak bisa dibuka. Coba simpan sebagai JPG atau PNG, lalu pilih lagi.'; er.hidden = false; }
+  }
+  host.addEventListener('click', e => {
+    if (e.target.closest('[data-pick]')) { file.value = ''; file.click(); return; }
+    const z = e.target.closest('[data-z]');
+    if (z && S.img) { S.z = Math.max(1, Math.min(4, S.z + (+z.dataset.z) * 0.25)); draw(); S.ver++; S.onchange(); return; }
+    if (e.target.closest('[data-rot]') && S.img) {
+      const s = S.img, c = document.createElement('canvas'); c.width = s.height; c.height = s.width;
+      const x = c.getContext('2d'); x.translate(c.width, 0); x.rotate(Math.PI / 2); x.drawImage(s, 0, 0);
+      S.img = c; S.z = 1; S.cx = c.width / 2; S.cy = c.height / 2; S.ver++; draw(); S.onchange();
+    }
+  });
+  file.addEventListener('change', () => { if (file.files && file.files[0]) pick(file.files[0]); });
+  rng.addEventListener('input', () => { S.z = +rng.value; draw(); S.ver++; S.onchange(); });
+
+  /* drag to move, two fingers to zoom */
+  const ptr = new Map(); let pinch0 = null;
+  frame.addEventListener('pointerdown', e => {
+    if (!S.img) return; frame.setPointerCapture(e.pointerId); ptr.set(e.pointerId, [e.clientX, e.clientY]);
+    if (ptr.size === 2) { const [a, b] = [...ptr.values()]; pinch0 = { d: Math.hypot(a[0] - b[0], a[1] - b[1]), z: S.z }; }
+    e.preventDefault();
+  });
+  frame.addEventListener('pointermove', e => {
+    if (!ptr.has(e.pointerId) || !S.img) return;
+    const prev = ptr.get(e.pointerId); ptr.set(e.pointerId, [e.clientX, e.clientY]);
+    if (ptr.size >= 2 && pinch0) {
+      const [a, b] = [...ptr.values()], d = Math.hypot(a[0] - b[0], a[1] - b[1]);
+      S.z = Math.max(1, Math.min(4, pinch0.z * d / pinch0.d));
+    } else {
+      const g = geo(), k = g.w / frame.clientWidth;
+      S.cx -= (e.clientX - prev[0]) * k; S.cy -= (e.clientY - prev[1]) * k;
+    }
+    draw(); S.ver++; S.onchange();
+  });
+  ['pointerup', 'pointercancel'].forEach(n => frame.addEventListener(n, e => { ptr.delete(e.pointerId); if (ptr.size < 2) pinch0 = null; }));
+  frame.addEventListener('wheel', e => { if (!S.img || !(e.ctrlKey || e.metaKey)) return; e.preventDefault(); S.z = Math.max(1, Math.min(4, S.z * (e.deltaY < 0 ? 1.06 : 0.94))); draw(); S.ver++; S.onchange(); }, { passive: false });
+  if ('ResizeObserver' in window) new ResizeObserver(() => { if (S.state === 'edit') draw(); }).observe(frame);
+
+  /* JPEG of the current crop. Smaller sources give smaller files (never blown up past what the photo holds). */
+  function render(maxW) {
+    if (S.state !== 'edit' || !S.img) return null;
+    const g = geo();
+    let w = Math.min(maxW || o.outW, o.outW, Math.round(g.w)); w = Math.max(w, Math.min(360, o.outW)); const h = Math.round(w / o.aspect);
+    const c = document.createElement('canvas'); c.width = w; c.height = h;
+    const x = c.getContext('2d'); x.imageSmoothingQuality = 'high';
+    x.drawImage(S.img, S.cx - g.w / 2, S.cy - g.h / 2, g.w, g.h, 0, 0, w, h);
+    if (o.mark) {
+      const fs = Math.max(11, Math.round(h * 0.034));
+      x.font = `700 ${fs}px "Plus Jakarta Sans", system-ui, sans-serif`; x.textAlign = 'right'; x.textBaseline = 'alphabetic';
+      x.shadowColor = 'rgba(0,0,0,.55)'; x.shadowBlur = fs * .35; x.fillStyle = 'rgba(255,255,255,.92)';
+      x.fillText('#transformwithST', w - w * .035, h - h * .026);
+    }
+    return c;
+  }
+  function dataURL(maxW) {
+    const c = render(maxW); if (!c) return null;
+    for (const q of [.86, .8, .72, .64]) { const u = c.toDataURL('image/jpeg', q); if (u.length < 1100000 || q === .64) return u; }
+  }
+  function previewURL() { /* small, cached per edit */
+    if (S.state === 'existing') return S.exist;
+    if (S.state !== 'edit') return '';
+    if (S.pv && S.pv.v === S.ver) return S.pv.u;
+    S.pv = { v: S.ver, u: dataURL(360) }; return S.pv.u;
+  }
+  return {
+    key: o.key, host,
+    set onchange(f) { S.onchange = f; },
+    get state() { return S.state; }, get dirty() { return S.dirty; }, get ready() { return S.state !== 'empty'; },
+    get source() { return S.img; },
+    dataURL, previewURL,
+    useCanvas(c, def) { setSource(c, def); },
+    setExisting(url) { S.exist = url; S.state = 'existing'; S.dirty = false; $('[data-ex] img', host).src = url; ui(); S.onchange(); },
+    flagBad(msg) { host.classList.add('bad'); const e = $('[data-err]', host); e.textContent = msg; e.hidden = false; },
+    redraw: draw
+  };
+}
+
+/* ----------------------------------------------------------------------------------------------------------------
+   Page
+   ---------------------------------------------------------------------------------------------------------------- */
+let before, after, photo, face;
+let faceTouched = false;
+
+function pageHTML() {
+  return `
+  <div>
+    <p class="kicker">${editing ? 'Ubah profil coach' : 'Gabung sebagai coach'}</p>
+    <h1>${editing ? 'Perbarui <em>kartu hasil</em> kamu.' : 'Bikin <em>kartu hasil</em> kamu.'}</h1>
+    <p class="lede">${editing
+      ? 'Ubah nomor, email, foto, angka, atau ceritamu. Perubahan muncul di alvacy.com dalam beberapa menit setelah kamu simpan.'
+      : 'Isi sekali, sekitar 10 menit. Setelah dicek AJ, kartu hasil dan link pribadimu tayang di alvacy.com. Kamu bisa mengubahnya lagi kapan saja lewat link edit yang dikirim ke emailmu.'}</p>
+  </div>
+  <div id="statusBox" hidden></div>
+  <form id="f" novalidate class="jn" style="padding:0;gap:22px">
+    <input type="text" name="hp" tabindex="-1" autocomplete="off" aria-hidden="true" style="position:absolute;left:-9999px;opacity:0;height:0;width:0">
+
+    <section class="card">
+      <h2><span>1</span>Tentang kamu</h2>
+      <div class="grid2">
+        <div class="field" data-f="name"><label for="name">Nama yang tampil</label><input id="name" type="text" maxlength="40" placeholder="dr. Jena" autocomplete="off"><p class="hint">Seperti yang mau dilihat orang di web, misalnya “dr. Jena”.</p><p class="err" hidden></p></div>
+        <div class="field" data-f="fullName"><label for="fullName">Nama lengkap</label><input id="fullName" type="text" maxlength="60" placeholder="dr. Jena Wijaya" autocomplete="name"><p class="hint">Tampil di kartu hasil.</p><p class="err" hidden></p></div>
+        <div class="field full" data-f="code"><label for="code">Link pribadimu</label><div class="pre"><span>alvacy.com/</span><input id="code" type="text" maxlength="16" placeholder="jena" autocomplete="off" autocapitalize="none" spellcheck="false" ${editing ? 'readonly' : ''}></div><p class="hint">${editing ? 'Link ini tidak bisa diganti, supaya link yang sudah kamu bagikan tetap jalan.' : 'Huruf kecil dan angka saja, 3 sampai 16 karakter. Ini yang kamu bagikan ke calon klien.'}</p><p class="err" hidden></p></div>
+        <div class="field" data-f="wa"><label for="wa">Nomor WhatsApp</label><input id="wa" type="tel" inputmode="tel" placeholder="0812 3456 7890" autocomplete="tel"><p class="hint" id="waHint">Nomor ini yang dihubungi calon klien.</p><p class="err" hidden></p></div>
+        <div class="field" data-f="email"><label for="email">Email</label><input id="email" type="email" placeholder="kamu@gmail.com" autocomplete="email"><p class="hint">Untuk notifikasi lead dan link edit. Tidak ditampilkan di web.</p><p class="err" hidden></p></div>
+        <div class="field full" data-f="booking"><label for="booking">Link booking <span style="font-weight:500;color:var(--muted)">(boleh dikosongkan)</span></label><input id="booking" type="url" inputmode="url" placeholder="https://" autocomplete="off"><p class="err" hidden></p></div>
+        <div class="field full"><span class="lab">Warna halamanmu</span><div class="swatches" id="pal">${PALETTES.map(p => `<button type="button" class="sw" data-p="${p[0]}" aria-pressed="false"><i style="background:${p[2]}"></i>${p[1]}</button>`).join('')}</div><p class="hint">Calon klien yang masuk lewat link-mu melihat warna ini.</p></div>
+      </div>
+    </section>
+
+    <section class="card">
+      <h2><span>2</span>Foto</h2>
+      <p class="small">Semua foto dipotong di sini, jadi tidak perlu diedit dulu. Yang paling penting: <b>foto sebelum dan sesudah dengan pose, jarak, dan arah kamera yang mirip.</b> Itu yang membuat perbedaannya terlihat.</p>
+      <div class="cbs"><div id="cb-before"></div><div id="cb-after"></div><div id="cb-photo"></div><div id="cb-face"></div></div>
+    </section>
+
+    <section class="card">
+      <h2><span>3</span>Angka kamu</h2>
+      <div class="metric" data-f="kg"><h3>Berat badan</h3>
+        <div class="pair"><div class="field"><label for="kg0">Awal</label><div class="unit"><input id="kg0" type="number" inputmode="decimal" step="0.1" min="20" max="400" placeholder="86"><b>kg</b></div></div><i>→</i><div class="field"><label for="kg1">Sekarang</label><div class="unit"><input id="kg1" type="number" inputmode="decimal" step="0.1" min="20" max="400" placeholder="67"><b>kg</b></div></div></div><p class="err" hidden></p></div>
+      <div class="metric" data-f="fat"><h3>Lemak tubuh <span style="font-weight:500;color:var(--muted)">(boleh dikosongkan)</span></h3>
+        <div class="pair"><div class="field"><label for="fat0">Awal</label><div class="unit"><input id="fat0" type="number" inputmode="decimal" step="0.1" min="3" max="70" placeholder="30"><b>%</b></div></div><i>→</i><div class="field"><label for="fat1">Sekarang</label><div class="unit"><input id="fat1" type="number" inputmode="decimal" step="0.1" min="3" max="70" placeholder="22"><b>%</b></div></div></div><p class="err" hidden></p></div>
+      <div class="metric" data-f="vfa"><h3>Lemak visceral (VFA) <span style="font-weight:500;color:var(--muted)">(boleh dikosongkan)</span></h3>
+        <div class="pair"><div class="field"><label for="vfa0">Awal</label><div class="unit"><input id="vfa0" type="number" inputmode="decimal" step="0.5" min="1" max="60" placeholder="14"><b>level</b></div></div><i>→</i><div class="field"><label for="vfa1">Sekarang</label><div class="unit"><input id="vfa1" type="number" inputmode="decimal" step="0.5" min="1" max="60" placeholder="7"><b>level</b></div></div></div><p class="err" hidden></p></div>
+      <p class="small">Pakai angka asli dari timbangan atau alat ukur kamu. Angka “sekarang” harus lebih kecil dari “awal”.</p>
+    </section>
+
+    <section class="card">
+      <h2><span>4</span>Ceritamu</h2>
+      <div class="field" data-f="story"><label for="story">Cerita singkat, pakai kata-katamu sendiri</label><textarea id="story" maxlength="420" placeholder="Dulu aku … Sampai akhirnya … Sekarang aku …"></textarea><div class="counter" id="storyCt">0 / 420</div><p class="hint">Apa yang dulu kamu alami, apa yang berubah, dan apa artinya buat kamu. Tulis seperti bercerita ke teman. Tampil di kartu hasil dan di halaman coach-mu.</p><p class="err" hidden></p></div>
+      <div class="field" data-f="highlight"><label for="highlight">Satu frasa di bawah angka kg <span style="font-weight:500;color:var(--muted)">(boleh dikosongkan)</span></label><input id="highlight" type="text" maxlength="50" placeholder="dan kesehatanku kembali"><p class="hint">Dibaca setelah angkanya, misalnya “−19 kg dan kesehatanku kembali”.</p><p class="err" hidden></p></div>
+    </section>
+
+    <section class="card">
+      <h2><span>5</span>Lihat dulu hasilnya</h2>
+      <div id="prev"></div>
+    </section>
+
+    <section class="card">
+      <h2><span>6</span>${editing ? 'Simpan' : 'Kirim'}</h2>
+      ${editing ? '' : `<div class="field" data-f="invite"><label for="invite">Kode undangan</label><input id="invite" type="text" maxlength="40" autocomplete="off" value="${esc(INVITE)}"><p class="hint">Dari AJ. Kalau kamu membuka lewat link dari AJ, ini sudah terisi.</p><p class="err" hidden></p></div>`}
+      <label class="check" data-f="consent"><input type="checkbox" id="consent"><span>Aku setuju foto, angka, dan ceritaku ditampilkan di alvacy.com sebagai hasil #transformwithST. Aku boleh minta diubah atau dihapus kapan saja.</span></label><p class="err" hidden style="margin-top:-8px"></p>
+      <div class="sub"><button type="submit" class="btn primary" id="go">${editing ? 'Simpan perubahan' : 'Kirim untuk dicek'}</button><p class="err" id="gerr" hidden role="alert"></p></div>
+    </section>
+  </form>`;
+}
+
+/* ---- helpers ---- */
+const val = id => ($('#' + id) || {}).value || '';
+const numv = id => { const v = String(val(id)).replace(',', '.').trim(); return v === '' ? null : Number(v); };
+function normWA(raw) {
+  let s = String(raw || '').trim(), plus = s.charAt(0) === '+';
+  let d = s.replace(/\D/g, '');
+  if (!d) return '';
+  if (plus) return d;
+  if (d.indexOf('00') === 0) d = d.slice(2);
+  if (d.charAt(0) === '0') return '62' + d.slice(1);
+  if (d.indexOf('62') === 0) return d;
+  if (d.charAt(0) === '8') return '62' + d;
+  return d;
+}
+const prettyWA = d => d.indexOf('62') === 0 ? '+62 ' + d.slice(2, 5) + '-' + d.slice(5, 9) + (d.length > 9 ? '-' + d.slice(9) : '') : '+' + d;
+const cleanName = s => String(s || '').replace(/[<>"&\\\u0000-\u001f]/g, ' ').replace(/\s+/g, ' ').trim();
+function codeFromName(n) {
+  const w = cleanName(n).toLowerCase().replace(/^(dr\.?|drg\.?|coach)\s+/, '').split(/\s+/)[0] || '';
+  return w.replace(/[^a-z0-9]/g, '').slice(0, 16);
+}
+function setErr(f, msg) {
+  const box = f.closest ? f : $(`[data-f="${f}"]`); if (!box) return;
+  const e = $('.err', box) || (box.nextElementSibling && box.nextElementSibling.classList.contains('err') ? box.nextElementSibling : null);
+  box.classList.toggle('bad', !!msg);
+  if (e) { e.hidden = !msg; e.textContent = msg || ''; }
+}
+
+/* ---- live preview ---- */
+let pvTimer = null;
+function formCase() {
+  const kg0 = numv('kg0'), kg1 = numv('kg1'), m = [];
+  const ok = (a, b) => a != null && b != null && isFinite(a) && isFinite(b) && a > b && a > 0;
+  if (ok(kg0, kg1)) m.push({ from: kg0, to: kg1, suf: ' kg', u: 'mKg', d: 'dKg', k: 1 });
+  [['fat', '%', 'mFat', 'dPt'], ['vfa', '', 'mVfa2', 'dLv']].forEach(r => {
+    const a = numv(r[0] + '0'), b = numv(r[0] + '1');
+    if (ok(a, b)) m.push(r[1] ? { from: a, to: b, suf: r[1], u: r[2], d: r[3] } : { from: a, to: b, u: r[2], d: r[3] });
+  });
+  const story = val('story').trim() || 'Ceritamu tampil di sini.';
+  return { name: cleanName(val('fullName')) || cleanName(val('name')) || 'Namamu', before: before.previewURL(), after: after.previewURL(),
+    m: m.length ? m : [{ from: 86, to: 67, suf: ' kg', u: 'mKg', d: 'dKg', k: 1 }], quote: { id: story, en: story }, sample: false };
+}
+function renderPreview() {
+  clearTimeout(pvTimer);
+  pvTimer = setTimeout(() => {
+    if (!$('#prev')) return;
+    const c = formCase(), nm = cleanName(val('name')) || 'Namamu', wa = normWA(val('wa'));
+    const fu = face.previewURL(), pu = photo.previewURL();
+    $('#prev').innerHTML = `<div id="results" class="prevwrap" style="--cw:min(86vw,340px)">${ALVResults.preview(c, 'id')}</div>
+      <p class="small" style="text-align:center">Geser garis di fotonya untuk membandingkan, sama seperti yang dilihat calon klien.</p>
+      <div class="mini"><span class="face">${fu ? `<img src="${esc(fu)}" alt="">` : esc(nm.replace(/^dr\.?\s*/i, '').slice(0, 2).toUpperCase())}</span><div><b>${esc(nm)}</b><p>${wa ? esc(prettyWA(wa)) : 'Nomor WhatsApp kamu'} · alvacy.com/${esc(val('code') || '…')}</p></div></div>
+      ${pu ? `<div class="rowb" style="align-items:flex-start"><img src="${esc(pu)}" alt="" style="width:96px;border-radius:12px;aspect-ratio:4/5;object-fit:cover"><p class="small">Ini foto profil yang tampil di halaman coach-mu.</p></div>` : ''}`;
+  }, 180);
+}
+
+/* ---- submit ---- */
+function collect() {
+  const errs = {}; const d = {};
+  d.name = cleanName(val('name')); if (d.name.length < 3) errs.name = 'Isi nama yang tampil.';
+  d.fullName = cleanName(val('fullName')) || d.name;
+  d.code = String(val('code')).toLowerCase().replace(/[^a-z0-9]/g, '');
+  if (!/^[a-z0-9]{3,16}$/.test(d.code)) errs.code = 'Pakai 3 sampai 16 huruf kecil atau angka.';
+  else if (!editing && RESERVED.indexOf(d.code) >= 0) errs.code = 'Kode ini sudah dipakai halaman lain. Coba yang lain.';
+  d.wa = normWA(val('wa'));
+  if (!/^[1-9]\d{9,14}$/.test(d.wa) || (d.wa.indexOf('62') === 0 && (d.wa.length < 11 || d.wa.length > 14))) errs.wa = 'Nomor WhatsApp belum benar. Contoh: 0812 3456 7890.';
+  d.email = val('email').trim().toLowerCase();
+  if (!/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(d.email)) errs.email = 'Isi email yang benar.';
+  d.booking = val('booking').trim();
+  if (d.booking && !/^https:\/\/[^\s"'<>\\]+$/.test(d.booking)) errs.booking = 'Link harus diawali https://';
+  d.palette = (document.documentElement.dataset.palette || 'sky');
+  const kg0 = numv('kg0'), kg1 = numv('kg1');
+  if (kg0 == null || kg1 == null || !(kg0 > kg1) || kg0 > 400 || kg1 < 20) errs.kg = 'Isi berat awal dan sekarang. Berat sekarang harus lebih kecil.';
+  d.kg = { from: kg0, to: kg1 };
+  const pairs = {};
+  [['fat', 3, 70], ['vfa', 1, 60]].forEach(r => {
+    const a = numv(r[0] + '0'), b = numv(r[0] + '1');
+    if (a == null && b == null) { pairs[r[0]] = null; return; }
+    if (a == null || b == null || !(a > b) || a < r[1] || a > r[2] || b < r[1]) errs[r[0]] = 'Isi dua-duanya, dan angka sekarang harus lebih kecil dari awal. Atau kosongkan keduanya.';
+    else pairs[r[0]] = { from: a, to: b };
+  });
+  d.fat = pairs.fat; d.vfa = pairs.vfa;
+  d.story = val('story').replace(/[<>]/g, ' ').replace(/[ \t]+/g, ' ').trim();
+  if (d.story.length < 60) errs.story = 'Ceritanya masih terlalu pendek. Tulis minimal beberapa kalimat.';
+  d.highlight = cleanName(val('highlight'));
+  if (!editing) { d.invite = val('invite').trim(); if (!d.invite) errs.invite = 'Isi kode undangan dari AJ.'; }
+  if (!$('#consent').checked) errs.consent = 'Centang persetujuan ini dulu ya.';
+  return { d, errs };
+}
+
+async function send(payload) {
+  const ctl = new AbortController(), to = setTimeout(() => ctl.abort(), 90000);
+  try {
+    const r = await fetch(API, { method: 'POST', headers: { 'Content-Type': 'text/plain;charset=utf-8' }, body: JSON.stringify(payload), signal: ctl.signal });
+    const t = await r.text();
+    try { return JSON.parse(t); } catch (e) { return { ok: false, error: 'bad_response', message: 'Jawaban dari server tidak terbaca. Coba lagi sebentar lagi.' }; }
+  } finally { clearTimeout(to); }
+}
+const reqId = (() => { try { const k = 'join-req'; let v = sessionStorage.getItem(k); if (!v) { v = (crypto.randomUUID ? crypto.randomUUID() : String(Date.now()) + Math.random().toString(16).slice(2)); sessionStorage.setItem(k, v); } return v; } catch (e) { return String(Date.now()) + Math.random().toString(16).slice(2); } })();
+
+async function onSubmit(ev) {
+  ev.preventDefault();
+  if ($('[name=hp]').value) return;
+  const gerr = $('#gerr'), go = $('#go');
+  document.querySelectorAll('.err').forEach(e => { if (e.id !== 'gerr') e.hidden = true; });
+  document.querySelectorAll('.bad').forEach(e => e.classList.remove('bad'));
+  gerr.hidden = true;
+  const { d, errs } = collect();
+  const need = [[before, 'Pilih foto sebelum.'], [after, 'Pilih foto sesudah.'], [photo, 'Pilih foto profil.'], [face, 'Atur foto bulat.']];
+  need.forEach(([c, m]) => { if (!c.ready) { errs['img-' + c.key] = m; c.flagBad(m); } });
+  const keys = Object.keys(errs);
+  if (keys.length) {
+    keys.forEach(k => { if (k.indexOf('img-') !== 0) setErr(k === 'consent' ? $('[data-f=consent]') : k, errs[k]); });
+    const first = document.querySelector('.bad'); if (first) first.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    gerr.textContent = 'Ada ' + keys.length + ' bagian yang belum lengkap. Cek yang bertanda merah.'; gerr.hidden = false;
+    return;
+  }
+  const images = {};
+  for (const c of [before, after, photo, face]) {
+    if (c.state === 'edit') {
+      const u = c.dataURL();
+      if (!u || u.length > 1500000) { gerr.textContent = 'Salah satu foto terlalu besar. Perbesar bagian foto lalu coba lagi.'; gerr.hidden = false; return; }
+      images[c.key] = u;
+    }
+  }
+  go.disabled = true; const label = go.textContent; go.innerHTML = '<span class="spin" style="border-top-color:currentColor"></span>Mengirim…';
+  try {
+    const body = { kind: 'coach', op: editing ? 'edit' : 'submit', reqId, token: EDIT_TOKEN, invite: d.invite, code: d.code, name: d.name, fullName: d.fullName,
+      wa: d.wa, email: d.email, booking: d.booking, palette: d.palette, kg: d.kg, fat: d.fat, vfa: d.vfa, story: d.story, highlight: d.highlight, consent: true, hp: '', images };
+    const res = await send(body);
+    if (!res || !res.ok) {
+      const m = (res && res.message) || 'Belum berhasil terkirim. Coba lagi sebentar lagi.';
+      if (res && res.field) { setErr(res.field, m); const f = $(`[data-f="${res.field}"]`); if (f) f.scrollIntoView({ behavior: 'smooth', block: 'center' }); }
+      gerr.textContent = m; gerr.hidden = false; return;
+    }
+    try { localStorage.removeItem('join-draft'); sessionStorage.removeItem('join-req'); } catch (e) {}
+    showDone(res, d);
+  } catch (e) {
+    gerr.textContent = 'Koneksi terputus sebelum selesai. Kalau kamu sudah menerima email konfirmasi, berarti datamu sudah masuk. Kalau belum, tekan kirim lagi. Foto dan isianmu masih di halaman ini.'; gerr.hidden = false;
+  } finally { go.disabled = false; go.textContent = label; }
+}
+
+function showDone(res, d) {
+  const editUrl = res.editUrl || (location.origin + '/join/?edit=' + (res.token || EDIT_TOKEN));
+  window.scrollTo({ top: 0 });
+  app.innerHTML = editing ? `
+    <div class="done"><p class="kicker">Tersimpan</p><h1>Perubahan kamu <em>sudah masuk.</em></h1>
+    <p class="lede">${res.status === 'approved' ? 'Halaman publik diperbarui dalam beberapa menit.' : 'Karena kartu kamu masih menunggu dicek AJ, perubahannya ikut dicek bersamaan.'}</p>
+    <div class="linkbox"><code>${esc(editUrl)}</code><button type="button" class="btn quiet small" data-copy="${esc(editUrl)}">Salin link edit</button></div>
+    <a class="btn primary" href="${esc(editUrl)}">Edit lagi</a></div>` : `
+    <div class="done"><p class="kicker">Terkirim</p><h1>Sudah masuk. <em>Tinggal dicek AJ.</em></h1>
+    <p class="lede">Begitu disetujui, kartu hasil dan link pribadimu <b>alvacy.com/${esc(res.code || d.code)}</b> langsung tayang. Kamu akan dapat email konfirmasinya di ${esc(d.email)}.</p>
+    <div class="card"><h2 style="font-size:1.1rem">Simpan link edit ini</h2>
+      <p class="small">Lewat link ini kamu bisa mengubah foto, nomor WhatsApp, email, angka, atau ceritamu kapan saja. Link yang sama juga dikirim ke emailmu. Jangan dibagikan ke orang lain.</p>
+      <div class="linkbox"><code>${esc(editUrl)}</code><button type="button" class="btn quiet small" data-copy="${esc(editUrl)}">Salin link edit</button></div></div></div>`;
+}
+document.addEventListener('click', e => {
+  const b = e.target.closest('[data-copy]'); if (!b) return;
+  const t = b.getAttribute('data-copy');
+  const done = () => { b.textContent = 'Tersalin'; setTimeout(() => { b.textContent = 'Salin link edit'; }, 1800); };
+  try { navigator.clipboard.writeText(t).then(done, () => { prompt('Salin link ini', t); }); } catch (er) { prompt('Salin link ini', t); }
+});
+
+/* ---- draft (text only, so a refresh does not lose what was typed) ---- */
+const DRAFT = ['name', 'fullName', 'code', 'wa', 'email', 'booking', 'kg0', 'kg1', 'fat0', 'fat1', 'vfa0', 'vfa1', 'story', 'highlight'];
+function saveDraft() {
+  if (editing) return;
+  try { const o = { pal: document.documentElement.dataset.palette }; DRAFT.forEach(k => { o[k] = val(k); }); localStorage.setItem('join-draft', JSON.stringify(o)); } catch (e) {}
+}
+function loadDraft() {
+  if (editing) return;
+  try { const o = JSON.parse(localStorage.getItem('join-draft') || 'null'); if (!o) return; DRAFT.forEach(k => { if (o[k] != null && $('#' + k)) $('#' + k).value = o[k]; }); if (o.pal) setPalette(o.pal); } catch (e) {}
+}
+function setPalette(p) {
+  if (!PALETTES.some(x => x[0] === p)) p = 'sky';
+  document.documentElement.dataset.palette = p;
+  document.querySelectorAll('#pal .sw').forEach(b => b.setAttribute('aria-pressed', b.dataset.p === p));
+}
+
+/* ---- boot ---- */
+function build() {
+  app.innerHTML = pageHTML();
+  const body = { guide: 'body', aspect: 4 / 5 };
+  before = Cropper($('#cb-before'), { ...body, key: 'before', title: 'Foto sebelum', outW: 900, mark: true,
+    tips: ['Foto dari sebelum mulai program, kepala sampai sekitar pinggang.', 'Pose dan jarak sebaiknya mirip dengan foto sesudah.', 'Tulisan #transformwithST ditambahkan otomatis di pojok bawah.'],
+    defaultCrop: { z: 1, x: .5, y: .5 } });
+  after = Cropper($('#cb-after'), { ...body, key: 'after', title: 'Foto sesudah', outW: 900, mark: true,
+    tips: ['Foto terbaru kamu, kepala sampai sekitar pinggang.', 'Cahaya terang, wajah jelas, tidak blur.', 'Pakai pose dan jarak yang mirip dengan foto sebelum.'],
+    defaultCrop: { z: 1, x: .5, y: .5 } });
+  photo = Cropper($('#cb-photo'), { ...body, key: 'photo', title: 'Foto profil', outW: 800, mark: false,
+    tips: ['Foto yang tampil di halaman coach-mu. Boleh pakai foto sesudah.', 'Wajah di bagian atas, senyum, latar tidak ramai.'],
+    extra: '<button type="button" class="btn quiet small" data-useafter>Pakai foto sesudah</button>', defaultCrop: { z: 1, x: .5, y: .5 } });
+  face = Cropper($('#cb-face'), { guide: 'face', aspect: 1, key: 'face', kind: 'face', title: 'Foto bulat', outW: 256, mark: false,
+    tips: ['Yang tampil kecil dan bulat di samping namamu.', 'Wajahmu mengisi lingkaran, tidak terpotong.'],
+    extra: '<button type="button" class="btn quiet small" data-fromphoto>Ambil dari foto profil</button>', defaultCrop: { z: 1.9, x: .5, y: .25 } });
+  [before, after, photo, face].forEach(c => { c.onchange = () => renderPreview(); });
+  face.onchange = () => { faceTouched = true; renderPreview(); };
+
+  /* face follows the profile photo until the coach adjusts it herself */
+  const faceFrom = (src) => { if (src) { const keep = faceTouched; face.useCanvas(src, { z: 1.9, x: .5, y: .22 }); faceTouched = keep; } };
+  let lastPhoto = null;
+  photo.onchange = () => { if (photo.source && photo.source !== lastPhoto) { lastPhoto = photo.source; if (!faceTouched) faceFrom(photo.source); } renderPreview(); };
+  $('#cb-photo').addEventListener('click', e => { if (e.target.closest('[data-useafter]')) { if (!after.source) { photo.flagBad('Pilih foto sesudah dulu.'); return; } photo.useCanvas(after.source, { z: 1, x: .5, y: .5 }); } });
+  $('#cb-face').addEventListener('click', e => { if (e.target.closest('[data-fromphoto]')) { if (!photo.source) { face.flagBad('Pilih foto profil dulu.'); return; } faceTouched = false; faceFrom(photo.source); } });
+
+  $('#pal').addEventListener('click', e => { const b = e.target.closest('.sw'); if (b) { setPalette(b.dataset.p); saveDraft(); } });
+  setPalette('sky');
+  $('#name').addEventListener('input', () => { const c = $('#code'); if (!editing && !c.dataset.touched) c.value = codeFromName($('#name').value); });
+  $('#code').addEventListener('input', e => { e.target.dataset.touched = '1'; e.target.value = e.target.value.toLowerCase().replace(/[^a-z0-9]/g, ''); });
+  $('#wa').addEventListener('input', () => { const n = normWA(val('wa')); $('#waHint').textContent = n ? 'Akan tampil sebagai ' + prettyWA(n) : 'Nomor ini yang dihubungi calon klien.'; });
+  $('#story').addEventListener('input', () => { const n = val('story').length, c = $('#storyCt'); c.textContent = n + ' / 420'; c.classList.toggle('bad', n > 0 && n < 60); });
+  $('#f').addEventListener('input', e => { const f = e.target.closest && e.target.closest('[data-f]'); if (f && f.classList.contains('bad')) setErr(f, ''); renderPreview(); saveDraft(); });
+  $('#f').addEventListener('submit', onSubmit);
+  loadDraft();
+  $('#wa').dispatchEvent(new Event('input')); $('#story').dispatchEvent(new Event('input'));
+  renderPreview();
+}
+
+function setVal(id, v) { const el = $('#' + id); if (el && v != null) el.value = v; }
+async function fillExisting(c) {
+  serverCoach = c;
+  setVal('name', c.name); setVal('fullName', c.fullName); setVal('code', c.code); setVal('wa', prettyWA(c.wa)); setVal('email', c.email); setVal('booking', c.booking);
+  if (c.kg) { setVal('kg0', c.kg.from); setVal('kg1', c.kg.to); }
+  if (c.fat) { setVal('fat0', c.fat.from); setVal('fat1', c.fat.to); }
+  if (c.vfa) { setVal('vfa0', c.vfa.from); setVal('vfa1', c.vfa.to); }
+  setVal('story', c.story); setVal('highlight', c.highlight);
+  setPalette(c.palette);
+  const im = c.images || {};
+  if (im.before) before.setExisting(im.before); if (im.after) after.setExisting(im.after);
+  if (im.photo) photo.setExisting(im.photo); if (im.face) face.setExisting(im.face);
+  faceTouched = true;
+  $('#wa').dispatchEvent(new Event('input')); $('#story').dispatchEvent(new Event('input'));
+  const box = $('#statusBox'); box.hidden = false;
+  const st = { approved: ['ok', 'Kartu kamu sudah tayang. Perubahan yang kamu simpan akan muncul di web dalam beberapa menit.'], pending: ['wait', 'Kartu kamu masih menunggu dicek AJ. Kamu tetap bisa mengubahnya.'], rejected: ['no', 'Kartu kamu belum bisa ditayangkan. Hubungi AJ ya.'], hidden: ['no', 'Kartu kamu sedang disembunyikan. Hubungi AJ kalau mau ditayangkan lagi.'] }[c.status] || ['wait', ''];
+  box.className = 'status ' + st[0]; box.textContent = st[1];
+  renderPreview();
+}
+
+async function boot() {
+  build();
+  if (editing) {
+    let j = null;
+    try {
+      const r = await fetch(API + (API.indexOf('?') > 0 ? '&' : '?') + 'a=get&t=' + encodeURIComponent(EDIT_TOKEN));
+      j = JSON.parse(await r.text());
+    } catch (e) {
+      app.innerHTML = `<div class="lock"><h1>Belum bisa <em>terhubung.</em></h1><p class="lede">Coba muat ulang halaman ini sebentar lagi. Kalau terus begini, hubungi AJ.</p></div>`;
+      return;
+    }
+    if (!j || !j.ok) {
+      app.innerHTML = `<div class="lock"><h1>Link edit <em>tidak dikenali.</em></h1><p class="lede">Link ini mungkin salah salin atau sudah tidak berlaku. Cek lagi emailmu, atau hubungi AJ.</p></div>`;
+      return;
+    }
+    try { await fillExisting(j.coach); } catch (e) { app.innerHTML = `<div class="lock"><h1>Datanya <em>belum terbaca.</em></h1><p class="lede">Muat ulang halaman ini. Kalau tetap sama, hubungi AJ.</p></div>`; }
+  }
+}
+boot();
+})();
+</script>
+</body>
+</html>

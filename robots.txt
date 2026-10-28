@@ -1,5 +1,6 @@
 User-agent: *
 Disallow: /apps-script/
 Disallow: /scripts/
+Disallow: /join/
 
 Sitemap: https://alvacy.com/sitemap.xml

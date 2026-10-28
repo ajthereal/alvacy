@@ -55,6 +55,9 @@ window.ALVResults = (function () {
          en:'A former head of the ER who had trouble with his own health: obesity, high blood pressure, and aches everywhere. Now I’ve found my health again, thanks to #transformwithST.'}}
 ];
 
+  /* Coaches added through /join (see assets/site.js): their cards join the list. A coach already written above is never doubled. */
+  try { (window.ALV && ALV.extraCases || []).forEach(x => { if (!CASES.some(c => c.coach === x.coach)) CASES.push(x); }); } catch (e) {}
+
   const RM = matchMedia('(prefers-reduced-motion: reduce)').matches;
   /* Numbers start at 0 and count up only for real visitors who allow motion. The search build (headless browser)
      and anyone without JavaScript get the real numbers in the page text. */
@@ -231,5 +234,11 @@ window.ALVResults = (function () {
     if (firstPaint) { firstPaint = false; armCards(); }
   }
 
-  return { mount, render, CASES };
+  /* One finished card as HTML, for the /join preview (the real carousel is not mounted there). */
+  function preview(c, l) {
+    const sl = lang, sf = firstPaint; lang = l || lang; firstPaint = false;
+    try { return caseCard(c, T[lang]); } finally { lang = sl; firstPaint = sf; }
+  }
+
+  return { mount, render, CASES, preview };
 })();

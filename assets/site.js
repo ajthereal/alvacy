@@ -49,6 +49,56 @@ window.ALV = (function () {
         story: { id: 'Dulu aku kepala IGD yang sibuk mengurus kesehatan orang lain, sementara kesehatanku sendiri bermasalah: obesitas, hipertensi, dan pegal-pegal di mana-mana. Lewat #transformwithST, aku menemukan kesehatanku lagi.',
                  en: 'I used to head an ER, busy looking after everyone else’s health while my own was in trouble: obesity, high blood pressure, and aches everywhere. Through #transformwithST I found my health again.' } } }
   };
+
+  /* Coaches added through alvacy.com/join (approved by AJ) arrive in /data/coaches.js as window.ALV_EXTRA.
+     They are merged in here so every page sees them like the coaches above: COACHES for the link, palette and WhatsApp,
+     extraCases for the before/after carousel (assets/results.js picks them up). Everything is checked and cleaned on the way in,
+     so a broken or odd entry is skipped and never breaks a page. The coaches written above always win on a clash. */
+  const EXTRA_CASES = [];
+  (function mergeExtra() {
+    const str = (v, n) => String(v == null ? '' : v).replace(/[<>\u0000-\u001f\u2028\u2029]/g, ' ').replace(/\s+/g, ' ').trim().slice(0, n);
+    const num = v => { const x = Number(v); return isFinite(x) && x > 0 && x < 1000 ? Math.round(x * 10) / 10 : null; };
+    const jpg = v => /^[a-z0-9][a-z0-9._-]{0,60}\.jpg$/.test(String(v)) ? String(v) : '';
+    const dec = (x, l) => { const t = String(Math.round(x * 10) / 10); return l === 'id' ? t.replace('.', ',') : t; };
+    let list = [];
+    try { const x = window.ALV_EXTRA; if (x && Array.isArray(x.coaches)) list = x.coaches; } catch (e) {}
+    list.forEach(raw => {
+      try {
+        const code = String(raw.code || '').toLowerCase();
+        if (!/^[a-z0-9]{3,16}$/.test(code) || COACHES[code]) return;
+        const name = str(raw.name, 40).replace(/["&\\]/g, '');
+        const wa = String(raw.wa || '').replace(/\D/g, '');
+        if (!name || !/^[1-9]\d{7,14}$/.test(wa)) return;
+        const pretty = wa.indexOf('62') === 0 ? '+62 ' + wa.slice(2, 5) + '-' + wa.slice(5, 9) + '-' + wa.slice(9) : '+' + wa;
+        const photo = jpg(raw.photo), face = jpg(raw.face);
+        const booking = /^https:\/\/[^\s"'<>\\]+$/.test(String(raw.booking || '')) ? String(raw.booking) : '';
+        const palette = ['sky', 'rose', 'sage'].indexOf(raw.palette) >= 0 ? raw.palette : 'sky';
+        const tx = o => ({ id: str(o && o.id, 600), en: str(o && o.en, 600) });
+        const story = tx(raw.story); if (!story.en) story.en = story.id; if (!story.id) story.id = story.en;
+        const hl = tx(raw.highlight);
+        /* metrics: kg is required (it is the headline number); body fat and visceral fat are optional */
+        const mk = [], by = {};
+        (Array.isArray(raw.metrics) ? raw.metrics : []).forEach(m => { by[m && m.k] = m; });
+        const kg = by.kg && { from: num(by.kg.from), to: num(by.kg.to) };
+        if (!kg || kg.from == null || kg.to == null || kg.from <= kg.to) return;
+        mk.push({ from: kg.from, to: kg.to, suf: ' kg', u: 'mKg', d: 'dKg', k: 1 });
+        [['fat', '%', 'mFat', 'dPt'], ['vfa', '', 'mVfa2', 'dLv']].forEach(r => {
+          const m = by[r[0]]; if (!m) return;
+          const a = num(m.from), b = num(m.to);
+          if (a != null && b != null && a > b) mk.push(r[1] ? { from: a, to: b, suf: r[1], u: r[2], d: r[3] } : { from: a, to: b, u: r[2], d: r[3] });
+        });
+        const drop = Math.round((kg.from - kg.to) * 10) / 10;
+        const proof = { value: { id: '−' + dec(drop, 'id') + ' kg', en: '−' + dec(drop, 'en') + ' kg' },
+          id: hl.id || 'bareng #transformwithST', en: hl.en || hl.id || 'with #transformwithST' };
+        COACHES[code] = { name, wa, pretty, city: '', photo, face, booking, palette, added: true,
+          transform: story.id ? { proof, story } : { proof } };
+        const before = jpg(raw.before), after = jpg(raw.after);
+        EXTRA_CASES.push({ coach: code, name: str(raw.fullName, 60).replace(/["&\\]/g, '') || name,
+          before: before ? '/images/results/' + before : '', after: after ? '/images/results/' + after : '',
+          m: mk, quote: story });
+      } catch (e) {}
+    });
+  })();
   const DEFAULT = 'aj';
 
   /* Meta Pixel: paste the Pixel ID from Meta Events Manager here. Empty = no tracking loads. */
@@ -165,5 +215,5 @@ window.ALV = (function () {
   addEventListener('hashchange', applyPalette);
   if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', tagLinks); else tagLinks();
 
-  return { COACHES, DEFAULT, hasCoach, applyPalette, tagLinks, coachCode, getLang, setLang, coach: () => COACHES[coachCode()], source: () => SOURCE, track };
+  return { COACHES, DEFAULT, extraCases: EXTRA_CASES, hasCoach, applyPalette, tagLinks, coachCode, getLang, setLang, coach: () => COACHES[coachCode()], source: () => SOURCE, track };
 })();

@@ -1,5 +1,36 @@
 # Menambah coach baru
 
+## Cara termudah: coach mengisi sendiri di `alvacy.com/join`
+
+Kirim coach barunya satu link: `alvacy.com/join/?i=KODE-UNDANGAN` (kode undangan = nilai `JOIN_CODE` di Apps Script, bebas kamu pilih).
+
+1. Coach mengisi nama, WhatsApp, email, warna, foto sebelum, sesudah, profil, angka, dan ceritanya. Fotonya dipotong langsung di halaman itu, dengan panduan oval kepala dan garis pinggang, jadi tidak perlu diedit dulu. Watermark #transformwithST dipasang otomatis.
+2. Kamu dapat email berisi link review (cocok dibuka dari HP): foto, angka, dan cerita ditampilkan, lalu tinggal tekan **Setujui dan tayangkan** atau **Tolak**.
+3. Setelah disetujui, Apps Script mengirim foto dan data ke GitHub dalam satu commit. GitHub Action membangun ulang halaman, dan dalam 3 sampai 5 menit coach tampil di carousel, link pribadinya `alvacy.com/kode` hidup, warnanya ikut, dan email lead langsung masuk ke emailnya (tanpa menyentuh `COACH_EMAILS`).
+4. Coach mendapat email dengan **link edit** (`alvacy.com/join/?edit=...`). Lewat link itu dia bisa mengganti nomor WhatsApp, email, foto, angka, atau ceritanya kapan saja. Perubahan pada coach yang sudah tayang langsung terkirim ke website, dan kamu dapat email pemberitahuan.
+
+Semua data coach ada di sheet **Coaches** (satu baris per coach). Kolom **Cerita (EN)** dan **Highlight (EN)** diterjemahkan otomatis saat disetujui. Kalau mau merapikan terjemahannya, ubah di sheet lalu pilih menu **Coaches > Publish ke website**. Untuk menyembunyikan coach, ubah kolom Status jadi `hidden`, lalu Publish.
+
+### Pengaturan sekali saja
+
+1. Di Google Sheet leads: Extensions > Apps Script. Ganti isi `Code.gs` dengan `apps-script/Code.gs` dari repo ini, lalu simpan.
+2. Project Settings > Script properties, tambahkan:
+   - `JOIN_CODE`: kode undangan yang kamu bagikan.
+   - `GITHUB_TOKEN`: token GitHub (Settings > Developer settings > Fine-grained tokens). Pilih repo `ajthereal/alvacy` saja, izin **Contents: Read and write**.
+3. Pilih fungsi `setupCoaches` di editor, tekan Run, dan setujui izin yang diminta (Drive, kirim email, koneksi ke luar, terjemahan). Hasilnya melaporkan apa yang masih kurang.
+4. Deploy > Manage deployments > edit > Version: New version > Deploy. (Pakai deployment yang sama supaya alamat `/exec` tidak berubah.)
+5. Yang dari kode `COACH_EMAILS` untuk 6 coach lama tetap berlaku. Coach baru lewat /join tidak perlu ditambahkan di sana.
+
+### Hal teknis yang perlu diketahui
+
+- Coach dari /join tidak ada di `assets/site.js` atau `assets/results.js`. Datanya ada di `data/coaches.js`, yang ditulis Apps Script dan dibaca `site.js` lewat `window.ALV_EXTRA`. Semua isi dibersihkan dulu, dan entri yang rusak dilewati tanpa merusak halaman. Coach di `site.js` selalu menang kalau kodenya sama.
+- Setiap halaman yang memuat `site.js` harus memuat `<script src="/data/coaches.js"></script>` tepat sebelumnya.
+- Apps Script menulis langsung ke branch `main`, jadi sebelum mengedit di komputer, jalankan `git pull --rebase origin main`.
+- Link `alvacy.com/kode` langsung jalan lewat `404.html` begitu `data/coaches.js` terbit. Beberapa menit kemudian build menulis halaman redirect aslinya (supaya pratinjau WhatsApp punya nama coach).
+- Foto di repo diberi nama `kode-after-<hash>.jpg`. Ganti foto berarti nama baru, jadi tidak ada masalah cache. File lama tetap tinggal di repo dan boleh dihapus sesekali.
+
+## Cara manual (tanpa /join)
+
 Halaman hasil ada di `alvacy.com/transform/`. Satu halaman ini dipakai semua coach. Warna, nama, nomor WhatsApp,
 dan cerita pembuka berganti sesuai link coach-nya, misalnya `alvacy.com/transform/#lala`.
 

@@ -1,0 +1,44 @@
+<!doctype html>
+<html lang="id">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Halaman tidak ditemukan · #transformwithST</title>
+<meta name="robots" content="noindex">
+<link rel="icon" href="/images/icon.svg" type="image/svg+xml">
+<style>
+body{margin:0;background:#F4F8FE;font-family:system-ui,-apple-system,"Segoe UI",sans-serif;color:#2B3A5E;display:grid;place-items:center;min-height:100vh;text-align:center;padding:24px}
+h1{font-size:1.6rem;margin:0 0 8px;color:#1E3A8A}p{margin:0 0 18px}a{color:#2F55D4;font-weight:600}
+</style>
+<script src="/data/coaches.js"></script>
+<script>
+/* GitHub Pages shows this page for any address that does not exist. A coach who joined through alvacy.com/join gets a link
+   (alvacy.com/<code>) right away; the real redirect page for it is written a few minutes later by the build. Until then this does
+   the same job: remember the coach and where the visit came from, then open the Body Age test. ?to=home or ?to=hasil go elsewhere. */
+(function () {
+  var seg = location.pathname.replace(/^\/+|\/+$/g, '').split('/')[0].toLowerCase();
+  var list = [];
+  try { list = (window.ALV_EXTRA && window.ALV_EXTRA.coaches) || []; } catch (e) {}
+  var hit = false;
+  if (/^[a-z0-9]{3,16}$/.test(seg) && location.pathname.replace(/^\/+|\/+$/g, '') === seg) {
+    for (var i = 0; i < list.length; i++) if (list[i] && list[i].code === seg) hit = true;
+  }
+  if (!hit) return;
+  var DEST = { test: '/test/', home: '/', hasil: '/transform/' };
+  var p = new URLSearchParams(location.search), to = p.get('to') || 'test';
+  p.delete('to');
+  var q = p.toString() ? '?' + p.toString() : '';
+  var ref = '';
+  try { ref = new URL(document.referrer).hostname.replace(/^www\./, ''); if (ref === location.hostname) ref = ''; } catch (e) {}
+  try {
+    localStorage.setItem('alv-coach', seg);
+    if (!/utm_/.test(q)) localStorage.setItem('alv-src', JSON.stringify({ source: ref || 'link /' + seg, medium: 'bio', campaign: '', content: '/' + seg, landing: '/' + seg }));
+  } catch (e) {}
+  location.replace((DEST[to] || DEST.test) + q + '#' + seg);
+})();
+</script>
+</head>
+<body>
+<main><h1>Halaman ini tidak ada</h1><p>Linknya mungkin salah ketik.</p><p><a href="/">Ke beranda #transformwithST</a></p></main>
+</body>
+</html>

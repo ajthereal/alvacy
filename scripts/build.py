@@ -202,7 +202,8 @@ SNAPSHOT_JS = r"""() => {
 }"""
 
 
-RESERVED = {'test', 'kalori', 'lunch', 'tools', 'privacy', 'transform', 'en', 'images', 'assets', 'scripts', 'apps-script', 'body-age', 'index'}
+RESERVED = {'test', 'kalori', 'lunch', 'tools', 'privacy', 'transform', 'en', 'images', 'assets', 'scripts', 'apps-script', 'body-age', 'index',
+            'join', 'data', 'tim', 'api', 'admin', 'coach', 'coaches', 'www', 'alvacy', 'github'}
 
 COACH_LINK = """<!doctype html>
 <html lang="id">
@@ -246,14 +247,39 @@ def coach_codes():
     return re.findall(r"^    (\w+): \{ name: '([^']+)'", text, flags=re.M)
 
 
+def extra_coaches():
+    """Coaches added through alvacy.com/join live in data/coaches.js (written by the Apps Script).
+    A broken file or entry is reported and skipped, so it can never stop the build."""
+    f = ROOT / 'data' / 'coaches.js'
+    try:
+        m = re.search(r'window\.ALV_EXTRA\s*=\s*(\{.*\})\s*;?\s*$', f.read_text(encoding='utf-8'), re.S)
+        return json.loads(m.group(1)).get('coaches', [])
+    except FileNotFoundError:
+        return []
+    except Exception as e:  # noqa: BLE001
+        print(f'  WARNING: data/coaches.js could not be read ({e}); no /join coaches this build')
+        return []
+
+
 def write_coach_links():
-    for code, name in coach_codes():
+    static = coach_codes()
+    for code, name in static:
         if code in RESERVED:
             raise SystemExit(f"Coach code '{code}' clashes with a page or folder; pick another code in assets/site.js")
         d = ROOT / code
         d.mkdir(exist_ok=True)
         (d / 'index.html').write_text(COACH_LINK.format(code=code, name=name), encoding='utf-8')
         print(f'  https://alvacy.com/{code}/  ->  Body Age test, coach {name}')
+    taken = {c for c, _ in static}
+    for c in extra_coaches():
+        code, name = str(c.get('code', '')), html.escape(str(c.get('name', '')), quote=True)
+        if not re.fullmatch(r'[a-z0-9]{3,16}', code) or code in RESERVED or code in taken or not name:
+            print(f'  WARNING: skipped /join coach {code!r} (bad code, name, or clash)')
+            continue
+        d = ROOT / code
+        d.mkdir(exist_ok=True)
+        (d / 'index.html').write_text(COACH_LINK.format(code=code, name=name), encoding='utf-8')
+        print(f'  https://alvacy.com/{code}/  ->  Body Age test, coach {name} (joined via /join)')
 
 
 class Quiet(http.server.SimpleHTTPRequestHandler):
@@ -327,7 +353,7 @@ def write_sitemap():
 
 def write_robots():
     (ROOT / 'robots.txt').write_text(
-        'User-agent: *\nDisallow: /apps-script/\nDisallow: /scripts/\n\n'
+        'User-agent: *\nDisallow: /apps-script/\nDisallow: /scripts/\nDisallow: /join/\n\n'
         f'Sitemap: {SITE}/sitemap.xml\n', encoding='utf-8')
 
 
