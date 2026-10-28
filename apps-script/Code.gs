@@ -15,6 +15,11 @@ const SRC_COL = 26;
 const SRC_HEADERS = ['Sumber','Campaign','Konten iklan','Halaman masuk'];
 const SRC_KEYS = ['src','campaign','content','landing'];
 
+/* Height and weight from the quiz live in columns AD-AE, right after the source columns. */
+const BODY_COL = SRC_COL + SRC_HEADERS.length;
+const BODY_HEADERS = ['Tinggi (cm)','Berat (kg)'];
+const BODY_KEYS = ['height','weight'];
+
 /* Who gets an email when a new lead arrives, by coach name shown on the site (COACHES[...].name in assets/site.js).
    Coaches' own addresses are NOT kept here, because this file is in a public repo. Put them in the Sheet's Apps Script:
    Project Settings -> Script properties -> add COACH_EMAILS with a value like
@@ -42,6 +47,8 @@ function sheet_() {
   if (first.join('|') !== HEADERS.join('|')) sh.getRange(1, 1, 1, HEADERS.length).setValues([HEADERS]);
   const src = sh.getRange(1, SRC_COL, 1, SRC_HEADERS.length).getValues()[0];
   if (src.join('|') !== SRC_HEADERS.join('|')) sh.getRange(1, SRC_COL, 1, SRC_HEADERS.length).setValues([SRC_HEADERS]);
+  const body = sh.getRange(1, BODY_COL, 1, BODY_HEADERS.length).getValues()[0];
+  if (body.join('|') !== BODY_HEADERS.join('|')) sh.getRange(1, BODY_COL, 1, BODY_HEADERS.length).setValues([BODY_HEADERS]);
   return sh;
 }
 
@@ -76,6 +83,11 @@ function doPost(e) {
       const curSrc = sh.getRange(r, SRC_COL, 1, SRC_KEYS.length).getValues()[0];
       sh.getRange(r, SRC_COL, 1, SRC_KEYS.length).setValues([srcRow.map((v, i) => v === '' ? curSrc[i] : v)]);
     }
+    const bodyRow = BODY_KEYS.map(k => clean_(d[k]));
+    if (bodyRow.some(v => v !== '')) {
+      const curBody = sh.getRange(r, BODY_COL, 1, BODY_KEYS.length).getValues()[0];
+      sh.getRange(r, BODY_COL, 1, BODY_KEYS.length).setValues([bodyRow.map((v, i) => v === '' ? curBody[i] : v)]);
+    }
     if (d.status === 'Lead masuk') notify_(d);
     return ContentService.createTextOutput('ok');
   } finally {
@@ -98,7 +110,7 @@ function notify_(d) {
     'Skor total: ' + d.total + '/100 (' + d.band + ')',
     'Pola makan ' + d.food + ' | Energi ' + d.energy + ' | Tidur & stres ' + d.sleep + ' | Gerak & otot ' + d.move + ' | Tren badan ' + d.trend,
     '',
-    'Usia: ' + d.age + ' | Gender: ' + d.gender,
+    'Usia: ' + d.age + ' | Gender: ' + d.gender + ' | Tinggi: ' + (d.height || '-') + ' cm | Berat: ' + (d.weight || '-') + ' kg',
     'Goal: ' + d.goal + ' | Mulai: ' + d.start,
     'Pernah coba: ' + d.tried
   ].concat(to === DEFAULT_EMAIL ? ['', 'Sheet: ' + SpreadsheetApp.getActiveSpreadsheet().getUrl()] : []).join('\n');

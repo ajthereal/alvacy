@@ -198,6 +198,21 @@
 .c-good{background:var(--good-soft);color:var(--good)}.c-warn{background:var(--warn-soft);color:var(--warn)}.c-bad{background:var(--bad-soft);color:var(--bad)}
 .b-good{background:var(--good)}.b-warn{background:var(--warn)}.b-bad{background:var(--bad)}
 .focus{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.numin{display:flex;align-items:center;gap:10px;margin-top:6px}
+.numin input{font:inherit;font-size:1.6rem;font-weight:700;width:9ch;padding:12px 14px;border-radius:14px;border:1.5px solid var(--line);background:var(--bg);color:var(--head)}
+.numin input:focus{outline:2px solid var(--accent);outline-offset:1px;border-color:var(--accent)}
+.numin .unit{font-weight:600;color:var(--muted)}
+.numact{display:flex;align-items:center;gap:14px;flex-wrap:wrap;margin-top:6px}
+.idealwrap{display:grid;gap:12px}
+.ideal{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
+.ib{border:1px solid var(--line);border-radius:var(--r);padding:16px;display:grid;gap:4px;background:var(--surface);align-content:start}
+.ib .ibl{font-size:.78rem;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--muted)}
+.ib strong{font-size:clamp(1.3rem,4.2vw,1.7rem);color:var(--head);line-height:1.15}
+.ib strong small{font-size:.55em;font-weight:600;color:var(--muted)}
+.ibnow{border:1px solid var(--line);border-left:4px solid var(--accent);border-radius:14px;padding:14px 18px;background:var(--surface);display:grid;gap:6px}
+.ibnow h3{font-size:1rem}
+.ibrow{display:grid;gap:4px;font-size:.95rem}
+.ibfoot{margin-top:2px}
 .tip{border:1px solid var(--line);border-radius:var(--r);padding:20px;display:grid;gap:8px;background:var(--surface)}
 .tip p{color:var(--muted)}
 .gatecard{width:100%;background:var(--surface);border:1px solid var(--line);border-radius:22px;padding:clamp(20px,4vw,30px);display:grid;gap:14px;box-shadow:0 24px 48px -28px rgba(20,40,36,.45)}
@@ -390,6 +405,8 @@ const Q = [
   o:[['30–34','30–34'],['35–39','35–39'],['40–44','40–44'],['45–49','45–49'],['50+','50+']].map(x=>({id:x[0],en:x[1],v:0}))},
  {s:0,q:{id:'Jenis kelamin',en:'Gender'},h:{id:'Pola lemak dan otot pria dan wanita beda.',en:'Men and women store fat and build muscle differently.'},
   o:[['Pria','Male'],['Wanita','Female'],['Lebih baik tidak disebut','Prefer not to say']].map(x=>({id:x[0],en:x[1],v:0}))},
+ {s:0,num:{min:120,max:220,unit:'cm',ph:'165',step:1},q:{id:'Berapa tinggi badan kamu?',en:'How tall are you?'},h:{id:'Dari tinggi badan, kita hitung berat, lemak, lingkar pinggang, protein, dan kalori yang pas buat kamu.',en:'From your height we work out the weight, body fat, waist, protein and calories that suit you.'},o:[]},
+ {s:0,opt:true,num:{min:35,max:250,unit:'kg',ph:'70',step:0.1},q:{id:'Dan berat badan kamu sekarang?',en:'And your weight right now?'},h:{id:'Boleh dilewati. Kalau diisi, kamu bisa lihat selisihnya ke berat ideal.',en:'Optional. If you add it, you’ll see how far you are from your ideal weight.'},o:[]},
  {s:0,q:{id:'Apa goal utama kamu?',en:'What’s your main goal?'},h:{id:'Biar saran di akhir sesuai yang kamu mau.',en:'So the advice at the end fits what you want.'},
   o:[['Turun lemak, terutama perut','Lose fat, especially belly fat'],['Energi balik kayak dulu','Get my energy back'],['Badan lebih kencang dan kuat','A firmer, stronger body'],['Lebih sehat jangka panjang','Better long-term health']].map(x=>({id:x[0],en:x[1],v:0}))},
  {s:0,q:{id:'Kapan kamu pengen mulai?',en:'When would you like to start?'},h:{id:'Ga ada jawaban yang salah.',en:'There’s no wrong answer.'},
@@ -487,6 +504,7 @@ function render(){
   else if(S.view==='quiz') app.innerHTML = quiz(u);
   else if(S.view==='inter') app.innerHTML = inter(u);
   else app.innerHTML = results(u,c);
+  if(S.view==='quiz'&&Q[S.i].num){ const f=document.getElementById('numv'); if(f&&!f.value) try{f.focus({preventScroll:true})}catch(e){} }
   if(S.view==='results') requestAnimationFrame(()=>{ const v=app.querySelector('.ring .val'); if(v) v.style.strokeDashoffset = v.dataset.off; });
 }
 
@@ -542,6 +560,22 @@ function quiz(u){
     return `<button class="opt${q.multi?' multi':''}${on?' on':''}" data-act="pick" data-v="${idx}" aria-pressed="${on}"><span class="dot" aria-hidden="true"></span><span>${L(o)}</span></button>`;
   }).join('');
   const canNext = q.multi && Array.isArray(ans) && ans.length>0;
+  if(q.num){
+    const val = ans && ans.n!=null ? ans.n : '';
+    return `
+<section class="quiz wrap narrow">
+  <div class="qbar"><button class="ghost" data-act="back">← ${u.back}</button><span class="qcount num">${S.i+1} / ${Q.length}</span></div>
+  <div class="segs" aria-hidden="true">${segs}</div>
+  <article class="qcard">
+    <p class="kicker">${L(sec.n)}</p>
+    <h2>${L(q.q)}</h2>
+    <p class="why">${u.why} ${L(q.h)}</p>
+    <div class="numin"><input id="numv" type="number" inputmode="decimal" min="${q.num.min}" max="${q.num.max}" step="${q.num.step}" placeholder="${q.num.ph}" value="${val}" aria-label="${esc(L(q.q))}"><span class="unit">${q.num.unit}</span></div>
+    <p class="err" id="numerr" hidden>${u.numErr(q.num.min,q.num.max,q.num.unit)}</p>
+    <div class="numact"><button class="btn primary" data-act="numnext">${u.next} <span aria-hidden="true">→</span></button>${q.opt?`<button class="ghost" data-act="numskip">${u.skip}</button>`:''}</div>
+  </article>
+</section>`;
+  }
   return `
 <section class="quiz wrap narrow">
   <div class="qbar"><button class="ghost" data-act="back">← ${u.back}</button><span class="qcount num">${S.i+1} / ${Q.length}</span></div>
@@ -588,12 +622,92 @@ const BANDS = [
 const level = v => v>=75?'good':v>=50?'warn':'bad';
 const mark = v => v>=75?'🟢':v>=50?'🟡':'🔴';
 
+
+/* ---- Ideal numbers worked out from height, gender and age bracket (and weight, when given) ----
+   All ranges are estimates from public references: Asia-Pacific BMI 18.5-22.9, Omron body-fat and skeletal-muscle bands,
+   WHO Asia waist limits, 1.6-2.0 g protein per kg, and the Mifflin-St Jeor equation. Not a diagnosis. */
+const BU = {
+ id:{ idealK:'Angka ideal kamu', idealH:'Ini angka yang pas buat badan kamu',
+  idealP:'Dihitung dari tinggi badan, usia, dan gender kamu. Pakai ini sebagai arah, bukan vonis.',
+  teaserK:'Berat ideal kamu', teaserFor:h=>`untuk tinggi ${h} cm (sehat: BMI 18,5–22,9)`,
+  w:'Berat ideal', wN:'kisaran sehat untuk tinggimu', fat:'Lemak tubuh', fatN:'kisaran sehat, diukur seperti di timbangan Omron',
+  mus:'Otot rangka', musN:'persen dari berat badan, kisaran normal', waist:'Lingkar pinggang', waistN:'lebih kecil lebih baik, ukur sejajar pusar',
+  prot:'Protein per hari', protN:(g)=>`sekitar ${g} gram tiap makan, kalau 3 kali makan`, cal:'Kalori per hari', calN:(t)=>`untuk jaga berat, kalau mau turun lemak sekitar ${t}`,
+  vis:'Lemak visceral', visN:'level Omron, di bawah 10 itu normal', water:'Air putih', waterN:'sekitar 35 ml per kg berat ideal',
+  nowH:'Posisi kamu sekarang', bmi:'BMI kamu', gap:'Selisih ke berat ideal',
+  gapUp:(k)=>`sekitar ${k} kg di atas kisaran sehat`, gapIn:'sudah di kisaran sehat. Fokusnya turunin lemak dan jaga otot', gapDn:(k)=>`sekitar ${k} kg di bawah kisaran sehat`,
+  bmiL:['di bawah normal','normal','di atas normal','jauh di atas normal'], less:'kurang dari', unitKcal:'kkal', note:'Angka ini perkiraan. Angka pastinya (lemak, otot, visceral) diukur di assessment lengkap pakai Omron.',
+  numErr:(a,b,u)=>`Isi angka antara ${a} dan ${b} ${u}.`, skip:'Lewati' },
+ en:{ idealK:'Your ideal numbers', idealH:'These are the numbers that fit your body',
+  idealP:'Worked out from your height, age and gender. Use them as a direction, not a verdict.',
+  teaserK:'Your ideal weight', teaserFor:h=>`for ${h} cm tall (healthy BMI 18.5–22.9)`,
+  w:'Ideal weight', wN:'healthy range for your height', fat:'Body fat', fatN:'healthy range, as read on an Omron scale',
+  mus:'Skeletal muscle', musN:'percent of body weight, normal range', waist:'Waist', waistN:'smaller is better, measured level with the navel',
+  prot:'Protein per day', protN:(g)=>`about ${g} g per meal, over 3 meals`, cal:'Calories per day', calN:(t)=>`to maintain, around ${t} to lose fat`,
+  vis:'Visceral fat', visN:'Omron level, under 10 is normal', water:'Water', waterN:'about 35 ml per kg of ideal weight',
+  nowH:'Where you are now', bmi:'Your BMI', gap:'Gap to ideal weight',
+  gapUp:(k)=>`about ${k} kg above the healthy range`, gapIn:'already in the healthy range. Focus on losing fat and keeping muscle', gapDn:(k)=>`about ${k} kg below the healthy range`,
+  bmiL:['below normal','normal','above normal','well above normal'], less:'under', unitKcal:'kcal', note:'These are estimates. Your exact fat, muscle and visceral numbers are measured in the full assessment on an Omron scale.',
+  numErr:(a,b,u)=>`Enter a number between ${a} and ${b} ${u}.`, skip:'Skip' }
+};
+UI.id.numErr=BU.id.numErr; UI.en.numErr=BU.en.numErr; UI.id.skip=BU.id.skip; UI.en.skip=BU.en.skip;
+const AGE_MID=[32,37,42,47,52];
+function bodyModel(sc){
+  const hq=S.a[2], wq=S.a[3];
+  if(!hq||hq.n==null) return null;
+  const cm=hq.n, h=cm/100, wt=wq&&wq.n!=null?wq.n:null;
+  const age=AGE_MID[S.a[0]]||42, gi=S.a[1], g=gi===0?'m':gi===1?'f':'x';
+  const pg=(m,f)=>g==='m'?m:g==='f'?f:[(m[0]+f[0])/2,(m[1]+f[1])/2];
+  const pn=(m,f)=>g==='m'?m:g==='f'?f:(m+f)/2;
+  const wLo=18.5*h*h, wHi=22.9*h*h, wMid=22*h*h;
+  const fat=pg(age<40?[11,21]:[12,22], age<40?[21,33]:[23,34]);
+  const mus=pg([33,39],[24,30]);
+  const waist=Math.round(Math.min(cm/2, pn(90,80)));
+  const tw=wt?Math.min(Math.max(wt,wLo),wHi):wMid;
+  const prot=[Math.round(1.6*tw/5)*5, Math.round(2.0*tw/5)*5];
+  const bmrW=wt||wMid;
+  const bmr=10*bmrW+6.25*cm-5*age+pn(5,-161);
+  const af=sc.move>=66?1.5:sc.move>=33?1.4:1.3;
+  const tdee=Math.round(bmr*af/50)*50;
+  const lose=Math.round(Math.max(tdee*0.8,bmr)/50)*50;
+  const bmi=wt?wt/(h*h):null;
+  return {cm,wt,wLo,wHi,wMid,fat,mus,waist,prot,tdee,lose,bmi,water:Math.round(35*tw/100)/10,
+    gap: wt==null?null: wt>wHi? {t:'up',k:Math.round(wt-wHi)} : wt<wLo? {t:'dn',k:Math.round(wLo-wt)} : {t:'in'}};
+}
+const nf=(v,d=0)=>{const x=Number(v).toFixed(d);return lang==='id'?x.replace('.',','):x};
+function idealHTML(sc){
+  const b=bodyModel(sc), u=BU[lang]; if(!b) return '';
+  const card=(label,val,note)=>`<div class="ib"><span class="ibl">${label}</span><strong class="num">${val}</strong><span class="small">${note}</span></div>`;
+  const cards=[
+    card(u.w,`${nf(b.wLo)}–${nf(b.wHi)} <small>kg</small>`,u.wN),
+    card(u.fat,`${nf(b.fat[0])}–${nf(b.fat[1])}<small>%</small>`,u.fatN),
+    card(u.mus,`${nf(b.mus[0])}–${nf(b.mus[1])}<small>%</small>`,u.musN),
+    card(u.waist,`<small>${u.less}</small> ${b.waist} <small>cm</small>`,u.waistN),
+    card(u.prot,`${b.prot[0]}–${b.prot[1]} <small>g</small>`,u.protN(Math.round(b.prot[0]/3/5)*5+'–'+Math.round(b.prot[1]/3/5)*5)),
+    card(u.cal,`${nf(b.tdee)} <small>${u.unitKcal}</small>`,u.calN(nf(b.lose)+' '+u.unitKcal)),
+    card(u.vis,`1–9`,u.visN),
+    card(u.water,`${nf(b.water,1)} <small>L</small>`,u.waterN)
+  ].join('');
+  let now='';
+  if(b.wt){
+    const bi=b.bmi, cat=bi<18.5?0:bi<23?1:bi<27.5?2:3;
+    const gapTxt=b.gap.t==='up'?u.gapUp(b.gap.k):b.gap.t==='dn'?u.gapDn(b.gap.k):u.gapIn;
+    now=`<div class="ibnow"><h3>${u.nowH}</h3><div class="ibrow"><span><b class="num">${nf(bi,1)}</b> ${u.bmi} · ${u.bmiL[cat]}</span><span><b>${u.gap}:</b> ${gapTxt}</span></div></div>`;
+  }
+  return `<div class="idealwrap"><p class="kicker">${u.idealK}</p><h2 style="font-size:1.4rem">${u.idealH}</h2><p class="small">${u.idealP}</p>${now}<div class="ideal">${cards}</div><p class="small ibfoot">${u.note}</p></div>`;
+}
+function teaserHTML(sc){
+  const b=bodyModel(sc), u=BU[lang]; if(!b) return '';
+  return `<div class="agesig a-good"><span class="kicker">${u.teaserK}</span><strong class="num">${nf(b.wLo)}–${nf(b.wHi)} kg</strong><span class="small">${u.teaserFor(b.cm)}</span></div>`;
+}
+
 function detailHTML(u, sc){
   const scored = SECTIONS.filter(s=>s.scored);
   const pil = scored.map(s=>{ const v=sc[s.k], l=level(v); return `<div class="pil"><span class="pil-name">${L(s.n)}</span><span class="pil-bar"><i class="b-${l}" style="width:${Math.max(v,3)}%"></i></span><span class="pil-val"><span class="num">${v}</span><span class="chip c-${l}">${u.chip[l]}</span></span></div>`; }).join('');
   const weakest = [...scored].sort((a,b)=>sc[a.k]-sc[b.k]).slice(0,2);
   return `<div class="detail">
     <div class="pillars">${pil}</div>
+    ${idealHTML(sc)}
     <h2 style="font-size:1.4rem">${u.focusH}</h2>
     <div class="focus">${weakest.map(s=>`<div class="tip"><span class="chip c-${level(sc[s.k])}" style="justify-self:start">${L(s.n)} · ${sc[s.k]}</span><p>${L(s.tip)}</p></div>`).join('')}</div>
   </div>`;
@@ -616,6 +730,7 @@ function results(u,c){
     <h1 style="font-size:clamp(1.8rem,5vw,2.5rem)">${band[0]}</h1>
     <p class="lede" style="max-width:52ch">${band[1]}</p>
     <div class="agesig a-${level(sc.total)}"><span class="kicker">${u.ageK}</span><strong>${u.ageV[level(sc.total)]}</strong><span class="small">${u.ageNote}</span></div>
+    ${teaserHTML(sc)}
   </div>`;
   if(S.unlocked){
     return `<section class="results wrap narrow">${top}${detailHTML(u,sc)}
@@ -684,10 +799,10 @@ function logLead(status, withContact){
   if(!LEADS_URL) return;
   const sc = scores(), u = UI[lang];
   const band = BANDS.find(b=>sc.total>=b.min)[lang][0];
-  const pick = j => { const a=S.a[j]; if(Array.isArray(a)) return a.map(x=>L(Q[j].o[x])).join(', '); return typeof a==='number' ? L(Q[j].o[a]) : ''; };
+  const pick = j => { const a=S.a[j]; if(a&&typeof a==='object'&&!Array.isArray(a)) return a.n!=null?a.n:''; if(Array.isArray(a)) return a.map(x=>L(Q[j].o[x])).join(', '); return typeof a==='number' ? L(Q[j].o[a]) : ''; };
   const d = {sid:SID, status, coach:coach().name, lang, total:sc.total, band,
     food:sc.food, energy:sc.energy, sleep:sc.sleep, move:sc.move, trend:sc.trend,
-    age:pick(0), gender:pick(1), goal:pick(2), start:pick(3), tried:pick(4),
+    age:pick(0), gender:pick(1), height:pick(2), weight:pick(3), goal:pick(4), start:pick(5), tried:pick(6),
     src:[ALV.source().source,ALV.source().medium].filter(Boolean).join(' / '), campaign:ALV.source().campaign, content:ALV.source().content, landing:ALV.source().landing,
     name: withContact ? S.lead.name : '', wa: withContact ? fullWa() : '', email: withContact ? S.lead.email : '', consent: withContact ? 'Ya' : '', city: withContact ? u.cities[S.lead.city] : '', mode: withContact ? u.modes[S.lead.mode] : ''};
   try{ fetch(LEADS_URL, {method:'POST', mode:'no-cors', keepalive:true, headers:{'Content-Type':'text/plain;charset=utf-8'}, body:JSON.stringify(d)}).catch(()=>{}); }catch(e){}
@@ -718,9 +833,16 @@ document.addEventListener('click', e=>{
     else { S.a[S.i]=v; render(); clearTimeout(timer); timer=setTimeout(advance,230); }
   }
   else if(act==='next'){ advance(); }
+  else if(act==='numnext'){
+    const q=Q[S.i], el=document.getElementById('numv'), n=parseFloat(String(el.value).replace(',','.'));
+    if(!(n>=q.num.min && n<=q.num.max)){ document.getElementById('numerr').hidden=false; el.focus(); return; }
+    S.a[S.i]={n}; advance();
+  }
+  else if(act==='numskip'){ S.a[S.i]={skip:1}; advance(); }
   else if(act==='cont'){ clearTimeout(timer); S.i++; S.view='quiz'; render(); }
   else if(act==='retake'){ S.a={}; S.i=0; S.unlocked=false; S.view='quiz'; render(); scrollTo(0,0); }
 });
+document.addEventListener('keydown', e=>{ if(e.key==='Enter' && e.target.id==='numv'){ e.preventDefault(); const b=document.querySelector('[data-act=numnext]'); if(b) b.click(); } });
 document.addEventListener('input', e=>{ if(e.target.closest('.gatecard')){ syncLead(); const er=document.getElementById('f-err'); if(er) er.hidden=true; } });
 document.addEventListener('submit', e=>{
   if(e.target.id!=='leadform') return;
