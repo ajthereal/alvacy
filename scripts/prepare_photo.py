@@ -12,7 +12,7 @@ good enough for the page, too small to reuse in print or ads.
 import argparse
 from PIL import Image, ImageDraw, ImageFilter, ImageFont, ImageOps
 
-FONT = '/usr/share/fonts/truetype/liberation/LiberationMono-Bold.ttf'
+FONT = '/usr/share/fonts/truetype/google-fonts/Poppins-Bold.ttf'
 MARK = '#transformwithST'
 
 
@@ -26,7 +26,7 @@ def prepare(src, dst, corner, width=900, top=None):
     if im.size[0] > width:
         im = im.resize((width, round(width * im.size[1] / im.size[0])), Image.LANCZOS)
     w, h = im.size
-    size = max(14, round(w * 0.048))
+    size = max(14, round(w * 0.05))
     font = ImageFont.truetype(FONT, size)
     pad = round(w * 0.04)
     x0, y0, x1, y1 = font.getbbox(MARK)
