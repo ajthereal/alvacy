@@ -42,7 +42,7 @@ PAGES = [
     {
         'path': 'test/', 'kind': 'test',
         'id': {'title': 'Cek Umur Badan Gratis, 3 Menit · Body Age Assessment · #transformwithST',
-               'desc': 'Berapa umur badan kamu sebenarnya? 30 pertanyaan singkat, 3 menit, gratis. Lihat area mana yang paling nahan progress kamu.'},
+               'desc': 'Berapa umur badan kamu sebenarnya? 30-an pertanyaan singkat, 3 menit, gratis. Lihat area mana yang paling nahan progress kamu.'},
         'en': {'title': 'Free Body Age Assessment, 3 Minutes · #transformwithST',
                'desc': 'How old is your body, really? 30 quick questions, 3 minutes, free. See which area is holding your progress back.'},
     },
@@ -206,7 +206,7 @@ COACH_LINK = """<!doctype html>
 <meta name="robots" content="noindex">
 <meta property="og:type" content="website">
 <meta property="og:title" content="Cek umur badan kamu bareng {name}">
-<meta property="og:description" content="30 pertanyaan, 3 menit, gratis. Hasilnya dijelaskan langsung oleh {name}.">
+<meta property="og:description" content="30-an pertanyaan, 3 menit, gratis. Hasilnya dijelaskan langsung oleh {name}.">
 <meta property="og:image" content="https://alvacy.com/images/og-id.png">
 <meta name="twitter:card" content="summary_large_image">
 <style>body{{margin:0;background:#F4F8FE;font-family:system-ui,sans-serif;color:#2B3A5E;display:grid;place-items:center;min-height:100vh}}a{{color:#2F55D4}}</style>
