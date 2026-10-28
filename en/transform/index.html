@@ -55,7 +55,7 @@
 .btn.primary{background:#F97316;color:#172554;box-shadow:0 6px 18px rgba(249,115,22,.28)}
 .btn.primary:hover{background:#FB8B33}
 .hero h1 em{font-style:normal;color:var(--hl)}
-.prog i{background:var(--d-orange)}
+.stage .prog i{background:var(--d-orange)}
 section{padding-block:clamp(56px,10vw,112px)}
 #hasil,#tim{scroll-margin-top:40px}
 .head{display:grid;gap:14px;max-width:720px;margin:0 auto clamp(28px,5vw,48px);text-align:center;justify-items:center}
@@ -122,7 +122,8 @@ section{padding-block:clamp(56px,10vw,112px)}
 .name{font-weight:700;color:var(--head);letter-spacing:-.01em}
 .tag{font-size:.66rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;padding:4px 10px;border-radius:999px;background:var(--cloud);border:1px solid var(--cloud-line);color:var(--muted);white-space:nowrap}
 .tag.sample{background:transparent;border-style:dashed}
-.nums{display:grid;grid-auto-flow:column;grid-auto-columns:1fr;gap:8px;border-top:1px solid var(--line);padding-top:12px}
+.nums{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px 8px;border-top:1px solid var(--line);padding-top:12px}
+.nums .wide{grid-column:1/-1;border-top:1px solid var(--line);padding-top:12px}
 .nums div{display:grid;gap:2px}
 .num{font-family:var(--f-mono);font-variant-numeric:tabular-nums;letter-spacing:-.03em;line-height:1;color:var(--head)}
 .num b{font-weight:inherit}
@@ -223,19 +224,19 @@ blockquote{margin:0;font-size:.95rem;line-height:1.5;color:var(--ink)}
   <div class="head wrap"><p class="kicker" data-i18n="resK">Their results</p><h2 data-i18n="resH">Swipe, then compare.</h2><p class="lede" data-i18n="resP">Tap a photo to see the after, or drag the line slowly.</p></div>
   <div class="strip wrap reveal" id="strip" hidden="">
     <div class="s"><span class="v" id="sPeople">1</span><span class="l" data-i18n="sPeople">people so far</span></div>
-    <div class="s"><span class="v" id="sKg">18</span><span class="l" data-i18n="sKg">kg lost in total</span></div>
+    <div class="s"><span class="v" id="sKg">NaN</span><span class="l" data-i18n="sKg">kg lost in total</span></div>
   </div>
   <div class="stage" id="stage1">
     <div class="rail" id="rail1" tabindex="0" aria-label="Before and after results"><article class="rc on">
   <div class="cmp" style="--p:50">
-   <div class="ph before empty b"><svg viewBox="0 0 100 100" aria-hidden="true"><circle cx="50" cy="36" r="17" fill="currentColor" opacity=".3"></circle><path d="M14 100c0-25 16-40 36-40s36 15 36 40z" fill="currentColor" opacity=".3"></path></svg><small>Before photo coming soon</small></div><div class="ph after"><img src="/images/coach-aj.jpg" alt="Coach AJ, After" loading="lazy" draggable="false"></div>
+   <div class="ph before"><img src="/images/results/aj-before.jpg" alt="AJ Jonathan Ong, Before" loading="lazy" draggable="false"></div><div class="ph after"><img src="/images/results/aj-after.jpg" alt="AJ Jonathan Ong, After" loading="lazy" draggable="false"></div>
    <span class="line"></span><span class="chip b">Before</span><span class="chip a">After</span>
    <button type="button" class="grip" role="slider" aria-label="Drag to compare the before and after photos" aria-valuemin="0" aria-valuemax="100" aria-valuenow="50"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 7l-5 5 5 5M15 7l5 5-5 5"></path></svg></button>
   </div>
   <div class="body">
-   <div class="top"><span class="name">Coach AJ</span><span class="tag">Coach</span></div>
-   <div class="nums"><div><span class="num k">−<b class="cu" data-to="18">18</b></span><small>kg</small></div><div><span class="num "><b class="cu" data-to="90">90</b></span><small>days</small></div></div>
-   <blockquote>Together with my wife, I lost 18 kg in 90 days without stepping away from work.</blockquote>
+   <div class="top"><span class="name">AJ Jonathan Ong</span><span class="tag">Coach</span></div>
+   <div class="nums"><div><span class="num k">−<b class="cu" data-to="18.1" data-dec="1">18.1</b></span><small>kg</small></div><div><span class="num">−<b class="cu" data-to="13.8" data-dec="1">13.8</b>%</span><small>body fat</small></div><div class="wide"><span class="num"><b class="cu" data-to="13.5" data-dec="1">13.5</b> → <b class="cu" data-to="5.5" data-dec="1">5.5</b></span><small>visceral fat (VFA), measured on an <span style="white-space:nowrap">Omron HBF-375</span></small></div></div>
+   <blockquote>I used to diet on my own with OMAD, running four times a week and water fasting. The weight came off, but it came back very easily. #transformwithST is what finally gave me a healthy, sustainable way to lose fat while my muscle went up.</blockquote>
   </div></article><article class="rc is-sample">
   <div class="cmp" style="--p:50">
    <div class="ph before empty b"><svg viewBox="0 0 100 100" aria-hidden="true"><circle cx="50" cy="36" r="17" fill="currentColor" opacity=".3"></circle><path d="M14 100c0-25 16-40 36-40s36 15 36 40z" fill="currentColor" opacity=".3"></path></svg><small>Before photo</small></div><div class="ph after empty a"><svg viewBox="0 0 100 100" aria-hidden="true"><circle cx="50" cy="36" r="17" fill="currentColor" opacity=".3"></circle><path d="M14 100c0-25 16-40 36-40s36 15 36 40z" fill="currentColor" opacity=".3"></path></svg><small>After photo</small></div>
@@ -244,7 +245,7 @@ blockquote{margin:0;font-size:.95rem;line-height:1.5;color:var(--ink)}
   </div>
   <div class="body">
    <div class="top"><span class="name">[Nama klien]</span><span class="tag sample">Layout sample</span></div>
-   <div class="nums"><div><span class="num k">−<b class="cu" data-to="12">12</b></span><small>kg</small></div><div><span class="num "><b class="cu" data-to="84">84</b></span><small>days</small></div><div><span class="num ">−<b class="cu" data-to="9">9</b></span><small>cm waist</small></div></div>
+   <div class="nums"><div><span class="num k">−<b class="cu" data-to="12" data-dec="0">12</b></span><small>kg</small></div><div><span class="num">−<b class="cu" data-to="9" data-dec="0">9</b>%</span><small>body fat</small></div></div>
    <blockquote>[One sentence from the client, in their own words]</blockquote>
   </div></article><article class="rc is-sample">
   <div class="cmp" style="--p:50">
@@ -254,7 +255,7 @@ blockquote{margin:0;font-size:.95rem;line-height:1.5;color:var(--ink)}
   </div>
   <div class="body">
    <div class="top"><span class="name">[Nama klien]</span><span class="tag sample">Layout sample</span></div>
-   <div class="nums"><div><span class="num k">−<b class="cu" data-to="8">8</b></span><small>kg</small></div><div><span class="num "><b class="cu" data-to="60">60</b></span><small>days</small></div><div><span class="num ">−<b class="cu" data-to="7">7</b></span><small>cm waist</small></div></div>
+   <div class="nums"><div><span class="num k">−<b class="cu" data-to="8" data-dec="0">8</b></span><small>kg</small></div><div><span class="num">−<b class="cu" data-to="7" data-dec="0">7</b>%</span><small>body fat</small></div></div>
    <blockquote>[One sentence from the client, in their own words]</blockquote>
   </div></article><article class="rc is-sample">
   <div class="cmp" style="--p:50">
@@ -264,7 +265,7 @@ blockquote{margin:0;font-size:.95rem;line-height:1.5;color:var(--ink)}
   </div>
   <div class="body">
    <div class="top"><span class="name">[Nama klien]</span><span class="tag sample">Layout sample</span></div>
-   <div class="nums"><div><span class="num k">−<b class="cu" data-to="15">15</b></span><small>kg</small></div><div><span class="num "><b class="cu" data-to="90">90</b></span><small>days</small></div><div><span class="num ">−<b class="cu" data-to="11">11</b></span><small>cm waist</small></div></div>
+   <div class="nums"><div><span class="num k">−<b class="cu" data-to="15" data-dec="0">15</b></span><small>kg</small></div><div><span class="num">−<b class="cu" data-to="11" data-dec="0">11</b>%</span><small>body fat</small></div></div>
    <blockquote>[One sentence from the client, in their own words]</blockquote>
   </div></article></div>
     <div class="railbar"><div class="prog"><i style="width: 80.6045%; left: 0%;"></i></div><div class="nav2">
@@ -276,11 +277,11 @@ blockquote{margin:0;font-size:.95rem;line-height:1.5;color:var(--ink)}
 </div></section>
 
 <section style="padding-top:0"><div class="wrap">
-  <div class="stat reveal" id="coachStat"><p class="kicker" data-i18n="storyK">The first story</p><span class="v" id="statV">−18 kg</span><span class="l" id="statL">in 90 days, with my wife, without stepping away from work</span></div>
+  <div class="stat reveal" id="coachStat"><p class="kicker" data-i18n="storyK">The first story</p><span class="v" id="statV">−18.1 kg</span><span class="l" id="statL">with my wife, without stepping away from work</span></div>
   <div class="coach cloud reveal">
     <div class="avatar" id="avatar"><img src="/images/coach-aj.jpg" alt="Coach AJ" width="260" height="325" loading="lazy"></div>
     <div class="copy">
-      <blockquote id="coachStory">I was busy running a game development startup, raising 3 kids, and gaining “sympathy weight” every time my wife was pregnant. Together with my wife, I lost 18 kg in 90 days without stepping away from work. Now I help busy professionals find a way that fits their schedule.</blockquote>
+      <blockquote id="coachStory">I was busy running a game development startup, raising 3 kids, and gaining “sympathy weight” every time my wife was pregnant. Together with my wife, I lost 18.1 kg without stepping away from work. Now I help busy professionals find a way that fits their schedule.</blockquote>
       <p class="who" id="coachWho">Coach AJ · Jakarta</p>
       <div><a class="btn primary small js-test" href="../test/" data-i18n="ctaTest">Check my body age</a></div>
     </div>
@@ -298,17 +299,17 @@ blockquote{margin:0;font-size:.95rem;line-height:1.5;color:var(--ink)}
   <div class="stage" id="stage2">
     <div class="rail" id="rail2" tabindex="0" aria-label="From client to team"><article class="pc is-sample on">
   <div class="pt"><span class="av"><svg viewBox="0 0 100 100" aria-hidden="true"><circle cx="50" cy="36" r="17" fill="currentColor" opacity=".3"></circle><path d="M14 100c0-25 16-40 36-40s36 15 36 40z" fill="currentColor" opacity=".3"></path></svg></span><div><div class="name">[Nama]</div><div class="small">Was a client, now walks alongside others</div></div></div>
-  <div class="pk"><span class="num k">−<b class="cu" data-to="12">12</b></span><small>kg · 84 days</small></div>
+  <div class="pk"><span class="num k">−<b class="cu" data-to="12" data-dec="0">12</b></span><small>kg</small></div>
   <blockquote>[One sentence on why they started helping others]</blockquote>
   <div><span class="tag sample">Layout sample</span></div>
  </article><article class="pc is-sample">
   <div class="pt"><span class="av"><svg viewBox="0 0 100 100" aria-hidden="true"><circle cx="50" cy="36" r="17" fill="currentColor" opacity=".3"></circle><path d="M14 100c0-25 16-40 36-40s36 15 36 40z" fill="currentColor" opacity=".3"></path></svg></span><div><div class="name">[Nama]</div><div class="small">Was a client, now walks alongside others</div></div></div>
-  <div class="pk"><span class="num k">−<b class="cu" data-to="9">9</b></span><small>kg · 70 days</small></div>
+  <div class="pk"><span class="num k">−<b class="cu" data-to="9" data-dec="0">9</b></span><small>kg</small></div>
   <blockquote>[One sentence on why they started helping others]</blockquote>
   <div><span class="tag sample">Layout sample</span></div>
  </article><article class="pc is-sample">
   <div class="pt"><span class="av"><svg viewBox="0 0 100 100" aria-hidden="true"><circle cx="50" cy="36" r="17" fill="currentColor" opacity=".3"></circle><path d="M14 100c0-25 16-40 36-40s36 15 36 40z" fill="currentColor" opacity=".3"></path></svg></span><div><div class="name">[Nama]</div><div class="small">Was a client, now walks alongside others</div></div></div>
-  <div class="pk"><span class="num k">−<b class="cu" data-to="14">14</b></span><small>kg · 90 days</small></div>
+  <div class="pk"><span class="num k">−<b class="cu" data-to="14" data-dec="0">14</b></span><small>kg</small></div>
   <blockquote>[One sentence on why they started helping others]</blockquote>
   <div><span class="tag sample">Layout sample</span></div>
  </article></div>
@@ -357,10 +358,11 @@ const T={
   fineRes:'Hasil tiap orang berbeda. Foto dan angka dipublikasikan dengan izin masing-masing.',
   before:'Sebelum',after:'Sesudah',phBefore:'Foto sebelum',phAfter:'Foto sesudah',phSoon:'Foto sebelum menyusul',
   grip:'Geser buat membandingkan foto sebelum dan sesudah',
-  kg:'kg',days:'hari',cm:'cm perut',
+  mKg:'kg',mFat:'lemak tubuh',mVfa:'lemak visceral (VFA), diukur dengan <span style="white-space:nowrap">Omron HBF-375</span>',
   tagCoach:'Coach',sample:'Contoh tampilan',
   railRes:'Hasil sebelum dan sesudah',railTeam:'Dari klien jadi tim',prev:'Sebelumnya',next:'Berikutnya',
-  storyK:'Cerita pertama',
+  storyK:'Cerita pertama',statV:'−18,1 kg',statL:'bareng istri, tanpa berhenti kerja',
+  story:'Dulu aku sibuk jalanin startup game development, punya 3 anak, dan ikutan “hamil” tiap istri hamil, sampai akhirnya kegemukan. Bareng istri, aku turun 18,1 kg tanpa berhenti kerja. Sekarang aku bantu profesional sibuk menemukan cara yang muat di jadwal mereka.',
   pathK:'Dari klien jadi tim',pathH:'Awalnya cuma mau turun berat badan.',pathP:'Beberapa dari mereka akhirnya ikut bantu orang lain. Bukan karena disuruh, tapi karena mereka tahu rasanya.',
   n1h:'Jadi klien',n1p:'Mulai dari satu langkah kecil dan satu coach yang nemenin.',
   n2h:'Lihat hasilnya',n2p:'Angka di timbangan dan bayangan di cermin mulai berubah.',
@@ -386,10 +388,11 @@ const T={
   fineRes:'Results vary from person to person. Photos and numbers are shared with each person’s permission.',
   before:'Before',after:'After',phBefore:'Before photo',phAfter:'After photo',phSoon:'Before photo coming soon',
   grip:'Drag to compare the before and after photos',
-  kg:'kg',days:'days',cm:'cm waist',
+  mKg:'kg',mFat:'body fat',mVfa:'visceral fat (VFA), measured on an <span style="white-space:nowrap">Omron HBF-375</span>',
   tagCoach:'Coach',sample:'Layout sample',
   railRes:'Before and after results',railTeam:'From client to team',prev:'Previous',next:'Next',
-  storyK:'The first story',
+  storyK:'The first story',statV:'−18.1 kg',statL:'with my wife, without stepping away from work',
+  story:'I was busy running a game development startup, raising 3 kids, and gaining “sympathy weight” every time my wife was pregnant. Together with my wife, I lost 18.1 kg without stepping away from work. Now I help busy professionals find a way that fits their schedule.',
   pathK:'From client to team',pathH:'It started with wanting to lose weight.',pathP:'Some of them ended up helping others. Not because they were told to, but because they know how it feels.',
   n1h:'Become a client',n1p:'Start with one small step and one coach beside you.',
   n2h:'See the results',n2p:'The number on the scale and the person in the mirror start to change.',
@@ -408,23 +411,25 @@ const T={
 
 /* ---------------------------------------------------------------------------------------------
    RESULTS: this is the only place to edit when real results arrive.
-   Each case: name, kg, days, optional cm (waist), before/after photo paths (/images/...), quote {id,en}.
+   Each case: name, before/after photo paths (/images/results/...), metrics `m` (kg, body fat %, visceral fat range, etc.), quote {id,en}. No day counts are shown.
    Photos: same pose, light and distance for before and after. Only list someone once they agreed to be shown.
    `sample:true` marks a layout placeholder. Samples are labelled on the page and are never counted in the totals.
    Totals above the carousel appear on their own once there are 3 or more real (non-sample) cases.
    --------------------------------------------------------------------------------------------- */
 const CASES=[
- {name:'Coach AJ',kg:18,days:90,before:'',after:'/images/coach-aj.jpg',
-  quote:{id:'Bareng istri, aku turun 18 kg dalam 90 hari tanpa berhenti kerja.',en:'Together with my wife, I lost 18 kg in 90 days without stepping away from work.'}},
- {sample:true,name:'[Nama klien]',kg:12,days:84,cm:9,before:'',after:'',quote:{id:'[Satu kalimat dari klien, pakai kata-katanya sendiri]',en:'[One sentence from the client, in their own words]'}},
- {sample:true,name:'[Nama klien]',kg:8,days:60,cm:7,before:'',after:'',quote:{id:'[Satu kalimat dari klien, pakai kata-katanya sendiri]',en:'[One sentence from the client, in their own words]'}},
- {sample:true,name:'[Nama klien]',kg:15,days:90,cm:11,before:'',after:'',quote:{id:'[Satu kalimat dari klien, pakai kata-katanya sendiri]',en:'[One sentence from the client, in their own words]'}}
+ {name:'AJ Jonathan Ong',before:'/images/results/aj-before.jpg',after:'/images/results/aj-after.jpg',
+  m:[{v:18.1,dec:1,pre:'−',u:'mKg',k:1},{v:13.8,dec:1,pre:'−',suf:'%',u:'mFat'},{range:[13.5,5.5],dec:1,u:'mVfa',wide:1}],
+  quote:{id:'Dulu pernah diet sendiri dengan OMAD, lari seminggu 4 kali, water fasting, tapi meskipun turun, gampang banget naik lagi. #transformwithST yang akhirnya jadi solusi turun sehat, lemak turun, otot naik, dan sustainable.',
+         en:'I used to diet on my own with OMAD, running four times a week and water fasting. The weight came off, but it came back very easily. #transformwithST is what finally gave me a healthy, sustainable way to lose fat while my muscle went up.'}},
+ {sample:true,name:'[Nama klien]',before:'',after:'',m:[{v:12,dec:0,pre:'−',u:'mKg',k:1},{v:9,dec:0,pre:'−',suf:'%',u:'mFat'}],quote:{id:'[Satu kalimat dari klien, pakai kata-katanya sendiri]',en:'[One sentence from the client, in their own words]'}},
+ {sample:true,name:'[Nama klien]',before:'',after:'',m:[{v:8,dec:0,pre:'−',u:'mKg',k:1},{v:7,dec:0,pre:'−',suf:'%',u:'mFat'}],quote:{id:'[Satu kalimat dari klien, pakai kata-katanya sendiri]',en:'[One sentence from the client, in their own words]'}},
+ {sample:true,name:'[Nama klien]',before:'',after:'',m:[{v:15,dec:0,pre:'−',u:'mKg',k:1},{v:11,dec:0,pre:'−',suf:'%',u:'mFat'}],quote:{id:'[Satu kalimat dari klien, pakai kata-katanya sendiri]',en:'[One sentence from the client, in their own words]'}}
 ];
 /* People who started as clients and now walk alongside others. Never put earnings or ranks here. */
 const TEAM=[
- {sample:true,name:'[Nama]',kg:12,days:84,photo:'',quote:{id:'[Satu kalimat soal kenapa dia ikut mendampingi orang lain]',en:'[One sentence on why they started helping others]'}},
- {sample:true,name:'[Nama]',kg:9,days:70,photo:'',quote:{id:'[Satu kalimat soal kenapa dia ikut mendampingi orang lain]',en:'[One sentence on why they started helping others]'}},
- {sample:true,name:'[Nama]',kg:14,days:90,photo:'',quote:{id:'[Satu kalimat soal kenapa dia ikut mendampingi orang lain]',en:'[One sentence on why they started helping others]'}}
+ {sample:true,name:'[Nama]',kg:12,photo:'',quote:{id:'[Satu kalimat soal kenapa dia ikut mendampingi orang lain]',en:'[One sentence on why they started helping others]'}},
+ {sample:true,name:'[Nama]',kg:9,photo:'',quote:{id:'[Satu kalimat soal kenapa dia ikut mendampingi orang lain]',en:'[One sentence on why they started helping others]'}},
+ {sample:true,name:'[Nama]',kg:14,photo:'',quote:{id:'[Satu kalimat soal kenapa dia ikut mendampingi orang lain]',en:'[One sentence on why they started helping others]'}}
 ];
 
 const RM=matchMedia('(prefers-reduced-motion: reduce)').matches;
@@ -443,11 +448,16 @@ function panel(side,src,label,alt){
   ?`<div class="ph ${cls}"><img src="${esc(src)}" alt="${esc(alt)}" loading="lazy" draggable="false"></div>`
   :`<div class="ph ${cls} empty ${side}">${SIL}<small>${esc(label)}</small></div>`;
 }
-function num(v,cls,pre){return `<span class="num ${cls||''}">${pre||''}<b class="cu" data-to="${v}">${firstPaint&&ZERO?0:v}</b></span>`}
+const fmt=(v,d)=>{const x=Number(v).toFixed(d||0);return lang==='id'?x.replace('.',','):x};
+function cu(v,dec){return `<b class="cu" data-to="${v}" data-dec="${dec||0}">${fmt(firstPaint&&ZERO?0:v,dec)}</b>`}
 
+function metric(m,t){
+ const val=m.range
+  ?`<span class="num">${cu(m.range[0],m.dec)} → ${cu(m.range[1],m.dec)}</span>`
+  :`<span class="num${m.k?' k':''}">${m.pre||''}${cu(m.v,m.dec)}${m.suf||''}</span>`;
+ return `<div${m.wide?' class="wide"':''}>${val}<small>${t[m.u]}</small></div>`;
+}
 function caseCard(c,t){
- const stats=[`<div>${num(c.kg,'k','−')}<small>${t.kg}</small></div>`,`<div>${num(c.days)}<small>${t.days}</small></div>`];
- if(c.cm) stats.push(`<div>${num(c.cm,'','−')}<small>${t.cm}</small></div>`);
  const beforeLabel=c.sample?t.phBefore:t.phSoon;
  return `<article class="rc${c.sample?' is-sample':''}">
   <div class="cmp" style="--p:50">
@@ -457,7 +467,7 @@ function caseCard(c,t){
   </div>
   <div class="body">
    <div class="top"><span class="name">${esc(c.name)}</span><span class="tag${c.sample?' sample':''}">${c.sample?t.sample:t.tagCoach}</span></div>
-   <div class="nums">${stats.join('')}</div>
+   <div class="nums">${c.m.map(m=>metric(m,t)).join('')}</div>
    <blockquote>${esc(c.quote[lang])}</blockquote>
   </div></article>`;
 }
@@ -465,7 +475,7 @@ function teamCard(c,t){
  const av=c.photo?`<img src="${esc(c.photo)}" alt="${esc(c.name)}" loading="lazy">`:SIL;
  return `<article class="pc${c.sample?' is-sample':''}">
   <div class="pt"><span class="av">${av}</span><div><div class="name">${esc(c.name)}</div><div class="small">${t.teamLine}</div></div></div>
-  <div class="pk">${num(c.kg,'k','−')}<small>${t.kg} · ${c.days} ${t.days}</small></div>
+  <div class="pk"><span class="num k">−${cu(c.kg,0)}</span><small>${t.mKg}</small></div>
   <blockquote>${esc(c.quote[lang])}</blockquote>
   ${c.sample?`<div><span class="tag sample">${t.sample}</span></div>`:''}
  </article>`;
@@ -505,9 +515,9 @@ document.addEventListener('keydown',e=>{
 
 /* ---- count up, once, when a card is first seen ---- */
 function countUp(el){
- const to=+el.dataset.to;if(RM){el.textContent=to;return}
- const t0=performance.now(),d=900;
- (function f(n){const k=Math.min(1,(n-t0)/d);el.textContent=Math.round(to*(1-Math.pow(1-k,3)));if(k<1)requestAnimationFrame(f)})(t0);
+ const to=+el.dataset.to,d=+el.dataset.dec||0;if(RM){el.textContent=fmt(to,d);return}
+ const t0=performance.now(),dur=900;
+ (function f(n){const k=Math.min(1,(n-t0)/dur);el.textContent=fmt(to*(1-Math.pow(1-k,3)),d);if(k<1)requestAnimationFrame(f)})(t0);
 }
 function armCards(){
  const io=new IntersectionObserver(es=>es.forEach(e=>{
@@ -551,10 +561,9 @@ function render(){
  document.querySelectorAll('.js-test').forEach(a=>a.href='../test/'+suffix);
 
  /* first story, from the coach settings in assets/site.js */
- const st=document.getElementById('coachStat');st.hidden=!c.stat;
- if(c.stat){document.getElementById('statV').textContent=c.stat.value;document.getElementById('statL').textContent=c.stat[lang]||''}
+ document.getElementById('statV').textContent=t.statV;document.getElementById('statL').textContent=t.statL;
  document.getElementById('avatar').innerHTML=c.photo?`<img src="/images/${c.photo}" alt="${esc(c.name)}" width="260" height="325" loading="lazy">`:'';
- document.getElementById('coachStory').textContent=c.story?c.story[lang]:'';
+ document.getElementById('coachStory').textContent=t.story;
  document.getElementById('coachWho').textContent=`${c.name} · ${c.city||''}`;
  document.getElementById('waBtn').href=`https://wa.me/${c.wa}?text=${encodeURIComponent(t.waMsg(c.name))}`;
 
