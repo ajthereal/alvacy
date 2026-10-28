@@ -51,6 +51,11 @@
    lighter field, mid-blue buttons, deep blue only for headlines. */
 :root{--head:#1E3A8A;--ink:#2B3A5E;--accent:#2F55D4;--accent-soft:#EAF0FF;--cta:#2F55D4;--cta-hover:#2547B8;--cta-ink:#FFFFFF;
   --sky:#E8F0FD;--sky-line:#D6E3FA;--cloud:#F2F6FE;--cloud-line:#E0E9FA;--lift:0 2px 16px rgba(47,85,212,.08)}
+/* orange stays as the brand accent: buttons, one highlighted phrase in the hero, the carousel progress bar */
+.btn.primary{background:#F97316;color:#172554;box-shadow:0 6px 18px rgba(249,115,22,.28)}
+.btn.primary:hover{background:#FB8B33}
+.hero h1 em{font-style:normal;color:var(--hl)}
+.prog i{background:var(--d-orange)}
 section{padding-block:clamp(56px,10vw,112px)}
 #hasil,#tim{scroll-margin-top:40px}
 .head{display:grid;gap:14px;max-width:720px;margin:0 auto clamp(28px,5vw,48px);text-align:center;justify-items:center}
@@ -205,7 +210,7 @@ blockquote{margin:0;font-size:.95rem;line-height:1.5;color:var(--ink)}
 <main>
 <div class="hero-wrap"><div class="hero">
   <p class="kicker tag-k">#transformwithST</p>
-  <h1 data-i18n="h1">Mereka mulai dari titik yang sama kayak kamu.</h1>
+  <h1 data-i18n="h1">Mereka mulai dari titik yang <em>sama kayak kamu.</em></h1>
   <p class="lede" data-i18n="lede">Foto sebelum dan sesudah dari orang-orang yang kami temani, lengkap dengan angka dan cerita mereka sendiri.</p>
   <div class="ctas">
     <a class="btn primary" href="#hasil" data-i18n="ctaSee">Lihat hasilnya</a>
@@ -343,7 +348,7 @@ blockquote{margin:0;font-size:.95rem;line-height:1.5;color:var(--ink)}
 const T={
  id:{
   navRes:'Hasil',navPath:'Perjalanan',navTest:'Cek umur badan',navHome:'Beranda',navTools:'Tools',navPriv:'Kebijakan Privasi',
-  h1:'Mereka mulai dari titik yang sama kayak kamu.',
+  h1:'Mereka mulai dari titik yang <em>sama kayak kamu.</em>',
   lede:'Foto sebelum dan sesudah dari orang-orang yang kami temani, lengkap dengan angka dan cerita mereka sendiri.',
   ctaSee:'Lihat hasilnya',ctaTest:'Cek umur badan aku',
   m1:'Foto asli',m2:'Dengan izin tiap orang',m3:'Hasil beda-beda',
@@ -372,7 +377,7 @@ const T={
  },
  en:{
   navRes:'Results',navPath:'The path',navTest:'Check body age',navHome:'Home',navTools:'Tools',navPriv:'Privacy Policy',
-  h1:'They started from the same place you are.',
+  h1:'They started from the <em>same place you are.</em>',
   lede:'Before and after photos from people we walked with, along with their numbers and their own words.',
   ctaSee:'See the results',ctaTest:'Check my body age',
   m1:'Real photos',m2:'Shared with permission',m3:'Results vary',
