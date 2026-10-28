@@ -30,6 +30,7 @@ from playwright.sync_api import sync_playwright
 
 ROOT = Path(__file__).resolve().parent.parent
 SITE = 'https://alvacy.com'
+ASSET_V = '2'  # bump when share images or icons change, so WhatsApp and browsers fetch the new ones
 
 PAGES = [
     {
@@ -148,9 +149,9 @@ def head_block(page, lang, faq):
         f'<link rel="alternate" hreflang="id" href="{url("id", p)}">',
         f'<link rel="alternate" hreflang="en" href="{url("en", p)}">',
         f'<link rel="alternate" hreflang="x-default" href="{url("id", p)}">',
-        '<link rel="icon" href="/images/icon.svg" type="image/svg+xml">',
-        '<link rel="icon" href="/images/icon-192.png" sizes="192x192" type="image/png">',
-        '<link rel="apple-touch-icon" href="/images/apple-touch-icon.png">',
+        f'<link rel="icon" href="/images/icon.svg?v={ASSET_V}" type="image/svg+xml">',
+        f'<link rel="icon" href="/images/icon-192.png?v={ASSET_V}" sizes="192x192" type="image/png">',
+        f'<link rel="apple-touch-icon" href="/images/apple-touch-icon.png?v={ASSET_V}">',
         '<meta name="theme-color" content="#1E3A8A">',
         *(['<meta name="robots" content="noindex, nofollow">'] if page.get('noindex') else []),
         '<meta property="og:type" content="website">',
@@ -158,7 +159,7 @@ def head_block(page, lang, faq):
         f'<meta property="og:title" content="{e(t["title"])}">',
         f'<meta property="og:description" content="{e(t["desc"])}">',
         f'<meta property="og:url" content="{url(lang, p)}">',
-        f'<meta property="og:image" content="{SITE}/images/{page.get("og", "og")}-{lang}.png">',
+        f'<meta property="og:image" content="{SITE}/images/{page.get("og", "og")}-{lang}.png?v={ASSET_V}">',
         '<meta property="og:image:width" content="1200">',
         '<meta property="og:image:height" content="630">',
         f'<meta property="og:locale" content="{LOCALE[lang]}">',
@@ -215,7 +216,7 @@ COACH_LINK = """<!doctype html>
 <meta property="og:type" content="website">
 <meta property="og:title" content="Cek umur badan kamu bareng {name}">
 <meta property="og:description" content="30-an pertanyaan, 3 menit, gratis. Hasilnya dijelaskan langsung oleh {name}.">
-<meta property="og:image" content="https://alvacy.com/images/og-id.png">
+<meta property="og:image" content="https://alvacy.com/images/og-id.png?v={ASSET_V}">
 <meta name="twitter:card" content="summary_large_image">
 <style>body{{margin:0;background:#F4F8FE;font-family:system-ui,sans-serif;color:#2B3A5E;display:grid;place-items:center;min-height:100vh}}a{{color:#2F55D4}}</style>
 <script>
@@ -268,7 +269,7 @@ def write_coach_links():
             raise SystemExit(f"Coach code '{code}' clashes with a page or folder; pick another code in assets/site.js")
         d = ROOT / code
         d.mkdir(exist_ok=True)
-        (d / 'index.html').write_text(COACH_LINK.format(code=code, name=name), encoding='utf-8')
+        (d / 'index.html').write_text(COACH_LINK.format(code=code, name=name, ASSET_V=ASSET_V), encoding='utf-8')
         print(f'  https://alvacy.com/{code}/  ->  Body Age test, coach {name}')
     taken = {c for c, _ in static}
     for c in extra_coaches():
@@ -278,7 +279,7 @@ def write_coach_links():
             continue
         d = ROOT / code
         d.mkdir(exist_ok=True)
-        (d / 'index.html').write_text(COACH_LINK.format(code=code, name=name), encoding='utf-8')
+        (d / 'index.html').write_text(COACH_LINK.format(code=code, name=name, ASSET_V=ASSET_V), encoding='utf-8')
         print(f'  https://alvacy.com/{code}/  ->  Body Age test, coach {name} (joined via /join)')
 
 
@@ -361,44 +362,47 @@ def write_robots():
 
 ICON_SVG = """<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
 <rect width="64" height="64" rx="14" fill="#1E3A8A"/>
-<path d="M26 14 21 50M43 14 38 50" fill="none" stroke="#fff" stroke-width="6" stroke-linecap="round"/>
-<path d="M14 26h38" stroke="#fff" stroke-width="6" stroke-linecap="round"/>
-<path d="M12 39h38" stroke="#F97316" stroke-width="6" stroke-linecap="round"/>
+<path d="M11 34.25H17.71Q17.85 35.69 18.7 36.44Q19.55 37.2 20.91 37.2Q22.31 37.2 23.12 36.55Q23.93 35.91 23.93 34.77Q23.93 33.81 23.29 33.18Q22.64 32.56 21.7 32.15Q20.76 31.74 19.03 31.23Q16.53 30.46 14.94 29.68Q13.36 28.91 12.22 27.4Q11.07 25.89 11.07 23.46Q11.07 19.84 13.69 17.8Q16.31 15.76 20.51 15.76Q24.78 15.76 27.39 17.8Q30.01 19.84 30.19 23.49H23.38Q23.31 22.24 22.46 21.52Q21.61 20.8 20.28 20.8Q19.14 20.8 18.44 21.41Q17.74 22.02 17.74 23.16Q17.74 24.41 18.92 25.11Q20.1 25.81 22.61 26.62Q25.11 27.47 26.68 28.24Q28.24 29.02 29.38 30.49Q30.53 31.97 30.53 34.29Q30.53 36.5 29.4 38.3Q28.28 40.11 26.14 41.18Q24.01 42.24 21.09 42.24Q18.26 42.24 16.01 41.32Q13.76 40.4 12.42 38.6Q11.07 36.79 11 34.25ZM53 16.12V21.17H46.15V41.99H39.85V21.17H32.99V16.12Z" fill="#fff"/>
+<rect x="11" y="47.5" width="42" height="5.5" rx="2.75" fill="#F97316"/>
 </svg>"""
 
 OG_HTML = """<!doctype html><html><head><meta charset="utf-8"><style>
 *{margin:0;box-sizing:border-box}
-body{width:1200px;height:630px;background:#1E3A8A;color:#fff;font-family:'Plus Jakarta Sans','Segoe UI',Helvetica,Arial,sans-serif;
-display:grid;grid-template-columns:1fr 330px;gap:56px;align-items:center;padding:72px 80px;overflow:hidden;position:relative}
-body:after{content:"";position:absolute;right:-140px;bottom:-200px;width:520px;height:520px;border-radius:50%;background:rgba(255,255,255,.06)}
-.brand{display:flex;align-items:center;gap:14px;font-weight:800;font-size:34px;letter-spacing:-.01em}
-.brand svg{width:48px;height:48px}
-h1{font-size:64px;line-height:1.08;font-weight:800;letter-spacing:-.02em;margin:34px 0 26px}
-h1 em{font-style:normal;color:#FDBA74}
-p{font-size:28px;opacity:.88;line-height:1.35}
-.pill{display:inline-block;margin-top:34px;background:#F97316;color:#172554;font-weight:800;font-size:26px;padding:14px 26px;border-radius:999px}
-.ph{position:relative;z-index:1}
-.ph img{width:330px;height:330px;border-radius:36px;object-fit:cover;border:6px solid rgba(255,255,255,.18)}
-.ph span{display:block;text-align:center;margin:16px -60px 0;white-space:nowrap;font-size:21px;opacity:.85}
+body{width:1200px;height:630px;background:#172554;color:#fff;font-family:'Plus Jakarta Sans','Poppins','Segoe UI',Helvetica,Arial,sans-serif;overflow:hidden;position:relative;display:flex}
+.p{position:relative;height:630px;overflow:hidden}
+.p img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.b{width:470px}
+.b img{object-position:50% 20%;filter:saturate(.55) contrast(.95) brightness(.92)}
+.a{width:730px}
+.a img{object-position:50% 0}
+.a:after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(23,37,84,0) 38%,rgba(23,37,84,.92) 100%)}
+.b:after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(23,37,84,.35) 0%,rgba(23,37,84,0) 28%,rgba(23,37,84,0) 72%,rgba(23,37,84,.96) 100%)}
+.tag{position:absolute;z-index:2;font-weight:800;font-size:22px;letter-spacing:.14em;text-transform:uppercase;padding:9px 18px;border-radius:999px}
+.b .tag{left:32px;bottom:34px;background:rgba(255,255,255,.92);color:#172554}
+.a .tag{right:36px;top:34px;background:#F97316;color:#fff}
+.brand{position:absolute;z-index:2;left:32px;top:30px;font-weight:800;font-size:28px;letter-spacing:-.01em;text-shadow:0 2px 12px rgba(0,0,0,.45)}
+.stat{position:absolute;z-index:2;left:60px;right:40px;bottom:36px}
+.stat b{display:block;font-size:150px;line-height:.95;font-weight:800;letter-spacing:-.04em}
+.stat b i{font-style:normal;color:#FDBA74;margin-right:6px}
+.stat span{display:block;margin-top:12px;font-size:33px;font-weight:600;opacity:.95}
+.arrow{position:absolute;z-index:3;left:470px;top:315px;width:84px;height:84px;margin:-42px 0 0 -42px;border-radius:50%;background:#F97316;border:6px solid #172554;display:grid;place-items:center}
+.arrow svg{width:40px;height:40px}
 </style></head><body>
-<div><div class="brand">{icon}{brand}</div><h1>{h1}</h1><p>{p}</p><span class="pill">{cta}</span></div>
-<div class="ph"><img src="{photo}"><span>{who}</span></div>
+<div class="p b"><img src="{before}"><div class="brand">{brand}</div><span class="tag">{tb}</span></div>
+<div class="p a"><img src="{after}"><span class="tag">{ta}</span><div class="stat"><b><i>&minus;</i>{kg}<small style="font-size:.5em;letter-spacing:-.01em"> kg</small></b><span>{line}</span></div></div>
+<div class="arrow"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="3.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></div>
 </body></html>"""
 
 OG_TEXT = {
-    'id': {'h1': 'Berapa umur badan kamu <em>sebenarnya?</em>',
-           'p': 'Buat kamu yang 35+ dan super sibuk. Cek gratis, cuma 3 menit.',
-           'cta': 'alvacy.com', 'who': 'Coach AJ · turun 18 kg'},
-    'en': {'h1': 'How old is your body, <em>really?</em>',
-           'p': 'For busy professionals 35+. Free check, just 3 minutes.',
-           'cta': 'alvacy.com/en', 'who': 'Coach AJ · lost 18 kg'},
-    # #transformwithST share cards: their own brand
-    'transform-id': {'brand': '#transformwithST', 'h1': 'Mereka mulai dari titik yang <em>sama kayak kamu.</em>',
-                     'p': 'Foto sebelum dan sesudah, lengkap dengan angka dan cerita mereka.',
-                     'cta': 'Lihat hasilnya', 'who': 'AJ Jonathan Ong · turun 18 kg'},
-    'transform-en': {'brand': '#transformwithST', 'h1': 'They started from the <em>same place you are.</em>',
-                     'p': 'Before and after photos, with their numbers and their own words.',
-                     'cta': 'See the results', 'who': 'AJ Jonathan Ong · lost 18 kg'},
+    'id': {'brand': '#transformwithST', 'kg': '18', 'tb': 'Sebelum', 'ta': 'Sesudah',
+           'line': 'dalam 90 hari, bareng coach'},
+    'en': {'brand': '#transformwithST', 'kg': '18', 'tb': 'Before', 'ta': 'After',
+           'line': 'in 90 days, with a coach'},
+    # #transformwithST share cards: results page
+    'transform-id': {'brand': '#transformwithST', 'kg': '18', 'tb': 'Sebelum', 'ta': 'Sesudah',
+                     'line': 'dalam 90 hari, hasil nyata'},
+    'transform-en': {'brand': '#transformwithST', 'kg': '18', 'tb': 'Before', 'ta': 'After',
+                     'line': 'in 90 days, real results'},
 }
 
 
@@ -406,7 +410,6 @@ def build_images():
     from PIL import Image
     img = ROOT / 'images'
     (img / 'icon.svg').write_text(ICON_SVG, encoding='utf-8')
-    photo = 'coach-aj.jpg'
     card = img / '_og-card.html'
     with sync_playwright() as p:
         b = p.chromium.launch()
@@ -415,12 +418,12 @@ def build_images():
         pg.screenshot(path=str(img / 'icon-512.png'), omit_background=True)
         for lang, t in OG_TEXT.items():
             pg = b.new_page(viewport={'width': 1200, 'height': 630})
-            card.write_text(OG_HTML.replace('{icon}', '')
-                            .replace('{brand}', t.get('brand', '#transformwithST')).replace('{photo}', photo)
-                            .replace('{h1}', t['h1']).replace('{p}', t['p']).replace('{cta}', t['cta'])
-                            .replace('{who}', t['who']), encoding='utf-8')
+            html_ = OG_HTML
+            for k, v in {**t, 'before': 'results/aj-before.jpg', 'after': 'results/aj-after.jpg'}.items():
+                html_ = html_.replace('{' + k + '}', v)
+            card.write_text(html_, encoding='utf-8')
             pg.goto(card.resolve().as_uri())
-            pg.wait_for_timeout(200)
+            pg.wait_for_timeout(400)
             pg.screenshot(path=str(img / f'og-{lang}.png'))
         b.close()
     card.unlink()
