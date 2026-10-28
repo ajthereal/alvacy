@@ -9,7 +9,7 @@ window.ALV = (function () {
      and a story. Leave it out and that block is hidden. If photo is empty, the coach's own "after" photo is used.
      See COACHES.md for the whole checklist. */
   const COACHES = {
-    aj: { name: 'Coach AJ', wa: '628170241185', pretty: '+62 817 0241 185', city: 'Jakarta', photo: 'coach-aj.jpg', face: 'coach-aj-face.jpg', booking: '',
+    aj: { name: 'Coach AJ', wa: '628170241185', pretty: '+62 817 0241 185', city: '', photo: 'coach-aj.jpg', face: 'coach-aj-face.jpg', booking: '',
       palette: 'sky',
       transform: {
         proof: { value: '−18 kg', id: 'bareng istri, tanpa berhenti kerja', en: 'with my wife, without stepping away from work' },

@@ -15,9 +15,19 @@ const SRC_COL = 26;
 const SRC_HEADERS = ['Sumber','Campaign','Konten iklan','Halaman masuk'];
 const SRC_KEYS = ['src','campaign','content','landing'];
 
-/* Who gets an email when a new lead arrives, by coach name shown on the site. */
+/* Who gets an email when a new lead arrives, by coach name shown on the site (COACHES[...].name in assets/site.js).
+   Coaches' own addresses are NOT kept here, because this file is in a public repo. Put them in the Sheet's Apps Script:
+   Project Settings -> Script properties -> add COACH_EMAILS with a value like
+   {"dr. Nova":"name@example.com","Coach Lala":"lala@example.com"}
+   AJ gets a copy of every coach's alert (cc). Coaches without an entry go to DEFAULT_EMAIL only. */
 const COACH_EMAILS = { 'Coach AJ': 'aj.thereal@gmail.com' };
 const DEFAULT_EMAIL = 'aj.thereal@gmail.com';
+
+function coachEmails_() {
+  let extra = {};
+  try { extra = JSON.parse(PropertiesService.getScriptProperties().getProperty('COACH_EMAILS') || '{}'); } catch (err) {}
+  return Object.assign({}, COACH_EMAILS, extra);
+}
 
 function clean_(v) {
   if (v === null || v === undefined) return '';
@@ -74,10 +84,10 @@ function doPost(e) {
 }
 
 function notify_(d) {
-  const to = COACH_EMAILS[d.coach] || DEFAULT_EMAIL;
+  const to = coachEmails_()[d.coach] || DEFAULT_EMAIL;
   const wa = String(d.wa || '').replace(/\D/g, '');
   const body = [
-    'Lead baru dari Body Age Assessment',
+    'Lead baru dari Body Age Assessment (coach: ' + (d.coach || '-') + ')',
     '',
     'Nama: ' + d.name,
     'WhatsApp: +' + wa + '  ->  https://wa.me/' + wa,
@@ -94,7 +104,9 @@ function notify_(d) {
     '',
     'Sheet: ' + SpreadsheetApp.getActiveSpreadsheet().getUrl()
   ].join('\n');
-  try { MailApp.sendEmail(to, 'Lead baru: ' + d.name + ' (' + d.total + '/100)', body); } catch (err) {}
+  const mail = { to: to, subject: 'Lead baru: ' + d.name + ' (' + d.total + '/100)', body: body };
+  if (to !== DEFAULT_EMAIL) mail.cc = DEFAULT_EMAIL;
+  try { MailApp.sendEmail(mail); } catch (err) {}
 }
 
 function doGet() {
