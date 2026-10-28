@@ -66,9 +66,9 @@ PAGES = [
         'path': 'transform/', 'kind': 'results', 'brand': '#transformwithST', 'noindex': True,
         'og': 'og-transform',
         'id': {'title': '#transformwithST · Hasil Nyata Sebelum dan Sesudah',
-               'desc': 'Foto sebelum dan sesudah dari orang-orang yang menjalani program 90 hari, lengkap dengan angka dan cerita mereka sendiri.'},
+               'desc': 'Foto sebelum dan sesudah para coach #transformwithST, lengkap dengan angka dan cerita mereka sendiri.'},
         'en': {'title': '#transformwithST · Real Before and After Results',
-               'desc': 'Before and after photos from people who did the 90-day program, with their numbers and their own words.'},
+               'desc': 'Before and after photos of the #transformwithST coaches, with their numbers and their own words.'},
     },
     {
         'path': 'privacy/', 'kind': 'privacy',
