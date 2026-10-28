@@ -14,6 +14,9 @@ window.ALV = (function () {
   /* Meta Pixel: paste the Pixel ID from Meta Events Manager here. Empty = no tracking loads. */
   const PIXEL_ID = '';
 
+  /* GoatCounter visitor stats (dashboard: https://alvacy.goatcounter.com). Empty = no stats load. */
+  const GOATCOUNTER = 'alvacy';
+
   function coachCode() {
     const h = (location.hash || '').slice(1).toLowerCase();
     if (COACHES[h]) { try { localStorage.setItem('alv-coach', h); } catch (e) {} return h; }
@@ -63,6 +66,15 @@ window.ALV = (function () {
     return stored || { source: 'langsung', medium: '', campaign: '', content: '', landing: '' };
   }
   const SOURCE = captureSource();
+
+  /* GoatCounter: counts page views, referrers and utm_* campaigns. No cookies. */
+  if (GOATCOUNTER && /(^|\.)alvacy\.com$/.test(location.hostname)) {
+    const gc = document.createElement('script');
+    gc.async = true;
+    gc.src = 'https://gc.zgo.at/count.js';
+    gc.setAttribute('data-goatcounter', 'https://' + GOATCOUNTER + '.goatcounter.com/count');
+    document.head.appendChild(gc);
+  }
 
   /* Meta Pixel loader + a tiny track() helper that is safe to call when the Pixel is off. */
   if (PIXEL_ID) {

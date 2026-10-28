@@ -12,9 +12,10 @@
    tags the visit as coming from Threads (unless the link carries utm_*), then opens the Body Age test. */
 (function(){
   var q = location.search;
+  if (!/utm_/.test(q)) q = (q ? q + '&' : '?') + 'utm_source=threads&utm_medium=bio&utm_content=body-age';
   try {
     localStorage.setItem('alv-coach', 'aj');
-    if (!/utm_/.test(q)) localStorage.setItem('alv-src', JSON.stringify({source:'threads', medium:'bio', campaign:'', content:'body-age', landing:'/body-age'}));
+    if (!/utm_/.test(location.search)) localStorage.setItem('alv-src', JSON.stringify({source:'threads', medium:'bio', campaign:'', content:'body-age', landing:'/body-age'}));
   } catch (e) {}
   location.replace('../test/' + q + '#aj');
 })();
