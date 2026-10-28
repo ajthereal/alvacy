@@ -132,9 +132,18 @@ section{padding-block:clamp(56px,10vw,112px)}
 .hero .meta{display:flex;flex-wrap:wrap;justify-content:center;gap:6px 18px;font-size:.85rem;color:var(--muted)}
 .hero .meta span{display:inline-flex;align-items:center;gap:6px}
 .hero .meta span::before{content:"";width:6px;height:6px;border-radius:99px;background:var(--d-teal)}
-.device{margin-top:clamp(20px,4vw,40px);width:min(100%,380px);background:var(--surface);border:1px solid var(--sky-line);border-bottom:0;
+.device{margin-top:clamp(20px,4vw,40px);width:min(100%,430px);background:var(--surface);border:1px solid var(--sky-line);border-bottom:0;
   border-radius:40px 40px 0 0;box-shadow:var(--lift-img),inset 0 0 24px var(--surface);padding:26px 24px 28px;display:grid;gap:16px;text-align:left}
-.device .top{display:flex;justify-content:space-between;align-items:center}
+.device .top{display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap}
+.device .who{font-size:.75rem;font-weight:600;color:var(--head);background:var(--cloud);border:1px solid var(--cloud-line);border-radius:99px;padding:4px 10px}
+.score p.verdict{font-size:.92rem;font-weight:600;color:var(--head);line-height:1.35;margin-top:2px}
+.ideals{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px}
+.ibx{display:grid;gap:3px;padding:10px 10px 9px;border-radius:14px;background:var(--cloud);border:1px solid var(--cloud-line)}
+.ibx span{font-size:.66rem;font-weight:700;letter-spacing:.05em;text-transform:uppercase;color:var(--muted)}
+.ibx b{font-family:var(--f-mono);font-weight:500;font-size:.98rem;color:var(--head);letter-spacing:-.03em;white-space:nowrap}
+.ibx b small{font-size:.62rem;color:var(--muted);letter-spacing:0}
+.ibx b i{font-style:normal;color:var(--d-orange)}
+@media (max-width:420px){.ibx b{font-size:.86rem}.ibx{padding:9px 8px}}
 .device .label{font-size:.72rem;letter-spacing:.12em;text-transform:uppercase;font-weight:700;color:var(--muted)}
 .score{display:grid;grid-template-columns:auto minmax(0,1fr);gap:18px;align-items:center}
 .score svg{width:112px;height:112px;display:block}
@@ -146,8 +155,8 @@ section{padding-block:clamp(56px,10vw,112px)}
 .sig .bar i{display:block;height:100%;border-radius:99px;background:var(--d-teal);transform-origin:left;transition:transform 1.2s var(--ease)}
 .sig .bar i.w{background:var(--d-orange)}
 .sig b{text-align:right;font-family:var(--f-mono);font-weight:500;color:var(--muted)}
-.ring{stroke-dasharray:var(--len) 302;transition:stroke-dashoffset 1.6s var(--ease)}
-.js .device:not(.in) .ring{stroke-dashoffset:var(--len)}
+.ring{stroke-dasharray:100;stroke-dashoffset:calc(100 - var(--v));transition:stroke-dashoffset 1.6s var(--ease)}
+.js .device:not(.in) .ring{stroke-dashoffset:100}
 .js .device:not(.in) .sig .bar i{transform:scaleX(0)}
 @media (prefers-reduced-motion:reduce){ .js .device:not(.in) .ring{stroke-dashoffset:0} .js .device:not(.in) .sig .bar i{transform:none} }
 .device .foot{font-size:.76rem;color:var(--muted);border-top:1px solid var(--line);padding-top:12px}
@@ -252,10 +261,18 @@ a.rung:hover{transform:translateY(-3px);border-color:var(--accent)}
   </div>
   <div class="meta"><span data-i18n="m1">Free</span><span data-i18n="m2">Just 3 minutes</span><span data-i18n="m3">English &amp; Indonesian</span></div>
   <div class="device reveal in" aria-hidden="true">
-    <div class="top"><span class="label" data-i18n="sigLbl">Sample result</span></div>
+    <div class="top"><span class="label" data-i18n="sigLbl">Sample report</span><span class="who" data-i18n="sigWho">Male · 42 yrs · 170 cm · 80 kg</span></div>
     <div class="score">
-      <svg viewBox="0 0 112 112"><circle cx="56" cy="56" r="48" fill="none" stroke="var(--d-track)" stroke-width="10"></circle><circle class="ring" style="--len:217" cx="56" cy="56" r="48" fill="none" stroke="var(--d-teal)" stroke-width="10" stroke-linecap="round" transform="rotate(-90 56 56)"></circle></svg>
-      <div><div class="big">72<small> / 100</small></div><p data-i18n="sigFoot">These are signals, not a diagnosis. The point: know where to start.</p></div>
+      <svg viewBox="0 0 112 112"><circle cx="56" cy="56" r="48" fill="none" stroke="var(--d-track)" stroke-width="10"></circle><circle class="ring" pathLength="100" style="--v:67" cx="56" cy="56" r="48" fill="none" stroke="var(--d-teal)" stroke-width="10" stroke-linecap="round" transform="rotate(-90 56 56)"></circle></svg>
+      <div><div class="big">67<small> / 100</small></div><p class="verdict" data-i18n="sigVerdict">A few small signals. Your body age is likely older than your age.</p></div>
+    </div>
+    <div class="ideals">
+      <div class="ibx"><span data-i18n="iWeight">Ideal weight</span><b>53–66<small> kg</small></b></div>
+      <div class="ibx"><span data-i18n="iWaist">Waist</span><b>&lt; 85<small> cm</small></b></div>
+      <div class="ibx"><span data-i18n="iProt">Protein</span><b>105–130<small> g</small></b></div>
+      <div class="ibx"><span data-i18n="iCal">Calories</span><b>±2.000<small> kkal</small></b></div>
+      <div class="ibx"><span data-i18n="iFat">Body fat</span><b>12–22<small>%</small></b></div>
+      <div class="ibx"><span data-i18n="iVis">Visceral</span><b>&lt; 8<small> lv</small></b></div>
     </div>
     <div class="sig"><span data-i18n="s_food">Eating</span><span class="bar"><i class="w" style="width:48%"></i></span><b>48</b></div>
     <div class="sig"><span data-i18n="s_energy">Energy</span><span class="bar"><i style="width:70%"></i></span><b>70</b></div>
@@ -440,7 +457,7 @@ const T={
   lede:'Meeting dari pagi, client dinner, tidur kurang. Wajar kalau badan ikut berubah. Mulai dari yang simpel dulu: cek umur badan kamu, terus ambil langkah yang beneran muat di schedule kamu.',
   ctaTest:'Cek umur badan aku',ctaFree:'Lihat tools gratis',ctaRes:'Lihat hasil para coach',resMore:'Lihat semua hasil dan cerita tim →',
   m1:'Gratis',m2:'Cuma 3 menit',m3:'Bahasa & English',
-  sigLbl:'Contoh hasil',s_food:'Pola makan',s_energy:'Energi',s_sleep:'Tidur & stres',s_move:'Gerak & otot',s_trend:'Tren badan',
+  sigLbl:'Contoh laporan',sigWho:'Pria · 42 th · 170 cm · 80 kg',sigVerdict:'Ada sinyal kecil. Umur badan kemungkinan lebih tua dari umur kamu.',iWeight:'Berat ideal',iWaist:'Lingkar perut',iProt:'Protein',iCal:'Kalori',iFat:'Lemak tubuh',iVis:'Visceral',s_food:'Pola makan',s_energy:'Energi',s_sleep:'Tidur & stres',s_move:'Gerak & otot',s_trend:'Tren badan',
   sigFoot:'Ini sinyal, bukan diagnosis. Gunanya biar kamu tahu mulai dari mana.',
   painK:'Relate nggak?',painH:'Niat kamu nggak berubah. Keadaannya yang beda.',
   p1q:'Makan segini-gini aja, kok perut makin maju?',p1:'Lewat 35, otot pelan-pelan berkurang kalau nggak dilatih. Otot itu mesin pembakar kamu. Mesinnya mengecil, porsinya tetap.',
@@ -482,7 +499,7 @@ const T={
   lede:'Packed schedule, eating out, short sleep. Start small here: check your body signals, then take steps that fit your calendar.',
   ctaTest:'Check my body age',ctaFree:'See free tools',ctaRes:'See the coaches’ results',resMore:'See all results and the team’s stories →',
   m1:'Free',m2:'Just 3 minutes',m3:'English & Indonesian',
-  sigLbl:'Sample result',s_food:'Eating',s_energy:'Energy',s_sleep:'Sleep & stress',s_move:'Movement',s_trend:'Body trend',
+  sigLbl:'Sample report',sigWho:'Male · 42 yrs · 170 cm · 80 kg',sigVerdict:'A few small signals. Your body age is likely older than your age.',iWeight:'Ideal weight',iWaist:'Waist',iProt:'Protein',iCal:'Calories',iFat:'Body fat',iVis:'Visceral',s_food:'Eating',s_energy:'Energy',s_sleep:'Sleep & stress',s_move:'Movement',s_trend:'Body trend',
   sigFoot:'These are signals, not a diagnosis. The point: know where to start.',
   painK:'Sound familiar?',painH:'Your willpower didn’t change. Your situation did.',
   p1q:'I eat the same as before, so why is my belly growing?',p1:'After 35, muscle tends to decline unless trained, and your energy needs shift with it.',
