@@ -182,13 +182,14 @@ window.ALVResults = (function () {
   }
   function ordered() {
     if (!base) base = ZERO ? shuffled() : CASES.slice();   /* the search build keeps the written order */
-    const code = window.ALV && ALV.hasCoach() ? ALV.coachCode() : null;
+    /* no coach link at all: Coach AJ's card leads, the rest follow in random order */
+    const code = window.ALV && ALV.hasCoach() ? ALV.coachCode() : 'aj';
     return base.slice().sort((a, b) => (b.coach === code) - (a.coach === code) || 0);
   }
 
   function mount(el) {
     root = el;
-    root.innerHTML = `<div class="strip wrap reveal" hidden><div class="s"><span class="v" data-k="people"></span><span class="l" data-k="lp"></span></div><div class="s"><span class="v" data-k="kg"></span><span class="l" data-k="lk"></span></div></div>
+    root.innerHTML = `<div class="strip wrap" hidden><div class="s"><span class="v" data-k="people"></span><span class="l" data-k="lp"></span></div><div class="s"><span class="v" data-k="kg"></span><span class="l" data-k="lk"></span></div></div>
 <div class="stage"><div class="rail" tabindex="0"></div>
 <div class="railbar"><div class="prog"><i></i></div><div class="nav2"><button type="button" data-dir="-1" disabled>${CHEV('M15 6l-6 6 6 6')}</button><button type="button" data-dir="1">${CHEV('M9 6l6 6-6 6')}</button></div></div></div>`;
     strip = root.querySelector('.strip'); rail = root.querySelector('.rail'); bar = root.querySelector('.prog i');

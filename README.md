@@ -1,6 +1,6 @@
 # alvacy
 
-Website for Alvacy, served by GitHub Pages at https://alvacy.com
+Website for #transformwithST, served by GitHub Pages at https://alvacy.com
 
 - `index.html` — landing page. `test/` — Body Age Assessment (30-question quiz with lead form). `tools/` — Transform Toolkit (Padang, drink sugar, protein). `privacy/` — privacy policy.
 - Coach links: add `#code` (e.g. `#aj`) to any page; coaches are configured in `COACHES` in `assets/site.js`. `aj/` is the short link alvacy.com/aj. `body-age/` is a readable short link to `test/` for AJ's Threads bio (tags the visit as source threads, coach aj).

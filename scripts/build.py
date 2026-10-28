@@ -34,34 +34,34 @@ SITE = 'https://alvacy.com'
 PAGES = [
     {
         'path': '', 'kind': 'home',
-        'id': {'title': 'Alvacy · Cek Umur Badan Gratis & Program Sehat 90 Hari',
+        'id': {'title': '#transformwithST · Cek Umur Badan Gratis & Program Sehat 90 Hari',
                'desc': 'Buat kamu yang 35+ dan super sibuk: cek umur badan gratis, tools makan sehari-hari, dan program 90 hari bareng coach.'},
-        'en': {'title': 'Alvacy · Free Body Age Check & 90-Day Coaching',
+        'en': {'title': '#transformwithST · Free Body Age Check & 90-Day Coaching',
                'desc': 'For busy professionals 35+: a free body age check, everyday eating tools, and a 90-day program with a coach.'},
     },
     {
         'path': 'test/', 'kind': 'test',
-        'id': {'title': 'Cek Umur Badan Gratis, 3 Menit · Body Age Assessment · Alvacy',
+        'id': {'title': 'Cek Umur Badan Gratis, 3 Menit · Body Age Assessment · #transformwithST',
                'desc': 'Berapa umur badan kamu sebenarnya? 30 pertanyaan singkat, 3 menit, gratis. Lihat area mana yang paling nahan progress kamu.'},
-        'en': {'title': 'Free Body Age Assessment, 3 Minutes · Alvacy',
+        'en': {'title': 'Free Body Age Assessment, 3 Minutes · #transformwithST',
                'desc': 'How old is your body, really? 30 quick questions, 3 minutes, free. See which area is holding your progress back.'},
     },
     {
         'path': 'tools/', 'kind': 'tools',
-        'id': {'title': 'Kalkulator Kalori Nasi Padang, Gula Minuman & Protein · Alvacy',
+        'id': {'title': 'Kalkulator Kalori Nasi Padang, Gula Minuman & Protein · #transformwithST',
                'desc': 'Kalkulator gratis: hitung kalori nasi Padang dan pesan yang lebih ringan, audit gula dari minuman, dan target protein harian kamu.'},
-        'en': {'title': 'Nasi Padang Calorie Calculator, Drink Sugar & Protein · Alvacy',
+        'en': {'title': 'Nasi Padang Calorie Calculator, Drink Sugar & Protein · #transformwithST',
                'desc': 'Free calculators: count the calories in nasi Padang and order lighter, audit the sugar in your drinks, and find your daily protein target.'},
     },
     {
         'path': 'kalori/', 'kind': 'calc',
-        'id': {'title': 'Kalkulator Kalori Harian untuk Turun Berat Badan · Alvacy',
+        'id': {'title': 'Kalkulator Kalori Harian untuk Turun Berat Badan · #transformwithST',
                'desc': 'Hitung kebutuhan kalori harian, target protein, dan kapan kamu sampai berat target. Gratis, pace aman, pakai rumus Mifflin-St Jeor.'},
-        'en': {'title': 'Weight Loss Calorie Calculator & Goal Date · Alvacy',
+        'en': {'title': 'Weight Loss Calorie Calculator & Goal Date · #transformwithST',
                'desc': 'Work out your daily calories, protein target, and when you could reach your goal weight. Free, safe pace, Mifflin-St Jeor equation.'},
     },
     {
-        # Not branded Alvacy, not in the sitemap, and told to stay out of search until it holds real results.
+        # Not branded #transformwithST, not in the sitemap, and told to stay out of search until it holds real results.
         # Remove 'noindex' (and add a link from the home page) once real before/after photos are in place.
         'path': 'transform/', 'kind': 'results', 'brand': '#transformwithST', 'noindex': True,
         'og': 'og-transform',
@@ -72,10 +72,10 @@ PAGES = [
     },
     {
         'path': 'privacy/', 'kind': 'privacy',
-        'id': {'title': 'Kebijakan Privasi · Alvacy',
-               'desc': 'Bagaimana Alvacy mengumpulkan, memakai, dan menjaga data kamu.'},
-        'en': {'title': 'Privacy Policy · Alvacy',
-               'desc': 'How Alvacy collects, uses, and protects your data.'},
+        'id': {'title': 'Kebijakan Privasi · #transformwithST',
+               'desc': 'Bagaimana #transformwithST mengumpulkan, memakai, dan menjaga data kamu.'},
+        'en': {'title': 'Privacy Policy · #transformwithST',
+               'desc': 'How #transformwithST collects, uses, and protects your data.'},
     },
 ]
 
@@ -107,16 +107,16 @@ def schema(page, lang, faq):
     u = url(lang, page['path'])
     graph = []
     if page['kind'] == 'home':
-        graph.append({'@type': 'Organization', '@id': f'{SITE}/#org', 'name': 'Alvacy', 'url': f'{SITE}/',
+        graph.append({'@type': 'Organization', '@id': f'{SITE}/#org', 'name': '#transformwithST', 'url': f'{SITE}/',
                       'logo': f'{SITE}/images/icon-512.png'})
-        graph.append({'@type': 'WebSite', '@id': f'{SITE}/#website', 'name': 'Alvacy', 'url': f'{SITE}/',
+        graph.append({'@type': 'WebSite', '@id': f'{SITE}/#website', 'name': '#transformwithST', 'url': f'{SITE}/',
                       'inLanguage': ['id', 'en'], 'publisher': {'@id': f'{SITE}/#org'}})
     webpage = {'@type': 'WebPage', 'url': u, 'name': t['title'], 'description': t['desc'], 'inLanguage': lang}
-    if 'brand' not in page:  # pages with their own brand are not part of the Alvacy website entity
+    if 'brand' not in page:  # pages with their own brand are not part of the #transformwithST website entity
         webpage['isPartOf'] = {'@id': f'{SITE}/#website'}
     graph.append(webpage)
     if page['kind'] in ('tools', 'test', 'calc'):
-        name = {'tools': 'Transform Toolkit', 'test': 'Body Age Assessment', 'calc': 'Kalkulator Kalori Alvacy'}[page['kind']]
+        name = {'tools': 'Transform Toolkit', 'test': 'Body Age Assessment', 'calc': 'Kalkulator Kalori #transformwithST'}[page['kind']]
         graph.append({'@type': 'WebApplication', 'name': name, 'url': u, 'description': t['desc'],
                       'applicationCategory': 'HealthApplication', 'operatingSystem': 'Any', 'inLanguage': lang,
                       'isAccessibleForFree': True,
@@ -147,7 +147,7 @@ def head_block(page, lang, faq):
         '<meta name="theme-color" content="#1E3A8A">',
         *(['<meta name="robots" content="noindex, nofollow">'] if page.get('noindex') else []),
         '<meta property="og:type" content="website">',
-        f'<meta property="og:site_name" content="{e(page.get("brand", "Alvacy"))}">',
+        f'<meta property="og:site_name" content="{e(page.get("brand", "#transformwithST"))}">',
         f'<meta property="og:title" content="{e(t["title"])}">',
         f'<meta property="og:description" content="{e(t["desc"])}">',
         f'<meta property="og:url" content="{url(lang, p)}">',
@@ -328,10 +328,10 @@ def write_robots():
 
 ICON_SVG = """<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
 <rect width="64" height="64" rx="14" fill="#1E3A8A"/>
-<path d="M18 48 32 14l14 34" fill="none" stroke="#fff" stroke-width="7" stroke-linecap="round" stroke-linejoin="round"/>
-<path d="M23.5 36h17" stroke="#F97316" stroke-width="6" stroke-linecap="round"/>
-</svg>
-"""
+<path d="M26 14 21 50M43 14 38 50" fill="none" stroke="#fff" stroke-width="6" stroke-linecap="round"/>
+<path d="M14 26h38" stroke="#fff" stroke-width="6" stroke-linecap="round"/>
+<path d="M12 39h38" stroke="#F97316" stroke-width="6" stroke-linecap="round"/>
+</svg>"""
 
 OG_HTML = """<!doctype html><html><head><meta charset="utf-8"><style>
 *{margin:0;box-sizing:border-box}
@@ -355,11 +355,11 @@ p{font-size:28px;opacity:.88;line-height:1.35}
 OG_TEXT = {
     'id': {'h1': 'Berapa umur badan kamu <em>sebenarnya?</em>',
            'p': 'Buat kamu yang 35+ dan super sibuk. Cek gratis, cuma 3 menit.',
-           'cta': 'alvacy.com', 'who': 'Coach AJ · turun 18 kg dalam 90 hari'},
+           'cta': 'alvacy.com', 'who': 'Coach AJ · turun 18 kg'},
     'en': {'h1': 'How old is your body, <em>really?</em>',
            'p': 'For busy professionals 35+. Free check, just 3 minutes.',
-           'cta': 'alvacy.com/en', 'who': 'Coach AJ · lost 18 kg in 90 days'},
-    # #transformwithST share cards: their own brand, no Alvacy name or logo mark
+           'cta': 'alvacy.com/en', 'who': 'Coach AJ · lost 18 kg'},
+    # #transformwithST share cards: their own brand
     'transform-id': {'brand': '#transformwithST', 'h1': 'Mereka mulai dari titik yang <em>sama kayak kamu.</em>',
                      'p': 'Foto sebelum dan sesudah, lengkap dengan angka dan cerita mereka.',
                      'cta': 'Lihat hasilnya', 'who': 'AJ Jonathan Ong · turun 18 kg'},
@@ -382,8 +382,8 @@ def build_images():
         pg.screenshot(path=str(img / 'icon-512.png'), omit_background=True)
         for lang, t in OG_TEXT.items():
             pg = b.new_page(viewport={'width': 1200, 'height': 630})
-            card.write_text(OG_HTML.replace('{icon}', '' if t.get('brand') else ICON_SVG)
-                            .replace('{brand}', t.get('brand', 'Alvacy')).replace('{photo}', photo)
+            card.write_text(OG_HTML.replace('{icon}', '')
+                            .replace('{brand}', t.get('brand', '#transformwithST')).replace('{photo}', photo)
                             .replace('{h1}', t['h1']).replace('{p}', t['p']).replace('{cta}', t['cta'])
                             .replace('{who}', t['who']), encoding='utf-8')
             pg.goto(card.resolve().as_uri())

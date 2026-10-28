@@ -1,5 +1,5 @@
 /**
- * Alvacy | Cek Sinyal Badan - lead logger + coach email alert.
+ * #transformwithST | Cek Sinyal Badan - lead logger + coach email alert.
  * Lives in the leads Google Sheet: Extensions -> Apps Script.
  * After editing: Deploy -> Manage deployments -> (edit) -> Version: New version -> Deploy.
  * One row per quiz session (Session ID); later events update the same row.
@@ -108,5 +108,5 @@ function notify_(d) {
 }
 
 function doGet() {
-  return ContentService.createTextOutput('Alvacy lead logger is running.');
+  return ContentService.createTextOutput('#transformwithST lead logger is running.');
 }
