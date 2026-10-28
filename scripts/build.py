@@ -61,6 +61,16 @@ PAGES = [
                'desc': 'Work out your daily calories, protein target, and when you could reach your goal weight. Free, safe pace, Mifflin-St Jeor equation.'},
     },
     {
+        # Not branded Alvacy, not in the sitemap, and told to stay out of search until it holds real results.
+        # Remove 'noindex' (and add a link from the home page) once real before/after photos are in place.
+        'path': 'transform/', 'kind': 'results', 'brand': '#transformwithST', 'noindex': True,
+        'og': 'og-transform',
+        'id': {'title': '#transformwithST · Hasil Nyata Sebelum dan Sesudah',
+               'desc': 'Foto sebelum dan sesudah dari orang-orang yang menjalani program 90 hari, lengkap dengan angka dan cerita mereka sendiri.'},
+        'en': {'title': '#transformwithST · Real Before and After Results',
+               'desc': 'Before and after photos from people who did the 90-day program, with their numbers and their own words.'},
+    },
+    {
         'path': 'privacy/', 'kind': 'privacy',
         'id': {'title': 'Kebijakan Privasi · Alvacy',
                'desc': 'Bagaimana Alvacy mengumpulkan, memakai, dan menjaga data kamu.'},
@@ -101,8 +111,10 @@ def schema(page, lang, faq):
                       'logo': f'{SITE}/images/icon-512.png'})
         graph.append({'@type': 'WebSite', '@id': f'{SITE}/#website', 'name': 'Alvacy', 'url': f'{SITE}/',
                       'inLanguage': ['id', 'en'], 'publisher': {'@id': f'{SITE}/#org'}})
-    graph.append({'@type': 'WebPage', 'url': u, 'name': t['title'], 'description': t['desc'], 'inLanguage': lang,
-                  'isPartOf': {'@id': f'{SITE}/#website'}})
+    webpage = {'@type': 'WebPage', 'url': u, 'name': t['title'], 'description': t['desc'], 'inLanguage': lang}
+    if 'brand' not in page:  # pages with their own brand are not part of the Alvacy website entity
+        webpage['isPartOf'] = {'@id': f'{SITE}/#website'}
+    graph.append(webpage)
     if page['kind'] in ('tools', 'test', 'calc'):
         name = {'tools': 'Transform Toolkit', 'test': 'Body Age Assessment', 'calc': 'Kalkulator Kalori Alvacy'}[page['kind']]
         graph.append({'@type': 'WebApplication', 'name': name, 'url': u, 'description': t['desc'],
@@ -133,12 +145,13 @@ def head_block(page, lang, faq):
         '<link rel="icon" href="/images/icon-192.png" sizes="192x192" type="image/png">',
         '<link rel="apple-touch-icon" href="/images/apple-touch-icon.png">',
         '<meta name="theme-color" content="#1E3A8A">',
+        *(['<meta name="robots" content="noindex, nofollow">'] if page.get('noindex') else []),
         '<meta property="og:type" content="website">',
-        '<meta property="og:site_name" content="Alvacy">',
+        f'<meta property="og:site_name" content="{e(page.get("brand", "Alvacy"))}">',
         f'<meta property="og:title" content="{e(t["title"])}">',
         f'<meta property="og:description" content="{e(t["desc"])}">',
         f'<meta property="og:url" content="{url(lang, p)}">',
-        f'<meta property="og:image" content="{SITE}/images/og-{lang}.png">',
+        f'<meta property="og:image" content="{SITE}/images/{page.get("og", "og")}-{lang}.png">',
         '<meta property="og:image:width" content="1200">',
         '<meta property="og:image:height" content="630">',
         f'<meta property="og:locale" content="{LOCALE[lang]}">',
@@ -239,6 +252,8 @@ def write_sitemap():
     rows = ['<?xml version="1.0" encoding="UTF-8"?>',
             '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">']
     for page in PAGES:
+        if page.get('noindex'):
+            continue
         for lang in ('id', 'en'):
             rows.append(f'  <url>\n    <loc>{url(lang, page["path"])}</loc>')
             for alt in ('id', 'en'):
@@ -278,7 +293,7 @@ p{font-size:28px;opacity:.88;line-height:1.35}
 .ph img{width:330px;height:330px;border-radius:36px;object-fit:cover;border:6px solid rgba(255,255,255,.18)}
 .ph span{display:block;text-align:center;margin:16px -60px 0;white-space:nowrap;font-size:21px;opacity:.85}
 </style></head><body>
-<div><div class="brand">{icon}Alvacy</div><h1>{h1}</h1><p>{p}</p><span class="pill">{cta}</span></div>
+<div><div class="brand">{icon}{brand}</div><h1>{h1}</h1><p>{p}</p><span class="pill">{cta}</span></div>
 <div class="ph"><img src="{photo}"><span>{who}</span></div>
 </body></html>"""
 
@@ -289,6 +304,13 @@ OG_TEXT = {
     'en': {'h1': 'How old is your body, <em>really?</em>',
            'p': 'For busy professionals 35+. Free check, just 3 minutes.',
            'cta': 'alvacy.com/en', 'who': 'Coach AJ · lost 18 kg in 90 days'},
+    # #transformwithST share cards: their own brand, no Alvacy name or logo mark
+    'transform-id': {'brand': '#transformwithST', 'h1': 'Mereka mulai dari titik yang <em>sama kayak kamu.</em>',
+                     'p': 'Foto sebelum dan sesudah, lengkap dengan angka dan cerita mereka.',
+                     'cta': 'Lihat hasilnya', 'who': 'Coach AJ · turun 18 kg dalam 90 hari'},
+    'transform-en': {'brand': '#transformwithST', 'h1': 'They started from the <em>same place you are.</em>',
+                     'p': 'Before and after photos, with their numbers and their own words.',
+                     'cta': 'See the results', 'who': 'Coach AJ · lost 18 kg in 90 days'},
 }
 
 
@@ -305,7 +327,8 @@ def build_images():
         pg.screenshot(path=str(img / 'icon-512.png'), omit_background=True)
         for lang, t in OG_TEXT.items():
             pg = b.new_page(viewport={'width': 1200, 'height': 630})
-            card.write_text(OG_HTML.replace('{icon}', ICON_SVG).replace('{photo}', photo)
+            card.write_text(OG_HTML.replace('{icon}', '' if t.get('brand') else ICON_SVG)
+                            .replace('{brand}', t.get('brand', 'Alvacy')).replace('{photo}', photo)
                             .replace('{h1}', t['h1']).replace('{p}', t['p']).replace('{cta}', t['cta'])
                             .replace('{who}', t['who']), encoding='utf-8')
             pg.goto(card.resolve().as_uri())
