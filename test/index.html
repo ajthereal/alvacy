@@ -533,7 +533,7 @@ function landing(u,c){
   <p class="kicker">${u.coachK}</p>
   <div class="coach">
     <span class="avatar" aria-hidden="true">${c.face?`<img src="/images/${c.face}" alt="">`:esc(initials)}</span>
-    <div class="stack" style="gap:4px"><h3>${esc(c.name)}</h3>${c.story?`<p>${L(c.story)}</p>`:''}<p class="small">${u.coachLine}</p></div>
+    <div class="stack" style="gap:4px"><h3>${esc(c.name)}</h3>${(c.story||(c.transform&&c.transform.story))?`<p>${L(c.story||c.transform.story)}</p>`:''}<p class="small">${u.coachLine}</p></div>
   </div>
 </div></section>
 <section class="band"><div class="wrap narrow center">
