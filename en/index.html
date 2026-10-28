@@ -112,87 +112,115 @@
 <!-- seo:end -->
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Sora:wght@600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Geist+Mono:wght@500&display=swap">
 <link rel="stylesheet" href="/assets/site.css">
 <style>
-section{padding-block:clamp(48px,9vw,96px)}
-.hero{padding-block:clamp(40px,8vw,88px) clamp(40px,7vw,72px);display:grid;grid-template-columns:minmax(0,1.15fr) minmax(0,.85fr);gap:clamp(28px,5vw,56px);align-items:center}
-.hero h1 em{font-style:normal;color:var(--hl)}
-.hero .copy{display:grid;gap:18px}
-.hero .ctas{display:flex;flex-wrap:wrap;gap:10px;margin-top:6px}
-.hero .meta{display:flex;flex-wrap:wrap;gap:6px 18px;font-size:.85rem;color:var(--muted)}
-.hero .meta span::before{content:"✓ ";color:var(--accent);font-weight:800}
-.signal{background:var(--surface);border:1px solid var(--line);border-radius:24px;padding:22px;display:grid;gap:14px;box-shadow:0 24px 48px -32px rgba(20,50,44,.35)}
-.signal .top{display:flex;justify-content:space-between;align-items:center}
-.signal .label{font-size:.72rem;letter-spacing:.1em;text-transform:uppercase;font-weight:800;color:var(--muted)}
-.sig{display:grid;grid-template-columns:110px minmax(0,1fr) 34px;gap:10px;align-items:center;font-size:.88rem;font-weight:600}
-.sig .bar{height:8px;border-radius:99px;background:var(--line);overflow:hidden}
-.sig .bar i{display:block;height:100%;border-radius:99px;background:var(--good)}
-.sig .bar i.w{background:var(--warm)}
-.sig b{text-align:right;font-variant-numeric:tabular-nums;color:var(--muted);font-weight:700}
-.signal .foot{font-size:.78rem;color:var(--muted);border-top:1px solid var(--line);padding-top:12px}
-@media (max-width:860px){ .hero{grid-template-columns:1fr} }
+section{padding-block:clamp(56px,10vw,112px)}
+.head{display:grid;gap:14px;max-width:720px;margin:0 auto clamp(28px,5vw,48px);text-align:center;justify-items:center}
 
-.alt{background:var(--sand);border-block:1px solid var(--line)}
-.head{display:grid;gap:12px;max-width:680px;margin-bottom:clamp(24px,4vw,40px)}
-.pains{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px}
-.pain{background:var(--surface);border:1px solid var(--line);border-radius:var(--r);padding:20px;display:grid;gap:8px;align-content:start}
-.pain q{font-family:var(--f-display);font-size:1.08rem;font-weight:600;color:var(--head);line-height:1.35;quotes:"“" "”"}
-.pain p{font-size:.9rem;color:var(--muted)}
-.notyou{margin-top:22px;font-family:var(--f-display);font-size:clamp(1.2rem,3vw,1.5rem);font-weight:600;color:var(--accent)}
+/* hero: one big rounded sky field, centred copy, a result card rising from its lower edge */
+.hero-wrap{padding:12px 12px 0}
+.hero{max-width:1240px;margin:0 auto;border-radius:var(--r-lg);background:var(--sky);border:1px solid var(--sky-line);box-shadow:var(--rim);
+  padding:clamp(48px,9vw,104px) 20px 0;display:grid;justify-items:center;text-align:center;gap:20px;overflow:hidden}
+.hero h1{max-width:900px}
+.hero h1 em{font-style:normal;color:var(--hl)}
+.hero .lede{max-width:600px}
+.hero .ctas{display:flex;flex-wrap:wrap;justify-content:center;gap:10px;margin-top:4px}
+.hero .meta{display:flex;flex-wrap:wrap;justify-content:center;gap:6px 18px;font-size:.85rem;color:var(--muted)}
+.hero .meta span{display:inline-flex;align-items:center;gap:6px}
+.hero .meta span::before{content:"";width:6px;height:6px;border-radius:99px;background:var(--d-teal)}
+.device{margin-top:clamp(20px,4vw,40px);width:min(100%,380px);background:var(--surface);border:1px solid var(--sky-line);border-bottom:0;
+  border-radius:40px 40px 0 0;box-shadow:var(--lift-img),inset 0 0 24px var(--surface);padding:26px 24px 28px;display:grid;gap:16px;text-align:left}
+.device .top{display:flex;justify-content:space-between;align-items:center}
+.device .label{font-size:.72rem;letter-spacing:.12em;text-transform:uppercase;font-weight:700;color:var(--muted)}
+.score{display:grid;grid-template-columns:auto minmax(0,1fr);gap:18px;align-items:center}
+.score svg{width:112px;height:112px;display:block}
+.score .big{font-family:var(--f-mono);font-size:2.6rem;line-height:1;color:var(--head);letter-spacing:-.03em}
+.score .big small{font-size:1rem;color:var(--muted);letter-spacing:0}
+.score p{font-size:.82rem;color:var(--muted);margin-top:6px;line-height:1.45}
+.sig{display:grid;grid-template-columns:104px minmax(0,1fr) 30px;gap:10px;align-items:center;font-size:.86rem;font-weight:500}
+.sig .bar{height:8px;border-radius:99px;background:var(--d-track);overflow:hidden}
+.sig .bar i{display:block;height:100%;border-radius:99px;background:var(--d-teal);transform-origin:left;transition:transform 1.2s var(--ease)}
+.sig .bar i.w{background:var(--d-orange)}
+.sig b{text-align:right;font-family:var(--f-mono);font-weight:500;color:var(--muted)}
+.ring{stroke-dasharray:var(--len) 302;transition:stroke-dashoffset 1.6s var(--ease)}
+.js .device:not(.in) .ring{stroke-dashoffset:var(--len)}
+.js .device:not(.in) .sig .bar i{transform:scaleX(0)}
+@media (prefers-reduced-motion:reduce){ .js .device:not(.in) .ring{stroke-dashoffset:0} .js .device:not(.in) .sig .bar i{transform:none} }
+.device .foot{font-size:.76rem;color:var(--muted);border-top:1px solid var(--line);padding-top:12px}
+
+/* pains */
+.pains{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}
+.pain{padding:28px;display:grid;gap:10px;align-content:start}
+.pain q{font-size:1.3rem;font-weight:700;letter-spacing:-.02em;color:var(--head);line-height:1.2;quotes:"“" "”"}
+.pain p{font-size:.95rem;color:var(--muted)}
+.notyou{margin:clamp(28px,5vw,48px) auto 0;max-width:760px;text-align:center;font-size:clamp(1.3rem,3.2vw,1.9rem);font-weight:700;letter-spacing:-.025em;line-height:1.2;color:var(--head)}
 @media (max-width:760px){ .pains{grid-template-columns:1fr} }
 
-.ladder{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px}
-.rung{position:relative;background:var(--surface);border:1px solid var(--line);border-radius:var(--r);padding:20px;display:grid;gap:10px;align-content:start;text-decoration:none;color:inherit;transition:transform .15s,border-color .15s}
-a.rung:hover{transform:translateY(-2px);border-color:var(--accent)}
-.rung .ico{width:42px;height:42px;border-radius:12px;background:var(--accent-soft);display:grid;place-items:center;color:var(--accent)}
+/* free tools: bento */
+.ladder{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}
+.rung{position:relative;padding:26px;display:grid;gap:10px;align-content:start;text-decoration:none;color:inherit;transition:transform .2s var(--ease),border-color .2s var(--ease)}
+a.rung:hover{transform:translateY(-3px);border-color:var(--accent)}
+.rung .ico{width:44px;height:44px;border-radius:14px;background:var(--surface);border:1px solid var(--cloud-line);display:grid;place-items:center;color:var(--accent)}
 .rung .ico svg{width:22px;height:22px}
-.rung h3{font-size:1.05rem}
-.rung p{font-size:.9rem;color:var(--muted)}
-.rung .go{font-weight:700;font-size:.88rem;color:var(--accent);margin-top:auto}
-.rung .tag{position:absolute;top:16px;right:16px;font-size:.68rem;font-weight:800;letter-spacing:.08em;text-transform:uppercase;padding:3px 9px;border-radius:999px;background:var(--accent-soft);color:var(--accent)}
-.rung.soon{background:transparent;border-style:dashed}
-.rung.soon .tag{background:var(--warm-soft);color:var(--warm)}
-.rung.soon .ico{background:var(--warm-soft);color:var(--warm)}
-.rung.feature{grid-column:span 2;background:#1E3A8A;color:#fff;border-color:#1E3A8A}
-.rung.feature h3{color:#fff}
-.rung.feature .go{color:#FDBA74!important}
-.rung.feature p{color:#fff;opacity:.85}
-
-.rung.feature .ico{background:rgba(255,255,255,.16);color:#fff}
-.rung.feature .tag{background:rgba(255,255,255,.18);color:#fff}
+.rung h3{font-size:1.35rem;letter-spacing:-.025em;line-height:1.15;margin-top:6px}
+.rung p{font-size:.95rem;color:var(--muted)}
+.rung .go{font-weight:600;font-size:.9rem;color:var(--accent);margin-top:auto;padding-top:6px}
+.rung .tag{position:absolute;top:22px;right:22px;font-size:.68rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;padding:4px 10px;border-radius:999px;background:var(--surface);border:1px solid var(--cloud-line);color:var(--muted)}
+.rung.soon{background:transparent;border:1px dashed var(--cloud-line);box-shadow:none}
+.rung.soon .ico{color:var(--muted)}
+.rung.feature{grid-column:span 2;background:#172554;border-color:#172554;color:#EAF0FA;box-shadow:none;padding:clamp(26px,4vw,40px)}
+.rung.feature h3{color:#fff;font-size:clamp(1.7rem,3.4vw,2.4rem);letter-spacing:-.035em}
+.rung.feature p{color:#C3CDE3;max-width:520px}
+.rung.feature .go{display:inline-flex;align-self:start;justify-self:start;margin-top:10px;color:#172554;background:#EAF0FA;border-radius:999px;padding:11px 20px}
+.rung.feature .ico{background:rgba(255,255,255,.08);border-color:rgba(255,255,255,.16);color:#EAF0FA}
+.rung.feature .tag{background:rgba(255,255,255,.1);border-color:rgba(255,255,255,.16);color:#EAF0FA}
 @media (max-width:860px){ .ladder{grid-template-columns:1fr 1fr} }
 @media (max-width:560px){ .ladder{grid-template-columns:1fr} .rung.feature{grid-column:auto} }
 
-.steps{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px;counter-reset:s}
-.stepc{border-top:2px solid var(--accent);padding-top:16px;display:grid;gap:8px;align-content:start}
-.stepc .n{font-family:var(--f-display);font-size:2.4rem;line-height:1;color:var(--accent)}
-.stepc p{font-size:.92rem;color:var(--muted)}
+/* how it works */
+.steps{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}
+.stepc{padding:28px;display:grid;gap:10px;align-content:start;background:var(--surface);border:1px solid var(--line);border-radius:var(--r)}
+.stepc .n{font-family:var(--f-mono);font-size:.9rem;color:var(--accent);background:var(--accent-soft);border-radius:999px;padding:4px 12px;justify-self:start}
+.stepc h3{font-size:1.3rem;letter-spacing:-.025em;margin-top:4px}
+.stepc p{font-size:.95rem;color:var(--muted)}
 @media (max-width:760px){ .steps{grid-template-columns:1fr} }
-.fine{margin-top:22px;font-size:.82rem;color:var(--muted);max-width:720px}
+.fine{margin:22px auto 0;font-size:.82rem;color:var(--muted);max-width:720px;text-align:center}
 
-.coach{display:grid;grid-template-columns:200px minmax(0,1fr);gap:clamp(20px,4vw,40px);align-items:center;background:var(--surface);border:1px solid var(--line);border-radius:28px;padding:clamp(20px,4vw,36px)}
-.avatar{width:200px;aspect-ratio:1;border-radius:24px;background:var(--accent-soft);display:grid;place-items:center;overflow:hidden;font-family:var(--f-display);font-size:3.4rem;color:var(--accent)}
+/* coach */
+.stat{display:grid;justify-items:center;gap:8px;text-align:center;margin-bottom:clamp(28px,5vw,48px)}
+.stat .v{font-family:var(--f-mono);font-size:clamp(3.4rem,11vw,6.4rem);line-height:1;letter-spacing:-.05em;color:var(--head)}
+.stat .l{font-size:1.05rem;color:var(--muted);max-width:420px}
+.coach{display:grid;grid-template-columns:260px minmax(0,1fr);gap:clamp(20px,4vw,44px);align-items:center;padding:clamp(20px,4vw,40px)}
+.avatar{width:260px;aspect-ratio:4/5;border-radius:var(--r);background:var(--surface);display:grid;place-items:center;overflow:hidden;box-shadow:var(--lift-img);font-size:3.4rem;font-weight:800;color:var(--accent)}
 .avatar img{width:100%;height:100%;object-fit:cover}
-.coach .copy{display:grid;gap:12px}
-.coach blockquote{margin:0;font-family:var(--f-body);font-weight:500;color:var(--head);font-size:clamp(1.05rem,2vw,1.2rem);line-height:1.6}
+.coach .copy{display:grid;gap:14px}
+.coach blockquote{margin:0;font-weight:500;color:var(--head);font-size:clamp(1.1rem,2.2vw,1.35rem);line-height:1.5;letter-spacing:-.01em}
 .coach .who{font-size:.9rem;color:var(--muted)}
-@media (max-width:640px){ .coach{grid-template-columns:1fr} .avatar{width:120px;font-size:2.4rem} }
+@media (max-width:680px){ .coach{grid-template-columns:1fr} .avatar{width:100%;max-width:300px;aspect-ratio:1} }
 
-.door{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:20px;align-items:center;border:1px solid var(--line);border-radius:22px;padding:clamp(20px,4vw,30px)}
-.door p{color:var(--muted);font-size:.95rem;margin-top:6px}
+/* become a coach */
+.door{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:20px;align-items:center;background:#172554;color:#EAF0FA;border-radius:var(--r);padding:clamp(24px,4vw,36px)}
+.door h3{color:#fff;font-size:1.4rem;letter-spacing:-.025em}
+.door p{color:#C3CDE3;font-size:.95rem;margin-top:6px}
+.door .btn.quiet{background:transparent;border-color:#8FA0C8;color:#EAF0FA}
+.door .btn.quiet:hover{border-color:#EAF0FA}
 @media (max-width:640px){ .door{grid-template-columns:1fr} }
 
-.faq{display:grid;gap:10px;max-width:780px}
-.faq details{background:var(--surface);border:1px solid var(--line);border-radius:16px;padding:16px 18px}
-.faq summary{font-weight:700;cursor:pointer;list-style:none;display:flex;justify-content:space-between;gap:12px}
+/* faq */
+.faq{display:grid;gap:10px;max-width:780px;margin-inline:auto}
+.faq details{background:var(--cloud);border:1px solid var(--cloud-line);border-radius:20px;padding:18px 22px;box-shadow:var(--rim)}
+.faq summary{font-weight:600;color:var(--head);cursor:pointer;list-style:none;display:flex;justify-content:space-between;gap:12px}
 .faq summary::-webkit-details-marker{display:none}
-.faq summary::after{content:"+";font-size:1.3rem;line-height:1;color:var(--accent)}
-.faq details[open] summary::after{content:"−"}
-.faq details p{margin-top:10px;color:var(--muted);font-size:.94rem}
+.faq summary::after{content:"+";font-size:1.3rem;line-height:1;color:var(--accent);transition:transform .2s var(--ease)}
+.faq details[open] summary::after{transform:rotate(45deg)}
+.faq details p{margin-top:10px;color:var(--muted);font-size:.95rem}
 
-.final{text-align:center;display:grid;gap:16px;justify-items:center}
+/* final */
+.final{max-width:1240px;margin:0 auto;border-radius:var(--r-lg);background:var(--sky);border:1px solid var(--sky-line);box-shadow:var(--rim);
+  text-align:center;display:grid;gap:18px;justify-items:center;padding:clamp(48px,8vw,96px) 20px}
 .final p{max-width:560px}
+.final-wrap{padding:0 12px clamp(40px,6vw,72px)}
 </style>
 </head>
 <body>
@@ -207,94 +235,96 @@ a.rung:hover{transform:translateY(-2px);border-color:var(--accent)}
 </div></header>
 
 <main>
-<div class="wrap hero">
-  <div class="copy">
-    <p class="kicker" data-i18n="kicker">For busy professionals 35+</p>
-    <h1 data-i18n="h1">Dieted, hit the gym, and it came back? <em>That’s not your fault.</em></h1>
-    <p class="lede" data-i18n="lede">Packed schedule, eating out, short sleep. Start small here: check your body signals, then take steps that fit your calendar.</p>
-    <div class="ctas">
-      <a class="btn primary js-test" href="test/" data-i18n="ctaTest">Check my body age</a>
-      <a class="btn quiet" href="#gratis" data-i18n="ctaFree">See free tools</a>
-    </div>
-    <div class="meta"><span data-i18n="m1">Free</span><span data-i18n="m2">Just 3 minutes</span><span data-i18n="m3">English &amp; Indonesian</span></div>
+<div class="hero-wrap"><div class="hero">
+  <p class="kicker" data-i18n="kicker">For busy professionals 35+</p>
+  <h1 data-i18n="h1">Dieted, hit the gym, and it came back? <em>That’s not your fault.</em></h1>
+  <p class="lede" data-i18n="lede">Packed schedule, eating out, short sleep. Start small here: check your body signals, then take steps that fit your calendar.</p>
+  <div class="ctas">
+    <a class="btn primary js-test" href="test/" data-i18n="ctaTest">Check my body age</a>
+    <a class="btn quiet" href="#gratis" data-i18n="ctaFree">See free tools</a>
   </div>
-  <div class="signal" aria-hidden="true">
-    <div class="top"><span class="label" data-i18n="sigLbl">Sample result</span><span class="label" style="color:var(--accent)">72/100</span></div>
+  <div class="meta"><span data-i18n="m1">Free</span><span data-i18n="m2">Just 3 minutes</span><span data-i18n="m3">English &amp; Indonesian</span></div>
+  <div class="device reveal in" aria-hidden="true">
+    <div class="top"><span class="label" data-i18n="sigLbl">Sample result</span></div>
+    <div class="score">
+      <svg viewBox="0 0 112 112"><circle cx="56" cy="56" r="48" fill="none" stroke="var(--d-track)" stroke-width="10"></circle><circle class="ring" style="--len:217" cx="56" cy="56" r="48" fill="none" stroke="var(--d-teal)" stroke-width="10" stroke-linecap="round" transform="rotate(-90 56 56)"></circle></svg>
+      <div><div class="big">72<small> / 100</small></div><p data-i18n="sigFoot">These are signals, not a diagnosis. The point: know where to start.</p></div>
+    </div>
     <div class="sig"><span data-i18n="s_food">Eating</span><span class="bar"><i class="w" style="width:48%"></i></span><b>48</b></div>
     <div class="sig"><span data-i18n="s_energy">Energy</span><span class="bar"><i style="width:70%"></i></span><b>70</b></div>
     <div class="sig"><span data-i18n="s_sleep">Sleep &amp; stress</span><span class="bar"><i class="w" style="width:55%"></i></span><b>55</b></div>
     <div class="sig"><span data-i18n="s_move">Movement</span><span class="bar"><i style="width:80%"></i></span><b>80</b></div>
     <div class="sig"><span data-i18n="s_trend">Body trend</span><span class="bar"><i style="width:66%"></i></span><b>66</b></div>
-    <div class="foot" data-i18n="sigFoot">These are signals, not a diagnosis. The point: know where to start.</div>
   </div>
-</div>
+</div></div>
 
-<section class="alt"><div class="wrap">
+<section><div class="wrap">
   <div class="head"><p class="kicker" data-i18n="painK">Sound familiar?</p><h2 data-i18n="painH">Your willpower didn’t change. Your situation did.</h2></div>
   <div class="pains">
-    <div class="pain"><q data-i18n="p1q">I eat the same as before, so why is my belly growing?</q><p data-i18n="p1">After 35, muscle tends to decline unless trained, and your energy needs shift with it.</p></div>
-    <div class="pain"><q data-i18n="p2q">By 3 pm I’m exhausted.</q><p data-i18n="p2">Often it’s not too little coffee but lunch choices, sugar, and sleep quality.</p></div>
-    <div class="pain"><q data-i18n="p3q">I’ve dieted before. It came back.</q><p data-i18n="p3">A plan that doesn’t fit a work schedule is hard to keep. That’s a design problem, not a discipline problem.</p></div>
+    <div class="pain cloud reveal"><q data-i18n="p1q">I eat the same as before, so why is my belly growing?</q><p data-i18n="p1">After 35, muscle tends to decline unless trained, and your energy needs shift with it.</p></div>
+    <div class="pain cloud reveal"><q data-i18n="p2q">By 3 pm I’m exhausted.</q><p data-i18n="p2">Often it’s not too little coffee but lunch choices, sugar, and sleep quality.</p></div>
+    <div class="pain cloud reveal"><q data-i18n="p3q">I’ve dieted before. It came back.</q><p data-i18n="p3">A plan that doesn’t fit a work schedule is hard to keep. That’s a design problem, not a discipline problem.</p></div>
   </div>
-  <p class="notyou" data-i18n="notyou">So it’s not your fault. You just need a way built for the life you have now.</p>
+  <p class="notyou reveal" data-i18n="notyou">So it’s not your fault. You just need a way built for the life you have now.</p>
 </div></section>
 
-<section id="gratis"><div class="wrap">
+<section id="gratis" style="padding-top:0"><div class="wrap">
   <div class="head"><p class="kicker" data-i18n="freeK">Start free</p><h2 data-i18n="freeH">Take one step. No sign-up needed.</h2><p class="lede" data-i18n="freeP">Everything below is free. Start with the body age check, or jump straight into the tools.</p></div>
   <div class="ladder">
-    <a class="rung feature js-test" href="test/">
+    <a class="rung cloud feature js-test reveal" href="test/">
       <span class="tag" data-i18n="tagStart">Start here</span>
-      <span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12h4l3 8 4-16 3 8h4"></path></svg></span>
+      <span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12h4l3 8 4-16 3 8h4"></path></svg></span>
       <h3 data-i18n="r1h">Body Age Assessment</h3><p data-i18n="r1p">How old is your body, really? 30 short questions, 3 minutes. The first step to understand your body and which area holds your progress back.</p><span class="go" data-i18n="r1go">Start the assessment →</span>
     </a>
-    <a class="rung" href="kalori/">
+    <a class="rung cloud reveal" href="kalori/">
       <span class="tag" data-i18n="tagNew">New</span>
-      <span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 17l5-5 4 3 8-8"></path><path d="M15 7h5v5"></path></svg></span>
+      <span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M3 17l5-5 4 3 8-8"></path><path d="M15 7h5v5"></path></svg></span>
       <h3 data-i18n="r7h">How much, and by when?</h3><p data-i18n="r7p">Work out your daily calories, protein target, and the date you could reach your goal weight.</p><span class="go" data-i18n="open">Open →</span>
     </a>
-    <a class="rung" href="tools/#padang">
+    <a class="rung cloud reveal" href="tools/#padang">
       <span class="tag" data-i18n="tagTool">Tool</span>
-      <span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="13" r="8"></circle><path d="M8 13h8M12 2v3"></path></svg></span>
+      <span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="13" r="8"></circle><path d="M8 13h8M12 2v3"></path></svg></span>
       <h3 data-i18n="r2h">Order a lighter Padang meal</h3><p data-i18n="r2p">Build your plate, see the calorie bill, and get ready-made lines to tell the server.</p><span class="go" data-i18n="open">Open →</span>
     </a>
-    <a class="rung" href="tools/#gula">
+    <a class="rung cloud reveal" href="tools/#gula">
       <span class="tag" data-i18n="tagTool">Tool</span>
-      <span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 3h10l-1.5 18h-7z"></path><path d="M6.5 8h11"></path></svg></span>
+      <span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M7 3h10l-1.5 18h-7z"></path><path d="M6.5 8h11"></path></svg></span>
       <h3 data-i18n="r3h">Drink sugar audit</h3><p data-i18n="r3p">Coffee with milk, sweet tea, boba. See a week of sugar in teaspoons.</p><span class="go" data-i18n="open">Open →</span>
     </a>
-    <a class="rung" href="tools/#protein">
+    <a class="rung cloud reveal" href="tools/#protein">
       <span class="tag" data-i18n="tagTool">Tool</span>
-      <span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><ellipse cx="12" cy="13" rx="6" ry="8"></ellipse></svg></span>
+      <span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><ellipse cx="12" cy="13" rx="6" ry="8"></ellipse></svg></span>
       <h3 data-i18n="r4h">Protein target</h3><p data-i18n="r4p">Work out your daily protein and split it across meals.</p><span class="go" data-i18n="open">Open →</span>
     </a>
-    <div class="rung soon">
+    <div class="rung cloud soon reveal">
       <span class="tag" data-i18n="tagSoon">Soon</span>
-      <span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12a8 8 0 0 1-11.6 7.1L4 20l1-4.6A8 8 0 1 1 21 12z"></path></svg></span>
+      <span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12a8 8 0 0 1-11.6 7.1L4 20l1-4.6A8 8 0 1 1 21 12z"></path></svg></span>
       <h3 data-i18n="r5h">7-day WhatsApp reset</h3><p data-i18n="r5p">One short message a day, one small habit. Coming soon.</p>
     </div>
-    <div class="rung soon">
+    <div class="rung cloud soon reveal">
       <span class="tag" data-i18n="tagSoon">Soon</span>
-      <span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="3" width="16" height="18" rx="2"></rect><path d="M8 8h8M8 12h8M8 16h5"></path></svg></span>
+      <span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="3" width="16" height="18" rx="2"></rect><path d="M8 8h8M8 12h8M8 16h5"></path></svg></span>
       <h3 data-i18n="r6h">Business-meal guide</h3><p data-i18n="r6p">Safe picks at Japanese, Chinese, Western, and local spots. Coming soon.</p>
     </div>
   </div>
 </div></section>
 
-<section class="alt"><div class="wrap">
+<section style="padding-top:0"><div class="wrap">
   <div class="head"><p class="kicker" data-i18n="howK">When you’re ready for more</p><h2 data-i18n="howH">Three steps, no guesswork.</h2></div>
   <div class="steps">
-    <div class="stepc"><span class="n">01</span><h3 data-i18n="h1t">Check your body age</h3><p data-i18n="h1p">Start with the free 3-minute assessment. You and your coach see which area holds your progress back most.</p></div>
-    <div class="stepc"><span class="n">02</span><h3 data-i18n="h2t">Measure with Omron</h3><p data-i18n="h2p">Body fat, muscle, visceral fat, and body age measured on an Omron HBF-375, so progress is visible, not just a feeling.</p></div>
-    <div class="stepc"><span class="n">03</span><h3 data-i18n="h3t">90-day program with a coach</h3><p data-i18n="h3p">An eating plan that fits your work schedule, regular check-ins, and someone in your corner until the habits stick.</p></div>
+    <div class="stepc reveal"><span class="n">01</span><h3 data-i18n="h1t">Check your body age</h3><p data-i18n="h1p">Start with the free 3-minute assessment. You and your coach see which area holds your progress back most.</p></div>
+    <div class="stepc reveal"><span class="n">02</span><h3 data-i18n="h2t">Measure with Omron</h3><p data-i18n="h2p">Body fat, muscle, visceral fat, and body age measured on an Omron HBF-375, so progress is visible, not just a feeling.</p></div>
+    <div class="stepc reveal"><span class="n">03</span><h3 data-i18n="h3t">90-day program with a coach</h3><p data-i18n="h3p">An eating plan that fits your work schedule, regular check-ins, and someone in your corner until the habits stick.</p></div>
   </div>
   <p class="fine" data-i18n="howFine">Readings from BIA scales (including body age) are estimates. We use them to track trends over time, not as a diagnosis.</p>
 </div></section>
 
-<section><div class="wrap">
-  <div class="coach">
-    <div class="avatar" id="avatar"><img src="/images/coach-aj.jpg" alt="Coach AJ" width="200" height="200" loading="lazy"></div>
+<section style="padding-top:0"><div class="wrap">
+  <div class="stat reveal" id="coachStat"><p class="kicker" data-i18n="coachK">Your coach</p><span class="v" id="statV">−18 kg</span><span class="l" id="statL">in 90 days, with my wife, without stepping away from work</span></div>
+  <div class="coach cloud reveal">
+    <div class="avatar" id="avatar"><img src="/images/coach-aj.jpg" alt="Coach AJ" width="260" height="325" loading="lazy"></div>
     <div class="copy">
-      <p class="kicker" data-i18n="coachK">Your coach</p>
+      <p class="kicker" id="coachKicker" data-i18n="coachK" hidden="">Your coach</p>
       <blockquote id="coachStory">I was busy running a game development startup, raising 3 kids, and gaining “sympathy weight” every time my wife was pregnant. Together with my wife, I lost 18 kg in 90 days without stepping away from work. Now I help busy professionals find a way that fits their schedule.</blockquote>
       <p class="who" id="coachWho">Coach AJ · Jakarta</p>
       <div><a class="btn primary small js-test" href="test/" data-i18n="coachCta">Check my body age</a></div>
@@ -303,13 +333,13 @@ a.rung:hover{transform:translateY(-2px);border-color:var(--accent)}
 </div></section>
 
 <section style="padding-top:0"><div class="wrap">
-  <div class="door">
+  <div class="door reveal">
     <div><h3 data-i18n="doorH">Curious about helping others too?</h3><p data-i18n="doorP">Some of our clients went on to become coaches. If you’re curious how, let’s just talk. No pressure.</p></div>
     <a class="btn quiet small" id="doorBtn" target="_blank" rel="noopener" data-i18n="doorBtn" href="https://wa.me/628170241185?text=Hi%20Coach%20AJ%2C%20I%E2%80%99m%20curious%20about%20becoming%20a%20coach%20with%20Alvacy.%20Can%20we%20chat%3F">Chat on WhatsApp</a>
   </div>
 </div></section>
 
-<section class="alt"><div class="wrap">
+<section style="padding-top:0"><div class="wrap">
   <div class="head"><p class="kicker">FAQ</p><h2 data-i18n="faqH">Common questions</h2></div>
   <div class="faq">
     <details><summary data-i18n="f1q">Is the assessment really free?</summary><p data-i18n="f1a">Yes. To see your full result you enter your name and contact, and your coach will reach out to walk you through it. No obligation to buy anything.</p></details>
@@ -320,11 +350,11 @@ a.rung:hover{transform:translateY(-2px);border-color:var(--accent)}
   </div>
 </div></section>
 
-<section><div class="wrap final">
+<div class="final-wrap"><div class="final reveal">
   <h2 data-i18n="finH">How old is your body? Find out in 3 minutes.</h2>
   <p class="lede" data-i18n="finP">You don’t need to be ready. You just need to know where you are now.</p>
   <a class="btn primary js-test" href="test/" data-i18n="ctaTest">Check my body age</a>
-</div></section>
+</div></div>
 </main>
 
 <footer class="site-foot"><div class="wrap">
@@ -428,14 +458,19 @@ function render(){
  const suffix=code!==ALV.DEFAULT?'#'+code:'';
  document.querySelectorAll('.js-test').forEach(a=>a.href='test/'+suffix);
  const av=document.getElementById('avatar');
- av.innerHTML=c.photo?`<img src="/images/${c.photo}" alt="${c.name}" width="200" height="200" loading="lazy">`:c.name.replace(/^Coach\s+/i,'').slice(0,2).toUpperCase();
+ av.innerHTML=c.photo?`<img src="/images/${c.photo}" alt="${c.name}" width="260" height="325" loading="lazy">`:c.name.replace(/^Coach\s+/i,'').slice(0,2).toUpperCase();
  document.getElementById('coachStory').textContent=c.story?c.story[lang]:'';
  document.getElementById('coachWho').textContent=`${c.name} · ${c.city||''}`;
+ const st=document.getElementById('coachStat');
+ st.hidden=!c.stat; document.getElementById('coachKicker').hidden=!!c.stat;
+ if(c.stat){document.getElementById('statV').textContent=c.stat.value;document.getElementById('statL').textContent=c.stat[lang]||'';}
  document.getElementById('doorBtn').href=`https://wa.me/${c.wa}?text=${encodeURIComponent(t.doorMsg(c.name))}`;
 }
 document.addEventListener('click',e=>{const b=e.target.closest('[data-lang]'); if(b){lang=b.dataset.lang;ALV.setLang(lang);render();}});
 window.addEventListener('hashchange',render);
 render();
+/* The sample result sits in the hero, so its rings and bars fill on load rather than on scroll. */
+setTimeout(()=>document.querySelector('.device').classList.add('in'),250);
 </script>
 </body>
 </html>
