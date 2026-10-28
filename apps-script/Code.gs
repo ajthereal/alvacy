@@ -599,3 +599,75 @@ function setupCoaches() {
   try { SpreadsheetApp.getUi().alert('Cek pengaturan Coaches', out.join('\n'), SpreadsheetApp.getUi().ButtonSet.OK); } catch (e) {}
   return out.join('\n');
 }
+
+/* =====================================================================================================================
+   APPROVE FROM THE SHEET (no review page needed, works from the Sheets app on a phone)
+   Run aktifkanAutoTayang() once from the editor. After that, open the "Coaches" tab and change a coach's Status cell:
+     approved = goes live on the website (and the coach gets the "approved" email)
+     hidden or rejected = taken off the website if it was live
+   publishNow() pushes every approved coach to the website without any screen; run it from the editor if ever needed.
+   ===================================================================================================================== */
+function publishNow() {
+  const r = publish_('Update coaches (manual)');
+  return r.count + ' coach tayang' + (r.skipped.length ? ', dilewati (gambar belum lengkap): ' + r.skipped.join(', ') : '');
+}
+
+function approvalMail_(row) {
+  try {
+    MailApp.sendEmail({ to: row.email, cc: DEFAULT_EMAIL, subject: 'Kartu hasil kamu sudah disetujui, ' + row.name,
+      body: ['Halo ' + row.name + ',', '', 'Kartu hasilmu sudah disetujui dan tayang di alvacy.com dalam beberapa menit.', '',
+        'Link pribadimu (untuk dibagikan): ' + SITE_URL + '/' + row.code, 'Kartu hasilmu: ' + SITE_URL + '/transform/#' + row.code, '',
+        'Calon klien yang masuk lewat link-mu dikirim ke email ini dan ke WhatsApp-mu.', '',
+        'Mau mengubah nomor, email, foto, atau cerita? Pakai link edit kamu: ' + SITE_URL + '/join/?edit=' + row.token].join('\n') });
+  } catch (err) {}
+}
+
+/* Installed by aktifkanAutoTayang(). Fires when someone edits a cell in the Sheet. */
+function onCoachSheetEdit(e) {
+  try {
+    if (!e || !e.range) return;
+    const rg = e.range, sh = rg.getSheet();
+    if (sh.getName() !== COACH_SHEET || rg.getColumn() !== 2 || rg.getRow() < 2 || rg.getNumRows() !== 1) return;
+    const val = String(rg.getValue()).trim().toLowerCase();
+    if (['pending', 'approved', 'rejected', 'hidden'].indexOf(val) < 0) return;
+    const lock = coachLock_(20000);
+    let row, first = false, wasLive = false, prev = '';
+    try {
+      row = readCoaches_(sh).filter(r => r._row === rg.getRow())[0];
+      if (!row) return;
+      wasLive = !!row.published;
+      prev = String(e.oldValue || '').trim().toLowerCase();
+      if (['pending', 'approved', 'rejected', 'hidden'].indexOf(prev) < 0 || prev === val) prev = wasLive ? 'approved' : 'pending';
+      first = val === 'approved' && !row.published;
+      row.status = val; row.updated = new Date().toISOString();
+      writeCoach_(sh, row);
+    } finally { lock.releaseLock(); }
+    if (val !== 'approved' && !wasLive) return;   /* nothing on the website to change */
+    let warn = '';
+    try { publish_((val === 'approved' ? 'Tayangkan coach ' : 'Ubah status coach ') + row.code + ' (dari Sheet)'); }
+    catch (err) { warn = String(err && err.message || err); }
+    if (warn) {
+      const l2 = coachLock_(20000);
+      try {
+        const r2 = readCoaches_(sh).filter(r => r._row === rg.getRow())[0];
+        if (r2) { r2.status = prev || 'pending'; r2.note = 'Publish gagal: ' + warn.slice(0, 200); writeCoach_(sh, r2); }
+      } finally { l2.releaseLock(); }
+      try { MailApp.sendEmail({ to: DEFAULT_EMAIL, subject: 'Coach ' + row.name + ' belum bisa tayang', body: 'Gagal mengirim ke website: ' + warn + '\n\nStatus dikembalikan ke ' + (prev || 'pending') + '. Cek GITHUB_TOKEN di Script properties, lalu ubah Status lagi.' }); } catch (e2) {}
+      return;
+    }
+    if (first) approvalMail_(row);
+    else { try { MailApp.sendEmail({ to: DEFAULT_EMAIL, subject: 'Website diperbarui: ' + row.name + ' (' + val + ')', body: row.name + ' sekarang berstatus ' + val + '. Situs selesai diperbarui dalam 3 sampai 5 menit.\n' + SITE_URL + '/' + row.code }); } catch (e3) {} }
+  } catch (err) { try { console.error(String(err && err.stack || err)); } catch (e4) {} }
+}
+
+/* Run once from the editor. Installs the Sheet trigger and gives the Status column a dropdown. */
+function aktifkanAutoTayang() {
+  const ss = SpreadsheetApp.getActiveSpreadsheet();
+  const sh = coachSheet_();
+  ScriptApp.getProjectTriggers().forEach(t => { if (t.getHandlerFunction() === 'onCoachSheetEdit') ScriptApp.deleteTrigger(t); });
+  ScriptApp.newTrigger('onCoachSheetEdit').forSpreadsheet(ss).onEdit().create();
+  try {
+    sh.getRange(2, 2, Math.max(sh.getMaxRows() - 1, 1), 1).setDataValidation(SpreadsheetApp.newDataValidation().requireValueInList(['pending', 'approved', 'rejected', 'hidden'], true).setAllowInvalid(false).build());
+  } catch (e) {}
+  return 'Aktif. Di tab Coaches, ubah kolom Status ke "approved" untuk menayangkan coach.';
+}
