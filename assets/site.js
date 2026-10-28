@@ -41,7 +41,13 @@ window.ALV = (function () {
       transform: {
         proof: { value: '−11 kg', id: 'dan bebas beli baju yang aku suka', en: 'and free to wear the clothes I love' },
         story: { id: 'Dulu aku juga pikir aku nggak perlu diet. Setelah #transformwithST, aku happy banget bisa bebas beli baju yang aku suka, bahkan jadi ibu yang lebih baik dan tentunya lebih fit buat anak-anak perempuanku.',
-                 en: 'I used to think I didn’t need to diet either. After #transformwithST I’m so happy to be free to buy the clothes I love, and even to be a better mom, and of course fitter for my daughters.' } } }
+                 en: 'I used to think I didn’t need to diet either. After #transformwithST I’m so happy to be free to buy the clothes I love, and even to be a better mom, and of course fitter for my daughters.' } } },
+    lucky: { name: 'dr. Lucky', wa: '6281220477774', pretty: '+62 812-2047-7774', city: '', photo: 'coach-lucky.jpg', face: 'coach-lucky-face.jpg', booking: '',
+      palette: 'sky',
+      transform: {
+        proof: { value: '−19 kg', id: 'dan kesehatannya kembali', en: 'and his health back' },
+        story: { id: 'Dulu aku kepala IGD yang sibuk mengurus kesehatan orang lain, sementara kesehatanku sendiri bermasalah: obesitas, hipertensi, dan pegal-pegal di mana-mana. Lewat #transformwithST, aku menemukan kesehatanku lagi.',
+                 en: 'I used to head an ER, busy looking after everyone else’s health while my own was in trouble: obesity, high blood pressure, and aches everywhere. Through #transformwithST I found my health again.' } } }
   };
   const DEFAULT = 'aj';
 

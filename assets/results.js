@@ -48,7 +48,11 @@ window.ALVResults = (function () {
  {coach:'melita',name:'dr. Melita Sutjiady',before:'/images/results/melita-before.jpg',after:'/images/results/melita-after.jpg',
   m:[{from:65.3,to:54.3,suf:' kg',u:'mKg',d:'dKg',k:1},{from:34.9,to:27.7,suf:'%',u:'mFat',d:'dPt'},{from:8.5,to:4.5,u:'mVfa2',d:'dLv'}],
   quote:{id:'Sudah laku, nggak apa-apa, yang penting sehat. Dulu aku juga pikir aku nggak perlu diet, tapi setelah #transformwithST, aku happy banget bisa bebas beli baju yang aku suka, bahkan jadi ibu yang lebih baik dan tentunya lebih fit buat anak-anak perempuanku.',
-         en:'Already taken, and that’s fine, what matters is being healthy. I used to think I didn’t need to diet either, but after #transformwithST I’m so happy to be free to buy the clothes I love, and even to be a better mom, and of course fitter for my daughters.'}}
+         en:'Already taken, and that’s fine, what matters is being healthy. I used to think I didn’t need to diet either, but after #transformwithST I’m so happy to be free to buy the clothes I love, and even to be a better mom, and of course fitter for my daughters.'}},
+ {coach:'lucky',name:'dr. Lucky Faizal Sobarna',before:'/images/results/lucky-before.jpg',after:'/images/results/lucky-after.jpg',
+  m:[{from:86,to:67,suf:' kg',u:'mKg',d:'dKg',k:1},{from:30,to:22,suf:'%',u:'mFat',d:'dPt'},{from:14,to:7,u:'mVfa2',d:'dLv'}],
+  quote:{id:'Mantan kepala IGD yang justru bermasalah dengan kesehatannya sendiri: obesitas, hipertensi, dan pegal-pegal di mana-mana. Sekarang aku menemukan kesehatanku lagi berkat #transformwithST.',
+         en:'A former head of the ER who had trouble with his own health: obesity, high blood pressure, and aches everywhere. Now I’ve found my health again, thanks to #transformwithST.'}}
 ];
 
   const RM = matchMedia('(prefers-reduced-motion: reduce)').matches;
