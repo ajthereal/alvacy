@@ -44,8 +44,13 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Geist+Mono:wght@500&display=swap">
+<script>document.documentElement.setAttribute('data-theme','light')</script>
 <link rel="stylesheet" href="/assets/site.css">
 <style>
+/* This page always uses the light look (the script above), with a softer blue than the rest of the site:
+   lighter field, mid-blue buttons, deep blue only for headlines. */
+:root{--head:#1E3A8A;--ink:#2B3A5E;--accent:#2F55D4;--accent-soft:#EAF0FF;--cta:#2F55D4;--cta-hover:#2547B8;--cta-ink:#FFFFFF;
+  --sky:#E8F0FD;--sky-line:#D6E3FA;--cloud:#F2F6FE;--cloud-line:#E0E9FA;--lift:0 2px 16px rgba(47,85,212,.08)}
 section{padding-block:clamp(56px,10vw,112px)}
 #hasil,#tim{scroll-margin-top:40px}
 .head{display:grid;gap:14px;max-width:720px;margin:0 auto clamp(28px,5vw,48px);text-align:center;justify-items:center}
@@ -95,10 +100,10 @@ section{padding-block:clamp(56px,10vw,112px)}
 .cmp .ph img{width:100%;height:100%;object-fit:cover;display:block;pointer-events:none}
 .cmp .after{clip-path:inset(0 0 0 calc(var(--p)*1%))}
 .cmp .line{position:absolute;top:0;bottom:0;left:calc(var(--p)*1%);width:2px;margin-left:-1px;background:#fff;box-shadow:0 0 0 1px rgba(23,37,84,.1);pointer-events:none}
-.cmp .grip{position:absolute;top:50%;left:clamp(24px,calc(var(--p)*1%),calc(100% - 24px));width:44px;height:44px;margin:-22px 0 0 -22px;border-radius:50%;border:0;padding:0;background:#fff;color:#172554;
+.cmp .grip{position:absolute;top:50%;left:clamp(24px,calc(var(--p)*1%),calc(100% - 24px));width:44px;height:44px;margin:-22px 0 0 -22px;border-radius:50%;border:0;padding:0;background:#fff;color:#1E3A8A;
   box-shadow:0 2px 12px rgba(23,37,84,.3);display:grid;place-items:center;touch-action:none;cursor:ew-resize}
 .cmp .grip svg{width:20px;height:20px}
-.chip{position:absolute;top:12px;font-size:.68rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;padding:5px 10px;border-radius:999px;background:rgba(255,255,255,.93);color:#172554;pointer-events:none;box-shadow:0 1px 6px rgba(23,37,84,.15)}
+.chip{position:absolute;top:12px;font-size:.68rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;padding:5px 10px;border-radius:999px;background:rgba(255,255,255,.93);color:#1E3A8A;pointer-events:none;box-shadow:0 1px 6px rgba(23,37,84,.15)}
 .chip.b{left:12px}.chip.a{right:12px}
 .empty{color:var(--muted)}
 .empty.b{background:linear-gradient(180deg,color-mix(in srgb,var(--d-blue) 12%,var(--surface)),color-mix(in srgb,var(--d-blue) 24%,var(--surface)))}
