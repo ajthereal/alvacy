@@ -3,8 +3,18 @@ window.ALV = (function () {
   /* Each coach gets a link: any page + #code (letters/numbers only). Photos live in /images (photo: square portrait, face: small round avatar).
      booking: optional appointment-booking link shown after a lead unlocks results.
      stat: optional headline result shown big on the home page (leave it out if the coach has none). */
+  /* To add a coach: copy the block below, change the key (the code used in links: any page + #code), and fill it in.
+     palette (optional): sky (default), rose, sage. More live in assets/palettes.css.
+     transform (optional): the "first story" block on the #transformwithST results page: a headline number with one line,
+     and a story. Leave it out and that block is hidden. If photo is empty, the coach's own "after" photo is used.
+     See COACHES.md for the whole checklist. */
   const COACHES = {
     aj: { name: 'Coach AJ', wa: '628170241185', pretty: '+62 817 0241 185', city: 'Jakarta', photo: 'coach-aj.jpg', face: 'coach-aj-face.jpg', booking: '',
+      palette: 'sky',
+      transform: {
+        proof: { value: '−18 kg', id: 'bareng istri, tanpa berhenti kerja', en: 'with my wife, without stepping away from work' },
+        story: { id: 'Dulu aku sibuk jalanin startup game development, punya 3 anak, dan ikutan “hamil” tiap istri hamil, sampai akhirnya kegemukan. Bareng istri, aku turun 18 kg tanpa berhenti kerja. Sekarang aku bantu profesional sibuk menemukan cara yang muat di jadwal mereka.',
+                 en: 'I was busy running a game development startup, raising 3 kids, and gaining “sympathy weight” every time my wife was pregnant. Together with my wife, I lost 18 kg without stepping away from work. Now I help busy professionals find a way that fits their schedule.' } },
       stat: { value: '−18 kg', id: 'dalam 90 hari, bareng istri, tanpa berhenti kerja', en: 'in 90 days, with my wife, without stepping away from work' },
       story: { id: 'Dulu aku sibuk jalanin startup game development, punya 3 anak, dan ikutan “hamil” tiap istri hamil, sampai akhirnya kegemukan. Bareng istri, aku turun 18 kg dalam 90 hari tanpa berhenti kerja. Sekarang aku bantu profesional sibuk menemukan cara yang muat di jadwal mereka.',
                en: 'I was busy running a game development startup, raising 3 kids, and gaining “sympathy weight” every time my wife was pregnant. Together with my wife, I lost 18 kg in 90 days without stepping away from work. Now I help busy professionals find a way that fits their schedule.' } }

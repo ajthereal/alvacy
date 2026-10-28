@@ -46,16 +46,14 @@
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Geist+Mono:wght@500&display=swap">
 <script>document.documentElement.setAttribute('data-theme','light')</script>
 <link rel="stylesheet" href="/assets/site.css">
+<link rel="stylesheet" href="/assets/palettes.css">
 <style>
-/* This page always uses the light look (the script above), with a softer blue than the rest of the site:
-   lighter field, mid-blue buttons, deep blue only for headlines. */
-:root{--head:#1E3A8A;--ink:#2B3A5E;--accent:#2F55D4;--accent-soft:#EAF0FF;--cta:#2F55D4;--cta-hover:#2547B8;--cta-ink:#FFFFFF;
-  --sky:#E8F0FD;--sky-line:#D6E3FA;--cloud:#F2F6FE;--cloud-line:#E0E9FA;--lift:0 2px 16px rgba(47,85,212,.08)}
-/* orange stays as the brand accent: buttons, one highlighted phrase in the hero, the carousel progress bar */
-.btn.primary{background:#F97316;color:#172554;box-shadow:0 6px 18px rgba(249,115,22,.28)}
-.btn.primary:hover{background:#FB8B33}
+/* This page always uses the light look (the script above). Colours come from assets/palettes.css and the
+   coach's palette (set in render()); only the shape of things lives here. */
+.btn.primary{background:var(--pop);color:var(--pop-ink);box-shadow:0 6px 18px var(--pop-glow)}
+.btn.primary:hover{background:var(--pop-hover)}
 .hero h1 em{font-style:normal;color:var(--hl)}
-.stage .prog i{background:var(--d-orange)}
+.stage .prog i{background:var(--pop)}
 section{padding-block:clamp(56px,10vw,112px)}
 #hasil,#tim{scroll-margin-top:40px}
 .head{display:grid;gap:14px;max-width:720px;margin:0 auto clamp(28px,5vw,48px);text-align:center;justify-items:center}
@@ -105,10 +103,10 @@ section{padding-block:clamp(56px,10vw,112px)}
 .cmp .ph img{width:100%;height:100%;object-fit:cover;display:block;pointer-events:none}
 .cmp .after{clip-path:inset(0 0 0 calc(var(--p)*1%))}
 .cmp .line{position:absolute;top:0;bottom:0;left:calc(var(--p)*1%);width:2px;margin-left:-1px;background:#fff;box-shadow:0 0 0 1px rgba(23,37,84,.1);pointer-events:none}
-.cmp .grip{position:absolute;top:50%;left:clamp(24px,calc(var(--p)*1%),calc(100% - 24px));width:44px;height:44px;margin:-22px 0 0 -22px;border-radius:50%;border:0;padding:0;background:#fff;color:#1E3A8A;
+.cmp .grip{position:absolute;top:50%;left:clamp(24px,calc(var(--p)*1%),calc(100% - 24px));width:44px;height:44px;margin:-22px 0 0 -22px;border-radius:50%;border:0;padding:0;background:#fff;color:var(--head);
   box-shadow:0 2px 12px rgba(23,37,84,.3);display:grid;place-items:center;touch-action:none;cursor:ew-resize}
 .cmp .grip svg{width:20px;height:20px}
-.chip{position:absolute;top:12px;font-size:.68rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;padding:5px 10px;border-radius:999px;background:rgba(255,255,255,.93);color:#1E3A8A;pointer-events:none;box-shadow:0 1px 6px rgba(23,37,84,.15)}
+.chip{position:absolute;top:12px;font-size:.68rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;padding:5px 10px;border-radius:999px;background:rgba(255,255,255,.93);color:var(--head);pointer-events:none;box-shadow:0 1px 6px rgba(23,37,84,.15)}
 .chip.b{left:12px}.chip.a{right:12px}
 .empty{color:var(--muted)}
 .empty.b{background:linear-gradient(180deg,color-mix(in srgb,var(--d-blue) 12%,var(--surface)),color-mix(in srgb,var(--d-blue) 24%,var(--surface)))}
@@ -268,7 +266,7 @@ blockquote{margin:0;font-size:.95rem;line-height:1.5;color:var(--ink)}
   <p class="fine" data-i18n="fineRes">Hasil tiap orang berbeda. Yang tampil di sini cuma para coach, jadi ikut program nggak berarti harus difoto.</p>
 </div></section>
 
-<section style="padding-top:0"><div class="wrap">
+<section id="story" style="padding-top:0"><div class="wrap">
   <div class="stat reveal" id="coachStat"><p class="kicker" data-i18n="storyK">Cerita pertama</p><span class="v" id="statV">−18 kg</span><span class="l" id="statL">bareng istri, tanpa berhenti kerja</span></div>
   <div class="coach cloud reveal">
     <div class="avatar" id="avatar"><img src="/images/coach-aj.jpg" alt="Coach AJ" width="260" height="325" loading="lazy"></div>
@@ -331,8 +329,7 @@ const T={
   mKg:'berat badan',mFat:'lemak tubuh',mVfa2:'lemak visceral (VFA)',dKg:'kg',dPt:'poin',dLv:'level',mVfa:'lemak visceral (VFA), diukur dengan <span style="white-space:nowrap">Omron HBF-375</span>',
   tagCoach:'Coach',sample:'Contoh tampilan',
   railRes:'Hasil sebelum dan sesudah',railTeam:'Dari klien jadi tim',prev:'Sebelumnya',next:'Berikutnya',
-  storyK:'Cerita pertama',statV:'−18 kg',statL:'bareng istri, tanpa berhenti kerja',
-  story:'Dulu aku sibuk jalanin startup game development, punya 3 anak, dan ikutan “hamil” tiap istri hamil, sampai akhirnya kegemukan. Bareng istri, aku turun 18 kg tanpa berhenti kerja. Sekarang aku bantu profesional sibuk menemukan cara yang muat di jadwal mereka.',
+  storyK:'Cerita pertama',
   pathK:'Dari klien jadi tim',pathH:'Awalnya cuma mau turun berat badan.',pathP:'Beberapa dari mereka akhirnya ikut bantu orang lain. Bukan karena disuruh, tapi karena mereka tahu rasanya.',
   n1h:'Jadi klien',n1p:'Mulai dari satu langkah kecil dan satu coach yang nemenin.',
   n2h:'Lihat hasilnya',n2p:'Angka di timbangan dan bayangan di cermin mulai berubah.',
@@ -361,8 +358,7 @@ const T={
   mKg:'weight',mFat:'body fat',mVfa2:'visceral fat (VFA)',dKg:'kg',dPt:'pts',dLv:'levels',mVfa:'visceral fat (VFA), measured on an <span style="white-space:nowrap">Omron HBF-375</span>',
   tagCoach:'Coach',sample:'Layout sample',
   railRes:'Before and after results',railTeam:'From client to team',prev:'Previous',next:'Next',
-  storyK:'The first story',statV:'−18 kg',statL:'with my wife, without stepping away from work',
-  story:'I was busy running a game development startup, raising 3 kids, and gaining “sympathy weight” every time my wife was pregnant. Together with my wife, I lost 18 kg without stepping away from work. Now I help busy professionals find a way that fits their schedule.',
+  storyK:'The first story',
   pathK:'From client to team',pathH:'It started with wanting to lose weight.',pathP:'Some of them ended up helping others. Not because they were told to, but because they know how it feels.',
   n1h:'Become a client',n1p:'Start with one small step and one coach beside you.',
   n2h:'See the results',n2p:'The number on the scale and the person in the mirror start to change.',
@@ -381,13 +377,13 @@ const T={
 
 /* ---------------------------------------------------------------------------------------------
    RESULTS: this is the only place to edit when real results arrive.
-   Each case: name, before/after photo paths (/images/results/...), metrics `m` (kg, body fat %, visceral fat range, etc.), quote {id,en}. No day counts are shown.
+   Each case: coach (optional: the coach's code from assets/site.js, so their own card comes first on their link), name, before/after photo paths (/images/results/...), metrics `m` (kg, body fat %, visceral fat range, etc.), quote {id,en}. No day counts are shown.
    Photos: same pose, light and distance for before and after. Only list a coach once they agreed to be shown.
    Only coaches are shown here, never clients. `sample:true` (optional) marks a labelled layout placeholder and is never counted.
    Totals above the carousel appear on their own once there are 3 or more real coach cases.
    --------------------------------------------------------------------------------------------- */
 const CASES=[
- {name:'AJ Jonathan Ong',before:'/images/results/aj-before.jpg',after:'/images/results/aj-after.jpg',
+ {coach:'aj',name:'AJ Jonathan Ong',before:'/images/results/aj-before.jpg',after:'/images/results/aj-after.jpg',
   m:[{from:85.1,to:67,suf:' kg',u:'mKg',d:'dKg',k:1},{from:23.7,to:9.9,suf:'%',u:'mFat',d:'dPt'},{from:13.5,to:5.5,u:'mVfa',d:'dLv'}],
   quote:{id:'Dulu pernah diet sendiri dengan OMAD, lari seminggu 4 kali, water fasting, tapi meskipun turun, gampang banget naik lagi. #transformwithST yang akhirnya jadi solusi turun sehat, lemak turun, otot naik, dan sustainable.',
          en:'I used to diet on my own with OMAD, running four times a week and water fasting. The weight came off, but it came back very easily. #transformwithST is what finally gave me a healthy, sustainable way to lose fat while my muscle went up.'}},
@@ -522,11 +518,18 @@ function render(){
  const suffix=code!==ALV.DEFAULT?'#'+code:'';
  document.querySelectorAll('.js-test').forEach(a=>a.href='../test/'+suffix);
 
- /* first story, from the coach settings in assets/site.js */
- document.getElementById('statV').textContent=t.statV;document.getElementById('statL').textContent=t.statL;
- document.getElementById('avatar').innerHTML=c.photo?`<img src="/images/${c.photo}" alt="${esc(c.name)}" width="260" height="325" loading="lazy">`:'';
- document.getElementById('coachStory').textContent=t.story;
- document.getElementById('coachWho').textContent=`${c.name} · ${c.city||''}`;
+ /* colours: the coach's palette (assets/palettes.css). ?palette=rose lets you preview one without changing anything */
+ document.documentElement.dataset.palette=window.PALETTE_OVERRIDE||new URLSearchParams(location.search).get('palette')||c.palette||'sky';
+
+ /* first story, from the coach settings in assets/site.js. Hidden when the coach has none. */
+ const tr=c.transform||{},own=CASES.find(x=>x.coach===code);
+ document.getElementById('story').hidden=!tr.story;
+ document.getElementById('coachStat').hidden=!tr.proof;
+ if(tr.proof){document.getElementById('statV').textContent=tr.proof.value;document.getElementById('statL').textContent=tr.proof[lang]}
+ const portrait=c.photo?'/images/'+c.photo:(own&&own.after)||'';
+ document.getElementById('avatar').innerHTML=portrait?`<img src="${esc(portrait)}" alt="${esc(c.name)}" width="260" height="325" loading="lazy">`:'';
+ if(tr.story)document.getElementById('coachStory').textContent=tr.story[lang];
+ document.getElementById('coachWho').textContent=[c.name,c.city].filter(Boolean).join(' · ');
  document.getElementById('waBtn').href=`https://wa.me/${c.wa}?text=${encodeURIComponent(t.waMsg(c.name))}`;
 
  /* totals, only from real results and only when there are enough of them */
@@ -537,7 +540,7 @@ function render(){
 
  /* rails */
  const keep=rails.map(r=>r.rail.scrollLeft);
- rails[0].rail.innerHTML=CASES.map(x=>caseCard(x,t)).join('');
+ rails[0].rail.innerHTML=[...CASES].sort((a,b)=>(b.coach===code)-(a.coach===code)).map(x=>caseCard(x,t)).join('');
  rails.forEach((r,i)=>{
   r.rail.setAttribute('aria-label',t.railRes);
   r.prev.setAttribute('aria-label',t.prev);r.next.setAttribute('aria-label',t.next);

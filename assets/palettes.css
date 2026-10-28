@@ -1,0 +1,20 @@
+/* Colour palettes for the #transformwithST results page. One block per palette.
+   A coach picks theirs with `palette:'rose'` in assets/site.js (COACHES). To add a palette, copy a block,
+   rename it, change the colours. Nothing else needs to change.
+   head = headlines, ink = body text, accent/cta = links and buttons, sky/cloud = soft backgrounds and cards,
+   pop = the one bright accent (main button, progress bar, highlighted phrase). */
+:root{ /* sky: the default blue with orange */
+  --head:#1E3A8A;--ink:#2B3A5E;--accent:#2F55D4;--accent-soft:#EAF0FF;--cta:#2F55D4;--cta-hover:#2547B8;--cta-ink:#FFFFFF;
+  --sky:#E8F0FD;--sky-line:#D6E3FA;--cloud:#F2F6FE;--cloud-line:#E0E9FA;--lift:0 2px 16px rgba(47,85,212,.08);
+  --pop:#F97316;--pop-hover:#FB8B33;--pop-ink:#172554;--pop-glow:rgba(249,115,22,.28);--hl:#C2410C;--d-orange:#F97316;
+}
+:root[data-palette="rose"]{ /* soft rose with warm coral */
+  --head:#8A2A55;--ink:#4A2B3A;--accent:#C2417A;--accent-soft:#FDECF3;--cta:#C2417A;--cta-hover:#A8346A;--cta-ink:#FFFFFF;
+  --sky:#FCEAF2;--sky-line:#F6D5E4;--cloud:#FEF4F8;--cloud-line:#F8E0EA;--lift:0 2px 16px rgba(194,65,122,.08);
+  --pop:#F4845F;--pop-hover:#F79877;--pop-ink:#3B1A2B;--pop-glow:rgba(244,132,95,.30);--hl:#C2417A;--d-orange:#F4845F;
+}
+:root[data-palette="sage"]{ /* calm green with orange */
+  --head:#1F5A47;--ink:#2B4A40;--accent:#2F8F6B;--accent-soft:#E6F5EE;--cta:#2F8F6B;--cta-hover:#267657;--cta-ink:#FFFFFF;
+  --sky:#E6F4EC;--sky-line:#CFE8DA;--cloud:#F1F9F4;--cloud-line:#DDEEE3;--lift:0 2px 16px rgba(47,143,107,.08);
+  --pop:#F97316;--pop-hover:#FB8B33;--pop-ink:#16372C;--pop-glow:rgba(249,115,22,.28);--hl:#C2410C;--d-orange:#F97316;
+}
