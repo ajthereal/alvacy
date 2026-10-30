@@ -61,6 +61,18 @@
     <xhtml:link rel="alternate" hreflang="x-default" href="https://alvacy.com/kalori/"/>
   </url>
   <url>
+    <loc>https://alvacy.com/plateau/</loc>
+    <xhtml:link rel="alternate" hreflang="id" href="https://alvacy.com/plateau/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://alvacy.com/en/plateau/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://alvacy.com/plateau/"/>
+  </url>
+  <url>
+    <loc>https://alvacy.com/en/plateau/</loc>
+    <xhtml:link rel="alternate" hreflang="id" href="https://alvacy.com/plateau/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://alvacy.com/en/plateau/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://alvacy.com/plateau/"/>
+  </url>
+  <url>
     <loc>https://alvacy.com/privacy/</loc>
     <xhtml:link rel="alternate" hreflang="id" href="https://alvacy.com/privacy/"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://alvacy.com/en/privacy/"/>

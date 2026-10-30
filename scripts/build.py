@@ -69,6 +69,13 @@ PAGES = [
                'desc': 'Work out your daily calories, protein target, and when you could reach your goal weight. Free, safe pace, Mifflin-St Jeor equation.'},
     },
     {
+        'path': 'plateau/', 'kind': 'plateau',
+        'id': {'title': 'Kenapa Berat Badan Stuck? Plateau Check Gratis · #transformwithST',
+               'desc': 'Sudah coba IF, keto, gym, atau klinik tapi berat stuck? Jawab 4 pertanyaan singkat dan lihat pola yang paling mungkin menahan progress kamu. Gratis.'},
+        'en': {'title': 'Why Is My Weight Stuck? Free Plateau Check · #transformwithST',
+               'desc': 'Tried IF, keto, the gym, or a clinic and your weight is still stuck? Answer 4 quick questions and see the pattern most likely holding you back. Free.'},
+    },
+    {
         # Not branded #transformwithST, not in the sitemap, and told to stay out of search until it holds real results.
         # Remove 'noindex' (and add a link from the home page) once real before/after photos are in place.
         'path': 'transform/', 'kind': 'results', 'brand': '#transformwithST', 'noindex': True,
@@ -123,13 +130,13 @@ def schema(page, lang, faq):
     if 'brand' not in page:  # pages with their own brand are not part of the #transformwithST website entity
         webpage['isPartOf'] = {'@id': f'{SITE}/#website'}
     graph.append(webpage)
-    if page['kind'] in ('tools', 'test', 'calc', 'lunch'):
-        name = {'tools': 'Transform Toolkit', 'test': 'Body Age Assessment', 'calc': 'Kalkulator Kalori #transformwithST', 'lunch': 'What’s For Lunch?'}[page['kind']]
+    if page['kind'] in ('tools', 'test', 'calc', 'lunch', 'plateau'):
+        name = {'tools': 'Transform Toolkit', 'test': 'Body Age Assessment', 'calc': 'Kalkulator Kalori #transformwithST', 'lunch': 'What’s For Lunch?', 'plateau': 'Plateau Check #transformwithST'}[page['kind']]
         graph.append({'@type': 'WebApplication', 'name': name, 'url': u, 'description': t['desc'],
                       'applicationCategory': 'HealthApplication', 'operatingSystem': 'Any', 'inLanguage': lang,
                       'isAccessibleForFree': True,
                       'offers': {'@type': 'Offer', 'price': '0', 'priceCurrency': 'IDR'}})
-    if faq and page['kind'] in ('home', 'test', 'calc', 'lunch'):  # tools/ uses <details> for its source list, not a FAQ
+    if faq and page['kind'] in ('home', 'test', 'calc', 'lunch', 'plateau'):  # tools/ uses <details> for its source list, not a FAQ
         graph.append({'@type': 'FAQPage', 'url': u, 'inLanguage': lang, 'mainEntity': [
             {'@type': 'Question', 'name': q, 'acceptedAnswer': {'@type': 'Answer', 'text': a}} for q, a in faq]})
     data = json.dumps({'@context': 'https://schema.org', '@graph': graph}, ensure_ascii=False, indent=1)
@@ -203,7 +210,7 @@ SNAPSHOT_JS = r"""() => {
 }"""
 
 
-RESERVED = {'test', 'kalori', 'lunch', 'tools', 'privacy', 'transform', 'en', 'images', 'assets', 'scripts', 'apps-script', 'body-age', 'index',
+RESERVED = {'test', 'kalori', 'lunch', 'plateau', 'tools', 'privacy', 'transform', 'en', 'images', 'assets', 'scripts', 'apps-script', 'body-age', 'index',
             'join', 'data', 'tim', 'api', 'admin', 'coach', 'coaches', 'www', 'alvacy', 'github'}
 
 COACH_LINK = """<!doctype html>

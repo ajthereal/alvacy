@@ -103,6 +103,26 @@ function doPost(e) {
 function notify_(d) {
   const to = coachEmails_()[d.coach] || DEFAULT_EMAIL;
   const wa = String(d.wa || '').replace(/\D/g, '');
+  if (d.tool === 'plateau') {
+    /* Lead from alvacy.com/plateau (Plateau Check). Answers arrive in the quiz columns: band = pattern, tried = methods, start = how long stuck, goal = what they feel. */
+    const pb = [
+      'Lead baru dari Plateau Check (coach: ' + (d.coach || '-') + ')',
+      '',
+      'Nama: ' + d.name,
+      'WhatsApp: +' + wa + '  ->  https://wa.me/' + wa,
+      'Email: ' + d.email,
+      'Sumber: ' + (d.src || '-') + (d.campaign ? ' | Campaign: ' + d.campaign : ''),
+      '',
+      'Pola utama: ' + d.band,
+      'Umur: ' + d.age + ' | Stuck sejak: ' + d.start,
+      'Yang sudah dicoba: ' + d.tried,
+      'Yang dirasakan: ' + d.goal
+    ].concat(to === DEFAULT_EMAIL ? ['', 'Sheet: ' + SpreadsheetApp.getActiveSpreadsheet().getUrl()] : []).join('\n');
+    const pm = { to: to, subject: 'Lead baru (Plateau Check): ' + d.name, body: pb };
+    if (to !== DEFAULT_EMAIL) pm.cc = DEFAULT_EMAIL;
+    try { MailApp.sendEmail(pm); } catch (err) {}
+    return;
+  }
   const body = [
     'Lead baru dari Body Age Assessment (coach: ' + (d.coach || '-') + ')',
     '',
