@@ -357,22 +357,34 @@ section{padding-block:clamp(56px,10vw,112px)}
 .proof{display:grid;gap:clamp(16px,3vw,26px)}
 .proof-h{display:grid;gap:8px;max-width:700px}
 .proof-h h3{font-size:clamp(1.4rem,3.2vw,2rem);letter-spacing:-.025em}
-.proof-cols{display:grid;grid-template-columns:minmax(0,1.05fr) minmax(0,1fr);gap:12px}
-.pcol{padding:clamp(20px,3vw,30px);background:var(--surface);border:1px solid var(--sky-line);border-radius:var(--r);display:grid;gap:16px;align-content:start}
-.pcol h4{font-size:.74rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--accent)}
-.pcol ul{margin:0;padding:0;list-style:none;display:grid;gap:18px}
-.pcol li{position:relative;padding-left:18px;display:grid;gap:4px;font-size:.9rem;line-height:1.55;color:var(--muted)}
-.pcol li::before{content:"";position:absolute;left:0;top:.55em;width:7px;height:7px;border-radius:50%;background:var(--d-teal)}
-.pcol li b{color:var(--head);font-size:.98rem;line-height:1.35}
-.pcol cite{font-style:normal;font-size:.78rem;color:var(--muted)}
-.pnote{font-size:.85rem;line-height:1.5;color:var(--muted)}
-.awds{display:grid;grid-template-columns:1fr 1fr;gap:10px}
-.aw{padding:14px;border-radius:14px;background:var(--cloud);border:1px solid var(--cloud-line);display:grid;gap:3px;align-content:start}
-.aw .yr{font-family:var(--f-mono);font-size:.76rem;color:var(--accent)}
-.aw b{color:var(--head);font-size:.92rem;line-height:1.3}
-.aw span.t{font-size:.78rem;color:var(--muted);line-height:1.4}
-.pcol .more{font-size:.85rem;font-weight:600}
-@media (max-width:860px){ .proof-cols{grid-template-columns:1fr} }
+.wall{display:flex;gap:12px;align-items:center;justify-content:flex-start;overflow-x:auto;scroll-snap-type:x proximity;padding:6px 2px 14px;-webkit-overflow-scrolling:touch;scrollbar-width:none}
+.wall::-webkit-scrollbar{display:none}
+.wcol{display:grid;gap:12px;flex:1 1 0;min-width:168px;scroll-snap-align:center}
+.pill{position:relative;border-radius:44px;padding:22px 18px 20px;display:flex;flex-direction:column;justify-content:flex-end;gap:5px;overflow:hidden;text-align:center;align-items:center;border:1px solid var(--sky-line);opacity:0;transform:translateY(18px);transition:opacity .7s var(--ease),transform .7s var(--ease);transition-delay:calc(var(--i,0)*70ms)}
+.wall.in .pill{opacity:1;transform:none}
+.pill.s{height:166px}.pill.m{height:226px}.pill.l{height:304px}
+.pill .lau{width:34px;height:34px;color:currentColor;opacity:.75;margin-bottom:auto}
+.pill .yr{font-family:var(--f-mono);font-size:.74rem;letter-spacing:.02em;opacity:.8}
+.pill b{font-size:.98rem;line-height:1.25;letter-spacing:-.015em}
+.pill .t{font-size:.76rem;line-height:1.35;opacity:.78}
+.pill .big{font-family:var(--f-mono);font-size:2.4rem;letter-spacing:-.05em;line-height:1;margin-bottom:auto;padding-top:2px}
+.pill.aw{background:linear-gradient(170deg,#fff,var(--cloud));color:var(--head)}
+.pill.aw.c2{background:linear-gradient(170deg,#FFF6EE,#FDE9D8)}
+.pill.aw.c3{background:linear-gradient(170deg,#F5F2FD,#E6E0FA)}
+.pill.aw.c4{background:linear-gradient(170deg,#F0FAF6,#D9F0E6)}
+.pill.sc{background:linear-gradient(170deg,#1E3A8A,#172554);color:#fff;border-color:transparent}
+.pill.sc .tg{font-size:.62rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;padding:4px 9px;border-radius:99px;background:rgba(255,255,255,.14);margin-bottom:auto}
+.pill:hover{transform:translateY(-3px)}
+.wall.in .pill:hover{transform:translateY(-3px)}
+.wallnote{font-size:.85rem;line-height:1.5;color:var(--muted);max-width:760px}
+.wallnote b{color:var(--head)}
+.proof details{background:var(--surface);border:1px solid var(--sky-line);border-radius:var(--r);padding:14px 18px}
+.proof summary{cursor:pointer;font-weight:600;color:var(--head);font-size:.92rem}
+.proof .dl{display:grid;gap:14px;margin-top:14px;font-size:.9rem;line-height:1.55;color:var(--muted)}
+.proof .dl b{color:var(--head)}
+@media (prefers-reduced-motion:reduce){ .pill{opacity:1;transform:none;transition:none} }
+.swipe{font-size:.8rem;color:var(--muted);margin-top:-8px}
+@media (min-width:1000px){ .wall{overflow:visible;justify-content:center} .swipe{display:none} }
 .exec{max-width:1000px;margin:clamp(28px,5vw,48px) auto 0;display:grid;grid-template-columns:minmax(0,340px) minmax(0,1fr);gap:clamp(20px,4vw,44px);align-items:center;padding:clamp(18px,3vw,30px);background:var(--cloud);border:1px solid var(--cloud-line);border-radius:var(--r-lg);box-shadow:var(--rim)}
 .exec .pair{display:grid;grid-template-columns:1fr 1fr;gap:8px}
 .exec figure{margin:0;position:relative;border-radius:var(--r);overflow:hidden;aspect-ratio:.8;background:var(--surface);box-shadow:var(--lift-img)}
@@ -662,30 +674,25 @@ section{padding-block:clamp(56px,10vw,112px)}
       </div>
     </div>
 
-    <div class="proof reveal">
-      <div class="proof-h"><p class="kicker">Science dan pengakuan</p><h3>Bukan cuma klaim. Ini yang bisa kamu cek sendiri.</h3></div>
-      <div class="proof-cols">
-        <div class="pcol">
-          <h4>Published science</h4>
-          <ul>
-            <li><b>Dimuat di jurnal medis.</b>Studi pada 60 orang dengan overweight atau obesitas memakai ageLOC TR90 (TRMe) selama 90 hari. Lingkar pinggang turun rata-rata 5,1 cm dan BMI turun 1,11. Studi ini membandingkan sebelum dan sesudah, tanpa kelompok pembanding.<cite>Vietnam Medical Journal, 2023, Hanoi Medical University <span class="src-ref"><a href="#sumber">Sumber 16</a></span></cite></li>
-            <li><b>22 referensi riset di balik bahan-bahannya.</b>Product information page TRMe mencantumkan 22 referensi, termasuk uji acak berplasebo pada bahan seperti ekstrak saffron. Ini riset pada bahan, bukan uji pada seluruh sistem TRMe.<cite><span class="src-ref"><a href="#sumber">Sumber 15</a></span></cite></li>
-            <li><b>Ada Scientific Advisory Board.</b>Dr. Joseph Chang, Chairman Scientific Advisory Board Nu Skin, dikutip saat TRMe diluncurkan di Indonesia.<cite><span class="src-ref"><a href="#sumber">Sumber 18</a></span></cite></li>
-          </ul>
-        </div>
-        <div class="pcol">
-          <h4>Awards</h4>
-          <p class="pnote">Award di bawah ini untuk produk dan perusahaan Nu Skin. Belum ada award yang khusus untuk TRMe.</p>
-          <div class="awds">
-            <div class="aw"><span class="yr">2026</span><b>Gold Globee</b><span class="t">Prysm iO, Most Innovative Data-Driven Product</span></div>
-            <div class="aw"><span class="yr">2025</span><b>Platinum, Titan Business Awards</b><span class="t">Prysm iO</span></div>
-            <div class="aw"><span class="yr">2023 sampai 2026</span><b>NewBeauty Awards</b><span class="t">ageLOC LumiSpa iO, Best Facial Cleansing Device, 4 tahun berturut-turut</span></div>
-            <div class="aw"><span class="yr">2025</span><b>USA Today</b><span class="t">America's Best Customer Service Companies</span></div>
-            <div class="aw" style="grid-column:1/-1"><span class="yr">Euromonitor International</span><b>Nomor 1 dunia untuk beauty and wellness device systems</b><span class="t">3 tahun berturut-turut</span></div>
-          </div>
-          <a class="more" href="https://www.nuskin.com/content/corpcom/en_US/newsroom/news1/Nu-Skin-Awards.html" rel="noopener">Lihat daftar lengkap</a> <span class="src-ref"><a href="#sumber">Sumber 17</a></span>
-        </div>
+    <div class="proof">
+      <svg width="0" height="0" style="position:absolute" aria-hidden="true"><symbol id="lau" viewBox="0 0 48 48"><g fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><path d="M19 42C9 36 6 23 11 9"/><path d="M29 42c10-6 13-19 8-33"/></g><g fill="currentColor"><ellipse cx="10" cy="15" rx="2" ry="4.2" transform="rotate(-25 10 15)"/><ellipse cx="9" cy="24" rx="2" ry="4.2" transform="rotate(-10 9 24)"/><ellipse cx="12" cy="33" rx="2" ry="4.2" transform="rotate(15 12 33)"/><ellipse cx="38" cy="15" rx="2" ry="4.2" transform="rotate(25 38 15)"/><ellipse cx="39" cy="24" rx="2" ry="4.2" transform="rotate(10 39 24)"/><ellipse cx="36" cy="33" rx="2" ry="4.2" transform="rotate(-15 36 33)"/></g></symbol></svg>
+      <div class="proof-h reveal"><p class="kicker">Science dan pengakuan</p><h3>Bukan cuma klaim. Ini yang bisa kamu cek sendiri.</h3></div>
+      <div class="wall reveal" role="list" aria-label="Published science dan award Nu Skin">
+        <div class="wcol"><article class="pill aw m c1" style="--i:0"><svg class="lau" viewBox="0 0 48 48" aria-hidden="true"><use href="#lau"/></svg><span class="yr">2023 sampai 2026</span><b>NewBeauty Awards</b><span class="t">ageLOC LumiSpa iO, Best Facial Cleansing Device, 4 tahun berturut-turut</span></article><article class="pill aw s c3" style="--i:1"><svg class="lau" viewBox="0 0 48 48" aria-hidden="true"><use href="#lau"/></svg><span class="yr">2026</span><b>Gold, Health &amp; Wellness Awards</b><span class="t">LumiSpa iO, Best Device of the Year</span></article><article class="pill aw s c2" style="--i:2"><svg class="lau" viewBox="0 0 48 48" aria-hidden="true"><use href="#lau"/></svg><span class="yr">2025</span><b>USA Today</b><span class="t">America's Best Customer Service Companies</span></article></div>
+        <div class="wcol"><article class="pill sc l" style="--i:3"><span class="tg">Science</span><span class="big">−5,1<small style="font-size:1rem"> cm</small></span><b>Vietnam Medical Journal, 2023</b><span class="t">ageLOC TR90 (TRMe), 60 peserta, 90 hari, rata-rata lingkar pinggang</span></article><article class="pill aw s c4" style="--i:4"><svg class="lau" viewBox="0 0 48 48" aria-hidden="true"><use href="#lau"/></svg><span class="yr">Euromonitor</span><b>Nomor 1 dunia</b><span class="t">beauty and wellness device systems, 3 tahun berturut-turut</span></article></div>
+        <div class="wcol"><article class="pill aw m c2" style="--i:5"><svg class="lau" viewBox="0 0 48 48" aria-hidden="true"><use href="#lau"/></svg><span class="yr">2026</span><b>Gold Globee</b><span class="t">Prysm iO, Most Innovative Data-Driven Product</span></article><article class="pill sc m" style="--i:6"><span class="tg">Science</span><span class="big">98%</span><b>Studi internal Nu Skin</b><span class="t">64 peserta, 12 minggu</span></article><article class="pill aw s c1" style="--i:7"><svg class="lau" viewBox="0 0 48 48" aria-hidden="true"><use href="#lau"/></svg><span class="yr">2025</span><b>Platinum, Titan Business Awards</b><span class="t">Prysm iO</span></article></div>
+        <div class="wcol"><article class="pill aw s c3" style="--i:8"><svg class="lau" viewBox="0 0 48 48" aria-hidden="true"><use href="#lau"/></svg><span class="yr">2025</span><b>Gold, Global Makeup Awards</b><span class="t">LumiSpa iO, Best Beauty Tool</span></article><article class="pill sc l" style="--i:9"><span class="tg">Science</span><span class="big">22</span><b>Referensi riset</b><span class="t">di halaman produk TRMe, termasuk uji acak berplasebo pada bahan</span></article><article class="pill aw s c4" style="--i:10"><svg class="lau" viewBox="0 0 48 48" aria-hidden="true"><use href="#lau"/></svg><span class="yr">2022</span><b>Gold Globee</b><span class="t">Nu Skin, Company of the Year (Wellness Products and Services)</span></article></div>
+        <div class="wcol"><article class="pill aw m c4" style="--i:11"><svg class="lau" viewBox="0 0 48 48" aria-hidden="true"><use href="#lau"/></svg><span class="yr">2025</span><b>Gold, Wellness from Within Awards</b><span class="t">LifePak Nano, Best Multivitamin for All-Around Health</span></article><article class="pill sc s" style="--i:12"><span class="tg">Science</span><span class="big">SAB</span><b>Scientific Advisory Board</b><span class="t">Dr. Joseph Chang, Chairman</span></article><article class="pill aw m c2" style="--i:13"><svg class="lau" viewBox="0 0 48 48" aria-hidden="true"><use href="#lau"/></svg><span class="yr">2025</span><b>Gold, Global Green Beauty Awards</b><span class="t">WellSpa iO, Best Spa Device</span></article></div>
       </div>
+      <p class="swipe">Geser untuk lihat semuanya →</p>
+      <p class="wallnote"><b>Award ini untuk produk dan perusahaan Nu Skin.</b> Belum ada award yang khusus untuk TRMe. <a href="https://www.nuskin.com/content/corpcom/en_US/newsroom/news1/Nu-Skin-Awards.html" rel="noopener">Daftar lengkap</a> <span class="src-ref"><a href="#sumber">Sumber 17</a></span></p>
+      <details><summary>Detail science dan batasannya</summary>
+        <div class="dl">
+          <p><b>Vietnam Medical Journal, 2023.</b> Studi pada 60 orang dengan overweight atau obesitas memakai ageLOC TR90 (TRMe) selama 90 hari. Lingkar pinggang turun rata-rata 5,1 cm dan BMI turun 1,11. Studi ini membandingkan sebelum dan sesudah, tanpa kelompok pembanding. <span class="src-ref"><a href="#sumber">Sumber 16</a></span></p>
+          <p><b>22 referensi riset.</b> Product information page TRMe mencantumkan 22 referensi, termasuk uji acak berplasebo pada bahan seperti ekstrak saffron. Ini riset pada bahan, bukan uji pada seluruh sistem TRMe. <span class="src-ref"><a href="#sumber">Sumber 15</a></span></p>
+          <p><b>Scientific Advisory Board.</b> Dr. Joseph Chang, Chairman Scientific Advisory Board Nu Skin, dikutip saat TRMe diluncurkan di Indonesia. <span class="src-ref"><a href="#sumber">Sumber 18</a></span></p>
+        </div>
+      </details>
     </div>
   </div>
 </div></section>
