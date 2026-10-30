@@ -384,6 +384,20 @@ section{padding-block:clamp(56px,10vw,112px)}
 .proof summary{cursor:pointer;font-weight:600;color:var(--head);font-size:.92rem}
 .proof .dl{display:grid;gap:14px;margin-top:14px;font-size:.9rem;line-height:1.55;color:var(--muted)}
 .proof .dl b{color:var(--head)}
+.proof .deep{background:var(--surface);border:1px solid var(--sky-line);border-radius:var(--r);padding:14px 18px}
+.proof .deep>summary{cursor:pointer;font-weight:600;color:var(--head);font-size:.95rem}
+.proof .yr{border-top:1px solid var(--sky-line);padding:10px 0}
+.proof .yr>summary{cursor:pointer;font-weight:600;color:var(--head);font-size:.9rem}
+.proof .yr>summary small{font-weight:500;color:var(--muted);margin-left:6px}
+.proof .yr p{margin-top:10px}
+.proof .al,.proof .rl{margin:10px 0 0;padding:0;list-style:none;display:grid;gap:7px;font-size:.82rem;line-height:1.45;color:var(--muted)}
+.proof .al li,.proof .rl li{padding-left:2px}
+.proof .rl li{padding-left:14px;position:relative}
+.proof .rl li::before{content:"";position:absolute;left:0;top:.6em;width:5px;height:5px;border-radius:50%;background:var(--d-teal)}
+.proof .al b{color:var(--head);font-weight:600}
+.proof .lv{display:inline-block;margin-right:6px;font-size:.62rem;font-weight:700;letter-spacing:.06em;text-transform:uppercase;padding:2px 7px;border-radius:99px;background:var(--cloud);border:1px solid var(--cloud-line);color:var(--accent);white-space:nowrap}
+.proof .rg{margin-top:8px;color:var(--head)}
+.proof .small{font-size:.8rem;color:var(--muted)}
 @media (prefers-reduced-motion:reduce){ .pill{opacity:1;transform:none;transition:none} }
 .swipe{font-size:.8rem;color:var(--muted);margin-top:-8px}
 @media (min-width:1000px){ .wall{overflow:visible;justify-content:center} .swipe{display:none} }
@@ -680,7 +694,7 @@ section{padding-block:clamp(56px,10vw,112px)}
       <svg width="0" height="0" style="position:absolute" aria-hidden="true"><symbol id="lau" viewBox="0 0 48 48"><g fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><path d="M19 42C9 36 6 23 11 9"/><path d="M29 42c10-6 13-19 8-33"/></g><g fill="currentColor"><ellipse cx="10" cy="15" rx="2" ry="4.2" transform="rotate(-25 10 15)"/><ellipse cx="9" cy="24" rx="2" ry="4.2" transform="rotate(-10 9 24)"/><ellipse cx="12" cy="33" rx="2" ry="4.2" transform="rotate(15 12 33)"/><ellipse cx="38" cy="15" rx="2" ry="4.2" transform="rotate(25 38 15)"/><ellipse cx="39" cy="24" rx="2" ry="4.2" transform="rotate(10 39 24)"/><ellipse cx="36" cy="33" rx="2" ry="4.2" transform="rotate(-15 36 33)"/></g></symbol></svg>
       <div class="proof-h reveal"><p class="kicker">Science dan pengakuan</p><h3>Bukan cuma klaim. Ini yang bisa kamu cek sendiri.</h3></div>
       <div class="wall reveal" role="list" aria-label="Published science dan award Nu Skin">
-        <div class="wcol"><article class="pill aw m c1" style="--i:0"><svg class="lau" viewBox="0 0 48 48" aria-hidden="true"><use href="#lau"/></svg><span class="yr">2023 sampai 2026</span><b>NewBeauty Awards</b><span class="t">ageLOC LumiSpa iO, Best Facial Cleansing Device, 4 tahun berturut-turut</span></article><article class="pill aw s c3" style="--i:1"><svg class="lau" viewBox="0 0 48 48" aria-hidden="true"><use href="#lau"/></svg><span class="yr">2026</span><b>Gold, Health &amp; Wellness Awards</b><span class="t">LumiSpa iO, Best Device of the Year</span></article><article class="pill aw s c2" style="--i:2"><svg class="lau" viewBox="0 0 48 48" aria-hidden="true"><use href="#lau"/></svg><span class="yr">2025</span><b>USA Today</b><span class="t">America's Best Customer Service Companies</span></article></div>
+        <div class="wcol"><article class="pill aw m c1" style="--i:0"><svg class="lau" viewBox="0 0 48 48" aria-hidden="true"><use href="#lau"/></svg><span class="yr">2023 sampai 2026</span><b>NewBeauty Awards</b><span class="t">ageLOC LumiSpa iO, Best Facial Cleansing Device, 4 tahun berturut-turut</span></article><article class="pill aw s c3" style="--i:1"><svg class="lau" viewBox="0 0 48 48" aria-hidden="true"><use href="#lau"/></svg><span class="yr">2026</span><b>Gold, Health &amp; Wellness Awards</b><span class="t">LumiSpa iO, Best Device of the Year</span></article><article class="pill aw s c2" style="--i:2"><svg class="lau" viewBox="0 0 48 48" aria-hidden="true"><use href="#lau"/></svg><span class="yr">2023</span><b>Gold, Editor's Choice</b><span class="t">ageLOC TR90 (TRMe), Global Makeup Awards ASIA</span></article></div>
         <div class="wcol"><article class="pill sc l" style="--i:3"><span class="tg">Science</span><span class="big">−5,1<small style="font-size:1rem"> cm</small></span><b>Vietnam Medical Journal, 2023</b><span class="t">ageLOC TR90 (TRMe), 60 peserta, 90 hari, rata-rata lingkar pinggang</span></article><article class="pill rk m" style="--i:4"><span class="tg">Euromonitor</span><span class="big">#1</span><b>South Korea</b><span class="t">3 tahun berturut-turut, Pharmanex Weight Management and Wellbeing brand, 2021 sampai 2023</span></article></div>
         <div class="wcol"><article class="pill aw m c2" style="--i:5"><svg class="lau" viewBox="0 0 48 48" aria-hidden="true"><use href="#lau"/></svg><span class="yr">2026</span><b>Gold Globee</b><span class="t">Prysm iO, Most Innovative Data-Driven Product</span></article><article class="pill sc m" style="--i:6"><span class="tg">Science</span><span class="big">98%</span><b>Studi internal Nu Skin</b><span class="t">64 peserta, 12 minggu</span></article><article class="pill aw s c1" style="--i:7"><svg class="lau" viewBox="0 0 48 48" aria-hidden="true"><use href="#lau"/></svg><span class="yr">2025</span><b>Platinum, Titan Business Awards</b><span class="t">Prysm iO</span></article></div>
         <div class="wcol"><article class="pill rk m" style="--i:8"><span class="tg">Euromonitor</span><span class="big">#1</span><b>Malaysia</b><span class="t">9 tahun berturut-turut, Pharmanex Weight Management and Wellbeing brand, 2017 sampai 2025</span></article><article class="pill sc l" style="--i:9"><span class="tg">Science</span><span class="big">22</span><b>Referensi riset</b><span class="t">di halaman produk TRMe, termasuk uji acak berplasebo pada bahan</span></article></div>
@@ -688,12 +702,217 @@ section{padding-block:clamp(56px,10vw,112px)}
       </div>
       <p class="swipe">Geser untuk lihat semuanya →</p>
       <p class="wallnote"><b>Tiap kartu menyebut siapa yang menerima</b>: brand, produk, atau perusahaan. Peringkat Euromonitor adalah peringkat penjualan brand Pharmanex, bukan penilaian satu produk. <a href="https://www.nuskin.com/content/corpcom/en_US/newsroom/news1/Nu-Skin-Awards.html" rel="noopener">Daftar lengkap</a> <span class="src-ref"><a href="#sumber">Sumber 17</a></span></p>
-      <details><summary>Detail science dan batasannya</summary>
+      <details class="deep"><summary>Lihat semua detail science dan award</summary>
         <div class="dl">
-          <p><b>Peringkat Euromonitor.</b> Nomor 1 weight management and wellbeing brand untuk Pharmanex di Malaysia (2017 sampai 2025, 9 tahun berturut-turut), Singapore (2018 sampai 2025, 8 tahun), dan South Korea (2021 sampai 2023, 3 tahun). Sumber data: Euromonitor International Limited, Consumer Health, retail value RSP, semua channel. <span class="src-ref"><a href="#sumber">Sumber 19</a></span></p>
-          <p><b>Vietnam Medical Journal, 2023.</b> Studi pada 60 orang dengan overweight atau obesitas memakai ageLOC TR90 (TRMe) selama 90 hari. Lingkar pinggang turun rata-rata 5,1 cm dan BMI turun 1,11. Studi ini membandingkan sebelum dan sesudah, tanpa kelompok pembanding. <span class="src-ref"><a href="#sumber">Sumber 16</a></span></p>
-          <p><b>22 referensi riset.</b> Product information page TRMe mencantumkan 22 referensi, termasuk uji acak berplasebo pada bahan seperti ekstrak saffron. Ini riset pada bahan, bukan uji pada seluruh sistem TRMe. <span class="src-ref"><a href="#sumber">Sumber 15</a></span></p>
-          <p><b>Scientific Advisory Board.</b> Dr. Joseph Chang, Chairman Scientific Advisory Board Nu Skin, dikutip saat TRMe diluncurkan di Indonesia. <span class="src-ref"><a href="#sumber">Sumber 18</a></span></p>
+          <details class="yr" open><summary>Published science dan batasannya</summary>
+            <p><b>Vietnam Medical Journal, 2023.</b> Vũ MH, Nguyễn TLP, Nguyễn TTT (Hanoi Medical University). Studi intervensi klinis pada 60 orang dengan overweight atau obesitas primer di komunitas, memakai ageLOC TR90 (TRMe) selama 90 hari, direkrut Januari sampai Desember 2022. Setelah 90 hari: BMI turun 1,11 ± 0,63, lingkar pinggang turun 5,10 ± 3,25 cm, lingkar pinggul turun 4,55 ± 3,63 cm, tebal lipatan kulit subskapular turun 0,88 ± 0,70 cm. Studi ini membandingkan sebelum dan sesudah, tanpa kelompok pembanding, dan abstraknya tidak mencantumkan pendanaan. <span class="src-ref"><a href="#sumber">Sumber 16</a></span></p>
+            <p><b>Studi internal Nu Skin.</b> 64 peserta dewasa, 12 minggu, 98% mengalami penurunan berat badan. <span class="src-ref"><a href="#sumber">Sumber 14</a></span></p>
+            <p><b>Scientific Advisory Board.</b> Dr. Joseph Chang, Chairman Scientific Advisory Board Nu Skin, dikutip saat TRMe diluncurkan di Indonesia. <span class="src-ref"><a href="#sumber">Sumber 18</a></span></p>
+          </details>
+          <details class="yr"><summary>21 referensi riset di halaman produk TRMe</summary>
+            <p>Product information page TRMe mencantumkan 22 referensi (satu artikel tercatat dua kali, jadi 21 artikel berbeda). Halaman itu tidak mengaitkan tiap referensi dengan produk tertentu, jadi pengelompokan di bawah ini berdasarkan topik. Ini riset pada bahan dan topik umum, bukan uji pada seluruh sistem TRMe. <span class="src-ref"><a href="#sumber">Sumber 15</a></span></p>
+<p class="rg"><b>Buah kaktus pir</b></p><ul class="rl"><li>Attanzio A, et al. 2018. Short-term cactus pear fruit supplementation ameliorates the inflammatory profile. <i>Food Nutr Res</i>.</li><li>Tesoriere L, et al. 2004. Supplementation with cactus pear fruit decreases oxidative stress in healthy humans. <i>Am J Clin Nutr</i>.</li></ul>
+<p class="rg"><b>Saffron</b></p><ul class="rl"><li>Gout B, et al. 2010. Satiereal, a Crocus sativus L extract, reduces snacking and increases satiety in a randomized placebo-controlled study of mildly overweight, healthy women. <i>Nutr Res</i>.</li><li>Beiranvand SP, et al. 2016. The effect of Crocus sativus (saffron) on the severity of premenstrual syndrome. <i>Eur J Integr Med</i>.</li><li>Jackson PA, et al. 2021. Effects of saffron extract supplementation on mood, well-being, and response to a psychosocial stressor in healthy adults. <i>Front Nutr</i>.</li></ul>
+<p class="rg"><b>Daun murbei dan serat guar</b></p><ul class="rl"><li>Thondre PS, et al. 2021. Mulberry leaf extract improves glycaemic response and insulaemic response to sucrose in healthy subjects. <i>Nutr Metab (Lond)</i>.</li><li>Lown M, et al. 2017. Mulberry-extract improves glucose tolerance and decreases insulin concentrations in normoglycaemic adults. <i>PLoS One</i>.</li><li>Wang R, et al. 2018. Mulberry leaf extract reduces the glycemic indexes of four common dietary carbohydrates. <i>Medicine (Baltimore)</i>.</li><li>Rao TP, et al. 2015. Post-meal perceivable satiety and subsequent energy intake with intake of partially hydrolysed guar gum. <i>Br J Nutr</i>.</li><li>Rao TP. 2016. Role of guar fiber in appetite control. <i>Physiol Behav</i>.</li></ul>
+<p class="rg"><b>Formula herbal untuk weight management</b></p><ul class="rl"><li>Dixit K, et al. 2018. Efficacy of a novel herbal formulation for weight loss demonstrated in a 16-week randomized, double-blind, placebo-controlled clinical trial with healthy overweight adults. <i>Diabetes Obes Metab</i>.</li><li>Sengupta K, et al. 2012. Efficacy and tolerability of a novel herbal formulation for weight management in obese subjects: a randomized double blind placebo controlled clinical study. <i>Lipids Health Dis</i>.</li><li>Kundimi S, et al. 2020. Combined extracts of Moringa oleifera, Murraya koeingii leaves, and Curcuma longa rhizome increases energy expenditure. <i>Lipids Health Dis</i>.</li><li>Sengupta K, et al. 2011. An herbal formula LI85008F inhibits lipogenesis in 3T3-L1 adipocytes. <i>Food and Nutrition Sciences</i>.</li></ul>
+<p class="rg"><b>Protein dan meal replacement</b></p><ul class="rl"><li>Astbury NM, et al. 2019. A systematic review and meta-analysis of the effectiveness of meal replacements for weight loss. <i>Obes Rev</i>.</li><li>Layman DK. 2009. Dietary guidelines should reflect new understandings about adult protein needs. <i>Nutr Metab (Lond)</i>.</li><li>Moon J, Koh G. 2020. Clinical evidence and mechanisms of high-protein diet-induced weight loss. <i>J Obes Metab Syndr</i>.</li><li>Layman DK, et al. 2009. A moderate-protein diet produces sustained weight loss and long-term changes in body composition. <i>J Nutr</i>.</li></ul>
+<p class="rg"><b>Lainnya</b></p><ul class="rl"><li>Suksomboon N, et al. 2014. Systematic review and meta-analysis of the efficacy and safety of chromium supplementation in diabetes. <i>J Clin Pharm Ther</i>.</li><li>Murphy PK, Wagner CL. 2008. Vitamin D and mood disorders among women: an integrative review. <i>J Midwifery Womens Health</i>.</li><li>Spinneker A, et al. 2007. Vitamin B6 status, deficiency and its consequences: an overview. <i>Nutr Hosp</i>.</li></ul>
+          </details>
+          <details class="yr"><summary>Peringkat Euromonitor</summary>
+            <p>Pharmanex, nomor 1 Weight Management and Wellbeing brand di Malaysia (2017 sampai 2025, 9 tahun berturut-turut), Singapore (2018 sampai 2025, 8 tahun), dan South Korea (2021 sampai 2023, 3 tahun). Sumber data: Euromonitor International Limited, Consumer Health, retail value RSP, semua channel. Nu Skin juga diperingkat nomor 1 dunia untuk beauty and wellness device systems. <span class="src-ref"><a href="#sumber">Sumber 19</a></span></p>
+          </details>
+          <p class="rg"><b>Daftar award per tahun (178 entri, dikumpulkan dari halaman award resmi Nu Skin)</b> <span class="src-ref"><a href="#sumber">Sumber 20</a></span></p>
+          <details class="yr"><summary>2026 <small>27 award</small></summary><ul class="al">
+<li><span class="lv">Gold</span><b>Best USA Beauty Brand</b> · Nu Skin · <i>Universal Beauty Awards</i></li>
+<li><span class="lv">Gold</span><b>Best Design</b> · Prysm iO · <i>Universal Beauty Awards</i></li>
+<li><span class="lv">Gold</span><b>Best Cleansing Device</b> · ageLOC LumiSpa iO · <i>Universal Beauty Awards</i></li>
+<li><span class="lv">Gold</span><b>Best Anti-Wrinkle Product</b> · ageLOC Tru Face Line Corrector · <i>Universal Beauty Awards</i></li>
+<li><span class="lv">Silver</span><b>Best Body Device</b> · ageLOC WellSpa iO · <i>Universal Beauty Awards</i></li>
+<li><span class="lv">Bronze</span><b>Best Skincare Brand</b> · Nu Skin · <i>Universal Beauty Awards</i></li>
+<li><span class="lv">Highly Commended</span><b>Best Collagen Product</b> · Beauty Focus Collagen+ · <i>Universal Beauty Awards</i></li>
+<li><span class="lv">Highly Commended</span><b>Best Haircare Brand</b> · Nu Skin · <i>Universal Beauty Awards</i></li>
+<li><b>Best Facial Cleansing Device</b> · ageLOC LumiSpa iO · <i>NewBeauty Awards</i></li>
+<li><span class="lv">Gold</span><b>Best Device of the Year</b> · ageLOC LumiSpa iO · <i>Health &amp; Wellness Awards</i></li>
+<li><span class="lv">Gold</span><b>Age Well Serums &amp; Oil Product of the Year</b> · ageLOC Tru Face Future Serum · <i>Health &amp; Wellness Awards</i></li>
+<li><span class="lv">Gold</span><b>Age Well Moisturiser Product of the Year</b> · ageLOC Tru Face Uplifting Cream · <i>Health &amp; Wellness Awards</i></li>
+<li><span class="lv">Silver</span><b>Oral Care Product of the Year</b> · AP 24 Whitening Fluoride Toothpaste · <i>Health &amp; Wellness Awards</i></li>
+<li><span class="lv">Silver</span><b>Achievement in New Product Launch</b> · Prysm iO · <i>Globee Excellence Awards</i></li>
+<li><span class="lv">Gold</span><b>Most Innovative Data-Driven Product</b> · Prysm iO · <i>Globee Achievement Award</i></li>
+<li><span class="lv">Silver</span><b>Achievement in Service Innovation &amp; Excellence</b> · Prysm iO · <i>Globee Awards for Pioneers</i></li>
+<li><span class="lv">Gold</span><b>Gold Stevie Award</b> · Prysm iO · <i>23rd International Business Awards</i></li>
+<li><span class="lv">Winner</span><b>Best At-Home Skincare Device</b> · ageLOC LumiSpa iO · <i>Attracta Beauty Award</i></li>
+<li><span class="lv">Highly Commended</span><b>Innovation in Longevity Tech</b> · Prysm iO · <i>Attracta Beauty Award</i></li>
+<li><span class="lv">Finalist</span><b>Excellence in Longevity Tech &amp; Home Device</b> · ageLOC LumiSpa iO · <i>Attracta Beauty Award</i></li>
+<li><span class="lv">Finalist</span><b>Leadership &amp; Innovation in Longevity Tech</b> · Prysm iO · <i>Attracta Beauty Award</i></li>
+<li><span class="lv">Finalist</span><b>High-Performance Skincare</b> · ageLOC Tru Face Peptide Retinol Complex · <i>Attracta Beauty Award</i></li>
+<li><span class="lv">Finalist</span><b>Wellness from Within Awards</b> · LifePak Tablets · <i>Wellness from Within Awards</i></li>
+<li><span class="lv">Finalist</span><b>Tool &amp; Device</b> · Prysm iO · <i>Pure Beauty Award</i></li>
+<li><span class="lv">Finalist</span><b>Best Moisturizer</b> · ageLOC Tru Face Transforming Gel Cream · <i>Pure Beauty Award</i></li>
+<li><b>Product Innovation</b> · ageLOC Tru Face Transforming Gel Cream · <i>BIG Sustainability Awards</i></li>
+<li><span class="lv">#1</span><b>World's #1 company for Beauty and Wellness Device System</b> · Nu Skin · <i>Euromonitor International</i></li>
+</ul></details>
+          <details class="yr"><summary>2025 <small>57 award</small></summary><ul class="al">
+<li><span class="lv">Gold</span><b>Platinum Winner</b> · Prysm iO · <i>Titan Business Awards</i></li>
+<li><span class="lv">Silver</span><b>Best of Category, Wellness Insight</b> · Prysm iO · <i>Globee Business Awards</i></li>
+<li><span class="lv">Gold</span><b>AI Achievement of the Year</b> · ageLOC Tru Face Peptide Retinol Complex · <i>Globee Achievement Awards</i></li>
+<li><span class="lv">Silver</span><b>AI Disruptors</b> · ageLOC Tru Face Peptide Retinol Complex · <i>Globee Disruptor Awards</i></li>
+<li><span class="lv">Bronze</span><b>Best AI-Enabled Product</b> · ageLOC Tru Face Peptide Retinol Complex · <i>Stevie International Business Awards</i></li>
+<li><span class="lv">Silver</span><b>Best of Category, Consumer Electronics Device</b> · ageLOC WellSpa iO · <i>Globee Technology Awards</i></li>
+<li><b>Best Cleansing Device</b> · ageLOC LumiSpa iO · <i>NewBeauty Awards</i></li>
+<li><b>Transformative Product</b> · ageLOC LumiSpa iO · <i>BIG Innovation Award (Business Intelligence Group)</i></li>
+<li><b>Coolest Tools</b> · ageLOC LumiSpa iO · <i>BELLA Magazine</i></li>
+<li><span class="lv">Gold</span><b>Best Beauty Tool &amp; Best Face Cleansing Device</b> · ageLOC LumiSpa iO · <i>Global Makeup Awards</i></li>
+<li><span class="lv">Gold</span><b>Best Spa Product</b> · ageLOC WellSpa iO · <i>Global Makeup Awards</i></li>
+<li><span class="lv">Gold</span><b>Best Anti-Wrinkle Skincare Product</b> · ageLOC Tru Face Line Corrector · <i>Global Makeup Awards</i></li>
+<li><span class="lv">Gold</span><b>Best Body Moisturiser</b> · MYND360 Relaxing Body Cream · <i>Global Makeup Awards</i></li>
+<li><span class="lv">Gold</span><b>Best Conditioner / Hair Masque</b> · ReNu Volumizing Conditioner · <i>Global Makeup Awards</i></li>
+<li><span class="lv">Silver</span><b>Best Toner / Skin Mist</b> · ageLOC Tru Face Refining Toner · <i>Global Makeup Awards</i></li>
+<li><span class="lv">Silver</span><b>Best Serum</b> · ageLOC Tru Face Essence Ultra · <i>Global Makeup Awards</i></li>
+<li><span class="lv">Silver</span><b>Best Brow Serum</b> · Nu Colour Lash + Brow Serum · <i>Global Makeup Awards</i></li>
+<li><span class="lv">Bronze</span><b>Best Moisturiser</b> · ageLOC Tru Face Uplifting Rich Cream · <i>Global Makeup Awards</i></li>
+<li><span class="lv">Bronze</span><b>Best Luxury Skincare Product</b> · ageLOC Tru Face Essence Ultra · <i>Global Makeup Awards</i></li>
+<li><span class="lv">Bronze</span><b>Best Shampoo</b> · ReNu Volumizing Shampoo · <i>Global Makeup Awards</i></li>
+<li><span class="lv">Gold</span><b>Best Spa Device</b> · ageLOC WellSpa iO · <i>Global Green Beauty Awards</i></li>
+<li><span class="lv">Gold</span><b>Best Regenerating Natural Moisturiser</b> · ageLOC Tru Face Uplifting Rich Cream · <i>Global Green Beauty Awards</i></li>
+<li><span class="lv">Silver</span><b>Best Collagen Supplement</b> · Beauty Focus Collagen+ · <i>Global Green Beauty Awards</i></li>
+<li><span class="lv">Silver</span><b>Best Packaging Using Recycled Materials</b> · ReNu Volumizing Shampoo · <i>Global Green Beauty Awards</i></li>
+<li><span class="lv">Bronze</span><b>Most Sustainable Packaging</b> · ageLOC Tru Face Essence Ultra · <i>Global Green Beauty Awards</i></li>
+<li><span class="lv">Bronze</span><b>Best Natural Eye / Brow Product</b> · Nu Colour Lash + Brow Serum · <i>Global Green Beauty Awards</i></li>
+<li><span class="lv">Bronze</span><b>Best Multi-Vitamin</b> · LifePak · <i>Global Green Beauty Awards</i></li>
+<li><span class="lv">Gold</span><b>Best Multivitamin for All-Around Health</b> · LifePak Nano · <i>Wellness from Within Awards</i></li>
+<li><span class="lv">Gold</span><b>Best Sleep Supplement</b> · MYND360 Night Time · <i>Universal Beauty Awards</i></li>
+<li><span class="lv">Gold</span><b>Best Hand Soap (bar)</b> · Epoch Polishing Bar · <i>Universal Beauty Awards</i></li>
+<li><span class="lv">Silver</span><b>Best Luxury Serum</b> · ageLOC Tru Face Essence Ultra · <i>Universal Beauty Awards</i></li>
+<li><span class="lv">Silver</span><b>Best Hand Product</b> · Epoch Hand Cream · <i>Universal Beauty Awards</i></li>
+<li><span class="lv">Silver</span><b>Best Hand Soap (liquid)</b> · MYND360 Energizing Hand and Body Wash · <i>Universal Beauty Awards</i></li>
+<li><span class="lv">Bronze</span><b>Best Dental Product</b> · AP 24 Whitening Fluoride Toothpaste · <i>Universal Beauty Awards</i></li>
+<li><span class="lv">Highly Commended</span><b>Best Anti-Ageing Moisturizer</b> · ageLOC Tru Face Uplifting Cream · <i>Universal Beauty Awards</i></li>
+<li><span class="lv">Silver</span><b>Best Oral Care</b> · AP 24 Whitening Fluoride Toothpaste · <i>Get the Gloss Wellness Awards</i></li>
+<li><span class="lv">Bronze</span><b>Best Wellness Body Care</b> · MYND360 Relaxing Body Cream · <i>Get the Gloss Wellness Awards</i></li>
+<li><span class="lv">Silver</span><b>Best New Consumer Product of the Year</b> · ageLOC Tru Face Future Serum · <i>Best in Biz International Awards</i></li>
+<li><span class="lv">Silver</span><b>Most Environmentally Friendly Product of the Year</b> · ageLOC Tru Face Essence Ultra · <i>Best in Biz International Awards</i></li>
+<li><span class="lv">Winner</span><b>Best Facial Equipment</b> · ageLOC LumiSpa iO · <i>Global Beauty and Wellness Awards</i></li>
+<li><span class="lv">Winner</span><b>Best Ingredient Facial Product</b> · Nu Colour Cleansing Balm · <i>Global Beauty and Wellness Awards</i></li>
+<li><span class="lv">Winner</span><b>Most Innovative Eye Product</b> · Nu Colour Lash + Brow Serum · <i>Global Beauty and Wellness Awards</i></li>
+<li><span class="lv">Finalist</span><b>Best Emerging Facial Product</b> · ageLOC Tru Face Peptide Retinol Complex · <i>Global Beauty and Wellness Awards</i></li>
+<li><span class="lv">Finalist</span><b>Best Ingredient Hand Product</b> · MYND360 Relaxing Body Cream · <i>Global Beauty and Wellness Awards</i></li>
+<li><span class="lv">Finalist</span><b>Best Skin Equipment</b> · ageLOC WellSpa iO · <i>Global Beauty and Wellness Awards</i></li>
+<li><span class="lv">Bronze</span><b>Best Facial Product, Consumer Choice</b> · ageLOC LumiSpa iO · <i>Delicious Living Awards</i></li>
+<li><span class="lv">Silver</span><b>Best Body Care, Consumer Choice</b> · MYND360 Relaxing Body Cream · <i>Delicious Living Awards</i></li>
+<li><span class="lv">Bronze</span><b>Best Body Care, Retailer Choice</b> · MYND360 Relaxing Body Cream · <i>Delicious Living Awards</i></li>
+<li><b>Sustainable Product Design (Green Good Design)</b> · ageLOC Tru Face Peptide Retinol Complex · <i>The Chicago Athenaeum</i></li>
+<li><span class="lv">Finalist</span><b>Best Beauty Tool</b> · ageLOC LumiSpa iO · <i>Pure Beauty Awards</i></li>
+<li><span class="lv">Finalist</span><b>Best Beauty Device</b> · ageLOC WellSpa iO · <i>Pure Beauty Awards</i></li>
+<li><span class="lv">Finalist</span><b>Best Bath &amp; Shower Product</b> · MYND360 Energizing Hand and Body Wash · <i>Pure Beauty Awards</i></li>
+<li><span class="lv">Finalist</span><b>Best Sustainable Innovation</b> · ageLOC Tru Face Peptide Retinol Complex · <i>Pure Beauty Awards</i></li>
+<li><span class="lv">Highly Commended</span><b>Innovative Beauty Tech</b> · ageLOC LumiSpa iO · <i>Attracta Beauty Awards</i></li>
+<li><span class="lv">Finalist</span><b>Best Sustainable Packaging Design</b> · ageLOC Tru Face Peptide Retinol Complex · <i>Beauty Matter Awards</i></li>
+<li><b>America's Best Customer Service Companies</b> · Nu Skin · <i>USA Today</i></li>
+<li><span class="lv">#1</span><b>World's #1 At-Home Beauty and Wellness Device System Company</b> · Nu Skin · <i>Euromonitor International</i></li>
+</ul></details>
+          <details class="yr"><summary>2024 <small>45 award</small></summary><ul class="al">
+<li><span class="lv">Gold</span><b>Best Cleansing Device</b> · ageLOC LumiSpa iO · <i>Universal Beauty Awards</i></li>
+<li><span class="lv">Gold</span><b>Best Body Device</b> · ageLOC WellSpa iO · <i>Universal Beauty Awards</i></li>
+<li><span class="lv">Bronze</span><b>Best Anti-Aging Device</b> · ageLOC WellSpa iO · <i>Universal Beauty Awards</i></li>
+<li><span class="lv">Bronze</span><b>Best Beauty Gadget</b> · ageLOC LumiSpa iO · <i>Universal Beauty Awards</i></li>
+<li><span class="lv">Silver</span><b>Best Anti-Blemish Product</b> · ageLOC LumiSpa Blemish Serum · <i>Universal Beauty Awards</i></li>
+<li><span class="lv">Silver</span><b>Best Design &amp; Packaging</b> · Nutricentials Ceramides + Postbiotics Pumps · <i>Universal Beauty Awards</i></li>
+<li><span class="lv">Silver</span><b>Best Anti-Aging Serum</b> · ageLOC Tru Face Essence Ultra · <i>Universal Beauty Awards</i></li>
+<li><span class="lv">Bronze</span><b>Best Foot Product</b> · Epoch Sole Solution Foot Treatment · <i>Universal Beauty Awards</i></li>
+<li><span class="lv">Highly Commended</span><b>Best Collagen Drink</b> · Beauty Focus Collagen+ · <i>Universal Beauty Awards</i></li>
+<li><span class="lv">Highly Commended</span><b>Best Serum</b> · Nu Colour Lash + Brow Serum · <i>Universal Beauty Awards</i></li>
+<li><b>Best Cleansing Device</b> · ageLOC LumiSpa iO · <i>NewBeauty Awards</i></li>
+<li><b>Product of the Year</b> · ageLOC Tru Face Peptide Retinol Complex · <i>BIG Awards for Business</i></li>
+<li><b>BIG Innovation Award</b> · ageLOC WellSpa iO · <i>Business Intelligence Group</i></li>
+<li><span class="lv">Gold</span><b>Consumer Products</b> · ageLOC WellSpa iO · <i>Globee Awards for Business</i></li>
+<li><span class="lv">Silver</span><b>Cool Product of the Year</b> · ageLOC LumiSpa iO · <i>Globee Awards for Business</i></li>
+<li><span class="lv">Gold</span><b>Consumer Products &amp; Services (Disruptor Awards)</b> · ageLOC WellSpa iO · <i>Globee Awards</i></li>
+<li><span class="lv">Gold</span><b>Best Electrical Body Sculpting Tool</b> · ageLOC WellSpa iO · <i>Global Makeup Awards</i></li>
+<li><span class="lv">Gold</span><b>Best Electrical Cleanser</b> · ageLOC LumiSpa iO · <i>Global Makeup Awards</i></li>
+<li><span class="lv">Gold</span><b>Best Face Mask</b> · Epoch Glacial Marine Mud · <i>Global Makeup Awards</i></li>
+<li><span class="lv">Gold</span><b>Best Hand Cream</b> · Epoch Hand Cream · <i>Global Makeup Awards</i></li>
+<li><span class="lv">Gold</span><b>Best Hair Mask</b> · ReNu Hair Mask · <i>Global Makeup Awards</i></li>
+<li><span class="lv">Bronze</span><b>Best Brightening Anti-Aging Product</b> · Nutricentials Vitamin C + Collagen Pumps · <i>Global Makeup Awards</i></li>
+<li><span class="lv">Bronze</span><b>Best Lash Serum</b> · Nu Colour Lash + Brow Serum · <i>Global Makeup Awards</i></li>
+<li><span class="lv">Bronze</span><b>Best Lip Balm</b> · Nu Colour Peptide Lip Pout · <i>Global Makeup Awards</i></li>
+<li><span class="lv">Highly Commended</span><b>Best Hair Repairing Product</b> · ReNu Hair Mask · <i>Global Makeup Awards</i></li>
+<li><span class="lv">Highly Commended</span><b>Best Wellbeing Supplement</b> · MYND360 Sharp Focus · <i>Global Makeup Awards</i></li>
+<li><span class="lv">Highly Commended</span><b>Best Luxury Christmas Gift</b> · ageLOC LumiSpa iO · <i>Global Makeup Awards</i></li>
+<li><span class="lv">Gold</span><b>Most Sustainable Packaging</b> · Nutricentials Vitamin C + Collagen Pumps · <i>Global Green Beauty Awards</i></li>
+<li><span class="lv">Gold</span><b>Best Natural Body Cream</b> · Epoch Baobab Body Butter · <i>Global Green Beauty Awards</i></li>
+<li><span class="lv">Silver</span><b>Best Shea Butter Product</b> · Epoch Baobab Body Butter · <i>Global Green Beauty Awards</i></li>
+<li><span class="lv">Bronze</span><b>Best Natural Eye/Brow Product</b> · Nu Colour Lash + Brow Serum · <i>Global Green Beauty Awards</i></li>
+<li><span class="lv">Winner</span><b>Most Innovative Skin Equipment</b> · ageLOC WellSpa iO · <i>Global Beauty and Wellness Awards</i></li>
+<li><span class="lv">Winner</span><b>Most Innovative Lip Product</b> · Nu Colour Peptide Lip Pout · <i>Global Beauty and Wellness Awards</i></li>
+<li><span class="lv">Winner</span><b>Most Sustainable Packaging</b> · Epoch Hand Cream · <i>Global Beauty and Wellness Awards</i></li>
+<li><span class="lv">Finalist</span><b>Most Innovative Facial Equipment</b> · ageLOC LumiSpa iO · <i>Global Beauty and Wellness Awards</i></li>
+<li><span class="lv">Finalist</span><b>Best Ingredient Anti-Aging Product</b> · Beauty Focus Collagen+ · <i>Global Beauty and Wellness Awards</i></li>
+<li><span class="lv">Finalist</span><b>Best Packaging Facial Product</b> · Nutricentials Bakuchiol Pumps · <i>Global Beauty and Wellness Awards</i></li>
+<li><span class="lv">Finalist</span><b>Best Sustainable Hand Product</b> · Epoch Hand Cream · <i>Global Beauty and Wellness Awards</i></li>
+<li><span class="lv">Finalist</span><b>Best Sustainable Foot Product</b> · Epoch Sole Solution Foot Treatment · <i>Global Beauty and Wellness Awards</i></li>
+<li><b>Good Design Award, Personal Products</b> · ageLOC WellSpa iO · <i>The Chicago Athenaeum</i></li>
+<li><b>Coolest Tools</b> · ageLOC WellSpa iO · <i>BELLA Magazine</i></li>
+<li><b>Best in Skincare, Serum</b> · ageLOC LumiSpa Blemish Serum · <i>BELLA Magazine</i></li>
+<li><span class="lv">Silver</span><b>Best New Product of the Year</b> · Nu Colour Lash + Brow Serum · <i>Best in Biz (North America)</i></li>
+<li><span class="lv">Silver</span><b>Consumer Product of the Year</b> · Nu Colour Lash + Brow Serum · <i>Best in Biz (North America)</i></li>
+<li><span class="lv">Silver</span><b>Most Innovative App of the Year</b> · Nu Skin Vera App · <i>Best in Biz</i></li>
+</ul></details>
+          <details class="yr"><summary>2023 <small>35 award</small></summary><ul class="al">
+<li><b>Best Facial Cleansing Device</b> · ageLOC LumiSpa iO · <i>NewBeauty</i></li>
+<li><b>Innovative Oral Care Product</b> · AP 24 Whitening Fluoride Toothpaste · <i>NewBeauty</i></li>
+<li><span class="lv">Gold</span><b>Editor's Choice</b> · ageLOC TR90 (TRMe) · <i>Global Makeup Awards ASIA</i></li>
+<li><span class="lv">Gold</span><b>Best Beauty Tool</b> · ageLOC LumiSpa iO · <i>Global Makeup Awards ASIA</i></li>
+<li><span class="lv">Gold</span><b>Best Innovative Beauty Award</b> · ageLOC LumiSpa iO · <i>Global Makeup Awards ASIA</i></li>
+<li><span class="lv">Gold</span><b>Best USA Beauty Brand</b> · Nu Skin · <i>Global Makeup Awards</i></li>
+<li><span class="lv">Gold</span><b>Best Beauty Tool</b> · ageLOC LumiSpa iO · <i>Global Makeup Awards</i></li>
+<li><span class="lv">Gold</span><b>Best Moisturizer</b> · ageLOC Tru Face Uplifting Cream · <i>Global Makeup Awards</i></li>
+<li><span class="lv">Gold</span><b>Best Eye Cream</b> · Nutricentials Eye Love Bright Eyes Illuminating Eye Cream · <i>Global Makeup Awards</i></li>
+<li><span class="lv">Gold</span><b>Best Night Cream</b> · Nutricentials Pillow Glow Sleeping Mask · <i>Global Makeup Awards</i></li>
+<li><span class="lv">Silver</span><b>Best Blemish Product</b> · ageLOC LumiSpa Blemish Serum · <i>Global Makeup Awards</i></li>
+<li><span class="lv">Silver</span><b>Best Toner</b> · Nutricentials In Balance pH Balance Toner · <i>Global Makeup Awards</i></li>
+<li><span class="lv">Silver</span><b>Best Foundation</b> · Nu Colour Bioadaptive BB+ Foundation · <i>Global Makeup Awards</i></li>
+<li><span class="lv">Bronze</span><b>Best Eye Product</b> · Nu Colour Lash + Brow Serum · <i>Global Makeup Awards</i></li>
+<li><span class="lv">Bronze</span><b>Edison Award, Health and Wellness</b> · ageLOC LumiSpa iO · <i>Edison Awards</i></li>
+<li><span class="lv">Silver</span><b>Consumer Products, Other</b> · ageLOC LumiSpa iO · <i>The American Business Awards</i></li>
+<li><span class="lv">Gold</span><b>Innovation of the Year</b> · ageLOC LumiSpa iO · <i>American Best in Business Awards (Globee)</i></li>
+<li><span class="lv">Gold</span><b>Gold Globee, Other products</b> · ageLOC LumiSpa iO · <i>Golden Bridge Awards</i></li>
+<li><span class="lv">Silver</span><b>Coolest Product of the Year</b> · ageLOC LumiSpa iO · <i>Globee Business Awards</i></li>
+<li><span class="lv">Gold</span><b>Best App</b> · Nu Skin Vera App · <i>Globee Business Awards</i></li>
+<li><span class="lv">Gold</span><b>Best of the Year, Impact</b> · Nu Skin Vera App · <i>Golden Bridge Awards</i></li>
+<li><span class="lv">Bronze</span><b>Best User Experience</b> · Nu Skin Vera App · <i>American Best in Business Awards</i></li>
+<li><span class="lv">Gold</span><b>Gold Stevie Award, Consumer Products - Other</b> · Nu Colour Lash + Brow Serum · <i>International Business Awards</i></li>
+<li><b>Sustainability Product of the Year</b> · Nutricentials Vitamin C + Collagen Pumps · <i>Business Intelligence Group</i></li>
+<li><span class="lv">Gold</span><b>Most Sustainable Packaging</b> · Nutricentials Hyaluronic Acid + B5 Pumps · <i>Global Green Beauty Awards</i></li>
+<li><b>Best Toothpaste Overall</b> · AP 24 Whitening Fluoride Toothpaste · <i>NBC Select Wellness Awards</i></li>
+<li><b>Best Cleansing Device</b> · ageLOC LumiSpa iO · <i>Cosmopolitan Acne Awards</i></li>
+<li><span class="lv">Silver</span><b>Best Skin Tool</b> · ageLOC LumiSpa iO · <i>Get The Gloss Awards</i></li>
+<li><span class="lv">Bronze</span><b>Best Overnight Product</b> · Nutricentials Pillow Glow Sleeping Mask · <i>Get The Gloss Awards</i></li>
+<li><span class="lv">Bronze</span><b>Best Blemish Product</b> · ageLOC LumiSpa Blemish Serum · <i>Get The Gloss Awards</i></li>
+<li><b>Coolest Tools</b> · ageLOC LumiSpa iO · <i>BELLA Magazine</i></li>
+<li><span class="lv">Bronze</span><b>Facial Massage Tool</b> · ageLOC Boost · <i>Beauty Bible Awards</i></li>
+<li><span class="lv">Silver</span><b>Body Butter</b> · Epoch Baobab Body Butter · <i>Beauty Bible Awards</i></li>
+<li><span class="lv">Bronze</span><b>Foot Treatment</b> · Epoch Sole Solution · <i>Beauty Bible Awards</i></li>
+<li><span class="lv">Bronze</span><b>Spot Treatment</b> · Epoch Blemish Treatment · <i>Beauty Bible Awards</i></li>
+</ul></details>
+          <details class="yr"><summary>2022 <small>5 award</small></summary><ul class="al">
+<li><span class="lv">Silver</span><b>Global Green Beauty Awards</b> · Nutricentials Pillow Glow Sleeping Mask · <i>Global Green Beauty Awards</i></li>
+<li><span class="lv">Silver</span><b>Global Green Beauty Awards</b> · Epoch Yin and Yang Mask · <i>Global Green Beauty Awards</i></li>
+<li><span class="lv">2nd Place</span><b>Eye Care</b> · Nutricentials Eye Love Bright Eyes Illuminating Eye Cream · <i>Clean Beauty Awards</i></li>
+<li><b>Leadership in Community Service</b> · Nu Skin · <i>Communitas Awards</i></li>
+<li><b>Corporate Social Responsibility</b> · Nu Skin · <i>Communitas Awards</i></li>
+</ul></details>
+          <details class="yr"><summary>2021 <small>9 award</small></summary><ul class="al">
+<li><b>Best Cleansing Device (2020 sampai 2021)</b> · ageLOC LumiSpa · <i>NewBeauty Award</i></li>
+<li><b>Product of the Year</b> · ageLOC LumiSpa · <i>BIG Awards (Business Intelligence Group)</i></li>
+<li><b>Innovative Product</b> · ageLOC Boost · <i>BIG Awards (Business Intelligence Group)</i></li>
+<li><span class="lv">Bronze</span><b>Advanced Skin Care</b> · ageLOC Boost · <i>Edison Awards</i></li>
+<li><b>Best of the Best, Panel Choice</b> · ageLOC Boost · <i>Cosmopolitan</i></li>
+<li><span class="lv">Gold</span><b>Best Shea Butter Product</b> · Epoch Baobab Body Butter · <i>Global Green Beauty Awards</i></li>
+<li><span class="lv">Bronze</span><b>Best Aloe Vera Product</b> · Nutricentials In Balance pH Balance Toner · <i>Global Green Beauty Awards</i></li>
+<li><b>Best Places to Work (tahun ke-6 berturut-turut)</b> · Nu Skin · <i>Direct Selling News</i></li>
+<li><b>Beauty device system brand, tahun ke-4 (2017 sampai 2020)</b> · Nu Skin · <i>Euromonitor International</i></li>
+</ul></details>
+          <p class="small">Beberapa entri yang datanya tidak konsisten di halaman sumber sengaja tidak dimasukkan. Award untuk tenaga kerja dan HR di Hong Kong (misalnya Manpower Developer, Good Employer Charter, Good MPF Employer) tidak ditampilkan di sini. Level tidak tertulis berarti halaman sumber tidak mencantumkan level.</p>
         </div>
       </details>
     </div>
@@ -807,6 +1026,7 @@ section{padding-block:clamp(56px,10vw,112px)}
       <li>Nu Skin, Product, Workplace and Humanitarian Awards. Euromonitor: tahun peringkat tidak dicantumkan di halaman tersebut. <a href="https://www.nuskin.com/content/corpcom/en_US/newsroom/news1/Nu-Skin-Awards.html" rel="noopener">nuskin.com</a></li>
       <li>Liputan6, Nu Skin rilis program pengelolaan berat badan teruji klinis (kutipan Dr. Joseph Chang, Chairman Nu Skin Scientific Advisory Board). <a href="https://www.liputan6.com/citizen6/read/5877496/tren-gaya-hidup-sehat-nu-skin-rilis-program-pengelolaan-berat-badan-teruji-klinis" rel="noopener">liputan6.com</a></li>
       <li>Nu Skin, slide presentasi &ldquo;#1 Weight Management &amp; Wellbeing Brand&rdquo; (Pharmanex). Sumber di slide: Euromonitor International Limited, Consumer Health, definisi Weight Management and Wellbeing, retail value RSP, semua channel; Malaysia 2017 sampai 2025, Singapore 2018 sampai 2025, South Korea edisi 2024 (penjualan 2021 sampai 2023). Slide internal, bukan laporan Euromonitor yang bisa dibuka publik.</li>
+      <li>Nu Skin Hong Kong, Company Awards (daftar lengkap award produk dan perusahaan, 2020 sampai 2026). Beberapa entri di halaman itu saling bertentangan dan tidak aku masukkan. <a href="https://www.nuskin.com/en_HK/about/company/Company_Awards.html" rel="noopener">nuskin.com</a></li>
     </ol>
   </details>
   <nav><a href="/">#transformwithST</a><a href="/privacy/">Privacy Policy</a></nav>
