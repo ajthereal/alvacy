@@ -40,15 +40,27 @@ try{localStorage.setItem('alv-coach','aj')}catch(e){}
 .btn.primary{background:var(--pop);color:var(--pop-ink);box-shadow:0 6px 18px var(--pop-glow)}
 .btn.primary:hover{background:var(--pop-hover)}
 section{padding-block:clamp(56px,10vw,112px)}
-#dicoba,#aging,#trme,#coaching,#beda,#hasil{scroll-margin-top:40px}
 .head{display:grid;gap:14px;max-width:720px;margin:0 auto clamp(28px,5vw,48px);text-align:center;justify-items:center}
 .head .lede{max-width:580px}
 .src-ref{font-size:.78rem;color:var(--muted);line-height:1.4}
 .src-ref a{color:var(--muted)}
 
-/* progres scroll dan tombol WhatsApp melayang */
-.prog{position:fixed;inset:0 0 auto 0;height:3px;z-index:40;pointer-events:none}
-.prog i{display:block;height:100%;background:var(--pop);transform-origin:left;transform:scaleX(0)}
+/* penunjuk posisi: bagian ke berapa, sisa waktu baca */
+.site-top{padding-bottom:4px}
+.trail{max-width:1120px;margin:6px auto 0;padding-inline:20px;display:grid;gap:6px;justify-items:center}
+@media (max-width:1152px){ .trail{margin-inline:12px;padding-inline:8px} }
+.segs{display:grid;grid-template-columns:repeat(7,minmax(0,1fr));gap:4px;width:100%}
+.segs a{display:block;height:18px;position:relative;-webkit-tap-highlight-color:transparent}
+.segs a::before{content:"";position:absolute;left:0;right:0;top:7px;height:4px;border-radius:99px;background:rgba(23,37,84,.14)}
+.segs i{position:absolute;left:0;right:0;top:7px;height:4px;border-radius:99px;background:var(--pop);transform-origin:left;transform:scaleX(0);transition:transform .25s linear}
+.segs a[aria-current="step"]::before{background:rgba(23,37,84,.26)}
+.where{margin:0;font-size:.74rem;line-height:1;color:var(--head);background:rgba(255,255,255,.9);-webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px);border:1px solid var(--line);border-radius:99px;padding:6px 12px;box-shadow:var(--lift);white-space:nowrap;max-width:100%;overflow:hidden;text-overflow:ellipsis}
+.where b{font-family:var(--f-mono);font-weight:500}
+.where span{color:var(--muted)}
+.readtime{font-size:.85rem;color:var(--muted)}
+.readtime b{font-family:var(--f-mono);font-weight:500;color:var(--head)}
+#dicoba,#jalan,#aging,#trme,#coaching,#hasil,#tutup{scroll-margin-top:96px}
+/* tombol WhatsApp melayang */
 .dock{position:fixed;left:0;right:0;bottom:0;z-index:30;padding:10px 16px calc(10px + env(safe-area-inset-bottom,0px));display:flex;justify-content:center;
   transform:translateY(120%);transition:transform .45s var(--ease);pointer-events:none}
 .dock.on{transform:none}
@@ -71,7 +83,7 @@ section{padding-block:clamp(56px,10vw,112px)}
 .hero .meta{display:flex;flex-wrap:wrap;justify-content:center;gap:6px 18px;font-size:.85rem;color:var(--muted)}
 .hero .meta span{display:inline-flex;align-items:center;gap:6px}
 .hero .meta span::before{content:"";width:6px;height:6px;border-radius:99px;background:var(--d-teal)}
-.stage{position:relative;width:min(100%,430px);margin-top:clamp(20px,4vw,40px)}
+.hstage{position:relative;width:min(100%,430px);margin-top:clamp(20px,4vw,40px)}
 .device{width:100%;background:var(--surface);border:1px solid var(--sky-line);border-bottom:0;
   border-radius:40px 40px 0 0;box-shadow:var(--lift-img),inset 0 0 24px var(--surface);padding:26px 24px 28px;display:grid;gap:16px;text-align:left}
 .device .top{display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap}
@@ -344,7 +356,6 @@ section{padding-block:clamp(56px,10vw,112px)}
 </style>
 </head>
 <body>
-<div class="prog" aria-hidden="true"><i></i></div>
 
 <header class="site-top"><div class="wrap">
   <a class="logo" href="/transformwithAJ/"><b>AJ Jonathan</b><span>#transformwithST</span></a>
@@ -355,6 +366,10 @@ section{padding-block:clamp(56px,10vw,112px)}
     <a href="#hasil" class="hide-sm">Hasil</a>
     <a class="btn small primary" href="https://wa.me/628170241185?text=Halo%20AJ%2C%20aku%20baru%20buka%20halaman%20profil%20kamu%20dan%20mau%20ngobrol.">WhatsApp</a>
   </nav>
+</div>
+<div class="trail" role="navigation" aria-label="Posisi di halaman">
+  <div class="segs"><a href="#dicoba" aria-label="Bagian 1, Cerita"><i></i></a><a href="#jalan" aria-label="Bagian 2, Enam jalan"><i></i></a><a href="#aging" aria-label="Bagian 3, Yang menua"><i></i></a><a href="#trme" aria-label="Bagian 4, TRMe"><i></i></a><a href="#coaching" aria-label="Bagian 5, Coaching"><i></i></a><a href="#hasil" aria-label="Bagian 6, Hasil"><i></i></a><a href="#tutup" aria-label="Bagian 7, Ngobrol"><i></i></a></div>
+  <p class="where" aria-live="off">Mulai · 7 bagian</p>
 </div></header>
 
 <main>
@@ -369,7 +384,8 @@ section{padding-block:clamp(56px,10vw,112px)}
     <a class="btn quiet" href="/aj/?utm_source=profil-aj&amp;utm_medium=halaman">Cek umur badan gratis</a>
   </div>
   <div class="meta"><span>Foto dan angka asli</span><span>Ukur dulu, baru ubah</span><span>Tanpa berhenti kerja</span></div>
-  <div class="stage">
+  <p class="readtime">7 bagian. Posisimu selalu kelihatan di atas, jadi kamu tahu kapan selesai.</p>
+  <div class="hstage">
     <div class="fchip a" aria-hidden="true"><span>Lemak visceral<b>13,5 → 5,5</b></span></div>
     <div class="fchip b" aria-hidden="true"><span>Lemak tubuh<b>23,7% → 9,9%</b></span></div>
     <div class="device reveal" role="group" aria-label="Hasil nyata AJ">
@@ -409,7 +425,7 @@ section{padding-block:clamp(56px,10vw,112px)}
     </div>
   </div>
 
-  <div class="sub"><p class="kicker">Cara yang paling banyak dipakai</p><h3>Enam jalan, dan apa kata datanya.</h3><p>Semua punya tempatnya. Tap satu per satu untuk lihat apa yang dikerjakan, apa kata penelitian, dan apa yang sering kurang.</p></div>
+  <div class="sub" id="jalan"><p class="kicker">Cara yang paling banyak dipakai</p><h3>Enam jalan, dan apa kata datanya.</h3><p>Semua punya tempatnya. Tap satu per satu untuk lihat apa yang dikerjakan, apa kata penelitian, dan apa yang sering kurang.</p></div>
 
   <div class="ways reveal" id="ways">
     <div class="tabs" role="tablist" aria-label="Cara menurunkan berat badan">
@@ -637,7 +653,7 @@ section{padding-block:clamp(56px,10vw,112px)}
 </div></section>
 
 <!-- 7. PENUTUP -->
-<section style="padding-top:0"><div class="wrap">
+<section id="tutup" style="padding-top:0"><div class="wrap">
   <div class="door reveal">
     <div>
       <h2>Ngobrol sama aku.</h2>
@@ -701,13 +717,38 @@ section{padding-block:clamp(56px,10vw,112px)}
 <script>
 ALVResults.mount(document.getElementById('results'));ALVResults.render('id');
 (function(){
-  var bar=document.querySelector('.prog i'),dock=document.querySelector('.dock');
-  function onScroll(){
-    var h=document.documentElement,max=h.scrollHeight-innerHeight,p=max>0?scrollY/max:0;
-    bar.style.transform='scaleX('+Math.min(1,p)+')';
-    dock.classList.toggle('on',scrollY>innerHeight*.7);
+  var dock=document.querySelector('.dock');
+  var CH=[['dicoba','Cerita'],['jalan','Enam jalan'],['aging','Yang menua'],['trme','TRMe'],['coaching','Coaching'],['hasil','Hasil'],['tutup','Ngobrol']];
+  var chEls=CH.map(function(c){return document.getElementById(c[0])});
+  var segLinks=[].slice.call(document.querySelectorAll('.segs a')),segs=segLinks.map(function(a){return a.firstElementChild});
+  var where=document.querySelector('.where'),rt=document.getElementById('rt');
+  var WPM=250,words=((document.querySelector('main').innerText||'').match(/\S+/g)||[]).length;
+  if(rt)rt.textContent=Math.max(1,Math.round(words/WPM));
+  var tick=false;
+  function update(){
+    tick=false;
+    var y=window.scrollY,vh=window.innerHeight,end=document.documentElement.scrollHeight,probe=y+vh*.35;
+    var tops=chEls.map(function(e){return e.getBoundingClientRect().top+y}),idx=-1;
+    for(var i=0;i<tops.length;i++)if(probe>=tops[i])idx=i;
+    for(var j=0;j<segs.length;j++){
+      var from=tops[j],to=j<tops.length-1?tops[j+1]:end,at=j<tops.length-1?probe:y+vh;
+      var f=Math.max(0,Math.min(1,(at-from)/(to-from)));
+      segs[j].style.transform='scaleX('+f.toFixed(3)+')';
+      segLinks[j].removeAttribute('aria-current');
+    }
+    var prog=Math.max(0,Math.min(1,y/Math.max(1,end-vh))),atEnd=prog>.985;
+    if(idx>=0)segLinks[idx].setAttribute('aria-current','step');
+    var remain=Math.ceil(words*(1-prog)/WPM),t;
+    if(atEnd)t='Sudah di akhir';
+    else if(remain<=1)t='kurang dari 1 menit lagi';
+    else t='± '+remain+' menit lagi';
+    where.innerHTML=idx<0?'Mulai · 7 bagian · <span>± '+Math.max(1,Math.round(words/WPM))+' menit</span>':'<b>'+(idx+1)+' dari 7</b> · '+CH[idx][1]+(idx===6&&!atEnd?' · bagian terakhir':'')+' <span>· '+t+'</span>';
+    dock.classList.toggle('on',y>vh*.7&&idx<6);
   }
-  addEventListener('scroll',onScroll,{passive:true});onScroll();
+  function req(){if(!tick){tick=true;requestAnimationFrame(update)}}
+  addEventListener('scroll',req,{passive:true});addEventListener('resize',req);
+  addEventListener('load',function(){setTimeout(update,300)});
+  update();
 
   var ways=document.getElementById('ways');
   if(ways){
