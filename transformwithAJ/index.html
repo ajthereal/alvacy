@@ -6,8 +6,8 @@
 <!-- Halaman profil pribadi AJ (alvacy.com/transformwithAJ). Ditulis tangan, bukan hasil scripts/build.py, dan tidak ada di PAGES.
      Memakai komponen yang sama dengan halaman utama (site.css, palettes.css, results.css, results.js).
      Sengaja noindex dulu: hapus baris robots di bawah kalau mau halaman ini muncul di Google. -->
-<title>AJ Jonathan · Turun Lemak, Bukan Cuma Timbangan · #transformwithST</title>
-<meta name="description" content="Aku AJ. Turun 18 kg dalam 90 hari, sekarang membantu profesional sibuk turun lemak dan menjaga otot. Ini bedanya dengan obat GLP-1, dokter gizi, dan klinik.">
+<title>AJ Jonathan · Kenapa Badan Tetap Bandel · #transformwithST</title>
+<meta name="description" content="Sudah IF, keto, olahraga tapi badan tetap bandel? Yang berubah seiring umur adalah komposisi badanmu. Ini cara aku membenahinya lewat TRMe dan coaching 90 hari.">
 <link rel="canonical" href="https://alvacy.com/transformwithAJ/">
 <meta name="robots" content="noindex, nofollow">
 <link rel="icon" href="/images/icon.svg?v=2" type="image/svg+xml">
@@ -16,8 +16,8 @@
 <meta name="theme-color" content="#1E3A8A">
 <meta property="og:type" content="profile">
 <meta property="og:site_name" content="#transformwithST">
-<meta property="og:title" content="AJ Jonathan · Turun lemak, bukan cuma timbangan">
-<meta property="og:description" content="Siapa aku, apa bedanya dengan GLP-1, dokter gizi dan klinik, dan apa yang bisa aku bantu buat kamu.">
+<meta property="og:title" content="AJ Jonathan · Diet sudah, olahraga sudah, badan tetap bandel?">
+<meta property="og:description" content="Siapa aku, kenapa cara biasa sering mentok, dan apa yang bisa aku bantu buat kamu.">
 <meta property="og:url" content="https://alvacy.com/transformwithAJ/">
 <meta property="og:image" content="https://alvacy.com/images/og-aj-profil.png?v=1">
 <meta property="og:image:width" content="1200">
@@ -40,22 +40,39 @@ try{localStorage.setItem('alv-coach','aj')}catch(e){}
 .btn.primary{background:var(--pop);color:var(--pop-ink);box-shadow:0 6px 18px var(--pop-glow)}
 .btn.primary:hover{background:var(--pop-hover)}
 section{padding-block:clamp(56px,10vw,112px)}
-#cerita,#beda,#hasil{scroll-margin-top:40px}
+#dicoba,#aging,#trme,#coaching,#beda,#hasil{scroll-margin-top:40px}
 .head{display:grid;gap:14px;max-width:720px;margin:0 auto clamp(28px,5vw,48px);text-align:center;justify-items:center}
-.head .lede{max-width:560px}
+.head .lede{max-width:580px}
+.src-ref{font-size:.78rem;color:var(--muted);line-height:1.4}
+.src-ref a{color:var(--muted)}
 
-/* hero: satu bidang sky besar, teks di tengah, kartu hasil naik dari tepi bawah */
+/* progres scroll dan tombol WhatsApp melayang */
+.prog{position:fixed;inset:0 0 auto 0;height:3px;z-index:40;pointer-events:none}
+.prog i{display:block;height:100%;background:var(--pop);transform-origin:left;transform:scaleX(0)}
+.dock{position:fixed;left:0;right:0;bottom:0;z-index:30;padding:10px 16px calc(10px + env(safe-area-inset-bottom,0px));display:flex;justify-content:center;
+  transform:translateY(120%);transition:transform .45s var(--ease);pointer-events:none}
+.dock.on{transform:none}
+.dock .btn{pointer-events:auto;box-shadow:0 10px 30px rgba(23,37,84,.25)}
+@media (min-width:900px){ .dock{display:none} }
+
+/* hero: bidang sky dengan cahaya yang bergerak, kartu hasil naik dari tepi bawah */
 .hero-wrap{padding:12px 12px 0}
-.hero{max-width:1240px;margin:0 auto;border-radius:var(--r-lg);background:var(--sky);border:1px solid var(--sky-line);box-shadow:var(--rim);
-  padding:clamp(48px,9vw,104px) 20px 0;display:grid;justify-items:center;text-align:center;gap:20px;overflow:hidden}
+.hero{position:relative;max-width:1240px;margin:0 auto;border-radius:var(--r-lg);background:var(--sky);border:1px solid var(--sky-line);box-shadow:var(--rim);
+  padding:clamp(48px,9vw,104px) 20px 0;display:grid;justify-items:center;text-align:center;gap:20px;overflow:hidden;isolation:isolate}
+.hero::before,.hero::after{content:"";position:absolute;z-index:-1;border-radius:50%;filter:blur(60px);opacity:.75;pointer-events:none}
+.hero::before{width:560px;height:560px;left:-120px;top:20%;background:radial-gradient(circle,#BFD3FA 0%,rgba(191,211,250,0) 70%);animation:drift1 16s ease-in-out infinite alternate}
+.hero::after{width:520px;height:520px;right:-120px;top:-6%;background:radial-gradient(circle,#FFD9B8 0%,rgba(255,217,184,0) 70%);animation:drift2 19s ease-in-out infinite alternate}
+@keyframes drift1{to{transform:translate(120px,-60px) scale(1.15)}}
+@keyframes drift2{to{transform:translate(-140px,80px) scale(1.1)}}
 .hero h1{max-width:900px}
 .hero h1 em{font-style:normal;color:var(--hl)}
-.hero .lede{max-width:600px}
+.hero .lede{max-width:640px}
 .hero .ctas{display:flex;flex-wrap:wrap;justify-content:center;gap:10px;margin-top:4px}
 .hero .meta{display:flex;flex-wrap:wrap;justify-content:center;gap:6px 18px;font-size:.85rem;color:var(--muted)}
 .hero .meta span{display:inline-flex;align-items:center;gap:6px}
 .hero .meta span::before{content:"";width:6px;height:6px;border-radius:99px;background:var(--d-teal)}
-.device{margin-top:clamp(20px,4vw,40px);width:min(100%,430px);background:var(--surface);border:1px solid var(--sky-line);border-bottom:0;
+.stage{position:relative;width:min(100%,430px);margin-top:clamp(20px,4vw,40px)}
+.device{width:100%;background:var(--surface);border:1px solid var(--sky-line);border-bottom:0;
   border-radius:40px 40px 0 0;box-shadow:var(--lift-img),inset 0 0 24px var(--surface);padding:26px 24px 28px;display:grid;gap:16px;text-align:left}
 .device .top{display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap}
 .device .label{font-size:.72rem;letter-spacing:.12em;text-transform:uppercase;font-weight:700;color:var(--muted)}
@@ -78,10 +95,177 @@ section{padding-block:clamp(56px,10vw,112px)}
 .device .foot{font-size:.76rem;color:var(--muted);border-top:1px solid var(--line);padding-top:12px}
 .ring{stroke-dasharray:100;stroke-dashoffset:calc(100 - var(--v));transition:stroke-dashoffset 1.6s var(--ease)}
 .js .device:not(.in) .ring{stroke-dashoffset:100}
-@media (prefers-reduced-motion:reduce){ .js .device:not(.in) .ring{stroke-dashoffset:calc(100 - var(--v))} }
+.fchip{position:absolute;display:none;align-items:center;gap:10px;padding:10px 14px;border-radius:18px;background:rgba(255,255,255,.92);border:1px solid var(--sky-line);box-shadow:var(--lift-img);
+  font-size:.82rem;color:var(--muted);text-align:left;line-height:1.3;animation:bob 6s ease-in-out infinite}
+.fchip b{display:block;font-family:var(--f-mono);font-weight:500;font-size:1.05rem;color:var(--head);letter-spacing:-.03em}
+.fchip.a{left:-190px;top:90px}
+.fchip.b{right:-200px;top:200px;animation-delay:-2.5s}
+@keyframes bob{50%{transform:translateY(-10px)}}
+@media (min-width:1000px){ .fchip{display:block} }
 
-/* jalanku: garis perjalanan yang menggambar dirinya sendiri (sama dengan halaman /transform) */
-.path{position:relative;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px;max-width:1120px;margin:0 auto clamp(28px,5vw,48px);padding-inline:16px}
+/* pita kepercayaan yang berjalan */
+.belt{overflow:hidden;margin-top:clamp(28px,5vw,48px);-webkit-mask-image:linear-gradient(90deg,transparent,#000 10%,#000 90%,transparent);mask-image:linear-gradient(90deg,transparent,#000 10%,#000 90%,transparent)}
+.belt .row{display:flex;gap:12px;width:max-content;animation:belt 38s linear infinite}
+.belt:hover .row{animation-play-state:paused}
+.belt span{white-space:nowrap;padding:10px 18px;border-radius:999px;background:var(--cloud);border:1px solid var(--cloud-line);font-size:.9rem;font-weight:600;color:var(--head)}
+@keyframes belt{to{transform:translateX(calc(-50% - 6px))}}
+
+/* sebelum dan sesudah AJ */
+.me{display:grid;grid-template-columns:minmax(0,420px) minmax(0,1fr);gap:clamp(24px,5vw,56px);align-items:center;max-width:1000px;margin:0 auto}
+.ba{position:relative;display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.ba figure{margin:0;position:relative;border-radius:var(--r);overflow:hidden;aspect-ratio:4/5;background:var(--cloud);box-shadow:var(--lift-img)}
+.ba img{width:100%;height:100%;object-fit:cover;display:block}
+.ba figcaption{position:absolute;left:10px;bottom:10px;font-size:.7rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;padding:5px 10px;border-radius:99px;background:rgba(255,255,255,.92);color:var(--head)}
+.ba figure:last-child{transform:translateY(24px)}
+.ba figure img{transform:scale(1.12);transition:transform 1.6s var(--ease)}
+.ba.in figure img{transform:none}
+.me .copy{display:grid;gap:16px}
+.me blockquote{margin:0;font-weight:500;color:var(--head);font-size:clamp(1.15rem,2.4vw,1.5rem);line-height:1.5;letter-spacing:-.015em}
+.me .who{font-size:.9rem;color:var(--muted)}
+.tries{display:flex;flex-wrap:wrap;gap:8px}
+.tries span{font-size:.82rem;font-weight:600;color:var(--hl);background:var(--warm-soft);border-radius:99px;padding:6px 12px}
+@media (max-width:760px){ .me{grid-template-columns:1fr} .ba figure:last-child{transform:none} }
+
+/* bukti: enam jalan */
+.sub{text-align:center;max-width:660px;margin:clamp(56px,8vw,96px) auto clamp(24px,4vw,36px);display:grid;gap:12px;justify-items:center}
+.sub h3{font-size:clamp(1.5rem,3.4vw,2.2rem);letter-spacing:-.03em;line-height:1.12}
+.sub p{color:var(--muted)}
+.bars{display:grid;gap:12px}
+.bar{display:grid;gap:5px}
+.bar .l{display:flex;justify-content:space-between;gap:8px;font-size:.82rem;color:var(--muted)}
+.bar .l b{font-family:var(--f-mono);font-weight:500;color:var(--head);letter-spacing:-.02em;white-space:nowrap}
+.bar .t{height:12px;border-radius:99px;background:var(--d-track);overflow:hidden}
+.bar .t i{display:block;height:100%;width:var(--w);border-radius:99px;background:var(--d-blue);transform-origin:left;transition:transform 1.4s var(--ease)}
+.bar.two .t i{background:var(--d-teal)}
+.bignum{font-family:var(--f-mono);font-size:clamp(2.6rem,6vw,3.4rem);letter-spacing:-.05em;line-height:1;color:var(--head)}
+.bignum small{font-size:1rem;color:var(--muted);letter-spacing:0}
+.ways{max-width:1000px;margin:0 auto}
+.tabs{display:flex;gap:8px;overflow-x:auto;padding:4px 2px 14px;scrollbar-width:none;-webkit-overflow-scrolling:touch}
+.tabs::-webkit-scrollbar{display:none}
+.tabs button{flex:none;border:1px solid var(--cloud-line);background:var(--cloud);color:var(--head);font-weight:600;font-size:.92rem;padding:10px 18px;border-radius:99px;min-height:44px;transition:background-color .2s var(--ease),color .2s var(--ease),border-color .2s var(--ease),transform .2s var(--ease)}
+.tabs button:hover{border-color:var(--accent)}
+.tabs button[aria-selected="true"]{background:var(--head);border-color:var(--head);color:#fff}
+.tabs button.me-tab{border-color:var(--pop);color:var(--hl)}
+.tabs button.me-tab[aria-selected="true"]{background:var(--pop);border-color:var(--pop);color:var(--pop-ink)}
+@media (min-width:900px){ .tabs{justify-content:center;flex-wrap:wrap;overflow:visible} }
+.mp{display:grid;grid-template-columns:minmax(0,1.15fr) minmax(0,1fr);gap:clamp(20px,3.5vw,40px);padding:clamp(22px,3.5vw,40px);background:var(--surface);border:1px solid var(--line);border-radius:var(--r-lg);box-shadow:var(--lift);margin-top:10px}
+.mp h3{font-size:clamp(1.4rem,3vw,1.9rem);letter-spacing:-.03em;line-height:1.12}
+.mp-sub{font-size:.9rem;color:var(--muted);margin-top:4px}
+.mp dl{margin:18px 0 0;display:grid;gap:16px}
+.mp dt{font-size:.68rem;font-weight:700;letter-spacing:.09em;text-transform:uppercase;color:var(--muted)}
+.mp dd{margin:3px 0 0;font-size:.97rem;line-height:1.55;color:var(--ink)}
+.mp-data{display:grid;gap:14px;align-content:start;padding:clamp(18px,2.5vw,26px);background:var(--cloud);border:1px solid var(--cloud-line);border-radius:var(--r);box-shadow:var(--rim)}
+.mp-data p{font-size:.92rem;line-height:1.55;color:var(--ink)}
+.mp-data p b{color:var(--head)}
+.mp-l{font-size:.7rem!important;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--accent)!important}
+.mp-data blockquote{margin:0;font-size:.98rem;line-height:1.55;font-weight:500;color:var(--head)}
+.pts{margin:0;padding:0;list-style:none;display:grid;gap:12px}
+.pts li{font-size:.93rem;line-height:1.5;color:var(--ink);padding-left:18px;position:relative}
+.pts li::before{content:"";position:absolute;left:0;top:.6em;width:7px;height:7px;border-radius:50%;background:var(--d-teal)}
+.pts li b{color:var(--head)}
+.trio{display:grid;gap:14px}
+.trio>div{display:grid;grid-template-columns:96px minmax(0,1fr);gap:12px;align-items:center}
+.trio .v{font-family:var(--f-mono);font-size:1.5rem;letter-spacing:-.04em;color:var(--head)}
+.trio p{font-size:.86rem!important;line-height:1.4!important;color:var(--muted)!important}
+.mp .tag{display:inline-block;font-size:.68rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;padding:5px 11px;border-radius:999px;background:var(--pop);color:var(--pop-ink);margin-bottom:10px}
+.mp.me-panel{background:#172554;border-color:#172554}
+.mp.me-panel h3{color:#fff}
+.mp.me-panel .mp-sub,.mp.me-panel dt{color:#9FB0D6}
+.mp.me-panel dd{color:#EAF0FA}
+.mp.me-panel .mp-data{background:rgba(255,255,255,.08);border-color:rgba(255,255,255,.14)}
+.mp.me-panel .mp-data p{color:#DCE5F7}
+.mp.me-panel .mp-l{color:#FDBA74!important}
+@media (max-width:820px){ .mp{grid-template-columns:1fr} }
+.ways.tabs-on .mp{display:none}
+.ways.tabs-on .mp.on{display:grid;animation:mpin .5s var(--ease)}
+@keyframes mpin{from{opacity:0;transform:translateY(12px)}}
+.js .reveal:not(.in) .bar .t i{transform:scaleX(0)}
+.pivot{margin:clamp(20px,3vw,32px) auto 0;max-width:860px;text-align:center;padding:clamp(26px,4vw,40px);background:var(--sky);border:1px solid var(--sky-line);border-radius:var(--r-lg);box-shadow:var(--rim)}
+.pivot p{font-size:clamp(1.15rem,2.4vw,1.5rem);line-height:1.45;font-weight:600;letter-spacing:-.02em;color:var(--head)}
+.pivot p em{font-style:normal;color:var(--hl)}
+
+/* aging */
+.age{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}
+.agec{padding:26px;display:grid;gap:12px;align-content:start;background:var(--surface);border:1px solid var(--line);border-radius:var(--r)}
+.agec .tag{justify-self:start;font-size:.68rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;padding:4px 10px;border-radius:99px;background:var(--cloud);color:var(--muted)}
+.agec .tag.hot{background:var(--warm-soft);color:var(--hl)}
+.agec p{font-size:.95rem;line-height:1.55}
+@media (max-width:900px){ .age{grid-template-columns:1fr} }
+.lab{margin-top:12px;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
+.labc{padding:clamp(22px,3vw,32px);display:grid;gap:16px;align-content:start;background:var(--cloud);border:1px solid var(--cloud-line);border-radius:var(--r);box-shadow:var(--rim)}
+.labc h3{font-size:1.25rem;letter-spacing:-.025em}
+.labc p.s{font-size:.9rem;color:var(--muted);line-height:1.5}
+@media (max-width:900px){ .lab{grid-template-columns:1fr} }
+.stk{display:grid;gap:12px}
+.stk .who{font-size:.8rem;color:var(--muted);display:flex;justify-content:space-between;gap:8px}
+.stk .who b{color:var(--head)}
+.seg{display:flex;height:40px;border-radius:12px;overflow:hidden;background:var(--d-track);gap:2px}
+.seg i{display:grid;place-items:center;font-style:normal;font-family:var(--f-mono);font-size:.75rem;color:#fff;width:var(--w);transform-origin:left;transition:transform 1.3s var(--ease)}
+.seg i.fat{background:var(--d-orange)}
+.seg i.lean{background:var(--d-teal)}
+.js .reveal:not(.in) .seg i{transform:scaleX(0)}
+.key{display:flex;gap:16px;font-size:.78rem;color:var(--muted)}
+.key span::before{content:"";display:inline-block;width:10px;height:10px;border-radius:3px;margin-right:6px;vertical-align:-1px}
+.key .f::before{background:var(--d-orange)}
+.key .l::before{background:var(--d-teal)}
+.gauge{position:relative;height:14px;border-radius:99px;margin:36px 0 28px;background:linear-gradient(90deg,#34D399 0 29.3%,#FBBF24 29.3% 48.3%,#F87171 48.3% 100%)}
+.pin{position:absolute;top:50%;left:var(--x);width:22px;height:22px;margin:-11px 0 0 -11px;border-radius:50%;background:var(--surface);border:4px solid var(--head);box-shadow:var(--lift-img)}
+.pin::after{content:attr(data-l);position:absolute;bottom:calc(100% + 8px);left:50%;transform:translateX(-50%);font-size:.72rem;font-weight:700;white-space:nowrap;color:var(--head);background:var(--surface);border:1px solid var(--line);border-radius:99px;padding:3px 9px}
+.pin.old{--x:43.1%;opacity:.55;border-color:#B45309}
+.pin.now{--x:43.1%;transition:left 2s var(--ease) .3s}
+.reveal.in .pin.now{--x:15.5%;left:15.5%}
+.js .reveal:not(.in) .pin.now{left:43.1%}
+.scale{position:relative;height:18px;font-size:.72rem;color:var(--muted);font-family:var(--f-mono);margin-top:-14px}
+.scale span{position:absolute;top:0;transform:translateX(-50%)}
+.scale span:first-child{transform:none}
+.scale span:last-child{transform:translateX(-100%)}
+.zl{display:flex;gap:14px;flex-wrap:wrap;font-size:.78rem;color:var(--muted)}
+.zl span::before{content:"";display:inline-block;width:10px;height:10px;border-radius:3px;margin-right:6px;vertical-align:-1px}
+.zl .g::before{background:#34D399}.zl .a::before{background:#FBBF24}.zl .r::before{background:#F87171}
+.take{margin:clamp(28px,4vw,44px) auto 0;max-width:820px;text-align:center;font-size:clamp(1.1rem,2.2vw,1.35rem);line-height:1.5;font-weight:600;letter-spacing:-.015em;color:var(--head)}
+
+/* TRMe */
+.trme{position:relative;max-width:1120px;margin:0 auto;padding:clamp(26px,4vw,52px);border-radius:var(--r-lg);background:linear-gradient(135deg,#E8F0FD 0%,#EDEAFB 55%,#FDEFE4 100%);border:1px solid var(--sky-line);box-shadow:var(--rim);display:grid;gap:clamp(24px,4vw,40px)}
+.trme .intro{display:grid;gap:14px;max-width:760px}
+.trme .intro h2{font-size:clamp(1.8rem,4.2vw,2.8rem)}
+.trme .intro p{color:var(--muted);line-height:1.6}
+.disclose{display:flex;gap:12px;align-items:flex-start;padding:14px 16px;border-radius:var(--r-sm);background:rgba(255,255,255,.7);border:1px solid var(--sky-line);font-size:.9rem;color:var(--ink);line-height:1.5}
+.disclose svg{flex:none;width:20px;height:20px;margin-top:2px;color:var(--accent)}
+.hub{display:grid;justify-items:center;gap:0}
+.hub .core{font-weight:700;color:#fff;background:var(--head);padding:12px 22px;border-radius:99px;font-size:.95rem;box-shadow:0 8px 24px rgba(23,37,84,.2)}
+.hub svg{width:100%;height:56px;display:block;overflow:visible}
+.hub path{vector-effect:non-scaling-stroke;fill:none;stroke:var(--accent);stroke-width:2;stroke-dasharray:100;stroke-dashoffset:100;transition:stroke-dashoffset 1.4s var(--ease) .2s}
+.reveal.in .hub path{stroke-dashoffset:0}
+@media (max-width:860px){ .hub svg{display:none} }
+.levers{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}
+.lever{padding:24px;display:grid;gap:14px;align-content:start;background:rgba(255,255,255,.88);border:1px solid var(--sky-line);border-radius:var(--r)}
+.lever .ic{width:44px;height:44px;border-radius:14px;display:grid;place-items:center;background:var(--accent-soft);color:var(--accent)}
+.lever .ic svg{width:24px;height:24px}
+.lever h3{font-size:1.2rem;letter-spacing:-.02em}
+.lever ul{margin:0;padding:0;list-style:none;display:grid;gap:10px}
+.lever li{font-size:.9rem;line-height:1.45;color:var(--muted)}
+.lever li b{display:block;color:var(--head);font-size:.95rem}
+@media (max-width:860px){ .levers{grid-template-columns:1fr} }
+.study{display:grid;grid-template-columns:auto minmax(0,1fr);gap:clamp(20px,4vw,40px);align-items:center;padding:clamp(22px,3.5vw,36px);background:var(--surface);border:1px solid var(--sky-line);border-radius:var(--r)}
+.study svg{width:150px;height:150px;display:block}
+.study .num{font-family:var(--f-mono);font-size:clamp(2.6rem,6vw,3.6rem);letter-spacing:-.05em;color:var(--head);line-height:1}
+.study h3{font-size:1.2rem;letter-spacing:-.02em;margin-top:6px}
+.study p{font-size:.92rem;line-height:1.55;color:var(--muted);margin-top:8px}
+.study p b{color:var(--head)}
+.ringbox{position:relative;width:150px;height:150px}
+.ringbox .c{position:absolute;inset:0;display:grid;place-items:center;text-align:center}
+@media (max-width:640px){ .study{grid-template-columns:1fr;justify-items:start} }
+.js .study:not(.in) .ring{stroke-dashoffset:100}
+
+/* coaching */
+.cgrid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;margin-bottom:clamp(36px,6vw,64px)}
+.cc{padding:28px;display:grid;gap:12px;align-content:start;background:var(--cloud);border:1px solid var(--cloud-line);border-radius:var(--r);box-shadow:var(--rim);transition:transform .3s var(--ease)}
+.cc:hover{transform:translateY(-4px)}
+.cc .n{font-family:var(--f-mono);font-size:.9rem;color:var(--accent);background:var(--accent-soft);border-radius:999px;padding:4px 12px;justify-self:start}
+.cc h3{font-size:1.3rem;letter-spacing:-.025em;margin-top:4px}
+.cc p{font-size:.95rem;color:var(--muted);line-height:1.55}
+@media (max-width:860px){ .cgrid{grid-template-columns:1fr} }
+.path{position:relative;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px;max-width:1120px;margin:0 auto;padding-inline:16px}
 .path::before,.path::after{content:"";position:absolute;left:calc(12.5% + 8px);right:calc(12.5% + 8px);top:21px;height:2px}
 .path::before{background:var(--d-track)}
 .path::after{background:var(--accent);transform-origin:left;transform:scaleX(0);transition:transform 1.8s var(--ease)}
@@ -93,13 +277,14 @@ section{padding-block:clamp(56px,10vw,112px)}
 .path.in .node:nth-child(2) .dot{transition-delay:.45s}
 .path.in .node:nth-child(3) .dot{transition-delay:.9s}
 .path.in .node:nth-child(4) .dot{transition-delay:1.35s}
+.node .when{font-size:.7rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--accent)}
 .node h3{font-size:1.1rem;letter-spacing:-.02em}
 .node p{font-size:.9rem;color:var(--muted);line-height:1.45}
 @media (max-width:700px){
   .path{grid-template-columns:1fr;gap:22px}
   .path::before,.path::after{display:none}
   .node{grid-template-columns:44px minmax(0,1fr);justify-items:start;text-align:left;column-gap:14px;align-items:start;padding-inline:0}
-  .node .dot{grid-row:span 2}
+  .node .dot{grid-row:span 3}
   .node:not(:last-child)::before,.node:not(:last-child)::after{content:"";position:absolute;left:21px;top:44px;bottom:-22px;width:2px;background:var(--d-track)}
   .node:not(:last-child)::after{background:var(--accent);transform-origin:top;transform:scaleY(0);transition:transform .6s var(--ease)}
   .path.in .node:not(:last-child)::after{transform:none}
@@ -107,44 +292,8 @@ section{padding-block:clamp(56px,10vw,112px)}
   .path.in .node:nth-child(3)::after{transition-delay:.9s}
 }
 
-/* kartu coach */
-.coach{display:grid;grid-template-columns:260px minmax(0,1fr);gap:clamp(20px,4vw,44px);align-items:center;padding:clamp(20px,4vw,40px);max-width:1000px;margin:0 auto}
-.avatar{width:260px;aspect-ratio:4/5;border-radius:var(--r);background:var(--surface);overflow:hidden;box-shadow:var(--lift-img)}
-.avatar img{width:100%;height:100%;object-fit:cover;display:block}
-.coach .copy{display:grid;gap:14px}
-.coach blockquote{margin:0;font-weight:500;color:var(--head);font-size:clamp(1.1rem,2.2vw,1.35rem);line-height:1.5;letter-spacing:-.01em}
-.coach .who{font-size:.9rem;color:var(--muted)}
-@media (max-width:680px){ .coach{grid-template-columns:1fr} .avatar{width:100%;max-width:300px;aspect-ratio:1} }
-
-/* kenapa beda: papan perbandingan */
-.vs{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}
-.opt{padding:26px;display:grid;gap:18px;align-content:start}
-.opt .t{display:grid;gap:3px}
-.opt h3{font-size:1.35rem;letter-spacing:-.025em;line-height:1.15}
-.opt .t span{font-size:.85rem;color:var(--muted)}
-.opt dl{margin:0;display:grid;gap:14px}
-.opt dt{font-size:.68rem;font-weight:700;letter-spacing:.09em;text-transform:uppercase;color:var(--muted)}
-.opt dd{margin:3px 0 0;font-size:.95rem;line-height:1.55;color:var(--ink)}
-.opt.me{grid-column:1/-1;background:#172554;border:1px solid #172554;border-radius:var(--r-lg);color:#EAF0FA;box-shadow:none;padding:clamp(26px,4vw,40px);gap:22px}
-.opt.me h3{color:#fff;font-size:clamp(1.6rem,3.2vw,2.2rem);letter-spacing:-.035em}
-.opt.me dt{color:#9FB0D6}
-.opt.me dd{color:#EAF0FA}
-.opt.me dl{grid-template-columns:repeat(3,minmax(0,1fr));gap:28px}
-.opt .tag{justify-self:start;font-size:.68rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;padding:5px 11px;border-radius:999px;background:var(--pop);color:var(--pop-ink)}
-@media (max-width:860px){ .vs{grid-template-columns:1fr} .opt.me dl{grid-template-columns:1fr;gap:16px} }
-
-.sub{text-align:center;max-width:640px;margin:clamp(56px,8vw,96px) auto clamp(24px,4vw,36px);display:grid;gap:12px;justify-items:center}
-.sub h3{font-size:clamp(1.5rem,3.4vw,2.2rem);letter-spacing:-.03em;line-height:1.12}
-.sub p{color:var(--muted)}
-.facts{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}
-.fact{padding:26px;display:grid;gap:12px;align-content:start;background:var(--surface);border:1px solid var(--line);border-radius:var(--r)}
-.fact .v{font-family:var(--f-mono);font-size:clamp(2.8rem,7vw,3.8rem);letter-spacing:-.05em;line-height:1;color:var(--head)}
-.fact p{font-size:.98rem;line-height:1.5;color:var(--ink)}
-.fact small{font-size:.78rem;color:var(--muted);line-height:1.4}
-.fact small a{color:var(--muted)}
-@media (max-width:860px){ .facts{grid-template-columns:1fr} }
-
-.common{margin-top:12px;padding:clamp(26px,4vw,44px);background:var(--sky);border:1px solid var(--sky-line);border-radius:var(--r-lg);box-shadow:var(--rim);display:grid;gap:22px}
+.common{margin:0 auto;padding:clamp(26px,4vw,44px);background:var(--sky);border:1px solid var(--sky-line);border-radius:var(--r-lg);box-shadow:var(--rim);display:grid;gap:22px}
+.common{max-width:1120px}
 .common h3{font-size:clamp(1.5rem,3vw,2rem);letter-spacing:-.03em;line-height:1.12;max-width:560px}
 .cg{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}
 .cg div{background:var(--surface);border:1px solid var(--sky-line);border-radius:var(--r-sm);padding:20px;display:grid;gap:6px;align-content:start}
@@ -152,18 +301,7 @@ section{padding-block:clamp(56px,10vw,112px)}
 .cg p{font-size:.92rem;color:var(--muted);line-height:1.5}
 .common .close{font-weight:700;color:var(--head);font-size:1.15rem;letter-spacing:-.01em}
 @media (max-width:860px){ .cg{grid-template-columns:1fr} }
-
-/* langkah */
-.steps{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}
-.stepc{padding:28px;display:grid;gap:10px;align-content:start;background:var(--surface);border:1px solid var(--line);border-radius:var(--r)}
-.stepc .n{font-family:var(--f-mono);font-size:.9rem;color:var(--accent);background:var(--accent-soft);border-radius:999px;padding:4px 12px;justify-self:start}
-.stepc h3{font-size:1.3rem;letter-spacing:-.025em;margin-top:4px}
-.stepc p{font-size:.95rem;color:var(--muted)}
-@media (max-width:760px){ .steps{grid-template-columns:1fr} }
-.more{display:flex;justify-content:center;margin-top:clamp(24px,4vw,36px)}
 .fine{margin:22px auto 0;font-size:.82rem;color:var(--muted);max-width:720px;text-align:center;padding-inline:16px}
-
-/* hasil (carousel dari results.js) */
 #hasil{padding-top:0}
 
 /* penutup */
@@ -175,8 +313,7 @@ section{padding-block:clamp(56px,10vw,112px)}
 .door .btn.quiet:hover{border-color:#EAF0FA}
 @media (max-width:760px){ .door{grid-template-columns:1fr} }
 .biz{max-width:1120px;margin:12px auto 0;display:grid;grid-template-columns:minmax(0,1fr) auto;gap:20px;align-items:center;padding:clamp(24px,4vw,40px)}
-.biz h3{font-size:1.4rem;letter-spacing:-.025em}
-.biz h3{margin-top:6px}
+.biz h3{font-size:1.4rem;letter-spacing:-.025em;margin-top:6px}
 .biz p:not(.kicker){color:var(--muted);margin-top:8px;max-width:38em;font-size:.95rem}
 @media (max-width:760px){ .biz{grid-template-columns:1fr} }
 
@@ -195,15 +332,26 @@ section{padding-block:clamp(56px,10vw,112px)}
 .src summary{cursor:pointer;font-weight:600;color:var(--head);font-size:.9rem}
 .src ol{margin:12px 0 0;padding-left:20px;display:grid;gap:8px;font-size:.84rem;color:var(--muted);line-height:1.5}
 .src a{color:var(--accent)}
+.site-foot{padding-bottom:calc(88px + env(safe-area-inset-bottom,0px))}
+
+@media (prefers-reduced-motion:reduce){
+  .js .device:not(.in) .ring,.js .study:not(.in) .ring{stroke-dashoffset:calc(100 - var(--v))}
+  .js .reveal:not(.in) .bar .t i,.js .reveal:not(.in) .seg i{transform:none}
+  .hub path{stroke-dashoffset:0}
+  .pin.now{left:15.5%}
+  .belt .row{animation:none}
+}
 </style>
 </head>
 <body>
+<div class="prog" aria-hidden="true"><i></i></div>
 
 <header class="site-top"><div class="wrap">
   <a class="logo" href="/transformwithAJ/"><b>AJ Jonathan</b><span>#transformwithST</span></a>
   <nav class="site-nav">
-    <a href="#cerita" class="hide-sm">Ceritaku</a>
-    <a href="#beda" class="hide-sm">Kenapa beda</a>
+    <a href="#dicoba" class="hide-sm">Yang sudah dicoba</a>
+    <a href="#aging" class="hide-sm">Yang berubah</a>
+    <a href="#coaching" class="hide-sm">Cara kerjaku</a>
     <a href="#hasil" class="hide-sm">Hasil</a>
     <a class="btn small primary" href="https://wa.me/628170241185?text=Halo%20AJ%2C%20aku%20baru%20buka%20halaman%20profil%20kamu%20dan%20mau%20ngobrol.">WhatsApp</a>
   </nav>
@@ -211,96 +359,187 @@ section{padding-block:clamp(56px,10vw,112px)}
 
 <main>
 
+<!-- HERO -->
 <div class="hero-wrap"><div class="hero">
   <p class="kicker">Hai, aku AJ · Coach #transformwithST</p>
-  <h1>Turun lemak, <em>bukan cuma timbangan.</em></h1>
-  <p class="lede">Aku bantu profesional yang super sibuk mengubah komposisi badannya. Lemak turun, otot dijaga, dengan cara yang masih jalan waktu jadwal lagi penuh. Aku sendiri turun 18 kg dalam 90 hari bareng istri.</p>
+  <h1>Diet sudah, olahraga sudah. Kenapa badan <em>tetap bandel?</em></h1>
+  <p class="lede">Karena yang berubah seiring umur adalah komposisi badanmu, dan itu jarang tersentuh diet yang cuma mengatur kalori atau jam makan. Aku bantu mengukur dan membenahinya lewat TRMe dan coaching 90 hari. Aku sendiri turun 18 kg.</p>
   <div class="ctas">
     <a class="btn primary" href="https://wa.me/628170241185?text=Halo%20AJ%2C%20aku%20baru%20buka%20halaman%20profil%20kamu%20dan%20mau%20ngobrol.">Ngobrol lewat WhatsApp</a>
     <a class="btn quiet" href="/aj/?utm_source=profil-aj&amp;utm_medium=halaman">Cek umur badan gratis</a>
   </div>
   <div class="meta"><span>Foto dan angka asli</span><span>Ukur dulu, baru ubah</span><span>Tanpa berhenti kerja</span></div>
-  <div class="device reveal" role="group" aria-label="Hasil nyata AJ">
-    <div class="top"><span class="label">Hasil nyata AJ</span><span class="who">90 hari</span></div>
-    <div class="prof"><img src="/images/coach-aj-face.jpg" width="192" height="192" alt="Foto AJ"><div><b>AJ Jonathan Ong</b><span>Coach #transformwithST</span></div></div>
-    <div class="score">
-      <svg viewBox="0 0 112 112" role="img" aria-label="Lemak tubuh turun dari 23,7 persen menjadi 9,9 persen"><circle cx="56" cy="56" r="48" fill="none" stroke="var(--d-track)" stroke-width="10"/><circle class="ring" pathLength="100" style="--v:23.7" cx="56" cy="56" r="48" fill="none" stroke="var(--d-orange)" stroke-opacity=".38" stroke-width="10" stroke-linecap="round" transform="rotate(-90 56 56)"/><circle class="ring" pathLength="100" style="--v:9.9" cx="56" cy="56" r="48" fill="none" stroke="var(--d-teal)" stroke-width="10" stroke-linecap="round" transform="rotate(-90 56 56)"/></svg>
-      <div><div class="big">9,9<small>%</small></div><p class="verdict">Lemak tubuh, dulu 23,7%. Otot naik.</p></div>
+  <div class="stage">
+    <div class="fchip a" aria-hidden="true"><span>Lemak visceral<b>13,5 → 5,5</b></span></div>
+    <div class="fchip b" aria-hidden="true"><span>Lemak tubuh<b>23,7% → 9,9%</b></span></div>
+    <div class="device reveal" role="group" aria-label="Hasil nyata AJ">
+      <div class="top"><span class="label">Hasil nyata AJ</span><span class="who">90 hari</span></div>
+      <div class="prof"><img src="/images/coach-aj-face.jpg" width="192" height="192" alt="Foto AJ"><div><b>AJ Jonathan Ong</b><span>Coach #transformwithST</span></div></div>
+      <div class="score">
+        <svg viewBox="0 0 112 112" role="img" aria-label="Lemak tubuh turun dari 23,7 persen menjadi 9,9 persen"><circle cx="56" cy="56" r="48" fill="none" stroke="var(--d-track)" stroke-width="10"/><circle class="ring" pathLength="100" style="--v:23.7" cx="56" cy="56" r="48" fill="none" stroke="var(--d-orange)" stroke-opacity=".38" stroke-width="10" stroke-linecap="round" transform="rotate(-90 56 56)"/><circle class="ring" pathLength="100" style="--v:9.9" cx="56" cy="56" r="48" fill="none" stroke="var(--d-teal)" stroke-width="10" stroke-linecap="round" transform="rotate(-90 56 56)"/></svg>
+        <div><div class="big"><span data-count="9.9" data-from="23.7" data-dec="1">9,9</span><small>%</small></div><p class="verdict">Lemak tubuh, dulu 23,7%. Otot naik.</p></div>
+      </div>
+      <div class="ideals">
+        <div class="ibx"><span>Berat</span><b>67<small> kg</small></b><em>dari 85,1</em></div>
+        <div class="ibx"><span>Visceral</span><b>5,5<small> lv</small></b><em>dari 13,5</em></div>
+        <div class="ibx"><span>Waktu</span><b>90<small> hari</small></b><em>bareng istri</em></div>
+      </div>
+      <p class="foot">Angka asli AJ, bukan contoh. Hasil tiap orang berbeda.</p>
     </div>
-    <div class="ideals">
-      <div class="ibx"><span>Berat</span><b>67<small> kg</small></b><em>dari 85,1</em></div>
-      <div class="ibx"><span>Visceral</span><b>5,5<small> lv</small></b><em>dari 13,5</em></div>
-      <div class="ibx"><span>Waktu</span><b>90<small> hari</small></b><em>bareng istri</em></div>
-    </div>
-    <p class="foot">Angka asli AJ, bukan contoh. Hasil tiap orang berbeda.</p>
   </div>
 </div></div>
 
-<section id="cerita"><div>
-  <div class="head wrap"><p class="kicker">Siapa aku</p><h2>Jalanku nggak lurus.</h2><p class="lede">Dari panggung musik sampai ngurus berat badan sendiri.</p></div>
-  <div class="path reveal" id="path">
-    <div class="node"><span class="dot">1</span><div><h3>Musik</h3><p>S1 musik di Singapura, lalu jadi keyboardis untuk Tulus dan beberapa artis lain.</p></div></div>
-    <div class="node"><span class="dot">2</span><div><h3>Startup game</h3><p>Bisnis terbesar yang pernah aku jalankan. Di sela-selanya ada piano jazz, produksi musik, bisnis audio, sampai bahasa Jepang.</p></div></div>
-    <div class="node"><span class="dot">3</span><div><h3>3 anak, berat naik</h3><p>Tiap istriku hamil, aku ikutan “hamil”. Sampai akhirnya kegemukan.</p></div></div>
-    <div class="node"><span class="dot">4</span><div><h3>Turun 18 kg, jadi coach</h3><p>Bareng istri, 90 hari, tanpa berhenti kerja. Sekarang aku memimpin tim coach Success Together.</p></div></div>
-  </div>
-  <div class="wrap">
-    <div class="coach cloud reveal">
-      <div class="avatar"><img src="/images/coach-aj.jpg" width="430" height="430" loading="lazy" alt="Foto AJ, tersenyum, berkacamata bening dan memakai kaus biru muda"></div>
-      <div class="copy">
-        <blockquote>Dulu pernah diet sendiri dengan OMAD, lari seminggu 4 kali, water fasting, tapi meskipun turun, gampang banget naik lagi. #transformwithST yang akhirnya jadi solusi turun sehat, lemak turun, otot naik, dan sustainable.</blockquote>
-        <p class="who">AJ Jonathan Ong · Coach, memimpin tim Success Together</p>
-      </div>
+<div class="belt" aria-label="Sekilas tentang AJ"><div class="row">
+  <span>Keyboardis untuk Tulus</span><span>S1 musik di Singapura</span><span>Pendiri startup game</span><span>Ayah 3 anak</span><span>Turun 18 kg dalam 90 hari</span><span>Memimpin tim coach Success Together</span>
+  <span>Keyboardis untuk Tulus</span><span>S1 musik di Singapura</span><span>Pendiri startup game</span><span>Ayah 3 anak</span><span>Turun 18 kg dalam 90 hari</span><span>Memimpin tim coach Success Together</span>
+</div></div>
+
+<!-- 1. YANG SUDAH DICOBA -->
+<section id="dicoba"><div class="wrap">
+  <div class="head"><p class="kicker">Aku juga pernah di posisimu</p><h2>Aku sudah coba semuanya.</h2><p class="lede">Tiap istriku hamil, aku ikutan “hamil”. Sampai akhirnya kegemukan, dan aku coba turunin sendiri.</p></div>
+  <div class="me">
+    <div class="ba reveal">
+      <figure><img src="/images/results/aj-before.jpg" width="470" height="588" loading="lazy" alt="Foto AJ sebelum program"><figcaption>Sebelum</figcaption></figure>
+      <figure><img src="/images/results/aj-after.jpg" width="900" height="1125" loading="lazy" alt="Foto AJ sesudah 90 hari"><figcaption>Sesudah 90 hari</figcaption></figure>
+    </div>
+    <div class="copy reveal">
+      <div class="tries"><span>OMAD</span><span>Lari 4x seminggu</span><span>Water fasting</span></div>
+      <blockquote>Dulu pernah diet sendiri dengan OMAD, lari seminggu 4 kali, water fasting, tapi meskipun turun, gampang banget naik lagi. #transformwithST yang akhirnya jadi solusi turun sehat, lemak turun, otot naik, dan sustainable.</blockquote>
+      <p class="who">AJ Jonathan Ong, Coach. Memimpin tim Success Together.</p>
     </div>
   </div>
+
+  <div class="sub"><p class="kicker">Cara yang paling banyak dipakai</p><h3>Enam jalan, dan apa kata datanya.</h3><p>Semua punya tempatnya. Tap satu per satu untuk lihat apa yang dikerjakan, apa kata penelitian, dan apa yang sering kurang.</p></div>
+
+  <div class="ways reveal" id="ways">
+    <div class="tabs" role="tablist" aria-label="Cara menurunkan berat badan">
+      <button role="tab" type="button" data-t="olahraga">Olahraga</button>
+      <button role="tab" type="button" data-t="if">Puasa (IF)</button>
+      <button role="tab" type="button" data-t="omad">OMAD</button>
+      <button role="tab" type="button" data-t="gizi">Dokter gizi</button>
+      <button role="tab" type="button" data-t="klinik">Klinik slimming</button>
+      <button role="tab" type="button" data-t="glp">GLP-1</button>
+      <button role="tab" type="button" data-t="aku" class="me-tab">Cara aku</button>
+    </div>
+
+    <article class="mp" id="p-olahraga" role="tabpanel">
+      <div class="mp-main"><h3>Olahraga</h3><p class="mp-sub">Lari, gym, kelas, apa pun yang bikin badan bergerak.</p>
+        <dl>
+          <div><dt>Yang dikerjakan</dt><dd>Membakar energi dan menjaga jantung serta otot. Hampir semua orang memang disarankan melakukannya.</dd></div>
+          <div><dt>Yang sering kurang</dt><dd>Olahraga tidak mengatur apa yang kamu makan, dan angka timbangan bergeser sedikit. Makanya banyak yang merasa “sudah rajin olahraga tapi badan tidak berubah”.</dd></div>
+        </dl></div>
+      <div class="mp-data"><p class="mp-l">Kata penelitian</p><div class="bignum">−<span data-count="1.0" data-dec="1">1,0</span><small> kg</small></div><p>tambahan penurunan berat saat olahraga ditambahkan ke diet, dibanding diet saja. Olahraga tetap memperbaiki faktor risiko jantung walau berat tidak turun. <span class="src-ref"><a href="#sumber">Sumber 8</a></span></p></div>
+    </article>
+
+    <article class="mp" id="p-if" role="tabpanel">
+      <div class="mp-main"><h3>Puasa berkala (IF)</h3><p class="mp-sub">Makan hanya di jendela waktu tertentu, misalnya 16:8.</p>
+        <dl>
+          <div><dt>Yang dikerjakan</dt><dd>Mengatur kapan kamu makan, supaya total kalori otomatis lebih sedikit.</dd></div>
+          <div><dt>Yang sering kurang</dt><dd>Jendela makan mengatur kapan, bukan apa dan seberapa cukup. Protein dan otot tidak otomatis terjaga, dan hilangnya massa tanpa lemak sejalan dengan diet kalori biasa.</dd></div>
+        </dl></div>
+      <div class="mp-data"><p class="mp-l">Kata penelitian · 139 orang, 12 bulan</p>
+        <div class="bars"><div class="bar"><div class="l"><span>Jendela makan + kurangi kalori</span><b>−8,0 kg</b></div><div class="t"><i style="--w:100%"></i></div></div>
+        <div class="bar two"><div class="l"><span>Kurangi kalori saja</span><b>−6,3 kg</b></div><div class="t"><i style="--w:78.8%"></i></div></div></div>
+        <p>Selisih 1,8 kg, <b>secara statistik tidak bermakna</b>. <span class="src-ref"><a href="#sumber">Sumber 6</a></span></p></div>
+    </article>
+
+    <article class="mp" id="p-omad" role="tabpanel">
+      <div class="mp-main"><h3>OMAD</h3><p class="mp-sub">Semua kalori dalam satu kali makan sehari.</p>
+        <dl>
+          <div><dt>Yang dikerjakan</dt><dd>Menekan total makan lewat jendela yang sangat sempit.</dd></div>
+          <div><dt>Yang sering kurang</dt><dd>Datanya masih studi kecil dan pendek, pada orang sehat berat normal. Belum ada bukti jangka panjang bahwa ini aman dan efektif untuk kebanyakan orang.</dd></div>
+          <div><dt>Pengalamanku</dt><dd>Aku pernah OMAD. Turun, tapi gampang banget naik lagi.</dd></div>
+        </dl></div>
+      <div class="mp-data"><p class="mp-l">Kata penelitian · studi kecil</p>
+        <ul class="pts"><li><b>8 minggu, 15 orang, kalori disamakan.</b> Lemak tubuh turun sekitar 2 kg lebih banyak, tapi rasa lapar lebih tinggi sepanjang studi, serta tekanan darah dan kolesterol LDL naik.</li>
+        <li><b>11 hari, 11 orang.</b> Massa tanpa lemak dan massa tulang ikut turun lebih banyak.</li></ul>
+        <p class="src-ref"><a href="#sumber">Sumber 7</a>, dari ringkasan, bukan makalah aslinya.</p></div>
+    </article>
+
+    <article class="mp" id="p-gizi" role="tabpanel">
+      <div class="mp-main"><h3>Dokter gizi</h3><p class="mp-sub">Konsultasi dan rencana makan.</p>
+        <dl>
+          <div><dt>Yang dikerjakan</dt><dd>Menyusun rencana makan yang disesuaikan dengan kondisi medismu.</dd></div>
+          <div><dt>Cocok kalau</dt><dd>Kamu punya diabetes, kolesterol tinggi, masalah ginjal, atau kondisi lain yang butuh penyesuaian klinis.</dd></div>
+          <div><dt>Yang sering kurang</dt><dd>Rencana yang bagus tetap harus kamu jalani sendiri tiap hari, di tengah meeting dan perjalanan dinas.</dd></div>
+        </dl></div>
+      <div class="mp-data"><p class="mp-l">Layak kamu tanyakan</p>
+        <ul class="pts"><li>Komposisi apa yang diukur selain berat?</li><li>Siapa yang menemani kamu tiap hari, bukan tiap bulan?</li><li>Apa yang terjadi setelah konsultasi selesai?</li></ul></div>
+    </article>
+
+    <article class="mp" id="p-klinik" role="tabpanel">
+      <div class="mp-main"><h3>Dokter kecantikan dan klinik slimming</h3><p class="mp-sub">Program dan tindakan di bawah pengawasan medis.</p>
+        <dl>
+          <div><dt>Yang dikerjakan</dt><dd>Pemeriksaan, program, dan kadang tindakan seperti obat, suntikan, atau alat. Isinya berbeda di tiap klinik.</dd></div>
+          <div><dt>Cocok kalau</dt><dd>Kamu mau evaluasi menyeluruh, atau butuh tindakan yang memang hanya bisa dilakukan tenaga medis.</dd></div>
+          <div><dt>Yang sering kurang</dt><dd>Tindakan bekerja di klinik, tapi kebiasaan terbentuk di rumah.</dd></div>
+        </dl></div>
+      <div class="mp-data"><p class="mp-l">Pengalaman satu orang, bukan data studi</p>
+        <blockquote>“Dulu sudah coba segala cara. Gym 4 sampai 5 kali seminggu, catering sehat, sampai suntik kurus, tapi dalam 6 bulan cuma turun 2 kg. Beruntung ketemu #transformwithST, dalam 3 bulan turun lebih dari 15 kg dengan cara yang enjoy.”</blockquote>
+        <p class="src-ref">dr. Jevon Darmawan, coach #transformwithST</p></div>
+    </article>
+
+    <article class="mp" id="p-glp" role="tabpanel">
+      <div class="mp-main"><h3>Obat GLP-1</h3><p class="mp-sub">Semaglutide, tirzepatide.</p>
+        <dl>
+          <div><dt>Yang dikerjakan</dt><dd>Menekan nafsu makan lewat obat yang diresepkan dokter. Tirzepatide mendapat tambahan izin BPOM untuk pengelolaan berat badan pada Juli 2026. <span class="src-ref"><a href="#sumber">Sumber 5</a></span></dd></div>
+          <div><dt>Cocok kalau</dt><dd>Dokter menilai kamu memang butuh terapi medis.</dd></div>
+          <div><dt>Yang sering kurang</dt><dd>Efeknya mengikuti obatnya. Setelah dihentikan, berat cenderung kembali, dan yang ikut hilang bukan cuma lemak.</dd></div>
+        </dl></div>
+      <div class="mp-data"><p class="mp-l">Tiga angka dari penelitiannya</p>
+        <div class="trio"><div><span class="v">2/3</span><p>berat yang turun kembali dalam setahun setelah semaglutide dihentikan <span class="src-ref"><a href="#sumber">1</a></span></p></div>
+        <div><span class="v">25–38%</span><p>dari berat yang turun berupa massa tanpa lemak, termasuk otot <span class="src-ref"><a href="#sumber">2, 3</a></span></p></div>
+        <div><span class="v">≈49%</span><p>berhenti memakai obat dalam 12 bulan pertama <span class="src-ref"><a href="#sumber">4</a></span></p></div></div></div>
+    </article>
+
+    <article class="mp me-panel" id="p-aku" role="tabpanel">
+      <div class="mp-main"><span class="tag">Yang aku kerjakan</span><h3>Coach AJ, program 90 hari</h3>
+        <dl>
+          <div><dt>Yang dikerjakan</dt><dd>Mengukur lemak, otot, lemak visceral, dan umur badan. Memakai sistem TRMe dengan pola makan dan protein yang muat di jadwalmu. Menemani sampai kebiasaannya jadi.</dd></div>
+          <div><dt>Cocok kalau</dt><dd>Kamu umumnya sehat, super sibuk, dan mau turun lemak sambil menjaga otot.</dd></div>
+          <div><dt>Perlu diingat</dt><dd>Aku bukan dokter dan tidak mengobati penyakit. Kalau kamu punya kondisi medis atau minum obat rutin, ngobrol dulu dengan dokter kamu.</dd></div>
+        </dl></div>
+      <div class="mp-data"><p class="mp-l">Bisa jalan bareng yang lain</p><p>Aku tidak melawan dokter, obat, atau olahraga. Bagian yang aku kerjakan adalah yang paling sering hilang, yaitu mengukur isi badan dan menemani harian. Sisanya bisa kamu putuskan bareng dokter kamu.</p></div>
+    </article>
+  </div>
+
+  <div class="pivot reveal"><p>Enam jalan, enam cara kerja, dan hasil rata-rata yang tidak jauh beda. Jadi kunci hasilnya ada di tempat lain, dan <em>tempatnya ada di dalam badanmu.</em></p></div>
 </div></section>
 
-<section id="beda" style="padding-top:0"><div class="wrap">
-  <div class="head"><p class="kicker">Kenapa ini beda</p><h2>Ada banyak jalan turun berat badan. Ini perbedaannya.</h2><p class="lede">Obat, dokter gizi, dan klinik sama-sama punya tempatnya. Ini cara aku melihat tiap jalan, supaya kamu bisa memilih yang paling cocok.</p></div>
+<!-- 2. YANG BERUBAH -->
+<section id="aging" style="padding-top:0"><div class="wrap">
+  <div class="head"><p class="kicker">Yang sebenarnya berubah</p><h2>Yang menua itu isi badanmu.</h2><p class="lede">“Umur badan” bukan istilah marketing. Alat ukur komposisi seperti Omron menghitungnya dari metabolisme istirahatmu, dan memakainya sebagai panduan umur metabolik. <span class="src-ref"><a href="#sumber">Sumber 11</a></span></p></div>
 
-  <div class="vs">
-    <article class="opt cloud reveal">
-      <div class="t"><h3>Obat GLP-1</h3><span>semaglutide, tirzepatide</span></div>
-      <dl>
-        <div><dt>Yang dikerjakan</dt><dd>Menekan nafsu makan lewat obat yang diresepkan dokter. Tirzepatide mendapat tambahan izin BPOM untuk pengelolaan berat badan pada Juli 2026.</dd></div>
-        <div><dt>Cocok kalau</dt><dd>Dokter menilai kamu memang butuh terapi medis.</dd></div>
-        <div><dt>Perlu diingat</dt><dd>Efeknya mengikuti obatnya. Setelah dihentikan, berat cenderung kembali, dan yang ikut hilang bukan cuma lemak.</dd></div>
-      </dl>
-    </article>
-    <article class="opt cloud reveal">
-      <div class="t"><h3>Dokter gizi</h3><span>konsultasi dan rencana makan</span></div>
-      <dl>
-        <div><dt>Yang dikerjakan</dt><dd>Menyusun rencana makan yang disesuaikan dengan kondisi medismu.</dd></div>
-        <div><dt>Cocok kalau</dt><dd>Kamu punya diabetes, kolesterol tinggi, masalah ginjal, atau kondisi lain yang butuh penyesuaian klinis.</dd></div>
-        <div><dt>Perlu diingat</dt><dd>Rencana yang bagus tetap harus kamu jalani sendiri tiap hari, di tengah meeting dan perjalanan dinas.</dd></div>
-      </dl>
-    </article>
-    <article class="opt cloud reveal">
-      <div class="t"><h3>Klinik</h3><span>pemeriksaan, program, tindakan</span></div>
-      <dl>
-        <div><dt>Yang dikerjakan</dt><dd>Pemeriksaan, program, dan kadang tindakan di bawah pengawasan medis.</dd></div>
-        <div><dt>Cocok kalau</dt><dd>Kamu mau evaluasi menyeluruh, atau butuh tindakan yang memang hanya bisa dilakukan tenaga medis.</dd></div>
-        <div><dt>Perlu diingat</dt><dd>Pendekatan tiap klinik berbeda. Tanya apa yang diukur selain berat, dan bagaimana kamu didampingi sesudahnya.</dd></div>
-      </dl>
-    </article>
-    <article class="opt me reveal">
-      <span class="tag">Yang aku kerjakan</span>
-      <div class="t"><h3>Coach AJ, program 90 hari</h3></div>
-      <dl>
-        <div><dt>Yang dikerjakan</dt><dd>Mengukur lemak, otot, dan lemak visceral. Mengatur makan dan protein supaya muat di jadwal kerjamu. Menemani sampai kebiasaannya jadi.</dd></div>
-        <div><dt>Cocok kalau</dt><dd>Kamu umumnya sehat, super sibuk, dan mau turun lemak sambil menjaga otot.</dd></div>
-        <div><dt>Perlu diingat</dt><dd>Aku bukan dokter dan tidak mengobati penyakit. Kalau kamu punya kondisi medis atau minum obat rutin, ngobrol dulu dengan dokter kamu.</dd></div>
-      </dl>
-    </article>
+  <div class="age">
+    <article class="agec reveal"><span class="tag">Mitos dulu</span><div class="bignum">20–50<small>an</small></div><p>Metabolisme tidak mendadak melambat di umur 30. Data lebih dari 6.600 orang dari 29 negara menunjukkan pengeluaran energi harian cukup stabil dari usia 20-an sampai 50-an. Baru turun sekitar 0,7% per tahun setelah usia 60. <span class="src-ref"><a href="#sumber">Sumber 9</a></span></p></article>
+    <article class="agec reveal"><span class="tag hot">Yang bergeser</span><div class="bignum">0,4–0,5<small>% / tahun</small></div><p>Massa otot orang di atas 65 tahun lebih rendah dari dewasa muda, rata-rata 0,47% per tahun pada pria dan 0,37% pada wanita. Kekuatan turun 2 sampai 5 kali lebih cepat dari massanya. <span class="src-ref"><a href="#sumber">Sumber 10</a></span></p></article>
+    <article class="agec reveal"><span class="tag">Kenapa itu penting</span><div class="bignum">60–70<small>%</small></div><p>Sekitar 60 sampai 70% energi harian kita habis untuk metabolisme dasar, dan otot adalah salah satu penyumbang terbesarnya. Otot yang menyusut membuat “mesin” badan makin kecil. <span class="src-ref"><a href="#sumber">Sumber 11 dan 13</a></span></p></article>
   </div>
 
-  <div class="sub"><h3>Kenapa aku menekankan kebiasaan, dengan atau tanpa obat</h3><p>GLP-1 efektif menurunkan berat badan. Tapi ada tiga angka dari penelitiannya yang perlu kamu tahu.</p></div>
-  <div class="facts">
-    <div class="fact reveal"><span class="v">2/3</span><p>dari berat badan yang sudah turun kembali dalam setahun setelah semaglutide dihentikan.</p><small>Lanjutan uji STEP 1, 327 peserta. <a href="#sumber">Sumber 1</a></small></div>
-    <div class="fact reveal"><span class="v">25–38%</span><p>dari berat yang turun berupa massa tanpa lemak, termasuk otot. Angkanya tergantung studinya.</p><small>Meta-analisis 22 uji acak dan uji STEP 1. <a href="#sumber">Sumber 2 dan 3</a></small></div>
-    <div class="fact reveal"><span class="v">≈49%</span><p>berhenti memakai obat dalam 12 bulan pertama, menurut data dunia nyata.</p><small>Meta-analisis data observasional, 2025. <a href="#sumber">Sumber 4</a></small></div>
+  <div class="lab">
+    <div class="labc reveal">
+      <div><h3>Berat sama, isi beda</h3><p class="s">Dua orang bisa sama-sama 70 kg di timbangan. Yang satu lebih banyak lemak dan lebih sedikit otot. Timbangan tidak bisa membedakannya.</p></div>
+      <div class="stk">
+        <div><div class="who"><b>Orang A</b><span>70 kg</span></div><div class="seg"><i class="lean" style="--w:71.4%">otot dan lainnya 50</i><i class="fat" style="--w:28.6%">lemak 20</i></div></div>
+        <div><div class="who"><b>Orang B</b><span>70 kg</span></div><div class="seg"><i class="lean" style="--w:57.1%">otot dan lainnya 40</i><i class="fat" style="--w:42.9%">lemak 30</i></div></div>
+        <div class="key"><span class="l">Massa tanpa lemak</span><span class="f">Lemak</span></div>
+      </div>
+      <p class="src-ref">Ilustrasi sederhana, bukan data pasien.</p>
+    </div>
+    <div class="labc reveal">
+      <div><h3>Lemak visceral, angka asliku</h3><p class="s">Ini lemak di sekitar organ dalam. Pada skala Omron, 1 sampai 9 dianggap normal, 10 sampai 14 tinggi, 15 ke atas sangat tinggi. <span class="src-ref"><a href="#sumber">Sumber 11</a></span></p></div>
+      <div>
+        <div class="gauge"><span class="pin old" data-l="Dulu 13,5"></span><span class="pin now" data-l="Sekarang 5,5"></span></div>
+        <div class="scale"><span style="left:0">1</span><span style="left:31%">10</span><span style="left:48.3%">15</span><span style="left:100%">30</span></div>
+      </div>
+      <div class="zl"><span class="g">Normal</span><span class="a">Tinggi</span><span class="r">Sangat tinggi</span></div>
+    </div>
   </div>
 
+  <p class="take reveal">Makanya aku tidak mulai dari timbangan. Aku mulai dari mengukur isi badanmu: lemak, otot, lemak visceral, dan umur badan.</p>
+</div></section>
+
+<section style="padding-top:0"><div class="wrap">
   <div class="common reveal">
     <p class="kicker">Yang sama untuk semua jalan</p>
     <h3>Tiga hal yang menentukan hasilnya bertahan</h3>
@@ -309,27 +548,95 @@ section{padding-block:clamp(56px,10vw,112px)}
       <div><b>Otot dilatih</b><p>Latihan beban minimal 3 kali seminggu, ditambah 150 menit aktivitas aerobik sedang per minggu.</p></div>
       <div><b>Komposisi diukur</b><p>Bukan cuma timbangan. Alat bioimpedans praktis untuk memantau otot berulang kali, dan itu yang kita pakai di program ini.</p></div>
     </div>
-    <p class="close">Ini bagian yang aku dampingi bareng kamu, sampai jadi kebiasaan.</p>
+    <p class="close">Tiga hal ini yang dikerjakan sistem dan coaching di bawah.</p>
     <p class="small">Poin protein, latihan, dan pengukuran mengacu ke <a href="#sumber">Sumber 3</a>. Angka studi adalah rata-rata, bukan prediksi untuk kamu.</p>
   </div>
 </div></section>
 
-<section style="padding-top:0"><div class="wrap">
-  <div class="head"><p class="kicker">Cara kerjaku</p><h2>Tiga langkah, mulai dari yang gratis.</h2></div>
-  <div class="steps">
-    <div class="stepc reveal"><span class="n">01</span><h3>Cek umur badan</h3><p>Mulai dari assessment gratis 3 menit. Kamu dan coach jadi tahu area mana yang paling nahan progress kamu.</p></div>
-    <div class="stepc reveal"><span class="n">02</span><h3>Ukur pakai Omron</h3><p>Body fat, otot, lemak visceral, dan body age diukur pakai Omron HBF-375. Ukur dulu, baru ubah. Jadi progress-nya kelihatan, bukan cuma perasaan.</p></div>
-    <div class="stepc reveal"><span class="n">03</span><h3>Program 90 hari bareng coach</h3><p>Pola makan yang nyesuain jadwal kerja kamu, check-in rutin, dan ada yang nemenin sampai kebiasaannya jadi.</p></div>
+<!-- 3. TRME -->
+<section id="trme" style="padding-top:0"><div class="wrap">
+  <div class="trme">
+    <div class="intro reveal">
+      <p class="kicker">Yang aku pakai</p>
+      <h2>Sistem yang menyasar isi badanmu, bukan cuma timbangan.</h2>
+      <p>Aku memakai ageLOC TRMe dari Nu Skin, program 90 hari yang menggabungkan suplemen, pola makan, dan aktivitas. Menurut Nu Skin, program ini menyasar tiga area pengelolaan berat badan: metabolisme, otot, dan nafsu makan. Programnya dikembangkan dengan platform riset ageLOC milik mereka. <span class="src-ref"><a href="#sumber">Sumber 12 dan 13</a></span></p>
+      <div class="disclose"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4M12 8h.01"/></svg><span>Aku Brand Director di Nu Skin, jadi aku bukan pihak yang netral soal ini. Makanya aku tunjukkan apa yang sudah diteliti dan apa yang belum.</span></div>
+    </div>
+
+    <div class="reveal">
+      <div class="hub">
+        <div class="core">Isi badanmu: lemak, otot, umur badan</div>
+        <svg viewBox="0 0 300 56" preserveAspectRatio="none" aria-hidden="true"><path pathLength="100" d="M150 0 C150 30 50 22 50 56"/><path pathLength="100" d="M150 0 V56"/><path pathLength="100" d="M150 0 C150 30 250 22 250 56"/></svg>
+      </div>
+      <div class="levers">
+        <article class="lever">
+          <span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M13 2 4 14h7l-1 8 9-12h-7z"/></svg></span>
+          <h3>Metabolisme</h3>
+          <ul>
+            <li><b>JumpStart</b>Minuman botani untuk 15 hari pertama. Isinya buah kaktus pir, delima, bunga saffron, dan jeruk merah.</li>
+            <li><b>MC Complex</b>Minuman botani dari moringa, daun kari, dan kunyit, diminum sebelum makan.</li>
+          </ul>
+        </article>
+        <article class="lever">
+          <span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6.5 6.5 17.5 17.5M3 10l4-4M10 3 6 7M14 21l4-4M21 14l-4 4"/></svg></span>
+          <h3>Otot dan nutrisi</h3>
+          <ul>
+            <li><b>TrimShake</b>Shake protein untuk menggantikan makan terberatmu.</li>
+            <li><b>LifePak</b>Nutrisi harian pendukung.</li>
+            <li><b>Pola makan 3-3-3-3</b>Porsi diukur dengan ukuran tangan, ditambah olahraga 3 kali seminggu.</li>
+          </ul>
+        </article>
+        <article class="lever">
+          <span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 21a8 8 0 1 0 0-16 8 8 0 0 0 0 16z"/><path d="M12 8v4l3 2"/></svg></span>
+          <h3>Nafsu makan</h3>
+          <ul>
+            <li><b>MyEdge</b>Ekstrak daun murbei dan serat guar, diminum sebelum makan agar kenyang lebih lama.</li>
+            <li><b>CS Control</b>Kapsul ekstrak saffron, diminum bersama makan.</li>
+          </ul>
+        </article>
+      </div>
+    </div>
+
+    <div class="study reveal">
+      <div class="ringbox">
+        <svg viewBox="0 0 112 112" role="img" aria-label="98 persen peserta turun berat badan dalam 12 minggu"><circle cx="56" cy="56" r="48" fill="none" stroke="var(--d-track)" stroke-width="10"/><circle class="ring" pathLength="100" style="--v:98" cx="56" cy="56" r="48" fill="none" stroke="var(--d-teal)" stroke-width="10" stroke-linecap="round" transform="rotate(-90 56 56)"/></svg>
+        <div class="c"><div class="num"><span data-count="98" data-dec="0">98</span><small style="font-size:1rem;color:var(--muted)">%</small></div></div>
+      </div>
+      <div>
+        <h3>98% peserta turun berat badan dalam 12 minggu</h3>
+        <p>Studi internal Nu Skin pada 64 orang dewasa di Asia dengan BMI 27,5 sampai 40 (59 perempuan, 5 laki-laki). <b>Ini studi open-label, tanpa kelompok pembanding, dan datanya belum dipublikasi.</b> Aku tulis batasnya apa adanya, karena kamu berhak tahu. Angkanya bukan jaminan untukmu. <span class="src-ref"><a href="#sumber">Sumber 14</a></span></p>
+      </div>
+    </div>
   </div>
-  <div class="more"><a class="btn primary" href="/aj/?utm_source=profil-aj&amp;utm_medium=halaman">Mulai dengan cek umur badan</a></div>
 </div></section>
 
+<!-- 4. COACHING -->
+<section id="coaching" style="padding-top:0"><div class="wrap">
+  <div class="head"><p class="kicker">Yang membedakan</p><h2>Produknya cuma separuh cerita.</h2><p class="lede">Suplemen tidak membangun kebiasaan, dan program yang bagus tidak jalan kalau tidak ada yang menemani. Di sinilah aku bekerja.</p></div>
+  <div class="cgrid">
+    <article class="cc reveal"><span class="n">01</span><h3>Diukur, bukan ditebak</h3><p>Body fat, otot, lemak visceral, dan body age diukur pakai Omron HBF-375. Jadi progresmu kelihatan dari data, bukan dari perasaan.</p></article>
+    <article class="cc reveal"><span class="n">02</span><h3>Disesuaikan jadwalmu</h3><p>Pola makan dan protein yang muat di sela meeting, perjalanan dinas, dan urusan keluarga. Program yang cuma bagus di atas kertas tidak akan jalan.</p></article>
+    <article class="cc reveal"><span class="n">03</span><h3>Ditemani sampai jadi kebiasaan</h3><p>Ada check-in rutin dan ada yang menjawab saat kamu mentok. Ini bagian yang dulu tidak aku punya waktu turun sendiri.</p></article>
+  </div>
+
+  <div class="head" style="margin-bottom:clamp(20px,3vw,32px)"><p class="kicker">90 hari bareng aku</p><h3 style="font-size:clamp(1.5rem,3.4vw,2.2rem);letter-spacing:-.03em;line-height:1.12">Begini jalannya.</h3></div>
+  <div class="path reveal" id="path">
+    <div class="node"><span class="dot">1</span><span class="when">Hari 0</span><h3>Ukur</h3><p>Umur badan, lemak, otot, dan lemak visceral. Mulai dari tes gratis 3 menit.</p></div>
+    <div class="node"><span class="dot">2</span><span class="when">Hari 1 sampai 15</span><h3>JumpStart</h3><p>Fase awal sistem TRMe. Kita mulai ritme makan dan protein yang cocok untukmu.</p></div>
+    <div class="node"><span class="dot">3</span><span class="when">Minggu 3 sampai 12</span><h3>Ritme harian</h3><p>Sistem berjalan penuh, olahraga 3 kali seminggu, dan check-in dengan coach.</p></div>
+    <div class="node"><span class="dot">4</span><span class="when">Hari 90</span><h3>Ukur ulang</h3><p>Kita lihat hasilnya dari angka dan foto, lalu kunci kebiasaannya.</p></div>
+  </div>
+  <div style="display:flex;justify-content:center;margin-top:clamp(24px,4vw,36px)"><a class="btn primary" href="/aj/?utm_source=profil-aj&amp;utm_medium=halaman">Mulai dengan cek umur badan</a></div>
+</div></section>
+
+<!-- 6. HASIL -->
 <section id="hasil" style="padding-top:0"><div>
   <div class="head wrap"><p class="kicker">Hasil para coach kami</p><h2>Mereka juga mulai dari titik yang sama.</h2><p class="lede">Foto asli, angka asli, dan cerita mereka sendiri. Tap foto atau tarik garisnya buat bandingin.</p></div>
   <div id="results"></div>
   <p class="fine">Hasil tiap orang berbeda. Yang tampil di sini cuma para coach.</p>
 </div></section>
 
+<!-- 7. PENUTUP -->
 <section style="padding-top:0"><div class="wrap">
   <div class="door reveal">
     <div>
@@ -354,9 +661,10 @@ section{padding-block:clamp(56px,10vw,112px)}
 <section style="padding-top:0"><div class="wrap">
   <div class="head"><p class="kicker">Pertanyaan yang sering muncul</p><h2>Sebelum kamu tanya.</h2></div>
   <div class="faq">
+    <details><summary>TRMe itu obat anti-aging?</summary><p>Bukan. TRMe adalah program pengelolaan berat badan dari Nu Skin yang berisi suplemen, pola makan, dan aktivitas. Yang aku jelaskan di halaman ini adalah penuaan komposisi badan, yaitu otot dan lemak, yang bisa diukur. Aku tidak mengklaim TRMe membalik penuaan atau mengobati penyakit.</p></details>
     <details><summary>Aku sedang atau berencana pakai GLP-1. Masih cocok?</summary><p>Keputusan soal obat ada di kamu dan dokter kamu. Yang bisa aku bantu adalah bagian kebiasaannya, yaitu protein, gerak, dan mengukur komposisi badan. Panduan para ahli juga menyarankan protein cukup dan latihan beban bersama terapi ini. Soal obatnya, ikuti arahan dokter. <a href="https://wa.me/628170241185?text=Halo%20AJ%2C%20aku%20lagi%20mempertimbangkan%20GLP-1%20dan%20mau%20ngobrol%20soal%20kebiasaan%20yang%20perlu%20aku%20bangun.">Tanya aku lewat WhatsApp</a></p></details>
     <details><summary>Ini pengganti dokter atau dokter gizi?</summary><p>Bukan. Aku coach, bukan tenaga medis. Kalau kamu punya kondisi medis, sedang hamil, atau minum obat rutin, mulai dari dokter kamu. Keduanya bisa berjalan berdampingan.</p></details>
-    <details><summary>Kenapa aku harus percaya?</summary><p>Nggak perlu percaya begitu saja. Lihat angka asli dan foto asli di atas, termasuk hasil para coach lain. Ukur dulu, baru ubah, jadi progress-nya kelihatan.</p></details>
+    <details><summary>Kenapa aku harus percaya?</summary><p>Nggak perlu percaya begitu saja. Lihat angka dan foto asli di atas, termasuk hasil para coach lain. Aku juga terbuka bahwa aku bekerja di Nu Skin dan bahwa studi TRMe yang kusebut masih internal dan belum dipublikasi. Ukur dulu, baru ubah, jadi progresnya kelihatan dari data.</p></details>
   </div>
 </div></section>
 
@@ -370,15 +678,70 @@ section{padding-block:clamp(56px,10vw,112px)}
       <li>Mozaffarian D, et al. Nutritional priorities to support GLP-1 therapy for obesity. Advisory gabungan American College of Lifestyle Medicine, American Society for Nutrition, Obesity Medicine Association, dan The Obesity Society. Obesity, 2025. <a href="https://pubmed.ncbi.nlm.nih.gov/40445127/" rel="noopener">PubMed</a></li>
       <li>Grosicki GJ, et al. GLP-1 receptor agonists discontinuation is higher in individuals with overweight and obesity without type 2 diabetes. Diabetes, Obesity and Metabolism, 2025. <a href="https://hcplive.com/view/glp-1-ra-discontinuations-frequent-in-people-with-obesity-without-diabetes" rel="noopener">Ringkasan</a></li>
       <li>BPOM, siaran pers tirzepatide: izin edar Februari 2026 dan tambahan indikasi pengelolaan berat badan Juli 2026. <a href="https://www.pom.go.id/siaran-pers/bpom-dorong-akses-terapi-inovatif-untuk-penanganan-penyakit-metabolik-dengan-zat-aktif-tirzepatide" rel="noopener">pom.go.id</a></li>
+      <li>Calorie Restriction with or without Time-Restricted Eating in Weight Loss. New England Journal of Medicine, 2022. 139 peserta, 12 bulan. <a href="https://pubmed.ncbi.nlm.nih.gov/35443107/" rel="noopener">PubMed</a></li>
+      <li>OMAD, ringkasan dua studi kecil. Uji silang USDA 2007 di American Journal of Clinical Nutrition (21 orang dewasa sehat berat normal, 15 menyelesaikan kedua fase, 8 minggu per fase). Uji 2021 di Frontiers in Physiology (11 orang, 11 hari). Aku merujuk ke ringkasannya, belum ke makalah aslinya. <a href="https://acibademinternational.com/blog/omad-and-time-restricted-eating-what-trials-show-about-eating-windows/" rel="noopener">Ringkasan</a> dan <a href="https://www.sciencefocus.com/the-human-body/one-meal-a-day-diet-omad" rel="noopener">ringkasan kedua</a></li>
+      <li>Exercise for overweight or obesity. Tinjauan Cochrane, 2006. Menambah olahraga ke diet menurunkan berat tambahan 1,0 kg (selang kepercayaan 95%: 0,7 sampai 1,3 kg). <a href="https://cochranelibrary.com/cdsr/doi/10.1002/14651858.CD003817.pub3/ta" rel="noopener">Cochrane Library</a></li>
+      <li>Pontzer H, et al. Daily energy expenditure through the human life course. Science, 2021. <a href="https://dupri.duke.edu/news-events/news/pontzer-and-colleagues-explore-how-metabolism-changes-throughout-life-course" rel="noopener">Ringkasan Duke</a></li>
+      <li>Sarcopenia, dynapenia, and the impact of advancing age on human skeletal muscle size and strength; a quantitative review. Frontiers in Physiology, 2012. <a href="https://pubmed.ncbi.nlm.nih.gov/22934016/" rel="noopener">PubMed</a></li>
+      <li>Omron Healthcare Asia Pacific, FAQ pengelolaan berat badan: definisi body age, metabolisme istirahat, dan skala lemak visceral. <a href="https://www.omronhealthcare-ap.com/ap/faqs/weight-management" rel="noopener">omronhealthcare-ap.com</a></li>
+      <li>Nu Skin, Product Information Page ageLOC TRMe 90-Day Program (Malaysia). <a href="https://www.nuskin.com/content/dam/sea/my/one_stop_directory/MY_ageLOC-TRME%20SYSTEM-PIP.pdf" rel="noopener">nuskin.com</a></li>
+      <li>Nu Skin, TRMe Program Training (Malaysia). <a href="https://www.nuskin.com/content/dam/sea/my/one_stop_directory/TRME-Program-Training_MY_Final_EN.pdf" rel="noopener">nuskin.com</a></li>
+      <li>Nu Skin (2023). A Clinical Study in Healthy Volunteers (BMI ≥ 27,5 dan ≤ 40 kg/m²) to Assess the Efficacy and Safety of a 12-Week Weight Management Program. Studi internal, open-label, data belum dipublikasi.</li>
     </ol>
   </details>
   <nav><a href="/">#transformwithST</a><a href="/privacy/">Kebijakan Privasi</a></nav>
-  <span>© #transformwithST. Konten edukasi, bukan nasihat medis. Hasil tiap orang beda-beda.</span>
+  <span>© #transformwithST. Konten edukasi, bukan nasihat medis. Suplemen bukan obat. Hasil tiap orang beda-beda.</span>
 </div></footer>
+
+<div class="dock" aria-hidden="false"><a class="btn primary" href="https://wa.me/628170241185?text=Halo%20AJ%2C%20aku%20baru%20buka%20halaman%20profil%20kamu%20dan%20mau%20ngobrol.">Chat AJ di WhatsApp</a></div>
 
 <script src="/data/coaches.js"></script>
 <script src="/assets/site.js?v=1793167738"></script>
 <script src="/assets/results.js?v=1793167738"></script>
-<script>ALVResults.mount(document.getElementById('results'));ALVResults.render('id');</script>
+<script>
+ALVResults.mount(document.getElementById('results'));ALVResults.render('id');
+(function(){
+  var bar=document.querySelector('.prog i'),dock=document.querySelector('.dock');
+  function onScroll(){
+    var h=document.documentElement,max=h.scrollHeight-innerHeight,p=max>0?scrollY/max:0;
+    bar.style.transform='scaleX('+Math.min(1,p)+')';
+    dock.classList.toggle('on',scrollY>innerHeight*.7);
+  }
+  addEventListener('scroll',onScroll,{passive:true});onScroll();
+
+  var ways=document.getElementById('ways');
+  if(ways){
+    var tabs=[].slice.call(ways.querySelectorAll('[role=tab]')),panels=[].slice.call(ways.querySelectorAll('.mp'));
+    function pick(id,focus){
+      tabs.forEach(function(t){var on=t.dataset.t===id;t.setAttribute('aria-selected',on);t.tabIndex=on?0:-1;if(on&&focus)t.focus()});
+      panels.forEach(function(p){p.classList.toggle('on',p.id==='p-'+id)});
+      var pn=document.getElementById('p-'+id);
+      [].forEach.call(pn.querySelectorAll('[data-count]'),function(el){run(el)});
+      [].forEach.call(pn.querySelectorAll('.bar .t i'),function(i){i.style.transition='none';i.style.transform='scaleX(0)';i.offsetWidth;i.style.transition='';i.style.transform=''});
+    }
+    ways.classList.add('tabs-on');
+    tabs.forEach(function(t,i){
+      t.addEventListener('click',function(){pick(t.dataset.t)});
+      t.addEventListener('keydown',function(e){
+        var k=e.key==='ArrowRight'?1:e.key==='ArrowLeft'?-1:0;if(!k)return;e.preventDefault();
+        var n=tabs[(i+k+tabs.length)%tabs.length];pick(n.dataset.t,true);
+      });
+    });
+    pick('if');
+  }
+  var reduce=matchMedia('(prefers-reduced-motion:reduce)').matches;
+  function fmt(n,d){return n.toFixed(d).replace('.',',')}
+  function run(el){
+    var to=parseFloat(el.dataset.count),d=+(el.dataset.dec||0),from=parseFloat(el.dataset.from||0),t0=null,dur=1500;
+    function step(t){if(!t0)t0=t;var k=Math.min(1,(t-t0)/dur);k=1-Math.pow(1-k,3);el.textContent=fmt(from+(to-from)*k,d);if(k<1)requestAnimationFrame(step)}
+    requestAnimationFrame(step);
+  }
+  var els=[].slice.call(document.querySelectorAll('[data-count]'));
+  if(!reduce&&'IntersectionObserver' in window){
+    var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){run(e.target);io.unobserve(e.target)}})},{threshold:.6});
+    els.forEach(function(el){el.textContent=fmt(parseFloat(el.dataset.from||0),+(el.dataset.dec||0));io.observe(el)});
+  }
+})();
+</script>
 </body>
 </html>
