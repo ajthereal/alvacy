@@ -14,7 +14,21 @@ window.ALVResults = (function () {
       grip: 'Drag to compare the before and after photos', tagCoach: 'Coach', sample: 'Layout sample',
       mKg: 'weight', mFat: 'body fat', mVfa: 'visceral fat (VFA), measured on an <span style="white-space:nowrap">Omron HBF-375</span>', mVfa2: 'visceral fat (VFA)',
       dKg: 'kg', dPt: 'pts', dLv: 'levels', railRes: 'Before and after results', prev: 'Previous', next: 'Next',
-      sPeople: 'coaches', sKg: 'kg lost in total' }
+      sPeople: 'coaches', sKg: 'kg lost in total' },
+    zh: { before: '之前', after: '之后', phBefore: '之前的照片', phAfter: '之后的照片', phSoon: '之前的照片稍后补上',
+      grip: '拖动即可对比前后照片', tagCoach: '教练', sample: '版式示例',
+      mKg: '体重', mFat: '体脂率', mVfa: '内脏脂肪（VFA），使用 <span style="white-space:nowrap">Omron HBF-375</span> 测量', mVfa2: '内脏脂肪（VFA）',
+      dKg: '公斤', dPt: '个百分点', dLv: '级', railRes: '前后对比结果', prev: '上一个', next: '下一个',
+      sPeople: '位教练', sKg: '公斤，累计减重' }
+  };
+  /* Simplified Chinese quotes, keyed by coach code. A coach without an entry here shows the English quote on the Chinese page. */
+  const ZHQ = {
+    aj: '以前我自己用 OMAD、每周跑步 4 次、水断食来减肥，虽然体重会掉，但很容易反弹。#transformwithST 终于让我找到健康、可持续的方式：脂肪下降，肌肉上升。',
+    jevon: '以前我什么办法都试过。每周健身 4 到 5 次、吃健康餐，甚至打减肥针，6 个月只瘦了 2 公斤。幸好遇到 #transformwithST，3 个月瘦了超过 15 公斤，而且过程很轻松愉快。',
+    lala: '作为医美医生，我自己也得保持好形象，“美丽需要代价”的疗程做了不少，调整生活方式也是必须的。但效果并不明显。直到 #transformwithST 让整个过程变得简单，后面的故事大家都知道了。',
+    nova: '身为医生，我习惯照顾别人，却常常忘了照顾自己。通过 #transformwithST，我学会更有方向地照顾自己。最让我感动的是，我可以在继续哺乳的同时完成这个计划，奶水依然充足优质。照顾自己并不会分走对孩子的关注，反而让我能把最好的给他们。',
+    melita: '已经“名花有主”了，没关系，健康最重要。我以前也觉得自己不需要减肥，但参加 #transformwithST 之后，我可以自由地买自己喜欢的衣服，也成了更好的妈妈，当然，对女儿们来说也更健康有活力。',
+    lucky: '曾经的急诊科主任，自己的健康却出了问题：肥胖、高血压，全身酸痛。现在我重新找回了健康，多亏了 #transformwithST。'
   };
 
   /* ---------------------------------------------------------------------------------------------
@@ -96,7 +110,7 @@ window.ALVResults = (function () {
   <div class="body">
    <div class="top"><span class="name">${esc(c.name)}</span><span class="tag${c.sample ? ' sample' : ''}">${c.sample ? t.sample : t.tagCoach}</span></div>
    <div class="nums">${c.m.map(m => metric(m, t)).join('')}</div>
-   <blockquote>${esc(c.quote[lang])}</blockquote>
+   <blockquote>${esc(c.quote[lang] || (lang === 'zh' && ZHQ[c.coach]) || c.quote.en)}</blockquote>
   </div></article>`;
   }
 

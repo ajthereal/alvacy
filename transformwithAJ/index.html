@@ -9,6 +9,10 @@
 <title>AJ Jonathan · Kenapa Badan Tetap Bandel · #transformwithST</title>
 <meta name="description" content="Sudah IF, keto, olahraga tapi badan tetap bandel? Yang berubah seiring umur adalah komposisi badanmu. Ini cara aku membenahinya lewat TRMe dan coaching 90 hari.">
 <link rel="canonical" href="https://alvacy.com/transformwithAJ/">
+<link rel="alternate" hreflang="id" href="https://alvacy.com/transformwithAJ/">
+<link rel="alternate" hreflang="en" href="https://alvacy.com/en/transformwithAJ/">
+<link rel="alternate" hreflang="zh-Hans" href="https://alvacy.com/zh/transformwithAJ/">
+<link rel="alternate" hreflang="x-default" href="https://alvacy.com/transformwithAJ/">
 <meta name="robots" content="noindex, nofollow">
 <link rel="icon" href="/images/icon.svg?v=2" type="image/svg+xml">
 <link rel="icon" href="/images/icon-192.png?v=2" sizes="192x192" type="image/png">
@@ -37,6 +41,13 @@ try{localStorage.setItem('alv-coach','aj')}catch(e){}
 <link rel="stylesheet" href="/assets/palettes.css?v=1793167738">
 <link rel="stylesheet" href="/assets/results.css?v=1793167738">
 <style>
+.lang{display:inline-flex;gap:2px;padding:3px;border-radius:99px;background:var(--cloud);border:1px solid var(--cloud-line)}
+.site-nav .lang a{font-size:.74rem;font-weight:700;letter-spacing:.02em;padding:5px 8px;border-radius:99px;color:var(--muted);line-height:1}
+.site-nav .lang a[aria-current]{background:var(--surface);color:var(--head);box-shadow:0 1px 4px rgba(23,37,84,.12)}
+html[lang^="zh"] body{font-family:"Plus Jakarta Sans","PingFang SC","Hiragino Sans GB","Microsoft YaHei","Noto Sans CJK SC","Noto Sans SC",sans-serif}
+html[lang^="zh"] h1,html[lang^="zh"] h2,html[lang^="zh"] h3,html[lang^="zh"] b,html[lang^="zh"] blockquote,html[lang^="zh"] .lede{letter-spacing:0!important}
+html[lang^="zh"] .hero h1,html[lang^="zh"] h2,html[lang^="zh"] .sub h3,html[lang^="zh"] .mp h3{line-height:1.25}
+html[lang^="zh"] p,html[lang^="zh"] li,html[lang^="zh"] dd{line-height:1.75}
 .btn.primary{background:var(--pop);color:var(--pop-ink);box-shadow:0 6px 18px var(--pop-glow)}
 .btn.primary:hover{background:var(--pop-hover)}
 section{padding-block:clamp(56px,10vw,112px)}
@@ -430,6 +441,7 @@ section{padding-block:clamp(56px,10vw,112px)}
     <a href="#aging" class="hide-sm">Yang berubah</a>
     <a href="#coaching" class="hide-sm">Cara kerjaku</a>
     <a href="#hasil" class="hide-sm">Hasil</a>
+    <span class="lang" role="group" aria-label="Bahasa"><a href="/transformwithAJ/" hreflang="id" lang="id" aria-current="true">ID</a><a href="/en/transformwithAJ/" hreflang="en" lang="en">EN</a><a href="/zh/transformwithAJ/" hreflang="zh-Hans" lang="zh-Hans">中文</a></span>
     <a class="btn small primary" href="https://wa.me/628170241185?text=Halo%20AJ%2C%20aku%20baru%20buka%20halaman%20profil%20kamu%20dan%20mau%20ngobrol.">WhatsApp</a>
   </nav>
 </div>
@@ -1037,16 +1049,17 @@ section{padding-block:clamp(56px,10vw,112px)}
 
 <script src="/data/coaches.js"></script>
 <script src="/assets/site.js?v=1793167738"></script>
-<script src="/assets/results.js?v=1793167738"></script>
+<script src="/assets/results.js?v=zh1"></script>
 <script>
-ALVResults.mount(document.getElementById('results'));ALVResults.render('id');
+var I=window.TWA_I18N||{rl:'id',dec:',',wpm:250,cjk:false,ch:['Cerita','Enam jalan','Yang menua','TRMe','Coaching','Hasil','Ngobrol'],start:'Mulai · 7 bagian · <span>± {n} menit</span>',step:'<b>{i} dari 7</b> · {ch}{last} <span>· {t}</span>',last:' · bagian terakhir',end:'Sudah di akhir',lt1:'hampir selesai',rem:'± {n} menit lagi'};
+ALVResults.mount(document.getElementById('results'));ALVResults.render(I.rl);
 (function(){
   var dock=document.querySelector('.dock');
-  var CH=[['dicoba','Cerita'],['jalan','Enam jalan'],['aging','Yang menua'],['trme','TRMe'],['coaching','Coaching'],['hasil','Hasil'],['tutup','Ngobrol']];
+  var CH=[['dicoba',I.ch[0]],['jalan',I.ch[1]],['aging',I.ch[2]],['trme',I.ch[3]],['coaching',I.ch[4]],['hasil',I.ch[5]],['tutup',I.ch[6]]];
   var chEls=CH.map(function(c){return document.getElementById(c[0])});
   var segLinks=[].slice.call(document.querySelectorAll('.segs a')),segs=segLinks.map(function(a){return a.firstElementChild});
   var where=document.querySelector('.where'),rt=document.getElementById('rt');
-  var WPM=250,words=(function(){var m=document.querySelector('main').cloneNode(true);m.querySelectorAll('.wall,.exec,.deep').forEach(function(e){e.remove()});return ((m.textContent||'').match(/\S+/g)||[]).length})();
+  var WPM=I.wpm,words=(function(){var m=document.querySelector('main').cloneNode(true);m.querySelectorAll('.wall,.exec,.deep').forEach(function(e){e.remove()});return ((m.textContent||'').match(I.cjk?/[\u4e00-\u9fff]|[A-Za-z0-9]+/g:/\S+/g)||[]).length})();
   if(rt)rt.textContent=Math.max(1,Math.round(words/WPM));
   var tick=false;
   function update(){
@@ -1063,10 +1076,10 @@ ALVResults.mount(document.getElementById('results'));ALVResults.render('id');
     var prog=Math.max(0,Math.min(1,y/Math.max(1,end-vh))),atEnd=prog>.985;
     if(idx>=0)segLinks[idx].setAttribute('aria-current','step');
     var remain=Math.ceil(words*(1-prog)/WPM),t;
-    if(atEnd)t='Sudah di akhir';
-    else if(remain<=1)t='kurang dari 1 menit lagi';
-    else t='± '+remain+' menit lagi';
-    where.innerHTML=idx<0?'Mulai · 7 bagian · <span>± '+Math.max(1,Math.round(words/WPM))+' menit</span>':'<b>'+(idx+1)+' dari 7</b> · '+CH[idx][1]+(idx===6&&!atEnd?' · bagian terakhir':'')+' <span>· '+t+'</span>';
+    if(atEnd)t=I.end;
+    else if(remain<=1)t=I.lt1;
+    else t=I.rem.replace('{n}',remain);
+    where.innerHTML=idx<0?I.start.replace('{n}',Math.max(1,Math.round(words/WPM))):I.step.replace('{i}',idx+1).replace('{ch}',CH[idx][1]).replace('{last}',idx===6&&!atEnd?I.last:'').replace('{t}',t);
     dock.classList.toggle('on',y>vh*.7&&idx<6);
   }
   function req(){if(!tick){tick=true;requestAnimationFrame(update)}}
@@ -1095,7 +1108,7 @@ ALVResults.mount(document.getElementById('results'));ALVResults.render('id');
     pick('if');
   }
   var reduce=matchMedia('(prefers-reduced-motion:reduce)').matches;
-  function fmt(n,d){return n.toFixed(d).replace('.',',')}
+  function fmt(n,d){return n.toFixed(d).replace('.',I.dec)}
   function run(el){
     var to=parseFloat(el.dataset.count),d=+(el.dataset.dec||0),from=parseFloat(el.dataset.from||0),t0=null,dur=1500;
     function step(t){if(!t0)t0=t;var k=Math.min(1,(t-t0)/dur);k=1-Math.pow(1-k,3);el.textContent=fmt(from+(to-from)*k,d);if(k<1)requestAnimationFrame(step)}

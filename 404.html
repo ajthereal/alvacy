@@ -17,7 +17,7 @@ h1{font-size:1.6rem;margin:0 0 8px;color:#1E3A8A}p{margin:0 0 18px}a{color:#2F55
    the same job: remember the coach and where the visit came from, then open the Body Age test. ?to=home or ?to=hasil go elsewhere. */
 (function () {
   /* alvacy.com/transformwithAJ is a real page. GitHub Pages is case-sensitive, so a link typed in lowercase lands here: send it on. */
-  if (/^\/transformwithaj\/?$/i.test(location.pathname)) { location.replace('/transformwithAJ/' + location.search + location.hash); return; }
+  var mAJ = location.pathname.match(/^\/(?:(en|zh)\/)?transformwithaj\/?$/i); if (mAJ) { location.replace('/' + (mAJ[1] ? mAJ[1].toLowerCase() + '/' : '') + 'transformwithAJ/' + location.search + location.hash); return; }
   var seg = location.pathname.replace(/^\/+|\/+$/g, '').split('/')[0].toLowerCase();
   var list = [];
   try { list = (window.ALV_EXTRA && window.ALV_EXTRA.coaches) || []; } catch (e) {}
