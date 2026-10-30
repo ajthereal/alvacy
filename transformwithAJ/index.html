@@ -1,0 +1,209 @@
+<!doctype html>
+<html lang="id">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<!-- Halaman profil pribadi AJ (alvacy.com/transformwithAJ). Ditulis tangan, bukan hasil scripts/build.py, dan tidak ada di PAGES.
+     Sengaja noindex dulu: hapus baris robots di bawah kalau mau halaman ini muncul di Google. -->
+<title>AJ Jonathan · Perkenalan Singkat · #transformwithST</title>
+<meta name="description" content="Aku AJ. Dari keyboardis dan startup game sampai turun 18 kg dalam 90 hari, dan cara aku bisa bantu kamu turun berat badan atau membangun bisnis bareng tim.">
+<link rel="canonical" href="https://alvacy.com/transformwithAJ/">
+<meta name="robots" content="noindex, nofollow">
+<link rel="icon" href="/images/icon.svg?v=2" type="image/svg+xml">
+<link rel="icon" href="/images/icon-192.png?v=2" sizes="192x192" type="image/png">
+<link rel="apple-touch-icon" href="/images/apple-touch-icon.png?v=2">
+<meta name="theme-color" content="#1E3A8A">
+<meta property="og:type" content="profile">
+<meta property="og:site_name" content="#transformwithST">
+<meta property="og:title" content="AJ Jonathan · Perkenalan Singkat">
+<meta property="og:description" content="Siapa aku, apa yang aku kerjakan, dan apa yang bisa aku bantu buat kamu.">
+<meta property="og:url" content="https://alvacy.com/transformwithAJ/">
+<meta property="og:image" content="https://alvacy.com/images/og-aj-profil.png?v=1">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:locale" content="id_ID">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Geist+Mono:wght@500&display=swap">
+<script>
+document.documentElement.setAttribute('data-theme','light');
+/* Halaman ini selalu pakai warna AJ (sky) dan membawa AJ sebagai coach ke halaman lain di situs. */
+window.PALETTE_OVERRIDE='sky';
+try{localStorage.setItem('alv-coach','aj')}catch(e){}
+</script>
+<link rel="stylesheet" href="/assets/site.css?v=1793167738">
+<link rel="stylesheet" href="/assets/palettes.css?v=1793167738">
+<style>
+.btn.primary{background:var(--pop);color:var(--pop-ink);box-shadow:0 6px 18px var(--pop-glow)}
+.btn.primary:hover{background:var(--pop-hover)}
+section{padding-block:clamp(44px,8vw,88px)}
+#cerita,#tim,#bantu{scroll-margin-top:24px}
+p.body{font-size:1.05rem;line-height:1.7;max-width:34em}
+p.body+p.body{margin-top:16px}
+
+/* hero */
+.hero-wrap{padding:12px 12px 0}
+.hero{max-width:1240px;margin:0 auto;border-radius:var(--r-lg);background:var(--sky);border:1px solid var(--sky-line);box-shadow:var(--rim);
+  padding:clamp(28px,6vw,72px) clamp(20px,5vw,64px);display:grid;gap:28px;align-items:center}
+.hero .face{order:-1}
+.hero .face img{display:block;width:min(100%,208px);height:auto;aspect-ratio:1;object-fit:cover;border-radius:var(--r);box-shadow:var(--lift-img)}
+.hero .txt{display:grid;gap:18px;justify-items:start}
+.hero h1 em{font-style:normal;color:var(--hl)}
+.hero .lede{max-width:30em}
+.hero .ctas{display:flex;flex-wrap:wrap;gap:10px;margin-top:4px}
+.hero .num{font-size:.9rem;color:var(--muted)}
+@media (min-width:820px){
+  .hero{grid-template-columns:minmax(0,1.2fr) minmax(0,.8fr);gap:56px}
+  .hero .face{order:2;justify-self:end}
+  .hero .face img{width:min(100%,380px);border-radius:var(--r-lg)}
+}
+
+/* cerita */
+.split{display:grid;gap:36px}
+.split h2{margin:8px 0 20px}
+@media (min-width:900px){.split{grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:64px;align-items:start}}
+.ba{margin:0;display:grid;gap:16px}
+.ba .pair{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.ba .shot{position:relative;margin:0;border-radius:var(--r);overflow:hidden;box-shadow:var(--lift-img);aspect-ratio:4/5;background:var(--sand)}
+.ba img{display:block;width:100%;height:100%;object-fit:cover}
+.ba .tag{position:absolute;top:12px;left:12px;padding:6px 12px;border-radius:999px;font-size:.7rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;background:rgba(255,255,255,.93);color:#172554}
+.ba .after .tag{background:var(--pop);color:var(--pop-ink)}
+.ba figcaption{display:flex;align-items:baseline;gap:6px 16px;flex-wrap:wrap}
+.ba .big{font-family:var(--f-mono);font-size:clamp(2.6rem,8vw,3.8rem);line-height:1;letter-spacing:-.05em;color:var(--head)}
+.ba .cap{color:var(--muted);max-width:19em;font-size:.95rem;line-height:1.45}
+
+/* tim */
+.team{max-width:1120px;margin:0 auto;padding:clamp(28px,5vw,56px);display:grid;gap:18px;justify-items:start}
+.team h2{margin-top:2px}
+.flow{list-style:none;margin:6px 0 4px;padding:0;display:flex;flex-wrap:wrap;gap:8px 10px;align-items:center}
+.flow li{display:inline-flex;align-items:center;gap:10px;font-weight:700;color:var(--head)}
+.flow li span{background:var(--surface);border:1px solid var(--cloud-line);border-radius:999px;padding:8px 16px}
+.flow li:not(:last-child)::after{content:"\2192";color:var(--muted);font-weight:500}
+
+/* bantu */
+.ways{margin-top:28px;border-top:1px solid var(--line)}
+.way{display:grid;gap:16px;padding:28px 0;border-bottom:1px solid var(--line)}
+.way h3{font-size:1.3rem;letter-spacing:-.02em;margin-top:4px}
+.way p{color:var(--muted);line-height:1.65;max-width:36em}
+.way .acts{display:flex;flex-wrap:wrap;gap:10px;align-items:flex-start}
+@media (min-width:900px){
+  .way{grid-template-columns:minmax(0,.8fr) minmax(0,1.3fr) minmax(190px,auto);gap:40px;align-items:start}
+  .way .acts{flex-direction:column;align-items:stretch}
+}
+
+/* penutup */
+.end{max-width:1120px;margin:0 auto;border-radius:var(--r-lg);background:var(--sky);border:1px solid var(--sky-line);box-shadow:var(--rim);
+  padding:clamp(40px,7vw,80px) 20px;display:grid;justify-items:center;text-align:center;gap:16px}
+.end .lede{max-width:26em}
+.end .num{color:var(--muted);font-size:.9rem}
+.end-wrap{padding:0 12px clamp(44px,8vw,88px)}
+</style>
+</head>
+<body>
+
+<header class="site-top"><div class="wrap">
+  <a class="logo" href="/transformwithAJ/"><b>AJ Jonathan</b><span>#transformwithST</span></a>
+  <nav class="site-nav">
+    <a class="btn small primary" href="https://wa.me/628170241185?text=Halo%20AJ%2C%20aku%20baru%20buka%20halaman%20profil%20kamu%20dan%20mau%20ngobrol.">WhatsApp</a>
+  </nav>
+</div></header>
+
+<main>
+
+<div class="hero-wrap"><div class="hero">
+  <div class="face"><img src="/images/coach-aj.jpg" width="430" height="430" alt="Foto AJ, tersenyum, berkacamata bening dan memakai kaus biru muda"></div>
+  <div class="txt">
+    <p class="kicker">Coach #transformwithST</p>
+    <h1>Hai, aku <em>AJ</em>.</h1>
+    <p class="lede">Aku membantu profesional yang super sibuk turun berat badan dengan cara yang muat di jadwal mereka, dan mengajak yang tertarik membangun bisnis bareng tim kami. Penasaran aku ini siapa dan kerjanya apa? Halaman ini jawabannya.</p>
+    <div class="ctas">
+      <a class="btn primary" href="https://wa.me/628170241185?text=Halo%20AJ%2C%20aku%20baru%20buka%20halaman%20profil%20kamu%20dan%20mau%20ngobrol.">Ngobrol lewat WhatsApp</a>
+      <a class="btn quiet" href="/aj/?utm_source=profil-aj&amp;utm_medium=halaman">Cek umur badan gratis</a>
+    </div>
+    <p class="num">+62 817 0241 185</p>
+  </div>
+</div></div>
+
+<section id="cerita" class="wrap">
+  <div class="split">
+    <div class="reveal">
+      <p class="kicker">Ceritaku</p>
+      <h2>Jalanku nggak lurus.</h2>
+      <p class="body">Aku kuliah musik di Singapura dan sempat jadi keyboardis untuk Tulus dan beberapa artis lain. Setelah itu aku bikin startup game development, bisnis terbesar yang pernah aku jalankan. Di sela-selanya aku juga main piano klasik dan jazz, produksi musik, nge-rap, jalanin bisnis audio, dan terjun ke pendidikan bahasa Jepang.</p>
+      <p class="body">Aku punya 3 anak, dan tiap istriku hamil, aku ikutan “hamil” juga. Berat badanku naik terus sampai akhirnya kegemukan.</p>
+      <p class="body">Bareng istri, aku turun 18 kg dalam 90 hari tanpa berhenti kerja. Dari situ aku jadi coach, dan sekarang aku membantu profesional sibuk menemukan cara yang muat di jadwal mereka.</p>
+    </div>
+    <figure class="ba reveal">
+      <div class="pair">
+        <div class="shot before"><img src="/images/results/aj-before.jpg" width="470" height="588" loading="lazy" alt="AJ sebelum program, berendam di kolam renang"><span class="tag">Sebelum</span></div>
+        <div class="shot after"><img src="/images/results/aj-after.jpg" width="900" height="1125" loading="lazy" alt="AJ sesudah 90 hari, berdiri sambil tersenyum"><span class="tag">Sesudah</span></div>
+      </div>
+      <figcaption><span class="big">−18 kg</span><span class="cap">dalam 90 hari, bareng istri, tanpa berhenti kerja</span></figcaption>
+    </figure>
+  </div>
+</section>
+
+<section id="tim" class="wrap">
+  <div class="cloud team reveal">
+    <p class="kicker">Yang aku kerjakan sekarang</p>
+    <h2>Hasil dulu, baru percaya.</h2>
+    <p class="body">Aku memimpin Success Together, tim coach #transformwithST. Orang mulai sebagai pelanggan, merasakan hasilnya sendiri, dan percaya karena sudah melihatnya sendiri. Kalau dia tertarik, baru kita bicara soal membangun bareng.</p>
+    <ol class="flow" aria-label="Alur di tim kami">
+      <li><span>Pelanggan</span></li><li><span>Hasil</span></li><li><span>Percaya</span></li><li><span>Builder</span></li>
+    </ol>
+    <a class="btn quiet" href="/transform/#aj">Lihat hasil coach lain di tim</a>
+  </div>
+</section>
+
+<section id="bantu" class="wrap">
+  <p class="kicker">Yang bisa aku bantu</p>
+  <h2>Kamu lagi cari apa?</h2>
+  <div class="ways">
+
+    <div class="way reveal">
+      <div><p class="kicker">Berat badan</p><h3>Aku mau turun berat badan</h3></div>
+      <p>Mulai dari cek umur badan. Gratis dan sekitar 3 menit. Hasilnya aku jelaskan langsung, dan kalau cocok kita lanjut ke program 90 hari bareng coach yang menyesuaikan dengan jadwal kamu.</p>
+      <div class="acts">
+        <a class="btn primary small" href="/aj/?utm_source=profil-aj&amp;utm_medium=halaman">Cek umur badan</a>
+        <a class="btn quiet small" href="https://wa.me/628170241185?text=Halo%20AJ%2C%20aku%20mau%20tanya%20soal%20program%20turun%20berat%20badan%2090%20hari.">Tanya dulu</a>
+      </div>
+    </div>
+
+    <div class="way reveal">
+      <div><p class="kicker">Bisnis</p><h3>Aku tertarik membangun bisnis</h3></div>
+      <p>Biasanya dimulai dari jadi pelanggan dulu, supaya kamu merasakan hasilnya sendiri. Setelah itu kita ngobrol soal membangun bareng tim Success Together. Aku tidak menjanjikan angka penghasilan. Yang bisa aku tawarkan adalah sistem, pendampingan, dan contoh hasil nyata dari orang-orang di tim.</p>
+      <div class="acts">
+        <a class="btn primary small" href="https://wa.me/628170241185?text=Halo%20AJ%2C%20aku%20tertarik%20ngobrol%20soal%20membangun%20bisnis%20bareng%20tim%20Success%20Together.">Ngobrol soal bisnis</a>
+      </div>
+    </div>
+
+    <div class="way reveal">
+      <div><p class="kicker">Kenalan</p><h3>Aku mau kenalan atau kolaborasi</h3></div>
+      <p>Boleh banget. Ceritakan apa yang kamu kerjakan, nanti kita lihat apa yang bisa saling dibantu.</p>
+      <div class="acts">
+        <a class="btn primary small" href="https://wa.me/628170241185?text=Halo%20AJ%2C%20aku%20mau%20kenalan%20dan%20ngobrol%20soal%20kolaborasi.">Kirim pesan</a>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<div class="end-wrap"><div class="end reveal">
+  <h2>Ngobrol yuk.</h2>
+  <p class="lede">Cukup kirim pesan singkat. Ceritakan sedikit tentang kamu, nanti aku balas.</p>
+  <a class="btn primary" href="https://wa.me/628170241185?text=Halo%20AJ%2C%20aku%20baru%20buka%20halaman%20profil%20kamu%20dan%20mau%20ngobrol.">Chat AJ di WhatsApp</a>
+  <p class="num">+62 817 0241 185</p>
+</div></div>
+
+</main>
+
+<footer class="site-foot"><div class="wrap">
+  <nav><a href="/">#transformwithST</a><a href="/privacy/">Kebijakan Privasi</a></nav>
+  <span>© #transformwithST. Konten edukasi, bukan nasihat medis. Hasil tiap orang beda-beda.</span>
+</div></footer>
+
+<script src="/data/coaches.js"></script>
+<script src="/assets/site.js?v=1793167738"></script>
+</body>
+</html>

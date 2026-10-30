@@ -4,6 +4,7 @@ Website for #transformwithST, served by GitHub Pages at https://alvacy.com
 
 - `index.html` — landing page. `test/` — Body Age Assessment (30-question quiz with lead form). `tools/` — Transform Toolkit (Padang, drink sugar, protein). `privacy/` — privacy policy.
 - Coach links: add `#code` (e.g. `#aj`) to any page; coaches are configured in `COACHES` in `assets/site.js`. `aj/` is the short link alvacy.com/aj. `body-age/` is a readable short link to `test/` for AJ's Threads bio (tags the visit as source threads, coach aj).
+- `transformwithAJ/` — AJ's personal profile page (alvacy.com/transformwithAJ). Hand-written, not in `PAGES`, so the build never touches it; `noindex` for now. Share image: `images/og-aj-profil.png`. `404.html` sends a lowercase `/transformwithaj` to it.
 - `images/` — coach photos, icons and share images (`og-id.png`, `og-en.png`). `CNAME` — custom domain.
 
 ## Search (SEO) build
