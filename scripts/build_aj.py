@@ -12,11 +12,11 @@ TR = json.load(open(os.path.join(ROOT, 'scripts', 'aj_i18n.json'), encoding='utf
 
 LANGS = {
  'en': dict(html='en', loc='en_US', dec='.', rl='en', wpm=285, cjk=False, hreflang='en',
-   ch=['Story','Six paths','What ages','TRMe','Coaching','Results','Chat'],
+   ch=['Story','Six paths','What ages','TRME','Coaching','Results','Chat'],
    start='Start · 7 parts · <span>± {n} min</span>', step='<b>{i} of 7</b> · {ch}{last} <span>· {t}</span>',
    last=' · last part', end="You're at the end", lt1='almost done', rem='± {n} min left'),
  'zh': dict(html='zh-Hans', loc='zh_CN', dec='.', rl='zh', wpm=460, cjk=True, hreflang='zh-Hans',
-   ch=['故事','六条路','什么在老化','TRMe','教练','成果','聊聊'],
+   ch=['故事','六条路','什么在老化','TRME','教练','成果','聊聊'],
    start='开始 · 共7部分 · <span>约 {n} 分钟</span>', step='<b>第 {i}/7 部分</b> · {ch}{last} <span>· {t}</span>',
    last=' · 最后一部分', end='已读完', lt1='快读完了', rem='还剩约 {n} 分钟'),
 }
