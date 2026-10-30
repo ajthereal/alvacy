@@ -353,6 +353,38 @@ section{padding-block:clamp(56px,10vw,112px)}
   .pin.now{left:15.5%}
   .belt .row{animation:none}
 }
+
+.proof{display:grid;gap:clamp(16px,3vw,26px)}
+.proof-h{display:grid;gap:8px;max-width:700px}
+.proof-h h3{font-size:clamp(1.4rem,3.2vw,2rem);letter-spacing:-.025em}
+.proof-cols{display:grid;grid-template-columns:minmax(0,1.05fr) minmax(0,1fr);gap:12px}
+.pcol{padding:clamp(20px,3vw,30px);background:var(--surface);border:1px solid var(--sky-line);border-radius:var(--r);display:grid;gap:16px;align-content:start}
+.pcol h4{font-size:.74rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--accent)}
+.pcol ul{margin:0;padding:0;list-style:none;display:grid;gap:18px}
+.pcol li{position:relative;padding-left:18px;display:grid;gap:4px;font-size:.9rem;line-height:1.55;color:var(--muted)}
+.pcol li::before{content:"";position:absolute;left:0;top:.55em;width:7px;height:7px;border-radius:50%;background:var(--d-teal)}
+.pcol li b{color:var(--head);font-size:.98rem;line-height:1.35}
+.pcol cite{font-style:normal;font-size:.78rem;color:var(--muted)}
+.pnote{font-size:.85rem;line-height:1.5;color:var(--muted)}
+.awds{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.aw{padding:14px;border-radius:14px;background:var(--cloud);border:1px solid var(--cloud-line);display:grid;gap:3px;align-content:start}
+.aw .yr{font-family:var(--f-mono);font-size:.76rem;color:var(--accent)}
+.aw b{color:var(--head);font-size:.92rem;line-height:1.3}
+.aw span.t{font-size:.78rem;color:var(--muted);line-height:1.4}
+.pcol .more{font-size:.85rem;font-weight:600}
+@media (max-width:860px){ .proof-cols{grid-template-columns:1fr} }
+.exec{max-width:1000px;margin:clamp(28px,5vw,48px) auto 0;display:grid;grid-template-columns:minmax(0,340px) minmax(0,1fr);gap:clamp(20px,4vw,44px);align-items:center;padding:clamp(18px,3vw,30px);background:var(--cloud);border:1px solid var(--cloud-line);border-radius:var(--r-lg);box-shadow:var(--rim)}
+.exec .pair{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.exec figure{margin:0;position:relative;border-radius:var(--r);overflow:hidden;aspect-ratio:.545;background:var(--surface);box-shadow:var(--lift-img)}
+.exec img{width:100%;height:100%;object-fit:cover;object-position:50% 100%;display:block}
+.exec figcaption{position:absolute;left:8px;top:8px;font-size:.66rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;padding:4px 9px;border-radius:99px;background:rgba(255,255,255,.92);color:var(--head)}
+.exec .copy{display:grid;gap:12px}
+.exec .xn{font-family:var(--f-mono);font-size:clamp(2.8rem,7vw,4.2rem);letter-spacing:-.05em;color:var(--head);line-height:1}
+.exec .xn small{font-size:1.1rem;color:var(--muted);letter-spacing:0}
+.exec h3{font-size:clamp(1.25rem,2.6vw,1.6rem);letter-spacing:-.02em}
+.exec p{color:var(--muted);line-height:1.55;font-size:.95rem}
+.exec .nm{color:var(--head);font-weight:600}
+@media (max-width:760px){ .exec{grid-template-columns:1fr} .exec .pair{max-width:360px;margin:0 auto} }
 </style>
 </head>
 <body>
@@ -378,22 +410,22 @@ section{padding-block:clamp(56px,10vw,112px)}
 <div class="hero-wrap"><div class="hero">
   <p class="kicker">Hai, aku AJ · Coach #transformwithST</p>
   <h1>Diet sudah, olahraga sudah. Kenapa badan <em>tetap bandel?</em></h1>
-  <p class="lede">Karena yang berubah seiring umur adalah komposisi badanmu, dan itu jarang tersentuh diet yang cuma mengatur kalori atau jam makan. Aku bantu mengukur dan membenahinya lewat TRMe dan coaching 90 hari. Aku sendiri turun 18 kg.</p>
+  <p class="lede">Karena seiring umur bertambah, yang berubah adalah komposisi badanmu, dan itu jarang tersentuh oleh diet yang cuma mengatur kalori atau jam makan. Aku bantu mengukur dan membenahinya lewat nutrisi dan lifestyle coaching. My own story? Aku turun 18 kg.</p>
   <div class="ctas">
     <a class="btn primary" href="https://wa.me/628170241185?text=Halo%20AJ%2C%20aku%20baru%20buka%20halaman%20profil%20kamu%20dan%20mau%20ngobrol.">Ngobrol lewat WhatsApp</a>
-    <a class="btn quiet" href="/aj/?utm_source=profil-aj&amp;utm_medium=halaman">Cek umur badan gratis</a>
+    <a class="btn quiet" href="/aj/?utm_source=profil-aj&amp;utm_medium=halaman">Cek body age gratis</a>
   </div>
   <div class="meta"><span>Foto dan angka asli</span><span>Ukur dulu, baru ubah</span><span>Tanpa berhenti kerja</span></div>
   <p class="readtime">7 bagian. Posisimu selalu kelihatan di atas, jadi kamu tahu kapan selesai.</p>
   <div class="hstage">
-    <div class="fchip a" aria-hidden="true"><span>Lemak visceral<b>13,5 → 5,5</b></span></div>
-    <div class="fchip b" aria-hidden="true"><span>Lemak tubuh<b>23,7% → 9,9%</b></span></div>
+    <div class="fchip a" aria-hidden="true"><span>Visceral fat<b>13,5 → 5,5</b></span></div>
+    <div class="fchip b" aria-hidden="true"><span>Body fat<b>23,7% → 9,9%</b></span></div>
     <div class="device reveal" role="group" aria-label="Hasil nyata AJ">
       <div class="top"><span class="label">Hasil nyata AJ</span><span class="who">90 hari</span></div>
       <div class="prof"><img src="/images/coach-aj-face.jpg" width="192" height="192" alt="Foto AJ"><div><b>AJ Jonathan Ong</b><span>Coach #transformwithST</span></div></div>
       <div class="score">
-        <svg viewBox="0 0 112 112" role="img" aria-label="Lemak tubuh turun dari 23,7 persen menjadi 9,9 persen"><circle cx="56" cy="56" r="48" fill="none" stroke="var(--d-track)" stroke-width="10"/><circle class="ring" pathLength="100" style="--v:23.7" cx="56" cy="56" r="48" fill="none" stroke="var(--d-orange)" stroke-opacity=".38" stroke-width="10" stroke-linecap="round" transform="rotate(-90 56 56)"/><circle class="ring" pathLength="100" style="--v:9.9" cx="56" cy="56" r="48" fill="none" stroke="var(--d-teal)" stroke-width="10" stroke-linecap="round" transform="rotate(-90 56 56)"/></svg>
-        <div><div class="big"><span data-count="9.9" data-from="23.7" data-dec="1">9,9</span><small>%</small></div><p class="verdict">Lemak tubuh, dulu 23,7%. Otot naik.</p></div>
+        <svg viewBox="0 0 112 112" role="img" aria-label="Body fat turun dari 23,7 persen menjadi 9,9 persen"><circle cx="56" cy="56" r="48" fill="none" stroke="var(--d-track)" stroke-width="10"/><circle class="ring" pathLength="100" style="--v:23.7" cx="56" cy="56" r="48" fill="none" stroke="var(--d-orange)" stroke-opacity=".38" stroke-width="10" stroke-linecap="round" transform="rotate(-90 56 56)"/><circle class="ring" pathLength="100" style="--v:9.9" cx="56" cy="56" r="48" fill="none" stroke="var(--d-teal)" stroke-width="10" stroke-linecap="round" transform="rotate(-90 56 56)"/></svg>
+        <div><div class="big"><span data-count="9.9" data-from="23.7" data-dec="1">9,9</span><small>%</small></div><p class="verdict">Body fat dulu 23,7%. Otot naik.</p></div>
       </div>
       <div class="ideals">
         <div class="ibx"><span>Berat</span><b>67<small> kg</small></b><em>dari 85,1</em></div>
@@ -406,8 +438,8 @@ section{padding-block:clamp(56px,10vw,112px)}
 </div></div>
 
 <div class="belt" aria-label="Sekilas tentang AJ"><div class="row">
-  <span>Keyboardis untuk Tulus</span><span>S1 musik di Singapura</span><span>Pendiri startup game</span><span>Ayah 3 anak</span><span>Turun 18 kg dalam 90 hari</span><span>Memimpin tim coach Success Together</span>
-  <span>Keyboardis untuk Tulus</span><span>S1 musik di Singapura</span><span>Pendiri startup game</span><span>Ayah 3 anak</span><span>Turun 18 kg dalam 90 hari</span><span>Memimpin tim coach Success Together</span>
+  <span>Entrepreneur</span><span>Keyboardist</span><span>S1 musik di Singapura</span><span>Pendiri startup game</span><span>Ayah 3 anak</span><span>Turun 18 kg dalam 90 hari</span><span>Leadership Coach</span>
+  <span>Entrepreneur</span><span>Keyboardist</span><span>S1 musik di Singapura</span><span>Pendiri startup game</span><span>Ayah 3 anak</span><span>Turun 18 kg dalam 90 hari</span><span>Leadership Coach</span>
 </div></div>
 
 <!-- 1. YANG SUDAH DICOBA -->
@@ -415,13 +447,13 @@ section{padding-block:clamp(56px,10vw,112px)}
   <div class="head"><p class="kicker">Aku juga pernah di posisimu</p><h2>Aku sudah coba semuanya.</h2><p class="lede">Tiap istriku hamil, aku ikutan “hamil”. Sampai akhirnya kegemukan, dan aku coba turunin sendiri.</p></div>
   <div class="me">
     <div class="ba reveal">
-      <figure><img src="/images/results/aj-before.jpg" width="470" height="588" loading="lazy" alt="Foto AJ sebelum program"><figcaption>Sebelum</figcaption></figure>
-      <figure><img src="/images/results/aj-after.jpg" width="900" height="1125" loading="lazy" alt="Foto AJ sesudah 90 hari"><figcaption>Sesudah 90 hari</figcaption></figure>
+      <figure><img src="/images/results/aj-before.jpg" width="470" height="588" loading="lazy" alt="Foto AJ sebelum program"><figcaption>Before</figcaption></figure>
+      <figure><img src="/images/results/aj-after.jpg" width="900" height="1125" loading="lazy" alt="Foto AJ sesudah 90 hari"><figcaption>After 90 hari</figcaption></figure>
     </div>
     <div class="copy reveal">
       <div class="tries"><span>OMAD</span><span>Lari 4x seminggu</span><span>Water fasting</span></div>
       <blockquote>Dulu pernah diet sendiri dengan OMAD, lari seminggu 4 kali, water fasting, tapi meskipun turun, gampang banget naik lagi. #transformwithST yang akhirnya jadi solusi turun sehat, lemak turun, otot naik, dan sustainable.</blockquote>
-      <p class="who">AJ Jonathan Ong, Coach. Memimpin tim Success Together.</p>
+      <p class="who">AJ Jonathan Ong, Master Coach #transformwithST.</p>
     </div>
   </div>
 
@@ -448,13 +480,13 @@ section{padding-block:clamp(56px,10vw,112px)}
     </article>
 
     <article class="mp" id="p-if" role="tabpanel">
-      <div class="mp-main"><h3>Puasa berkala (IF)</h3><p class="mp-sub">Makan hanya di jendela waktu tertentu, misalnya 16:8.</p>
+      <div class="mp-main"><h3>Intermittent fasting (IF)</h3><p class="mp-sub">Makan hanya di eating window tertentu, misalnya 16:8.</p>
         <dl>
           <div><dt>Yang dikerjakan</dt><dd>Mengatur kapan kamu makan, supaya total kalori otomatis lebih sedikit.</dd></div>
-          <div><dt>Yang sering kurang</dt><dd>Jendela makan mengatur kapan, bukan apa dan seberapa cukup. Protein dan otot tidak otomatis terjaga, dan hilangnya massa tanpa lemak sejalan dengan diet kalori biasa.</dd></div>
+          <div><dt>Yang sering kurang</dt><dd>Eating window mengatur kapan, bukan apa dan seberapa cukup. Protein dan otot tidak otomatis terjaga, dan hilangnya lean mass sejalan dengan diet kalori biasa.</dd></div>
         </dl></div>
       <div class="mp-data"><p class="mp-l">Kata penelitian · 139 orang, 12 bulan</p>
-        <div class="bars"><div class="bar"><div class="l"><span>Jendela makan + kurangi kalori</span><b>−8,0 kg</b></div><div class="t"><i style="--w:100%"></i></div></div>
+        <div class="bars"><div class="bar"><div class="l"><span>Eating window + kurangi kalori</span><b>−8,0 kg</b></div><div class="t"><i style="--w:100%"></i></div></div>
         <div class="bar two"><div class="l"><span>Kurangi kalori saja</span><b>−6,3 kg</b></div><div class="t"><i style="--w:78.8%"></i></div></div></div>
         <p>Selisih 1,8 kg, <b>secara statistik tidak bermakna</b>. <span class="src-ref"><a href="#sumber">Sumber 6</a></span></p></div>
     </article>
@@ -462,13 +494,13 @@ section{padding-block:clamp(56px,10vw,112px)}
     <article class="mp" id="p-omad" role="tabpanel">
       <div class="mp-main"><h3>OMAD</h3><p class="mp-sub">Semua kalori dalam satu kali makan sehari.</p>
         <dl>
-          <div><dt>Yang dikerjakan</dt><dd>Menekan total makan lewat jendela yang sangat sempit.</dd></div>
+          <div><dt>Yang dikerjakan</dt><dd>Menekan total makan lewat eating window yang sangat sempit.</dd></div>
           <div><dt>Yang sering kurang</dt><dd>Datanya masih studi kecil dan pendek, pada orang sehat berat normal. Belum ada bukti jangka panjang bahwa ini aman dan efektif untuk kebanyakan orang.</dd></div>
           <div><dt>Pengalamanku</dt><dd>Aku pernah OMAD. Turun, tapi gampang banget naik lagi.</dd></div>
         </dl></div>
       <div class="mp-data"><p class="mp-l">Kata penelitian · studi kecil</p>
-        <ul class="pts"><li><b>8 minggu, 15 orang, kalori disamakan.</b> Lemak tubuh turun sekitar 2 kg lebih banyak, tapi rasa lapar lebih tinggi sepanjang studi, serta tekanan darah dan kolesterol LDL naik.</li>
-        <li><b>11 hari, 11 orang.</b> Massa tanpa lemak dan massa tulang ikut turun lebih banyak.</li></ul>
+        <ul class="pts"><li><b>8 minggu, 15 orang, kalori disamakan.</b> Body fat turun sekitar 2 kg lebih banyak, tapi rasa lapar lebih tinggi sepanjang studi, serta tekanan darah dan kolesterol LDL naik.</li>
+        <li><b>11 hari, 11 orang.</b> Lean mass dan massa tulang ikut turun lebih banyak.</li></ul>
         <p class="src-ref"><a href="#sumber">Sumber 7</a>, dari ringkasan, bukan makalah aslinya.</p></div>
     </article>
 
@@ -504,15 +536,15 @@ section{padding-block:clamp(56px,10vw,112px)}
         </dl></div>
       <div class="mp-data"><p class="mp-l">Tiga angka dari penelitiannya</p>
         <div class="trio"><div><span class="v">2/3</span><p>berat yang turun kembali dalam setahun setelah semaglutide dihentikan <span class="src-ref"><a href="#sumber">1</a></span></p></div>
-        <div><span class="v">25–38%</span><p>dari berat yang turun berupa massa tanpa lemak, termasuk otot <span class="src-ref"><a href="#sumber">2, 3</a></span></p></div>
+        <div><span class="v">25–38%</span><p>dari berat yang turun berupa lean mass, termasuk otot <span class="src-ref"><a href="#sumber">2, 3</a></span></p></div>
         <div><span class="v">≈49%</span><p>berhenti memakai obat dalam 12 bulan pertama <span class="src-ref"><a href="#sumber">4</a></span></p></div></div></div>
     </article>
 
     <article class="mp me-panel" id="p-aku" role="tabpanel">
-      <div class="mp-main"><span class="tag">Yang aku kerjakan</span><h3>Coach AJ, program 90 hari</h3>
+      <div class="mp-main"><span class="tag">Transform with AJ</span><h3>Coach AJ, program 90 hari</h3>
         <dl>
-          <div><dt>Yang dikerjakan</dt><dd>Mengukur lemak, otot, lemak visceral, dan umur badan. Memakai sistem TRMe dengan pola makan dan protein yang muat di jadwalmu. Menemani sampai kebiasaannya jadi.</dd></div>
-          <div><dt>Cocok kalau</dt><dd>Kamu umumnya sehat, super sibuk, dan mau turun lemak sambil menjaga otot.</dd></div>
+          <div><dt>Yang dikerjakan</dt><dd>Mengukur lemak, otot, visceral fat, dan body age. Memakai sistem TRMe dengan pola makan dan protein yang sesuai dengan kehidupanmu. Menemani sampai kebiasaannya jadi.</dd></div>
+          <div><dt>Cocok kalau</dt><dd>Kamu punya masalah metabolisme, super sibuk, dan mau turun lemak sambil menjaga otot.</dd></div>
           <div><dt>Perlu diingat</dt><dd>Aku bukan dokter dan tidak mengobati penyakit. Kalau kamu punya kondisi medis atau minum obat rutin, ngobrol dulu dengan dokter kamu.</dd></div>
         </dl></div>
       <div class="mp-data"><p class="mp-l">Bisa jalan bareng yang lain</p><p>Aku tidak melawan dokter, obat, atau olahraga. Bagian yang aku kerjakan adalah yang paling sering hilang, yaitu mengukur isi badan dan menemani harian. Sisanya bisa kamu putuskan bareng dokter kamu.</p></div>
@@ -524,7 +556,7 @@ section{padding-block:clamp(56px,10vw,112px)}
 
 <!-- 2. YANG BERUBAH -->
 <section id="aging" style="padding-top:0"><div class="wrap">
-  <div class="head"><p class="kicker">Yang sebenarnya berubah</p><h2>Yang menua itu isi badanmu.</h2><p class="lede">“Umur badan” bukan istilah marketing. Alat ukur komposisi seperti Omron menghitungnya dari metabolisme istirahatmu, dan memakainya sebagai panduan umur metabolik. <span class="src-ref"><a href="#sumber">Sumber 11</a></span></p></div>
+  <div class="head"><p class="kicker">Yang sebenarnya berubah</p><h2>Yang menua itu isi badanmu.</h2><p class="lede">“Body age” bukan istilah marketing. Alat ukur body composition seperti Omron menghitungnya dari resting metabolic rate (RMR) kamu, sebagai panduan metabolic age. <span class="src-ref"><a href="#sumber">Sumber 11</a></span></p></div>
 
   <div class="age">
     <article class="agec reveal"><span class="tag">Mitos dulu</span><div class="bignum">20–50<small>an</small></div><p>Metabolisme tidak mendadak melambat di umur 30. Data lebih dari 6.600 orang dari 29 negara menunjukkan pengeluaran energi harian cukup stabil dari usia 20-an sampai 50-an. Baru turun sekitar 0,7% per tahun setelah usia 60. <span class="src-ref"><a href="#sumber">Sumber 9</a></span></p></article>
@@ -536,14 +568,14 @@ section{padding-block:clamp(56px,10vw,112px)}
     <div class="labc reveal">
       <div><h3>Berat sama, isi beda</h3><p class="s">Dua orang bisa sama-sama 70 kg di timbangan. Yang satu lebih banyak lemak dan lebih sedikit otot. Timbangan tidak bisa membedakannya.</p></div>
       <div class="stk">
-        <div><div class="who"><b>Orang A</b><span>70 kg</span></div><div class="seg"><i class="lean" style="--w:71.4%">otot dan lainnya 50</i><i class="fat" style="--w:28.6%">lemak 20</i></div></div>
-        <div><div class="who"><b>Orang B</b><span>70 kg</span></div><div class="seg"><i class="lean" style="--w:57.1%">otot dan lainnya 40</i><i class="fat" style="--w:42.9%">lemak 30</i></div></div>
-        <div class="key"><span class="l">Massa tanpa lemak</span><span class="f">Lemak</span></div>
+        <div><div class="who"><b>Orang A</b><span>70 kg</span></div><div class="seg"><i class="lean" style="--w:71.4%">lean mass 50</i><i class="fat" style="--w:28.6%">fat 20</i></div></div>
+        <div><div class="who"><b>Orang B</b><span>70 kg</span></div><div class="seg"><i class="lean" style="--w:57.1%">lean mass 40</i><i class="fat" style="--w:42.9%">fat 30</i></div></div>
+        <div class="key"><span class="l">Lean mass</span><span class="f">Fat</span></div>
       </div>
       <p class="src-ref">Ilustrasi sederhana, bukan data pasien.</p>
     </div>
     <div class="labc reveal">
-      <div><h3>Lemak visceral, angka asliku</h3><p class="s">Ini lemak di sekitar organ dalam. Pada skala Omron, 1 sampai 9 dianggap normal, 10 sampai 14 tinggi, 15 ke atas sangat tinggi. <span class="src-ref"><a href="#sumber">Sumber 11</a></span></p></div>
+      <div><h3>Visceral fat, angka asliku</h3><p class="s">Ini lemak di sekitar organ dalam. Pada skala Omron, 1 sampai 9 dianggap normal, 10 sampai 14 tinggi, 15 ke atas sangat tinggi. <span class="src-ref"><a href="#sumber">Sumber 11</a></span></p></div>
       <div>
         <div class="gauge"><span class="pin old" data-l="Dulu 13,5"></span><span class="pin now" data-l="Sekarang 5,5"></span></div>
         <div class="scale"><span style="left:0">1</span><span style="left:31%">10</span><span style="left:48.3%">15</span><span style="left:100%">30</span></div>
@@ -552,7 +584,7 @@ section{padding-block:clamp(56px,10vw,112px)}
     </div>
   </div>
 
-  <p class="take reveal">Makanya aku tidak mulai dari timbangan. Aku mulai dari mengukur isi badanmu: lemak, otot, lemak visceral, dan umur badan.</p>
+  <p class="take reveal">Makanya aku tidak mulai dari timbangan. Aku mulai dari mengukur isi badanmu, dari body fat, otot, visceral fat, sampai body age.</p>
 </div></section>
 
 <section style="padding-top:0"><div class="wrap">
@@ -560,9 +592,9 @@ section{padding-block:clamp(56px,10vw,112px)}
     <p class="kicker">Yang sama untuk semua jalan</p>
     <h3>Tiga hal yang menentukan hasilnya bertahan</h3>
     <div class="cg">
-      <div><b>Protein cukup</b><p>Panduan gabungan organisasi obesitas dan gizi (2025) mengusulkan 1,2 sampai 1,6 gram per kg berat badan per hari saat menurunkan berat.</p></div>
+      <div><b>Protein cukup</b><p>Joint guideline organisasi obesitas dan gizi (2025) mengusulkan 1,2 sampai 1,6 gram per kg berat badan per hari saat menurunkan berat.</p></div>
       <div><b>Otot dilatih</b><p>Latihan beban minimal 3 kali seminggu, ditambah 150 menit aktivitas aerobik sedang per minggu.</p></div>
-      <div><b>Komposisi diukur</b><p>Bukan cuma timbangan. Alat bioimpedans praktis untuk memantau otot berulang kali, dan itu yang kita pakai di program ini.</p></div>
+      <div><b>Body composition diukur</b><p>Bukan cuma timbangan. Alat bioimpedance (body composition scan) praktis untuk memantau otot berulang kali, dan itu yang kita pakai di program ini.</p></div>
     </div>
     <p class="close">Tiga hal ini yang dikerjakan sistem dan coaching di bawah.</p>
     <p class="small">Poin protein, latihan, dan pengukuran mengacu ke <a href="#sumber">Sumber 3</a>. Angka studi adalah rata-rata, bukan prediksi untuk kamu.</p>
@@ -575,13 +607,13 @@ section{padding-block:clamp(56px,10vw,112px)}
     <div class="intro reveal">
       <p class="kicker">Yang aku pakai</p>
       <h2>Sistem yang menyasar isi badanmu, bukan cuma timbangan.</h2>
-      <p>Aku memakai ageLOC TRMe dari Nu Skin, program 90 hari yang menggabungkan suplemen, pola makan, dan aktivitas. Menurut Nu Skin, program ini menyasar tiga area pengelolaan berat badan: metabolisme, otot, dan nafsu makan. Programnya dikembangkan dengan platform riset ageLOC milik mereka. <span class="src-ref"><a href="#sumber">Sumber 12 dan 13</a></span></p>
-      <div class="disclose"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4M12 8h.01"/></svg><span>Aku Brand Director di Nu Skin, jadi aku bukan pihak yang netral soal ini. Makanya aku tunjukkan apa yang sudah diteliti dan apa yang belum.</span></div>
+      <p>Aku memakai ageLOC TRMe dari Nu Skin, program 90 hari yang menggabungkan suplemen, pola makan, dan aktivitas. Menurut Nu Skin, program ini menyasar tiga area weight management, yaitu metabolisme, otot, dan appetite control. Programnya dikembangkan dengan platform riset ageLOC milik mereka. <span class="src-ref"><a href="#sumber">Sumber 12 dan 13</a></span></p>
+      <div class="disclose"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4M12 8h.01"/></svg><span><b>Disclosure.</b> Aku Diamond Leader di Nu Skin, jadi aku bukan pihak yang netral soal ini. Makanya aku tunjukkan apa yang sudah diteliti dan apa yang belum.</span></div>
     </div>
 
     <div class="reveal">
       <div class="hub">
-        <div class="core">Isi badanmu: lemak, otot, umur badan</div>
+        <div class="core">Body composition kamu</div>
         <svg viewBox="0 0 300 56" preserveAspectRatio="none" aria-hidden="true"><path pathLength="100" d="M150 0 C150 30 50 22 50 56"/><path pathLength="100" d="M150 0 V56"/><path pathLength="100" d="M150 0 C150 30 250 22 250 56"/></svg>
       </div>
       <div class="levers">
@@ -589,8 +621,8 @@ section{padding-block:clamp(56px,10vw,112px)}
           <span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M13 2 4 14h7l-1 8 9-12h-7z"/></svg></span>
           <h3>Metabolisme</h3>
           <ul>
-            <li><b>JumpStart</b>Minuman botani untuk 15 hari pertama. Isinya buah kaktus pir, delima, bunga saffron, dan jeruk merah.</li>
-            <li><b>MC Complex</b>Minuman botani dari moringa, daun kari, dan kunyit, diminum sebelum makan.</li>
+            <li><b>JumpStart</b>Botanical drink untuk 15 hari pertama. Isinya buah kaktus pir, delima, bunga saffron, dan jeruk merah.</li>
+            <li><b>MC Complex</b>Botanical drink dari moringa, daun kari, dan kunyit, diminum sebelum makan.</li>
           </ul>
         </article>
         <article class="lever">
@@ -604,7 +636,7 @@ section{padding-block:clamp(56px,10vw,112px)}
         </article>
         <article class="lever">
           <span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 21a8 8 0 1 0 0-16 8 8 0 0 0 0 16z"/><path d="M12 8v4l3 2"/></svg></span>
-          <h3>Nafsu makan</h3>
+          <h3>Appetite control</h3>
           <ul>
             <li><b>MyEdge</b>Ekstrak daun murbei dan serat guar, diminum sebelum makan agar kenyang lebih lama.</li>
             <li><b>CS Control</b>Kapsul ekstrak saffron, diminum bersama makan.</li>
@@ -620,7 +652,33 @@ section{padding-block:clamp(56px,10vw,112px)}
       </div>
       <div>
         <h3>98% peserta turun berat badan dalam 12 minggu</h3>
-        <p>Studi internal Nu Skin pada 64 orang dewasa di Asia dengan BMI 27,5 sampai 40 (59 perempuan, 5 laki-laki). <b>Ini studi open-label, tanpa kelompok pembanding, dan datanya belum dipublikasi.</b> Aku tulis batasnya apa adanya, karena kamu berhak tahu. Angkanya bukan jaminan untukmu. <span class="src-ref"><a href="#sumber">Sumber 14</a></span></p>
+        <p>Ini studi internal Nu Skin dari 64 peserta. Hasil tiap orang berbeda. <span class="src-ref"><a href="#sumber">Sumber 14</a></span></p>
+      </div>
+    </div>
+
+    <div class="proof reveal">
+      <div class="proof-h"><p class="kicker">Science dan pengakuan</p><h3>Bukan cuma klaim. Ini yang bisa kamu cek sendiri.</h3></div>
+      <div class="proof-cols">
+        <div class="pcol">
+          <h4>Published science</h4>
+          <ul>
+            <li><b>Dimuat di jurnal medis.</b>Studi pada 60 orang dengan overweight atau obesitas memakai ageLOC TR90 (TRMe) selama 90 hari. Lingkar pinggang turun rata-rata 5,1 cm dan BMI turun 1,11. Studi ini membandingkan sebelum dan sesudah, tanpa kelompok pembanding.<cite>Vietnam Medical Journal, 2023, Hanoi Medical University <span class="src-ref"><a href="#sumber">Sumber 16</a></span></cite></li>
+            <li><b>22 referensi riset di balik bahan-bahannya.</b>Product information page TRMe mencantumkan 22 referensi, termasuk uji acak berplasebo pada bahan seperti ekstrak saffron. Ini riset pada bahan, bukan uji pada seluruh sistem TRMe.<cite><span class="src-ref"><a href="#sumber">Sumber 15</a></span></cite></li>
+            <li><b>Ada Scientific Advisory Board.</b>Dr. Joseph Chang, Chairman Scientific Advisory Board Nu Skin, dikutip saat TRMe diluncurkan di Indonesia.<cite><span class="src-ref"><a href="#sumber">Sumber 18</a></span></cite></li>
+          </ul>
+        </div>
+        <div class="pcol">
+          <h4>Awards</h4>
+          <p class="pnote">Award di bawah ini untuk produk dan perusahaan Nu Skin. Belum ada award yang khusus untuk TRMe.</p>
+          <div class="awds">
+            <div class="aw"><span class="yr">2026</span><b>Gold Globee</b><span class="t">Prysm iO, Most Innovative Data-Driven Product</span></div>
+            <div class="aw"><span class="yr">2025</span><b>Platinum, Titan Business Awards</b><span class="t">Prysm iO</span></div>
+            <div class="aw"><span class="yr">2023 sampai 2026</span><b>NewBeauty Awards</b><span class="t">ageLOC LumiSpa iO, Best Facial Cleansing Device, 4 tahun berturut-turut</span></div>
+            <div class="aw"><span class="yr">2025</span><b>USA Today</b><span class="t">America's Best Customer Service Companies</span></div>
+            <div class="aw" style="grid-column:1/-1"><span class="yr">Euromonitor International</span><b>Nomor 1 dunia untuk beauty and wellness device systems</b><span class="t">3 tahun berturut-turut</span></div>
+          </div>
+          <a class="more" href="https://www.nuskin.com/content/corpcom/en_US/newsroom/news1/Nu-Skin-Awards.html" rel="noopener">Lihat daftar lengkap</a> <span class="src-ref"><a href="#sumber">Sumber 17</a></span>
+        </div>
       </div>
     </div>
   </div>
@@ -630,26 +688,38 @@ section{padding-block:clamp(56px,10vw,112px)}
 <section id="coaching" style="padding-top:0"><div class="wrap">
   <div class="head"><p class="kicker">Yang membedakan</p><h2>Produknya cuma separuh cerita.</h2><p class="lede">Suplemen tidak membangun kebiasaan, dan program yang bagus tidak jalan kalau tidak ada yang menemani. Di sinilah aku bekerja.</p></div>
   <div class="cgrid">
-    <article class="cc reveal"><span class="n">01</span><h3>Diukur, bukan ditebak</h3><p>Body fat, otot, lemak visceral, dan body age diukur pakai Omron HBF-375. Jadi progresmu kelihatan dari data, bukan dari perasaan.</p></article>
+    <article class="cc reveal"><span class="n">01</span><h3>Diukur, bukan ditebak</h3><p>Body fat, otot, visceral fat, dan body age diukur pakai Omron HBF-375. Jadi progresmu kelihatan dari data, bukan dari perasaan.</p></article>
     <article class="cc reveal"><span class="n">02</span><h3>Disesuaikan jadwalmu</h3><p>Pola makan dan protein yang muat di sela meeting, perjalanan dinas, dan urusan keluarga. Program yang cuma bagus di atas kertas tidak akan jalan.</p></article>
     <article class="cc reveal"><span class="n">03</span><h3>Ditemani sampai jadi kebiasaan</h3><p>Ada check-in rutin dan ada yang menjawab saat kamu mentok. Ini bagian yang dulu tidak aku punya waktu turun sendiri.</p></article>
   </div>
 
   <div class="head" style="margin-bottom:clamp(20px,3vw,32px)"><p class="kicker">90 hari bareng aku</p><h3 style="font-size:clamp(1.5rem,3.4vw,2.2rem);letter-spacing:-.03em;line-height:1.12">Begini jalannya.</h3></div>
   <div class="path reveal" id="path">
-    <div class="node"><span class="dot">1</span><span class="when">Hari 0</span><h3>Ukur</h3><p>Umur badan, lemak, otot, dan lemak visceral. Mulai dari tes gratis 3 menit.</p></div>
+    <div class="node"><span class="dot">1</span><span class="when">Hari 0</span><h3>Baseline scan</h3><p>Body age, lemak, otot, dan visceral fat. Mulai dari tes gratis 3 menit.</p></div>
     <div class="node"><span class="dot">2</span><span class="when">Hari 1 sampai 15</span><h3>JumpStart</h3><p>Fase awal sistem TRMe. Kita mulai ritme makan dan protein yang cocok untukmu.</p></div>
-    <div class="node"><span class="dot">3</span><span class="when">Minggu 3 sampai 12</span><h3>Ritme harian</h3><p>Sistem berjalan penuh, olahraga 3 kali seminggu, dan check-in dengan coach.</p></div>
-    <div class="node"><span class="dot">4</span><span class="when">Hari 90</span><h3>Ukur ulang</h3><p>Kita lihat hasilnya dari angka dan foto, lalu kunci kebiasaannya.</p></div>
+    <div class="node"><span class="dot">3</span><span class="when">Minggu 3 sampai 12</span><h3>Daily rhythm</h3><p>Sistem berjalan penuh, olahraga 3 kali seminggu, dan check-in dengan coach.</p></div>
+    <div class="node"><span class="dot">4</span><span class="when">Hari 90</span><h3>Re-scan</h3><p>Kita lihat hasilnya dari angka dan foto, lalu kunci kebiasaannya.</p></div>
   </div>
-  <div style="display:flex;justify-content:center;margin-top:clamp(24px,4vw,36px)"><a class="btn primary" href="/aj/?utm_source=profil-aj&amp;utm_medium=halaman">Mulai dengan cek umur badan</a></div>
+  <div style="display:flex;justify-content:center;margin-top:clamp(24px,4vw,36px)"><a class="btn primary" href="/aj/?utm_source=profil-aj&amp;utm_medium=halaman">Mulai dengan cek body age</a></div>
 </div></section>
 
 <!-- 6. HASIL -->
 <section id="hasil" style="padding-top:0"><div>
   <div class="head wrap"><p class="kicker">Hasil para coach kami</p><h2>Mereka juga mulai dari titik yang sama.</h2><p class="lede">Foto asli, angka asli, dan cerita mereka sendiri. Tap foto atau tarik garisnya buat bandingin.</p></div>
   <div id="results"></div>
-  <p class="fine">Hasil tiap orang berbeda. Yang tampil di sini cuma para coach.</p>
+  <div class="wrap"><div class="exec reveal">
+    <div class="pair">
+      <figure><img src="/images/results/carl-before.jpg" width="560" height="1046" loading="lazy" alt="Carl Garcia sebelum, 15 Januari 2026, 119,8 kg"><figcaption>Before</figcaption></figure>
+      <figure><img src="/images/results/carl-after.jpg" width="560" height="1003" loading="lazy" alt="Carl Garcia sesudah, 15 Juli 2026, 82,4 kg"><figcaption>After</figcaption></figure>
+    </div>
+    <div class="copy">
+      <p class="kicker">Dari tim manajemen Nu Skin</p>
+      <div class="xn">−<span data-count="37.4" data-dec="1">37,4</span><small> kg</small></div>
+      <h3>Turun dalam 6 bulan.</h3>
+      <p><span class="nm">Carl Garcia</span>, Regional VP of Sales SEA &amp; Pacific, Nu Skin. 119,8 kg pada 15 Januari 2026, 82,4 kg pada 15 Juli 2026.</p>
+    </div>
+  </div></div>
+  <p class="fine">Hasil tiap orang berbeda. Yang tampil di sini adalah para coach dan tim manajemen Nu Skin.</p>
 </div></section>
 
 <!-- 7. PENUTUP -->
@@ -661,51 +731,55 @@ section{padding-block:clamp(56px,10vw,112px)}
     </div>
     <div class="btns">
       <a class="btn primary" href="https://wa.me/628170241185?text=Halo%20AJ%2C%20aku%20baru%20buka%20halaman%20profil%20kamu%20dan%20mau%20ngobrol.">Chat AJ di WhatsApp</a>
-      <a class="btn quiet" href="/aj/?utm_source=profil-aj&amp;utm_medium=halaman">Cek umur badan gratis</a>
+      <a class="btn quiet" href="/aj/?utm_source=profil-aj&amp;utm_medium=halaman">Cek body age gratis</a>
     </div>
   </div>
   <div class="biz cloud reveal">
     <div>
-      <p class="kicker">Untuk yang tertarik membangun bisnis</p>
-      <h3>Ikut membangun bareng tim Success Together</h3>
-      <p>Biasanya dimulai dari jadi pelanggan dulu, merasakan hasilnya sendiri, baru kita ngobrol soal membangun bareng. Aku tidak menjanjikan angka penghasilan.</p>
+      <p class="kicker">Peluang</p>
+      <h3>Setiap orang berhak untuk peluang yang dinamis.</h3>
+      <p>Sebagian orang yang pernah memakai ini tertarik ikut membangun bisnisnya. Kalau itu kamu, kita bahas terbuka, dan hasil tiap orang berbeda. Peluang yang dinamis ini terbuka untuk siapa saja.</p>
     </div>
-    <a class="btn quiet" href="https://wa.me/628170241185?text=Halo%20AJ%2C%20aku%20tertarik%20ngobrol%20soal%20membangun%20bisnis%20bareng%20tim%20Success%20Together.">Ngobrol soal bisnis</a>
+    <a class="btn quiet" href="https://wa.me/628170241185?text=Halo%20AJ%2C%20aku%20tertarik%20ngobrol%20soal%20peluangnya.">Ngobrol soal peluangnya</a>
   </div>
 </div></section>
 
 <section style="padding-top:0"><div class="wrap">
-  <div class="head"><p class="kicker">Pertanyaan yang sering muncul</p><h2>Sebelum kamu tanya.</h2></div>
+  <div class="head"><p class="kicker">FAQ</p><h2>Sebelum kamu tanya.</h2></div>
   <div class="faq">
-    <details><summary>TRMe itu obat anti-aging?</summary><p>Bukan. TRMe adalah program pengelolaan berat badan dari Nu Skin yang berisi suplemen, pola makan, dan aktivitas. Yang aku jelaskan di halaman ini adalah penuaan komposisi badan, yaitu otot dan lemak, yang bisa diukur. Aku tidak mengklaim TRMe membalik penuaan atau mengobati penyakit.</p></details>
-    <details><summary>Aku sedang atau berencana pakai GLP-1. Masih cocok?</summary><p>Keputusan soal obat ada di kamu dan dokter kamu. Yang bisa aku bantu adalah bagian kebiasaannya, yaitu protein, gerak, dan mengukur komposisi badan. Panduan para ahli juga menyarankan protein cukup dan latihan beban bersama terapi ini. Soal obatnya, ikuti arahan dokter. <a href="https://wa.me/628170241185?text=Halo%20AJ%2C%20aku%20lagi%20mempertimbangkan%20GLP-1%20dan%20mau%20ngobrol%20soal%20kebiasaan%20yang%20perlu%20aku%20bangun.">Tanya aku lewat WhatsApp</a></p></details>
+    <details><summary>TRMe itu obat anti-aging?</summary><p>Bukan. TRMe adalah weight management program dari Nu Skin yang berisi suplemen, pola makan, dan aktivitas. Yang aku jelaskan di halaman ini adalah aging dari body composition, yaitu otot dan lemak, yang bisa diukur. Aku tidak mengklaim TRMe membalik aging atau mengobati penyakit.</p></details>
+    <details><summary>Aku sedang atau berencana pakai GLP-1. Masih cocok?</summary><p>Keputusan soal obat ada di kamu dan dokter kamu. Yang bisa aku bantu adalah bagian kebiasaannya, yaitu protein, gerak, dan mengukur body composition. Guideline para ahli juga menyarankan protein cukup dan latihan beban bersama terapi ini. Soal obatnya, ikuti arahan dokter. <a href="https://wa.me/628170241185?text=Halo%20AJ%2C%20aku%20lagi%20mempertimbangkan%20GLP-1%20dan%20mau%20ngobrol%20soal%20kebiasaan%20yang%20perlu%20aku%20bangun.">Tanya aku lewat WhatsApp</a></p></details>
     <details><summary>Ini pengganti dokter atau dokter gizi?</summary><p>Bukan. Aku coach, bukan tenaga medis. Kalau kamu punya kondisi medis, sedang hamil, atau minum obat rutin, mulai dari dokter kamu. Keduanya bisa berjalan berdampingan.</p></details>
-    <details><summary>Kenapa aku harus percaya?</summary><p>Nggak perlu percaya begitu saja. Lihat angka dan foto asli di atas, termasuk hasil para coach lain. Aku juga terbuka bahwa aku bekerja di Nu Skin dan bahwa studi TRMe yang kusebut masih internal dan belum dipublikasi. Ukur dulu, baru ubah, jadi progresnya kelihatan dari data.</p></details>
+    <details><summary>Kenapa aku harus percaya?</summary><p>Nggak perlu percaya begitu saja. Lihat angka dan foto asli di atas, termasuk hasil para coach lain. Aku juga terbuka bahwa aku Diamond Leader di Nu Skin dan bahwa studi TRMe yang kusebut adalah studi internal Nu Skin. Ukur dulu, baru ubah, jadi progresnya kelihatan dari data.</p></details>
   </div>
 </div></section>
 
 </main>
 
 <footer class="site-foot"><div class="wrap">
-  <details class="src" id="sumber"><summary>Sumber data</summary>
+  <details class="src" id="sumber"><summary>Sources</summary>
     <ol>
       <li>Weight regain and cardiometabolic effects after withdrawal of semaglutide: the STEP 1 trial extension. Diabetes, Obesity and Metabolism, 2022. <a href="https://pubmed.ncbi.nlm.nih.gov/35441470/" rel="noopener">PubMed</a></li>
-      <li>Tinjauan sistematis dan network meta-analysis 22 uji acak (2.258 peserta) tentang agonis reseptor GLP-1 dan komposisi tubuh. <a href="https://pubmed.ncbi.nlm.nih.gov/39719170/" rel="noopener">PubMed</a></li>
-      <li>Mozaffarian D, et al. Nutritional priorities to support GLP-1 therapy for obesity. Advisory gabungan American College of Lifestyle Medicine, American Society for Nutrition, Obesity Medicine Association, dan The Obesity Society. Obesity, 2025. <a href="https://pubmed.ncbi.nlm.nih.gov/40445127/" rel="noopener">PubMed</a></li>
+      <li>Systematic review dan network meta-analysis 22 randomized trial (2.258 peserta) tentang agonis reseptor GLP-1 dan komposisi tubuh. <a href="https://pubmed.ncbi.nlm.nih.gov/39719170/" rel="noopener">PubMed</a></li>
+      <li>Mozaffarian D, et al. Nutritional priorities to support GLP-1 therapy for obesity. Joint advisory American College of Lifestyle Medicine, American Society for Nutrition, Obesity Medicine Association, dan The Obesity Society. Obesity, 2025. <a href="https://pubmed.ncbi.nlm.nih.gov/40445127/" rel="noopener">PubMed</a></li>
       <li>Grosicki GJ, et al. GLP-1 receptor agonists discontinuation is higher in individuals with overweight and obesity without type 2 diabetes. Diabetes, Obesity and Metabolism, 2025. <a href="https://hcplive.com/view/glp-1-ra-discontinuations-frequent-in-people-with-obesity-without-diabetes" rel="noopener">Ringkasan</a></li>
-      <li>BPOM, siaran pers tirzepatide: izin edar Februari 2026 dan tambahan indikasi pengelolaan berat badan Juli 2026. <a href="https://www.pom.go.id/siaran-pers/bpom-dorong-akses-terapi-inovatif-untuk-penanganan-penyakit-metabolik-dengan-zat-aktif-tirzepatide" rel="noopener">pom.go.id</a></li>
+      <li>BPOM, press release tirzepatide: izin edar Februari 2026 dan tambahan indikasi pengelolaan berat badan Juli 2026. <a href="https://www.pom.go.id/siaran-pers/bpom-dorong-akses-terapi-inovatif-untuk-penanganan-penyakit-metabolik-dengan-zat-aktif-tirzepatide" rel="noopener">pom.go.id</a></li>
       <li>Calorie Restriction with or without Time-Restricted Eating in Weight Loss. New England Journal of Medicine, 2022. 139 peserta, 12 bulan. <a href="https://pubmed.ncbi.nlm.nih.gov/35443107/" rel="noopener">PubMed</a></li>
-      <li>OMAD, ringkasan dua studi kecil. Uji silang USDA 2007 di American Journal of Clinical Nutrition (21 orang dewasa sehat berat normal, 15 menyelesaikan kedua fase, 8 minggu per fase). Uji 2021 di Frontiers in Physiology (11 orang, 11 hari). Aku merujuk ke ringkasannya, belum ke makalah aslinya. <a href="https://acibademinternational.com/blog/omad-and-time-restricted-eating-what-trials-show-about-eating-windows/" rel="noopener">Ringkasan</a> dan <a href="https://www.sciencefocus.com/the-human-body/one-meal-a-day-diet-omad" rel="noopener">ringkasan kedua</a></li>
-      <li>Exercise for overweight or obesity. Tinjauan Cochrane, 2006. Menambah olahraga ke diet menurunkan berat tambahan 1,0 kg (selang kepercayaan 95%: 0,7 sampai 1,3 kg). <a href="https://cochranelibrary.com/cdsr/doi/10.1002/14651858.CD003817.pub3/ta" rel="noopener">Cochrane Library</a></li>
+      <li>OMAD, ringkasan dua studi kecil. Crossover trial USDA 2007 di American Journal of Clinical Nutrition (21 orang dewasa sehat berat normal, 15 menyelesaikan kedua fase, 8 minggu per fase). Trial 2021 di Frontiers in Physiology (11 orang, 11 hari). Aku merujuk ke ringkasannya, belum ke makalah aslinya. <a href="https://acibademinternational.com/blog/omad-and-time-restricted-eating-what-trials-show-about-eating-windows/" rel="noopener">Ringkasan</a> dan <a href="https://www.sciencefocus.com/the-human-body/one-meal-a-day-diet-omad" rel="noopener">ringkasan kedua</a></li>
+      <li>Exercise for overweight or obesity. Cochrane review, 2006. Menambah olahraga ke diet menurunkan berat tambahan 1,0 kg (selang kepercayaan 95%: 0,7 sampai 1,3 kg). <a href="https://cochranelibrary.com/cdsr/doi/10.1002/14651858.CD003817.pub3/ta" rel="noopener">Cochrane Library</a></li>
       <li>Pontzer H, et al. Daily energy expenditure through the human life course. Science, 2021. <a href="https://dupri.duke.edu/news-events/news/pontzer-and-colleagues-explore-how-metabolism-changes-throughout-life-course" rel="noopener">Ringkasan Duke</a></li>
       <li>Sarcopenia, dynapenia, and the impact of advancing age on human skeletal muscle size and strength; a quantitative review. Frontiers in Physiology, 2012. <a href="https://pubmed.ncbi.nlm.nih.gov/22934016/" rel="noopener">PubMed</a></li>
-      <li>Omron Healthcare Asia Pacific, FAQ pengelolaan berat badan: definisi body age, metabolisme istirahat, dan skala lemak visceral. <a href="https://www.omronhealthcare-ap.com/ap/faqs/weight-management" rel="noopener">omronhealthcare-ap.com</a></li>
+      <li>Omron Healthcare Asia Pacific, FAQ pengelolaan berat badan: definisi body age, metabolisme istirahat, dan skala visceral fat. <a href="https://www.omronhealthcare-ap.com/ap/faqs/weight-management" rel="noopener">omronhealthcare-ap.com</a></li>
       <li>Nu Skin, Product Information Page ageLOC TRMe 90-Day Program (Malaysia). <a href="https://www.nuskin.com/content/dam/sea/my/one_stop_directory/MY_ageLOC-TRME%20SYSTEM-PIP.pdf" rel="noopener">nuskin.com</a></li>
       <li>Nu Skin, TRMe Program Training (Malaysia). <a href="https://www.nuskin.com/content/dam/sea/my/one_stop_directory/TRME-Program-Training_MY_Final_EN.pdf" rel="noopener">nuskin.com</a></li>
-      <li>Nu Skin (2023). A Clinical Study in Healthy Volunteers (BMI ≥ 27,5 dan ≤ 40 kg/m²) to Assess the Efficacy and Safety of a 12-Week Weight Management Program. Studi internal, open-label, data belum dipublikasi.</li>
+      <li>Nu Skin (2023). A Clinical Study in Healthy Volunteers (BMI ≥ 27,5 dan ≤ 40 kg/m²) to Assess the Efficacy and Safety of a 12-Week Weight Management Program. Studi internal Nu Skin, 64 peserta.</li>
+      <li>Nu Skin, Product Information Page ageLOC TRMe System (Singapura), daftar 22 referensi. <a href="https://www.nuskin.com/content/dam/sea/sg/products/PIP/ageLOC-TRME%20SYSTEM-PIP%20SG.pdf" rel="noopener">nuskin.com</a></li>
+      <li>Vũ MH, Nguyễn TLP, Nguyễn TTT. Hiệu quả hỗ trợ giảm cân của bộ sản phẩm thực phẩm chức năng ageLOC TR90 trên người thừa cân, béo phì nguyên phát. Tạp chí Y học Việt Nam (Vietnam Medical Journal), 2023. 60 peserta, 90 hari, tanpa kelompok pembanding. Abstrak tidak mencantumkan pendanaan. <a href="https://tapchiyhocvietnam.vn/index.php/vmj/article/view/4590" rel="noopener">tapchiyhocvietnam.vn</a></li>
+      <li>Nu Skin, Product, Workplace and Humanitarian Awards. Euromonitor: tahun peringkat tidak dicantumkan di halaman tersebut. <a href="https://www.nuskin.com/content/corpcom/en_US/newsroom/news1/Nu-Skin-Awards.html" rel="noopener">nuskin.com</a></li>
+      <li>Liputan6, Nu Skin rilis program pengelolaan berat badan teruji klinis (kutipan Dr. Joseph Chang, Chairman Nu Skin Scientific Advisory Board). <a href="https://www.liputan6.com/citizen6/read/5877496/tren-gaya-hidup-sehat-nu-skin-rilis-program-pengelolaan-berat-badan-teruji-klinis" rel="noopener">liputan6.com</a></li>
     </ol>
   </details>
-  <nav><a href="/">#transformwithST</a><a href="/privacy/">Kebijakan Privasi</a></nav>
+  <nav><a href="/">#transformwithST</a><a href="/privacy/">Privacy Policy</a></nav>
   <span>© #transformwithST. Konten edukasi, bukan nasihat medis. Suplemen bukan obat. Hasil tiap orang beda-beda.</span>
 </div></footer>
 
