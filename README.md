@@ -5,6 +5,7 @@ Website for #transformwithST, served by GitHub Pages at https://alvacy.com
 - `index.html` — landing page. `test/` — Body Age Assessment (30-question quiz with lead form). `tools/` — Transform Toolkit (Padang, drink sugar, protein). `privacy/` — privacy policy.
 - Coach links: add `#code` (e.g. `#aj`) to any page; coaches are configured in `COACHES` in `assets/site.js`. `aj/` is the short link alvacy.com/aj. `body-age/` is a readable short link to `test/` for AJ's Threads bio (tags the visit as source threads, coach aj).
 - `transformwithAJ/` — AJ's personal profile page (alvacy.com/transformwithAJ). Hand-written, not in `PAGES`, so the build never touches it; `noindex` for now. Share image: `images/og-aj-profil.png`. `404.html` sends a lowercase `/transformwithaj` to it.
+- `zoom/` — Zoom Room (alvacy.com/zoom): the team books time in one shared Zoom meeting room. Hand-written, `noindex`, not in `PAGES`. Each member opens a private link (`/zoom/#k=...`), the admin opens `/zoom/#admin=...`. Members only ever see their own bookings plus anonymous "Busy" blocks; the server (`apps-script/ZoomRoom.gs`, its own Apps Script and its own private Sheet "Zoom Room Data") enforces this. `ZOOM_API` at the top of `zoom/index.html` is that script's `/exec` URL. Backend tests: `node apps-script/zoom-room.test.js`.
 - `images/` — coach photos, icons and share images (`og-id.png`, `og-en.png`). `CNAME` — custom domain.
 
 ## Search (SEO) build

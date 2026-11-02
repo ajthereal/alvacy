@@ -1,0 +1,496 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Zoom Room · #transformwithST</title>
+<meta name="robots" content="noindex,nofollow">
+<meta name="description" content="Book your time in the shared Zoom room.">
+<meta name="theme-color" content="#1E3A8A">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="Zoom Room">
+<link rel="icon" href="/images/icon.svg?v=2" type="image/svg+xml">
+<link rel="icon" href="/images/icon-192.png?v=2" sizes="192x192" type="image/png">
+<link rel="apple-touch-icon" href="/images/apple-touch-icon.png?v=2">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Geist+Mono:wght@500&display=swap">
+<link rel="stylesheet" href="/assets/site.css?v=1793167738">
+<style>
+.zr{max-width:560px;margin:0 auto;padding:18px 16px 96px;display:grid;grid-template-columns:minmax(0,1fr);gap:14px}
+#view{display:grid;grid-template-columns:minmax(0,1fr);gap:14px}
+.card>*{min-width:0}
+.kv .v{overflow-wrap:anywhere}
+.zr header{display:grid;gap:4px;padding-top:6px}
+.zr .brand{font-size:.82rem;font-weight:700;letter-spacing:.02em;color:var(--muted)}
+.zr h1{font-size:clamp(1.9rem,8vw,2.5rem)}
+.zr .sub{color:var(--muted);font-size:.95rem}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:22px;padding:16px;display:grid;gap:12px;box-shadow:var(--lift)}
+.card h2{font-size:1.15rem;letter-spacing:-.02em;line-height:1.2}
+.card.hl{background:var(--accent-soft);border-color:var(--sky-line)}
+.row{display:flex;gap:10px;align-items:center;flex-wrap:wrap}
+.row.sb{justify-content:space-between}
+.mono{font-family:var(--f-mono);font-variant-numeric:tabular-nums}
+.muted{color:var(--muted)}
+.small{font-size:.85rem}
+.btn{appearance:none;border:0;border-radius:999px;background:var(--cta);color:var(--cta-ink);font:600 .98rem var(--f-body);padding:12px 20px;min-height:46px;cursor:pointer}
+.btn:hover{background:var(--cta-hover)}
+.btn.ghost{background:transparent;color:var(--head);border:1.5px solid var(--sky-line)}
+.btn.ghost:hover{background:var(--accent-soft)}
+.btn.warn{background:transparent;color:var(--bad);border:1.5px solid var(--bad)}
+.btn.sm{min-height:38px;padding:8px 14px;font-size:.88rem}
+.btn[disabled]{opacity:.45;cursor:default}
+.banner{border-radius:16px;padding:12px 14px;font-size:.93rem;line-height:1.45;border:1px solid}
+.banner.err{background:var(--bad-soft);border-color:var(--bad);color:var(--bad)}
+.banner.warn{background:var(--warn-soft);border-color:var(--warn);color:var(--warn)}
+.banner.ok{background:var(--good-soft);border-color:var(--good);color:var(--good)}
+.banner button{margin-left:8px}
+.days{display:flex;gap:8px;overflow-x:auto;padding:2px 2px 6px;scrollbar-width:none;-webkit-overflow-scrolling:touch}
+.days::-webkit-scrollbar{display:none}
+.day{flex:0 0 auto;min-width:58px;border:1.5px solid var(--line);background:var(--surface);color:var(--ink);border-radius:16px;padding:8px 6px;text-align:center;font:600 .85rem var(--f-body);cursor:pointer}
+.day b{display:block;font-size:1.15rem;font-weight:800;color:var(--head)}
+.day[aria-pressed=true]{background:var(--cta);color:var(--cta-ink);border-color:var(--cta)}
+.day[aria-pressed=true] b{color:var(--cta-ink)}
+.slots{display:grid;gap:6px}
+.slot{display:flex;justify-content:space-between;align-items:center;gap:10px;width:100%;min-height:50px;padding:0 16px;border-radius:14px;border:1.5px solid var(--line);background:var(--surface);color:var(--ink);font:600 1rem var(--f-body);text-align:left}
+.slot .t{font-family:var(--f-mono);font-variant-numeric:tabular-nums}
+.slot .s{font-size:.85rem;font-weight:600}
+.slot.free{cursor:pointer;border-color:var(--sky-line);background:var(--accent-soft)}
+.slot.free .s{color:var(--good)}
+.slot.free:active{transform:scale(.99)}
+.slot.busy{background:var(--sand);color:var(--muted);border-style:dashed}
+.slot.closed{background:transparent;color:var(--muted);border-style:dotted;min-height:40px;opacity:.75}
+.slot.mine{background:var(--cta);color:var(--cta-ink);border-color:var(--cta)}
+.slot.mine .s{color:var(--cta-ink)}
+.chips{display:flex;gap:8px;flex-wrap:wrap}
+.chip{border:1.5px solid var(--sky-line);background:var(--surface);color:var(--head);border-radius:999px;padding:10px 16px;min-height:44px;font:600 .95rem var(--f-body);cursor:pointer}
+.chip[aria-pressed=true]{background:var(--cta);color:var(--cta-ink);border-color:var(--cta)}
+.chip[disabled]{opacity:.35;cursor:default;text-decoration:line-through}
+.sheet-bg{position:fixed;inset:0;background:rgba(15,23,48,.45);display:flex;align-items:flex-end;justify-content:center;z-index:50}
+.sheet{background:var(--bg);width:100%;max-width:560px;border-radius:26px 26px 0 0;padding:20px 16px calc(20px + env(safe-area-inset-bottom,0px));display:grid;gap:14px;max-height:88vh;overflow:auto}
+.kv{display:grid;grid-template-columns:auto 1fr auto;gap:8px 12px;align-items:center}
+.kv .k{color:var(--muted);font-size:.85rem}
+.kv .v{font-family:var(--f-mono);word-break:break-all;font-size:.95rem}
+.item{display:grid;gap:8px;padding:12px 0;border-top:1px solid var(--line)}
+.item:first-child{border-top:0;padding-top:0}
+.tag{display:inline-block;border-radius:999px;padding:2px 10px;font-size:.78rem;font-weight:700;background:var(--sand);color:var(--muted)}
+.tag.active{background:var(--good-soft);color:var(--good)}
+.tag.bad{background:var(--bad-soft);color:var(--bad)}
+.tag.warn{background:var(--warn-soft);color:var(--warn)}
+.tabs{display:flex;gap:6px;background:var(--sand);border-radius:999px;padding:4px}
+.tabs button{flex:1;border:0;background:transparent;border-radius:999px;min-height:40px;font:700 .9rem var(--f-body);color:var(--muted);cursor:pointer}
+.tabs button[aria-pressed=true]{background:var(--surface);color:var(--head);box-shadow:var(--lift)}
+label.f{display:grid;gap:4px;font-weight:600;font-size:.88rem;color:var(--head)}
+label.f input,label.f select,label.f textarea{font:500 1rem var(--f-body);color:var(--ink);background:var(--surface);border:1.5px solid var(--line);border-radius:14px;padding:11px 12px;min-height:46px;width:100%}
+label.f textarea{min-height:72px}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.chk{display:flex;gap:10px;align-items:flex-start;font-size:.9rem}
+.chk input{width:22px;height:22px;margin-top:2px}
+.foot{color:var(--muted);font-size:.82rem;text-align:center;padding:6px 8px}
+.spin{display:inline-block;width:14px;height:14px;border:2px solid var(--sky-line);border-top-color:var(--accent);border-radius:50%;animation:sp .8s linear infinite;vertical-align:-2px}
+@keyframes sp{to{transform:rotate(360deg)}}
+.empty{padding:22px 8px;text-align:center;color:var(--muted)}
+@media (prefers-reduced-motion:reduce){.spin{animation:none}}
+</style>
+</head>
+<body>
+<main class="zr" id="zr">
+  <header>
+    <div class="brand">#transformwithST</div>
+    <h1>Zoom Room</h1>
+    <div class="sub" id="sub">Loading…</div>
+  </header>
+  <div id="banner" role="alert" aria-live="polite"></div>
+  <div id="view"></div>
+  <div class="foot" id="foot"></div>
+</main>
+<div id="sheet"></div>
+
+<script>
+/* Zoom Room page. All rules are enforced by the server (apps-script/ZoomRoom.gs); this page only shows what the server sends.
+   Members get their own bookings plus anonymous "Busy" ranges. Nothing about other people is ever sent to a member. */
+const ZOOM_API = 'PASTE_ZOOM_API_URL_HERE';
+const API_V = 1;
+const MIN = 60000, HOUR = 3600000, DAY = 86400000, SLOT = 30 * MIN, WIB = 7 * HOUR;
+
+/* ---------- tiny helpers ---------- */
+function el(tag, props, ...kids) {
+  const n = document.createElement(tag);
+  if (props) for (const k in props) {
+    const v = props[k];
+    if (k === 'class') n.className = v;
+    else if (k.slice(0, 2) === 'on') n.addEventListener(k.slice(2), v);
+    else if (v === true) n.setAttribute(k, '');
+    else if (v !== false && v != null) n.setAttribute(k, v);
+  }
+  kids.flat(Infinity).forEach(c => { if (c == null || c === false) return; n.append(c.nodeType ? c : document.createTextNode(String(c))); });
+  return n;
+}
+const $ = id => document.getElementById(id);
+function put(node, ...kids) { node.replaceChildren(...kids.flat(Infinity).filter(Boolean)); }
+const pad = n => String(n).padStart(2, '0');
+const tzLabel = (() => { try { return new Intl.DateTimeFormat('en', { timeZoneName: 'short' }).formatToParts(new Date()).find(p => p.type === 'timeZoneName').value; } catch (e) { return 'your time'; } })();
+function hm(ms) { const d = new Date(ms); return pad(d.getHours()) + ':' + pad(d.getMinutes()); }
+function dayName(ms, long) { return new Date(ms).toLocaleDateString('en-GB', long ? { weekday: 'long', day: 'numeric', month: 'long' } : { weekday: 'short' }); }
+function dur(min) { return min % 60 === 0 ? (min / 60) + ' h' : (min >= 60 ? Math.floor(min / 60) + ' h ' + (min % 60) + ' min' : min + ' min'); }
+function localMidnight(ms) { const d = new Date(ms); return new Date(d.getFullYear(), d.getMonth(), d.getDate()).getTime(); }
+function wibHour(ms) { return Math.floor((((ms + WIB) % DAY) + DAY) % DAY / HOUR); }
+
+/* ---------- state ---------- */
+const S = { role: null, key: '', adminKey: '', memberKey: '', data: null, admin: null, day: 0, adminTab: 'schedule', skew: 0, lastOk: 0, offline: false, loading: false, revealed: {}, inviteCard: null, busyAction: false };
+const now = () => Date.now() + S.skew;
+
+function readKeys() {
+  const h = new URLSearchParams((location.hash || '').replace(/^#/, ''));
+  let mk = h.get('k') || '', ak = h.get('admin') || '';
+  try {
+    if (mk) localStorage.setItem('zr-k', mk); else mk = localStorage.getItem('zr-k') || '';
+    if (ak) localStorage.setItem('zr-admin', ak); else ak = localStorage.getItem('zr-admin') || '';
+  } catch (e) { /* storage blocked: the link in the address bar still works */ }
+  S.memberKey = mk; S.adminKey = ak;
+  let saved = ''; try { saved = localStorage.getItem('zr-role') || ''; } catch (e) {}
+  const want = h.get('admin') ? 'admin' : (h.get('k') ? 'member' : saved);
+  S.role = (want === 'admin' && ak) ? 'admin' : (mk ? 'member' : (ak ? 'admin' : null));
+  S.key = S.role === 'admin' ? ak : mk;
+}
+function setRole(r) { S.role = r; S.key = r === 'admin' ? S.adminKey : S.memberKey; try { localStorage.setItem('zr-role', r); } catch (e) {} S.data = null; S.admin = null; S.inviteCard = null; render(); refresh(); }
+
+/* ---------- server calls ---------- */
+class ApiError extends Error { constructor(msg, code) { super(msg); this.code = code; } }
+async function api(payload) {
+  if (!ZOOM_API || ZOOM_API.indexOf('PASTE_') === 0) throw new ApiError('The booking server is not connected yet. Please tell the person who sent you this link.', 'SETUP');
+  const ctl = new AbortController();
+  const timer = setTimeout(() => ctl.abort(), 25000);
+  let res, text;
+  try {
+    res = await fetch(ZOOM_API, { method: 'POST', headers: { 'Content-Type': 'text/plain;charset=utf-8' }, body: JSON.stringify(Object.assign({ k: S.key }, payload)), signal: ctl.signal, redirect: 'follow' });
+    text = await res.text();
+  } catch (e) {
+    throw new ApiError(e && e.name === 'AbortError' ? 'The server took too long to answer. Nothing was changed. Please try again.' : 'Cannot reach the server. Check your internet connection. Nothing was changed.', 'NET');
+  } finally { clearTimeout(timer); }
+  let j;
+  try { j = JSON.parse(text); } catch (e) { throw new ApiError('The server sent an unexpected reply, so it may be busy or down. Nothing was changed. Please try again in a minute.', 'HTML'); }
+  if (!j.ok) throw new ApiError(j.msg || 'Something went wrong.', j.code);
+  if (j.now) S.skew = j.now - Date.now();
+  if (j.v && j.v !== API_V) throw new ApiError('This page is out of date. Please close it and open the link again.', 'VERSION');
+  return j;
+}
+function banner(kind, msg, action) {
+  const b = $('banner');
+  if (!msg) { put(b); return; }
+  put(b, el('div', { class: 'banner ' + kind }, msg, action || null));
+}
+function showError(e, keep) {
+  const msg = (e && e.message) || 'Something went wrong. Please try again.';
+  if (e && (e.code === 'NET' || e.code === 'HTML')) { S.offline = true; banner('warn', msg + (S.data || S.admin ? ' Showing the last schedule received' + (S.lastOk ? ' at ' + hm(S.lastOk) : '') + '.' : '')); }
+  else banner('err', msg, el('button', { class: 'btn sm ghost', onclick: () => banner() }, 'OK'));
+}
+
+/* ---------- refresh ---------- */
+async function refresh(silent) {
+  if (!S.role) return;
+  S.loading = true;
+  try {
+    if (S.role === 'admin') S.admin = await api({ a: 'a_view' }); else S.data = await api({ a: 'view' });
+    S.lastOk = Date.now(); if (S.offline) { S.offline = false; banner(); }
+  } catch (e) {
+    if (e.code === 'AUTH' && S.role === 'member') { S.data = null; renderAuthProblem(e.message); return; }
+    if (!silent || e.code !== 'NET') showError(e);
+  } finally { S.loading = false; }
+  render();
+}
+function renderAuthProblem(msg) {
+  put($('sub'), 'Link not active');
+  put($('view'), el('div', { class: 'card' }, el('h2', null, 'This link does not work'), el('p', null, msg || 'This link is not active. Ask for a new invite link.')));
+}
+
+/* ---------- member view ---------- */
+function liveMine() { return (S.data ? S.data.mine : []).filter(b => b.status === 'active' && b.end > now()); }
+function slotsFor(dayStart) {
+  const d = S.data, t0 = now(), r = d.rules, out = [];
+  const date = new Date(dayStart).getDate();
+  for (let t = dayStart; new Date(t).getDate() === date; t += SLOT) {
+    if (t + SLOT <= t0) continue;
+    const wh = wibHour(t);
+    let state = 'free';
+    if (wh < r.openStartHour || wh >= r.openEndHour) state = 'closed';
+    else if (t > t0 + r.daysAhead * DAY) state = 'closed';
+    else if (liveMine().some(b => b.start < t + SLOT && t < b.end)) state = 'mine';
+    else if (d.busy.some(x => x[0] < t + SLOT && t < x[1])) state = 'busy';
+    out.push({ t, state });
+  }
+  return out;
+}
+function renderMember() {
+  const d = S.data;
+  if (!d) { put($('view'), el('div', { class: 'empty' }, el('span', { class: 'spin' }), ' Loading your schedule…')); return; }
+  put($('sub'), 'Hi ' + d.name + '. Times are in your device time (' + tzLabel + ').');
+  const parts = [];
+  parts.push(nextCard());
+  parts.push(el('div', { class: 'days', role: 'group', 'aria-label': 'Pick a day' }, Array.from({ length: Math.min(d.rules.daysAhead, 14) }, (_, i) => {
+    const ms = localMidnight(now()) + i * DAY;
+    return el('button', { class: 'day', 'aria-pressed': String(S.day === i), onclick: () => { S.day = i; renderMember(); } }, i === 0 ? 'Today' : dayName(ms), el('b', null, new Date(ms).getDate()));
+  })));
+  const ms = localMidnight(now()) + S.day * DAY;
+  const sl = slotsFor(ms);
+  parts.push(el('div', { class: 'card' },
+    el('div', { class: 'row sb' }, el('h2', null, dayName(ms, true)), el('span', { class: 'small muted' }, 'Room open ' + pad(d.rules.openStartHour) + ':00 to ' + pad(d.rules.openEndHour) + ':00 WIB')),
+    sl.length ? el('div', { class: 'slots' }, sl.map(s => slotRow(s))) : el('div', { class: 'empty' }, 'Nothing left to book today. Pick another day.'),
+    el('div', { class: 'small muted' }, 'Busy means someone else has booked it. You only ever see your own bookings.')));
+  parts.push(mineCard());
+  put($('view'), parts);
+  put($('foot'), S.lastOk ? 'Updated ' + hm(S.lastOk) + ' · refreshes every minute' : '');
+}
+function slotRow(s) {
+  const label = { free: 'Free', busy: 'Busy', closed: 'Closed', mine: 'Yours' }[s.state];
+  const tag = s.state === 'free' ? 'button' : 'div';
+  const n = el(tag, { class: 'slot ' + s.state, type: tag === 'button' ? 'button' : null, onclick: s.state === 'free' ? () => openBook(s.t) : null }, el('span', { class: 't' }, hm(s.t)), el('span', { class: 's' }, label));
+  return n;
+}
+function nextCard() {
+  const list = liveMine().sort((a, b) => a.start - b.start);
+  const b = list[0], d = S.data;
+  if (!b) return el('div', { class: 'card hl' }, el('h2', null, 'No session booked'), el('div', { class: 'muted' }, 'Pick a free time below. It is yours straight away, no need to ask anyone.'));
+  const t = now(), live = b.start <= t && t < b.end;
+  const left = Math.max(0, Math.round((b.end - t) / MIN)), toStart = Math.round((b.start - t) / MIN);
+  const kids = [el('div', { class: 'row sb' }, el('h2', null, live ? 'Your session is on' : 'Your next session'), el('span', { class: 'tag active' }, live ? 'Live' : 'Booked')),
+    el('div', null, el('div', { class: 'mono', style: 'font-size:1.35rem;font-weight:700' }, hm(b.start) + ' – ' + hm(b.end)), el('div', { class: 'muted' }, dayName(b.start, true) + (live ? ' · ' + left + ' min left' : toStart < 90 ? ' · starts in ' + Math.max(toStart, 0) + ' min' : '')))];
+  if (live && left <= d.rules.wrapUpMin) kids.push(el('div', { class: 'banner warn' }, 'Ends in ' + left + ' min. Please wrap up so the next person can start on time.'));
+  if (b.canReveal && !b.revealed && !S.revealed[b.id]) kids.push(el('div', { class: 'banner warn' }, 'Open the host key within ' + d.rules.noShowMin + ' minutes of your start time, or your slot is released for others.'));
+  kids.push(accessBlock(b));
+  kids.push(el('div', { class: 'row' },
+    live ? el('button', { class: 'btn sm', onclick: () => act('extend', b.id, 'Extended by 30 minutes.') }, '+30 min') : null,
+    el('button', { class: 'btn sm ghost', onclick: () => downloadIcs(b) }, 'Add to calendar'),
+    el('button', { class: 'btn sm warn', onclick: () => confirmCancel(b, live) }, live ? 'End early' : 'Cancel')));
+  return el('div', { class: 'card hl' }, kids);
+}
+function accessBlock(b) {
+  const acc = S.data.access || {}, rv = S.revealed[b.id];
+  const rows = [];
+  if (acc.joinLink) rows.push(copyRow('Join link', acc.joinLink));
+  if (acc.passcode) rows.push(copyRow('Passcode', acc.passcode));
+  if (rv && rv.hostKey) rows.push(copyRow('Host key', rv.hostKey));
+  const kids = [];
+  if (rows.length) kids.push(el('div', { class: 'kv' }, rows));
+  if (rv && rv.note) kids.push(el('div', { class: 'small' }, rv.note));
+  if (b.canReveal) kids.push(el('button', { class: 'btn', onclick: () => reveal(b) }, rv ? 'Refresh host key' : 'Get host key'));
+  else if (!rv) kids.push(el('div', { class: 'small muted' }, 'The host key appears here 15 minutes before your start time.'));
+  return el('div', { style: 'display:grid;gap:10px' }, kids);
+}
+function copyRow(k, v) {
+  return [el('span', { class: 'k' }, k), el('span', { class: 'v' }, v), el('button', { class: 'btn sm ghost', onclick: ev => copy(v, ev.target) }, 'Copy')];
+}
+async function copy(text, btn) {
+  try { await navigator.clipboard.writeText(text); const o = btn.textContent; btn.textContent = 'Copied'; setTimeout(() => { btn.textContent = o; }, 1400); }
+  catch (e) { banner('warn', 'Copy did not work on this device. Press and hold the text to copy it yourself.'); }
+}
+async function reveal(b) {
+  try { const r = await api({ a: 'reveal', id: b.id }); S.revealed[b.id] = r; banner(); await refresh(true); }
+  catch (e) { showError(e); if (e.code === 'RELEASED') refresh(true); }
+}
+function mineCard() {
+  const d = S.data, past = d.mine.filter(b => b.status !== 'active' || b.end <= now());
+  const up = liveMine().sort((a, b) => a.start - b.start);
+  const rows = up.concat(past.reverse()).slice(0, 12);
+  const label = { active: 'Booked', cancelled: 'Cancelled', ended: 'Finished', done: 'Finished', released: 'Released (host key not opened)' };
+  return el('div', { class: 'card' }, el('h2', null, 'My bookings'),
+    rows.length ? rows.map(b => el('div', { class: 'item' }, el('div', { class: 'row sb' }, el('div', null, el('div', { class: 'mono' }, hm(b.start) + ' – ' + hm(b.end)), el('div', { class: 'small muted' }, dayName(b.start, true))), el('span', { class: 'tag ' + (b.status === 'active' ? 'active' : b.status === 'released' ? 'warn' : '') }, label[b.status] || b.status)))) : el('div', { class: 'muted' }, 'Nothing yet.'));
+}
+function openBook(t) {
+  const r = S.data.rules, t0 = now();
+  const ok = n => {
+    const end = t + n * MIN;
+    for (let x = t; x < end; x += SLOT) {
+      if (wibHour(x) < r.openStartHour || wibHour(x) >= r.openEndHour) return false;
+      if (S.data.busy.some(b => b[0] < x + SLOT && x < b[1])) return false;
+      if (liveMine().some(b => b.start < x + SLOT && x < b.end)) return false;
+      if (x > t0 + r.daysAhead * DAY) return false;
+    }
+    return true;
+  };
+  const opts = []; for (let n = 30; n <= r.maxDurationMin; n += 30) opts.push(n);
+  let pick = ok(60) && r.maxDurationMin >= 60 ? 60 : 30, err = '', busy = false;
+  const body = () => {
+    const kids = [el('h2', null, 'Book ' + dayName(t, true)),
+      el('div', { class: 'mono', style: 'font-size:1.4rem;font-weight:700' }, hm(t) + ' – ' + hm(t + pick * MIN)),
+      el('div', { class: 'small muted' }, 'How long? Longer options grey out when someone else has the next slot.'),
+      el('div', { class: 'chips' }, opts.map(n => el('button', { class: 'chip', 'aria-pressed': String(n === pick), disabled: !ok(n), onclick: () => { pick = n; draw(); } }, dur(n)))),
+      err ? el('div', { class: 'banner err' }, err) : null,
+      el('div', { class: 'row' }, el('button', { class: 'btn', disabled: busy, onclick: go }, busy ? 'Booking…' : 'Confirm booking'), el('button', { class: 'btn ghost', onclick: close }, 'Close'))];
+    return kids;
+  };
+  const draw = () => put($('sheet'), el('div', { class: 'sheet-bg', onclick: ev => { if (ev.target.classList.contains('sheet-bg')) close(); } }, el('div', { class: 'sheet', role: 'dialog', 'aria-modal': 'true' }, body())));
+  const close = () => put($('sheet'));
+  async function go() {
+    busy = true; err = ''; draw();
+    try { await api({ a: 'book', start: t, dur: pick }); close(); banner('ok', 'Booked ' + hm(t) + ' – ' + hm(t + pick * MIN) + '. It is yours.'); setTimeout(() => { if ($('banner').textContent.indexOf('Booked ') === 0) banner(); }, 5000); await refresh(true); }
+    catch (e) { busy = false; err = e.message; if (e.code === 'NET' || e.code === 'HTML') err += ' Please check whether your booking appears under My bookings before trying again.'; draw(); if (e.code === 'TAKEN') refresh(true); }
+  }
+  draw();
+}
+function confirmCancel(b, live) {
+  const close = () => put($('sheet'));
+  put($('sheet'), el('div', { class: 'sheet-bg' }, el('div', { class: 'sheet', role: 'dialog' },
+    el('h2', null, live ? 'End this session now?' : 'Cancel this booking?'),
+    el('div', { class: 'muted' }, hm(b.start) + ' – ' + hm(b.end) + ' · ' + dayName(b.start, true) + '. The time becomes free for others.'),
+    el('div', { class: 'row' }, el('button', { class: 'btn warn', onclick: async () => { close(); await act('cancel', b.id, live ? 'Session ended. The rest of your time is free for others.' : 'Booking cancelled.'); } }, live ? 'End now' : 'Cancel booking'), el('button', { class: 'btn ghost', onclick: close }, 'Keep it')))));
+}
+async function act(a, id, okMsg) {
+  try { await api({ a, id }); banner('ok', okMsg); setTimeout(() => banner(), 4000); await refresh(true); }
+  catch (e) { showError(e); refresh(true); }
+}
+function downloadIcs(b) {
+  const f = ms => new Date(ms).toISOString().replace(/[-:]/g, '').replace(/\.\d+/, '');
+  const wrap = S.data.rules.wrapUpMin;
+  const ics = ['BEGIN:VCALENDAR', 'VERSION:2.0', 'PRODID:-//transformwithST//Zoom Room//EN', 'BEGIN:VEVENT', 'UID:' + b.id + '@alvacy.com', 'DTSTAMP:' + f(Date.now()), 'DTSTART:' + f(b.start), 'DTEND:' + f(b.end),
+    'SUMMARY:Zoom Room session', 'DESCRIPTION:Open https://alvacy.com/zoom/ for the Zoom link and host key.',
+    'BEGIN:VALARM', 'ACTION:DISPLAY', 'DESCRIPTION:Zoom Room starts soon', 'TRIGGER:-PT15M', 'END:VALARM',
+    'BEGIN:VALARM', 'ACTION:DISPLAY', 'DESCRIPTION:Zoom Room ends in ' + wrap + ' minutes. Please wrap up.', 'TRIGGER;RELATED=END:-PT' + wrap + 'M', 'END:VALARM',
+    'END:VEVENT', 'END:VCALENDAR'].join('\r\n');
+  const a = el('a', { href: URL.createObjectURL(new Blob([ics], { type: 'text/calendar' })), download: 'zoom-room.ics' });
+  document.body.append(a); a.click(); a.remove();
+}
+
+/* ---------- admin view ---------- */
+function renderAdmin() {
+  const a = S.admin;
+  put($('sub'), 'Admin. You see every booking. Members only see their own.');
+  if (!a) { put($('view'), el('div', { class: 'empty' }, el('span', { class: 'spin' }), ' Loading…')); return; }
+  const tabs = el('div', { class: 'tabs' }, ['schedule', 'members', 'settings'].map(t => el('button', { 'aria-pressed': String(S.adminTab === t), onclick: () => { S.adminTab = t; renderAdmin(); } }, t[0].toUpperCase() + t.slice(1))));
+  const parts = [roleSwitch(), tabs];
+  if (a.conflicts && a.conflicts.length) parts.push(el('div', { class: 'banner err' }, 'Two bookings overlap right now (' + a.conflicts.length + '). They are marked in red. Cancel one to fix it.'));
+  parts.push(S.adminTab === 'schedule' ? adminSchedule() : S.adminTab === 'members' ? adminMembers() : adminSettings());
+  put($('view'), parts);
+  put($('foot'), S.lastOk ? 'Updated ' + hm(S.lastOk) : '');
+}
+function roleSwitch() {
+  if (!(S.adminKey && S.memberKey)) return null;
+  return el('div', { class: 'tabs' }, el('button', { 'aria-pressed': 'true' }, 'Admin'), el('button', { 'aria-pressed': 'false', onclick: () => setRole('member') }, 'My bookings'));
+}
+function adminSchedule() {
+  const a = S.admin, byDay = {};
+  const conflictIds = new Set((a.conflicts || []).flat());
+  a.bookings.filter(b => b.status === 'active' || b.status === 'released' || b.status === 'ended' || b.status === 'cancelled').forEach(b => { const k = localMidnight(b.start); (byDay[k] = byDay[k] || []).push(b); });
+  const days = Object.keys(byDay).map(Number).sort((x, y) => x - y);
+  const kids = [el('div', { class: 'row' }, el('button', { class: 'btn sm', onclick: () => adminBookForm() }, 'Book for a member'), el('button', { class: 'btn sm ghost', onclick: () => blockForm() }, 'Block time'))];
+  if (!days.length) kids.push(el('div', { class: 'card empty' }, 'No bookings yet.'));
+  days.forEach(k => kids.push(el('div', { class: 'card' }, el('h2', null, dayName(k, true)),
+    byDay[k].map(b => el('div', { class: 'item' },
+      el('div', { class: 'row sb' }, el('div', null, el('div', { class: 'mono' }, hm(b.start) + ' – ' + hm(b.end)), el('div', null, b.kind === 'block' ? 'Blocked: ' + (b.label || '') : b.member), b.label && b.kind === 'member' ? el('div', { class: 'small muted' }, b.label) : null),
+        el('span', { class: 'tag ' + (conflictIds.has(b.id) ? 'bad' : b.status === 'active' ? 'active' : 'warn') }, conflictIds.has(b.id) ? 'Overlap' : b.status === 'active' ? (b.revealed ? 'Host key opened' : 'Booked') : b.status)),
+      b.status === 'active' ? el('div', { class: 'row' }, el('button', { class: 'btn sm warn', onclick: () => adminCancel(b) }, 'Cancel')) : null)))));
+  return kids;
+}
+async function adminCancel(b) {
+  if (!confirm('Cancel ' + (b.kind === 'block' ? 'this block' : b.member + "'s booking") + ' on ' + dayName(b.start, true) + ' ' + hm(b.start) + '?')) return;
+  try { await api({ a: 'a_cancel', id: b.id }); banner('ok', 'Cancelled.'); setTimeout(() => banner(), 3000); await refresh(true); } catch (e) { showError(e); }
+}
+function localInput(ms) { const d = new Date(ms); return d.getFullYear() + '-' + pad(d.getMonth() + 1) + '-' + pad(d.getDate()) + 'T' + pad(d.getHours()) + ':' + pad(d.getMinutes()); }
+function parseLocal(v) { const ms = new Date(v).getTime(); return isFinite(ms) ? Math.round(ms / SLOT) * SLOT : NaN; }
+function formSheet(title, fields, okLabel, submit) {
+  let err = '', busy = false;
+  const inputs = {};
+  const built = fields(inputs);
+  const draw = () => put($('sheet'), el('div', { class: 'sheet-bg' }, el('div', { class: 'sheet', role: 'dialog' }, el('h2', null, title), built, err ? el('div', { class: 'banner err' }, err) : null,
+    el('div', { class: 'row' }, el('button', { class: 'btn', disabled: busy, onclick: go }, busy ? 'Saving…' : okLabel), el('button', { class: 'btn ghost', onclick: () => put($('sheet')) }, 'Close')))));
+  async function go() { busy = true; err = ''; const vals = {}; for (const k in inputs) vals[k] = inputs[k].type === 'checkbox' ? inputs[k].checked : inputs[k].value; draw(); try { await submit(vals); put($('sheet')); await refresh(true); } catch (e) { busy = false; err = e.message; draw(); } }
+  draw();
+}
+function blockForm() {
+  const d0 = Math.ceil(now() / SLOT) * SLOT;
+  formSheet('Block time', i => [
+    field('When', i, 'start', 'datetime-local', localInput(d0), { step: 1800 }), field('Length', i, 'len', 'select', '60', null, [[30, '30 min'], [60, '1 hour'], [120, '2 hours'], [180, '3 hours'], [240, '4 hours'], [480, '8 hours'], [1440, '1 day']]),
+    field('Label (only you see it)', i, 'label', 'text', 'Maintenance'),
+    el('label', { class: 'chk' }, i.over = el('input', { type: 'checkbox' }), el('span', null, 'Cancel any member bookings that overlap'))], 'Block this time',
+    v => { const s = parseLocal(v.start); if (isNaN(s)) throw new ApiError('Please pick a date and time.'); return api({ a: 'a_block', start: s, dur: Number(v.len), label: v.label, override: !!v.over }); });
+}
+function adminBookForm() {
+  const d0 = Math.ceil(now() / SLOT) * SLOT, members = S.admin.members.filter(m => m.status === 'active');
+  if (!members.length) { banner('warn', 'Add a member first (Members tab).'); return; }
+  formSheet('Book for a member', i => [
+    field('Member', i, 'm', 'select', members[0].id, null, members.map(m => [m.id, m.name])), field('When', i, 'start', 'datetime-local', localInput(d0), { step: 1800 }),
+    field('Length', i, 'len', 'select', '60', null, [[30, '30 min'], [60, '1 hour'], [90, '1.5 hours'], [120, '2 hours'], [180, '3 hours'], [240, '4 hours']])], 'Book',
+    v => { const s = parseLocal(v.start); if (isNaN(s)) throw new ApiError('Please pick a date and time.'); return api({ a: 'a_book', memberId: v.m, start: s, dur: Number(v.len) }); });
+}
+function field(label, reg, name, type, val, attrs, options) {
+  let inp;
+  if (type === 'select') { inp = el('select', null, options.map(o => el('option', { value: o[0], selected: String(o[0]) === String(val) }, o[1]))); }
+  else if (type === 'textarea') { inp = el('textarea', attrs || null); inp.value = val || ''; }
+  else { inp = el('input', Object.assign({ type, value: val == null ? '' : val }, attrs || {})); }
+  reg[name] = inp;
+  return el('label', { class: 'f' }, label, inp);
+}
+function inviteLink(token) { return location.origin + '/zoom/#k=' + token; }
+function adminMembers() {
+  const a = S.admin, kids = [];
+  kids.push(el('div', { class: 'card' }, el('h2', null, 'Add a member'), el('div', { class: 'muted small' }, 'Each member gets their own private link. Nobody can see anyone else. Send the link on WhatsApp once, and they can book any time after that.'),
+    el('div', { class: 'row' }, nameInput = el('input', { type: 'text', placeholder: 'Name (only you see it)', maxlength: 60, style: 'flex:1;min-width:160px;font:500 1rem var(--f-body);border:1.5px solid var(--line);border-radius:14px;padding:11px 12px;min-height:46px;background:var(--surface);color:var(--ink)' }), el('button', { class: 'btn', onclick: addMember }, 'Add'))));
+  if (S.inviteCard) kids.push(inviteCardNode());
+  kids.push(el('div', { class: 'card' }, el('h2', null, 'Members (' + a.members.filter(m => m.status === 'active').length + ')'),
+    a.members.length ? a.members.map(m => el('div', { class: 'item' }, el('div', { class: 'row sb' }, el('b', null, m.name), el('span', { class: 'tag ' + (m.status === 'active' ? 'active' : 'bad') }, m.status === 'active' ? 'Active' : 'Removed')),
+      m.status === 'active' ? el('div', { class: 'row' }, el('button', { class: 'btn sm ghost', onclick: () => resetMember(m) }, 'New link'), el('button', { class: 'btn sm ghost', onclick: () => renameMember(m) }, 'Rename'), el('button', { class: 'btn sm warn', onclick: () => revokeMember(m) }, 'Remove')) : null)) : el('div', { class: 'muted' }, 'No members yet.')));
+  return kids;
+}
+let nameInput;
+function inviteCardNode() {
+  const c = S.inviteCard, link = inviteLink(c.token);
+  const msg = 'Hi ' + c.name + ', this is your private link for the shared Zoom room. Open it, book your time, done. Please keep it to yourself:\n' + link;
+  return el('div', { class: 'card hl' }, el('h2', null, 'Link for ' + c.name), el('div', { class: 'small muted' }, 'Shown once. Copy it or send it now. You can always make a new one.'),
+    el('div', { class: 'kv' }, el('span', { class: 'k' }, 'Link'), el('span', { class: 'v' }, link), el('button', { class: 'btn sm ghost', onclick: ev => copy(link, ev.target) }, 'Copy')),
+    el('div', { class: 'row' }, el('a', { class: 'btn sm', style: 'text-decoration:none;display:inline-flex;align-items:center', href: 'https://wa.me/?text=' + encodeURIComponent(msg), target: '_blank', rel: 'noopener' }, 'Send on WhatsApp'), el('button', { class: 'btn sm ghost', onclick: () => { S.inviteCard = null; renderAdmin(); } }, 'Done')));
+}
+async function addMember() {
+  const name = (nameInput && nameInput.value || '').trim();
+  if (!name) { banner('err', 'Please type a name first.'); return; }
+  try { const r = await api({ a: 'a_member_add', name }); S.inviteCard = { name: r.member.name, token: r.token }; banner(); await refresh(true); } catch (e) { showError(e); }
+}
+async function resetMember(m) {
+  if (!confirm('Make a new link for ' + m.name + '? Their old link stops working.')) return;
+  try { const r = await api({ a: 'a_member_reset', id: m.id }); S.inviteCard = { name: m.name, token: r.token }; banner(); await refresh(true); } catch (e) { showError(e); }
+}
+async function renameMember(m) {
+  const n = prompt('New name for ' + m.name, m.name); if (!n) return;
+  try { await api({ a: 'a_member_rename', id: m.id, name: n }); await refresh(true); } catch (e) { showError(e); }
+}
+async function revokeMember(m) {
+  if (!confirm('Remove ' + m.name + '? Their link stops working and their upcoming bookings are cancelled. History is kept.')) return;
+  try { await api({ a: 'a_member_revoke', id: m.id }); await refresh(true); } catch (e) { showError(e); }
+}
+function adminSettings() {
+  const s = S.admin.settings, reg = {};
+  const F = (l, k, t, attrs) => field(l, reg, k, t || 'text', s[k], attrs);
+  const save = async () => {
+    const out = {}; for (const k in reg) out[k] = reg[k].value;
+    try { await api({ a: 'a_settings', settings: out }); banner('ok', 'Settings saved.'); setTimeout(() => banner(), 3000); await refresh(true); } catch (e) { showError(e); }
+  };
+  return [el('div', { class: 'card' }, el('h2', null, 'Zoom access'), el('div', { class: 'small muted' }, 'The join link and passcode show to members once they have a booking. The host key only shows during their own booking window.'),
+    F('Join link', 'joinLink', 'url'), F('Passcode', 'passcode'), F('Host key (6 digits)', 'hostKey', 'text', { inputmode: 'numeric' }), F('Note shown with the host key', 'note', 'textarea')),
+  el('div', { class: 'card' }, el('h2', null, 'Rules'),
+    el('div', { class: 'grid2' }, F('Room opens (hour, WIB)', 'openStartHour', 'number', { min: 0, max: 24 }), F('Room closes (hour, WIB)', 'openEndHour', 'number', { min: 0, max: 24 })),
+    el('div', { class: 'grid2' }, F('Longest booking (min)', 'maxDurationMin', 'number', { step: 30, min: 30 }), F('Upcoming bookings per member', 'maxFuture', 'number', { min: 1 })),
+    el('div', { class: 'grid2' }, F('Release if host key not opened (min)', 'noShowMin', 'number', { min: 0 }), F('Wrap-up warning (min)', 'wrapUpMin', 'number', { min: 0 })),
+    F('Book up to this many days ahead', 'daysAhead', 'number', { min: 1, max: 365 })),
+  el('button', { class: 'btn', onclick: save }, 'Save settings'),
+  el('div', { class: 'small muted' }, 'Your admin link: keep this page bookmarked or on your Home Screen. The Google Sheet "Zoom Room Data" holds the full history. Keep that Sheet private.')];
+}
+
+/* ---------- boot ---------- */
+function render() { if (S.role === 'admin') renderAdmin(); else if (S.role === 'member') renderMember(); }
+function boot() {
+  readKeys();
+  if (!S.role) {
+    put($('sub'), 'Private link needed');
+    put($('view'), el('div', { class: 'card' }, el('h2', null, 'Open your private link'), el('div', null, 'This room is for the team. Use the personal link that was sent to you on WhatsApp. If you lost it, ask for a new one.')));
+    return;
+  }
+  render(); refresh();
+  setInterval(() => { if (!document.hidden) refresh(true); }, 60000);
+  setInterval(() => { if (S.role === 'member' && S.data && !document.hidden) { put($('sub'), 'Hi ' + S.data.name + '. Times are in your device time (' + tzLabel + ').'); const n = document.getElementById('view'); if (n.firstChild) n.replaceChild(nextCard(), n.firstChild); } }, 30000);
+  document.addEventListener('visibilitychange', () => { if (!document.hidden) refresh(true); });
+  window.addEventListener('online', () => refresh(true));
+  window.addEventListener('hashchange', () => { readKeys(); S.data = null; S.admin = null; render(); refresh(); });
+}
+boot();
+</script>
+</body>
+</html>
