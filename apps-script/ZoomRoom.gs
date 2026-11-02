@@ -19,7 +19,7 @@ const ZR_WIB = 7 * 3600000;
 const ZR_TAB = { settings: 'Settings', members: 'Members', bookings: 'Bookings', log: 'Log', start: 'Start here' };
 const ZR_BK = ['id', 'memberId', 'member', 'startMs', 'endMs', 'start (WIB)', 'end (WIB)', 'status', 'kind', 'label', 'created', 'updated', 'endedAt'];
 const ZR_MB = ['id', 'name', 'nameKey', 'secretHash', 'status', 'created', 'updated'];
-const ZR_DEFAULTS = { maxDurationMin: '180', maxFuture: '5', wrapUpMin: '10', openStartHour: '6', openEndHour: '23', daysAhead: '60' };
+const ZR_DEFAULTS = { maxDurationMin: '180', maxFuture: '5', wrapUpMin: '10', openStartHour: '0', openEndHour: '24', daysAhead: '60' };
 const ZR_NUM = ['maxDurationMin', 'maxFuture', 'wrapUpMin', 'openStartHour', 'openEndHour', 'daysAhead'];
 
 /* ---------- small helpers ---------- */

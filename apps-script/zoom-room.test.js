@@ -85,7 +85,9 @@ test('duration, past, far-future and grid rules', () => {
   assert.strictEqual(as(cat, { a: 'book', start: T0 + 70 * 86400000, dur: 30 }).code, 'FAR');
   assert.strictEqual(as(cat, { a: 'book', start: T0 + 5 * HOUR + 7 * MIN, dur: 30 }).code, 'BAD');
 });
-test('open hours: nothing before 06:00 or at/after 23:00 WIB', () => {
+test('open hours: when narrowed to 06-23, nothing outside; default is 24h', () => {
+  assert(as(cat, { a: 'book', start: Date.UTC(2026, 10, 3, 20, 0), dur: 30 }).ok); // 03:00 WIB open by default
+  A({ a: 'a_settings', settings: { openStartHour: 6, openEndHour: 23 } });
   const six = Date.UTC(2026, 10, 3, 23, 0); // 06:00 WIB Nov 4
   assert.strictEqual(as(cat, { a: 'book', start: six - 30 * MIN, dur: 30 }).code, 'HOURS');
   assert(as(cat, { a: 'book', start: six, dur: 30 }).ok);

@@ -258,7 +258,7 @@ function renderMember() {
   const ms = localMidnight(now()) + S.day * DAY;
   const sl = slotsFor(ms);
   parts.push(el('div', { class: 'card' },
-    el('div', { class: 'row sb' }, el('h2', null, dayName(ms, true)), el('span', { class: 'small muted' }, 'Open ' + pad(d.rules.openStartHour) + ':00 to ' + pad(d.rules.openEndHour) + ':00 WIB')),
+    el('div', { class: 'row sb' }, el('h2', null, dayName(ms, true)), el('span', { class: 'small muted' }, (d.rules.openStartHour <= 0 && d.rules.openEndHour >= 24 ? 'Open 24 hours' : 'Open ' + pad(d.rules.openStartHour) + ':00 to ' + pad(d.rules.openEndHour) + ':00 WIB'))),
     sl.length ? el('div', { class: 'slots' }, sl.map(slotRow)) : el('div', { class: 'empty' }, 'Nothing left to book today. Pick another day.'),
     el('div', { class: 'small muted' }, 'Busy means someone else has booked it. You only ever see your own bookings.')));
   parts.push(mineCard());
