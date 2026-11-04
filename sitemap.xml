@@ -92,5 +92,14 @@
   </url>
   <url>
     <loc>https://alvacy.com/lifepak/</loc>
+    <xhtml:link rel="alternate" hreflang="id" href="https://alvacy.com/lifepak/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://alvacy.com/en/lifepak/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://alvacy.com/lifepak/"/>
+  </url>
+  <url>
+    <loc>https://alvacy.com/en/lifepak/</loc>
+    <xhtml:link rel="alternate" hreflang="id" href="https://alvacy.com/lifepak/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://alvacy.com/en/lifepak/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://alvacy.com/lifepak/"/>
   </url>
 </urlset>
