@@ -1,0 +1,16 @@
+[
+  {"id":"trme","added":"2026-10-01","cat":"wellness","brand":"Nu Skin","path":"/trme/","img":"/images/trme/trme-system.png",
+   "name":"ageLOC® TRME® System",
+   "id_line":"Sistem 90 hari dari Nu Skin untuk komposisi tubuh. Isi Product Information Page-nya dibuat gampang dibaca.",
+   "en_line":"Nu Skin's 90-day body composition system. Its Product Information Page, made easy to read.",
+   "en_note":"Page in Indonesian"},
+  {"id":"lifepak","added":"2026-11-04","cat":"wellness","brand":"Pharmanex","path":"/lifepak/","en_path":"/en/lifepak/","img":"/images/lifepak/classic-front.jpg",
+   "name":"LifePak®",
+   "id_line":"Multivitamin harian dalam satu sachet. Ada tiga: versi Indonesia ber-BPOM, Nano+, dan Tablet. Cari yang cocok buat kamu.",
+   "en_line":"A daily multivitamin in one sachet. Three versions: the Indonesian BPOM one, Nano+ and Tablet. Find the right one."},
+  {"id":"retinol","added":"2026-10-15","cat":"beauty","brand":"Nu Skin","path":"/retinol/","img":"/images/retinol/tru-face-retinol.png",
+   "name":"ageLOC® Tru Face® Peptide Retinol Complex",
+   "id_line":"Retinol yang lembut di kulit. Cara kerja, cara pakai, hasil studi, dan jawaban pertanyaan yang paling sering muncul.",
+   "en_line":"A retinol that is gentle on skin. How it works, how to use it, study results and the questions people ask most.",
+   "en_note":"Page in Indonesian"}
+]
