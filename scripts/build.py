@@ -356,7 +356,7 @@ def write_sitemap():
                 rows.append(f'    <xhtml:link rel="alternate" hreflang="{alt}" href="{url(alt, page["path"])}"/>')
             rows.append(f'    <xhtml:link rel="alternate" hreflang="x-default" href="{url("id", page["path"])}"/>\n  </url>')
     # Hand-written pages (not in PAGES, Indonesian only): listed here so the build keeps them in the sitemap.
-    for extra in ('trme/', 'retinol/'):
+    for extra in ('trme/', 'retinol/', 'lifepak/'):
         rows.append(f'  <url>\n    <loc>{SITE}/{extra}</loc>\n  </url>')
     rows.append('</urlset>')
     (ROOT / 'sitemap.xml').write_text('\n'.join(rows) + '\n', encoding='utf-8')
