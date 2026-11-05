@@ -2,7 +2,7 @@
 # Facts come from the official Nu Skin / Pharmanex Product Information Pages (PIP). No prices on purpose.
 
 G3 = dict(
-    slug='g3', img='/images/products/g3.png', cat='wellness', brand='Pharmanex', name='G3',
+    slug='g3', img='/images/products/g3.jpg', cat='wellness', brand='Pharmanex', name='G3',
     full='G3 Gâc Superfruit Blend',
     h1=('G3, jus gâc dengan lipocarotene', 'G3, a gâc fruit blend with lipocarotenes'),
     sub=('Jus buah yang bisa kamu minum tiap hari', 'A fruit juice you can drink every day'),
