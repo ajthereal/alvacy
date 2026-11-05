@@ -11,18 +11,18 @@ AP24 = dict(
           'What AP 24 Whitening toothpaste from Nu Skin is: peroxide-free, no harsh abrasives, with sodium monofluorophosphate. How to use it, ingredients, and answers to common questions.'),
     hub=('Pasta gigi vanilla mint tanpa peroksida dan tanpa abrasif kasar. Mengandung fluoride untuk membantu mencegah gigi berlubang.',
          'A vanilla mint toothpaste with no peroxide and no harsh abrasives. Contains fluoride to help prevent cavities.'),
-    lede=('AP 24 Whitening adalah pasta gigi yang membantu menghilangkan noda dan mengembalikan kecerahan alami gigi tanpa peroksida. Halaman ini merangkum Product Information Page resminya.',
-          'AP 24 Whitening is a toothpaste that helps lift stains and bring back your teeth’s natural brightness without peroxide. This page sums up its official Product Information Page.'),
+    lede=('AP 24 Whitening adalah pasta gigi yang membantu menghilangkan noda dan mengembalikan kecerahan alami gigi tanpa peroksida. Halaman ini merangkum lembar informasi produk resminya.',
+          'AP 24 Whitening is a toothpaste that helps lift stains and bring back your teeth’s natural brightness without peroxide. This page sums up its official product information sheet.'),
     chips=(('Tanpa peroksida', 'Peroxide-free'), ('Mengandung fluoride', 'Contains fluoride'), ('Vanilla mint', 'Vanilla mint')),
     what=[
         ('Menurut materi Nu Skin, pasta gigi ini mencerahkan gigi tanpa peroksida sambil membantu mencegah gigi berlubang dan terbentuknya plak. Rasa vanilla mint-nya membuat napas segar sepanjang hari.',
          'According to Nu Skin material, this toothpaste brightens teeth without peroxide while helping to prevent cavities and plaque build-up. The vanilla mint flavor keeps breath fresh through the day.'),
-        ('Pembersihnya memakai campuran Hydrated Silica dan Alumina, kombinasi bahan lembut yang menghaluskan dan mengkilapkan gigi tanpa mengikis email. Formula AP 24 sendiri berisi bahan pencegah plak berstandar farmasi yang memberi lapisan pelindung di gigi.',
-         'It cleans with a mix of Hydrated Silica and Alumina, a gentle combination that smooths and polishes teeth without wearing away enamel. The AP 24 formula itself contains a patented, pharmaceutical-grade plaque-prevention ingredient that leaves a protective layer on the teeth.'),
+        ('Pembersihnya memakai campuran Hydrated Silica dan Alumina (di daftar bahan tertulis Aluminium Hydroxide), kombinasi bahan lembut yang menghaluskan dan mengkilapkan gigi tanpa mengikis email. Formula AP 24 sendiri berisi bahan pencegah plak berstandar farmasi yang memberi lapisan pelindung di gigi.',
+         'It cleans with a mix of Hydrated Silica and Alumina (listed as Aluminium Hydroxide in the ingredients), a gentle combination that smooths and polishes teeth without wearing away enamel. The AP 24 formula itself contains a patented, pharmaceutical-grade plaque-prevention ingredient that leaves a protective layer on the teeth.'),
     ],
     who=(('Cocok untuk siapa', 'Who it suits'),
          ('Kamu yang giginya ternoda karena kopi, teh, makanan atau rokok dan mau kembali ke warna alami gigi. Ini bukan pemutih gigi, jadi tidak akan membuat gigi lebih putih dari warna aslinya.',
-          'You whose teeth are stained by coffee, tea, food or smoking and want to return to your natural tooth shade. It is not a bleaching product, so it will not make teeth whiter than their natural color.')),
+          'Good if your teeth are stained by coffee, tea, food or smoking and you want to return to your natural tooth shade. It is not a bleaching product, so it will not make teeth whiter than their natural color.')),
     bens=[
         (('Menurut materi Nu Skin', 'According to Nu Skin material'), [
             ('Membantu mencerahkan gigi tanpa peroksida', 'Helps brighten teeth without peroxide'),
@@ -40,8 +40,8 @@ AP24 = dict(
         'Water (Aqua), Hydrated Silica, Sorbitol, Aluminium Hydroxide, Glycerin, Tetrasodium Pyrophosphate, PEG-12, Flavor (Aroma), Cellulose Gum, Poloxamer 338, Poloxamer 407, Sodium Lauryl Sulfate, Sodium Monofluorophosphate, Dimethicone, Titanium Dioxide, Sodium Saccharin.',
         'Water (Aqua), Hydrated Silica, Sorbitol, Aluminium Hydroxide, Glycerin, Tetrasodium Pyrophosphate, PEG-12, Flavor (Aroma), Cellulose Gum, Poloxamer 338, Poloxamer 407, Sodium Lauryl Sulfate, Sodium Monofluorophosphate, Dimethicone, Titanium Dioxide, Sodium Saccharin.'))],
     know=[
-        ('Penting soal fluoride: judul di Product Information Page menyebut “fluoride-free”, tetapi isi dan daftar bahannya memuat Sodium Monofluorophosphate, yaitu bentuk fluoride. Jadi pasta gigi ini mengandung fluoride. Kalau kamu menghindari fluoride, jangan pakai.',
-         'Important about fluoride: the title on the Product Information Page says “fluoride-free”, but its body text and ingredient list contain Sodium Monofluorophosphate, a form of fluoride. So this toothpaste does contain fluoride. If you avoid fluoride, do not use it.'),
+        ('Soal fluoride: judul di materi resmi Nu Skin menyebut “fluoride-free”, tetapi isi dan daftar bahannya memuat Sodium Monofluorophosphate, yaitu bentuk fluoride. Jadi menurut dokumen itu pasta gigi ini mengandung fluoride. Kalau kamu menghindari fluoride, cek kemasan yang kamu terima dan jangan pakai bila ragu.',
+         'About fluoride: the title of the official Nu Skin material says “fluoride-free”, but its body text and ingredient list contain Sodium Monofluorophosphate, a form of fluoride. So according to that document this toothpaste contains fluoride. If you avoid fluoride, check the pack you receive and do not use it if in doubt.'),
         ('Jauhkan dari jangkauan anak di bawah 6 tahun.', 'Keep out of reach of children under 6.'),
     ],
     faq=[
@@ -70,12 +70,12 @@ SCALP = dict(
           'What ageLOC Scalp & Hair Shampoo and Conditioner from Nu Skin is: for thin, stressed and aging hair, safe for color-treated hair. 8-week study results, how to use, and FAQ.'),
     hub=('Sampo dan kondisioner untuk kulit kepala dan rambut yang tipis, lelah atau menua. Tidak membuat warna rambut pudar.',
          'A shampoo and conditioner for thin, stressed or aging scalp and hair. Does not fade hair color.'),
-    lede=('ageLOC Scalp & Hair Shampoo dan Conditioner merawat kulit kepala dan rambut supaya terlihat lebih penuh dan berkilau. Halaman ini merangkum Product Information Page resminya.',
-          'ageLOC Scalp & Hair Shampoo and Conditioner care for your scalp and hair so it looks fuller and shinier. This page sums up its official Product Information Page.'),
+    lede=('ageLOC Scalp & Hair Shampoo dan Conditioner merawat kulit kepala dan rambut supaya terlihat lebih penuh dan berkilau. Halaman ini merangkum lembar informasi produk resminya.',
+          'ageLOC Scalp & Hair Shampoo and Conditioner care for your scalp and hair so it looks fuller and shinier. This page sums up its official product information sheet.'),
     chips=(('Sampo + kondisioner', 'Shampoo + conditioner'), ('Aman untuk rambut berwarna', 'Color-safe')),
     what=[
         ('Menurut materi Nu Skin, produk ini menutrisi kulit kepala dan memberi rambut volume serta kilau lewat campuran bahan peremajaan. Isinya antara lain campuran protein untuk kulit kepala dan rambut, vitamin E dan antioksidan lain, serta campuran pengondisi rambut.',
-         'According to Nu Skin material, these products nourish the scalp and give hair volume and shine through a rejuvenating blend. They include a scalp- and hair-loving protein blend, vitamin E and other antioxidants, and a hair-conditioning blend.'),
+         'According to Nu Skin material, these products nourish the scalp and give hair volume and shine through a rejuvenating blend. They include a protein blend for scalp and hair, vitamin E and other antioxidants, and a hair-conditioning blend.'),
         ('Dalam tes terpisah di rambut sampel, sampo dan kondisioner ini menunjukkan perlindungan warna dan panas serta mengurangi patah rambut dibanding kontrol.',
          'In a separate test on hair tresses, the shampoo and conditioner showed color and heat protection and reduced breakage compared with a control.'),
     ],
@@ -142,8 +142,8 @@ GALVANIC = dict(
           'What ageLOC Galvanic Spa from Nu Skin is: a galvanic current device with four conductors for face, body, scalp and spot areas, compatible products, precautions, and FAQ.'),
     hub=('Perangkat kecantikan arus galvanik dengan empat konduktor untuk wajah, tubuh, kulit kepala dan area spot.',
          'A galvanic current beauty device with four conductors for face, body, scalp and spot areas.'),
-    lede=('ageLOC Galvanic Spa adalah perangkat genggam yang memakai arus galvanik untuk membantu bahan aktif produk perawatan masuk lebih baik ke kulit. Halaman ini merangkum Product Information Page resminya.',
-          'ageLOC Galvanic Spa is a handheld device that uses galvanic current to help the active ingredients of compatible products reach the skin better. This page sums up its official Product Information Page.'),
+    lede=('ageLOC Galvanic Spa adalah perangkat genggam yang memakai arus galvanik untuk membantu bahan aktif produk perawatan masuk lebih baik ke kulit. Halaman ini merangkum lembar informasi produk resminya.',
+          'ageLOC Galvanic Spa is a handheld device that uses galvanic current to help the active ingredients of compatible products reach the skin better. This page sums up its official product information sheet.'),
     chips=(('4 konduktor', '4 conductors'), ('Wajah, tubuh, kulit kepala', 'Face, body, scalp')),
     what=[
         ('Cara kerjanya seperti magnet. Produk yang kompatibel punya muatan tertentu. Perangkat mengalirkan muatan yang sama, jadi produk saling tolak dan terdorong masuk ke kulit untuk penyerapan yang lebih baik. Menurut materi Nu Skin, uji laboratorium menunjukkan teknologi galvanik meningkatkan penghantaran bahan utama hingga 24 jam.',
@@ -153,10 +153,10 @@ GALVANIC = dict(
     ],
     who=(('Cocok untuk siapa', 'Who it suits'),
          ('Kamu yang mau perawatan ala spa di rumah dan suka satu alat dengan banyak kegunaan. Baca bagian peringatan di bawah dulu.',
-          'You want a spa-style treatment at home and like one tool with many uses. Read the precautions below first.')),
+          'Good if you want a spa-style treatment at home and like one tool with many uses. Read the precautions below first.')),
     bens=[
         (('Wajah', 'Face'), [
-            ('Meremajakan dan mengangkat kotoran, menyegarkan dan melembapkan', 'Rejuvenates and lifts impurities, refreshes and hydrates'),
+            ('Meremajakan dan mengangkat kotoran, menyegarkan dan melembapkan', 'Lifts away impurities, refreshes and hydrates'),
             ('Membantu mengurangi tampilan garis halus dan kerutan', 'Helps reduce the look of fine lines and wrinkles'),
         ]),
         (('Tubuh dan kulit kepala', 'Body and scalp'), [
@@ -180,6 +180,7 @@ GALVANIC = dict(
     know=[
         ('Konsultasi dulu ke dokter sebelum memakai kalau kamu hamil, memakai alat pacu jantung atau perangkat serupa, punya epilepsi, memakai kawat gigi logam, atau punya implan logam. Jangan dipakai di area dengan banyak kapiler rusak atau luka meradang dan terbuka.',
          'See a doctor before using it if you are pregnant, wear a pacemaker or similar device, have epilepsy, wear metal braces or have metal implants. Do not use it on areas with many broken capillaries or on inflamed or open wounds.'),
+        ('Ini perangkat kecantikan, bukan alat medis.', 'This is a beauty device, not a medical device.'),
         ('Jangan paksa konduktor masuk. Kalau tidak terpasang, cek posisinya. Perangkat hanya bekerja bila konduktor terpasang benar.', 'Do not force a conductor on. If it will not fit, check its position. The device only works when the conductor is attached correctly.'),
     ],
     faq=[
@@ -209,8 +210,8 @@ WELLSPA = dict(
           'What ageLOC WellSpa iO from Nu Skin is: a Beauty & Wellness device with adaptive microcurrent and the Vera app. The three routines Restore, Revitalize and Rejuvenate, study results, companion products, and FAQ.'),
     hub=('Perangkat Beauty & Wellness dengan arus mikro adaptif dan aplikasi Vera, untuk pijat tubuh, kulit dan otot.',
          'A Beauty & Wellness device with adaptive microcurrent and the Vera app, for body, skin and muscle massage.'),
-    lede=('ageLOC WellSpa iO menggabungkan perangkat arus mikro adaptif, aplikasi Nu Skin Vera lewat Bluetooth, dan produk ageLOC tanpa bilas. Halaman ini merangkum Product Information Page resminya.',
-          'ageLOC WellSpa iO pairs an adaptive microcurrent device, the Nu Skin Vera app over Bluetooth, and leave-on ageLOC products. This page sums up its official Product Information Page.'),
+    lede=('ageLOC WellSpa iO menggabungkan perangkat arus mikro adaptif, aplikasi Nu Skin Vera lewat Bluetooth, dan produk ageLOC tanpa bilas. Halaman ini merangkum lembar informasi produk resminya.',
+          'ageLOC WellSpa iO pairs an adaptive microcurrent device, the Nu Skin Vera app over Bluetooth, and leave-on ageLOC products. This page sums up its official product information sheet.'),
     chips=(('Arus mikro adaptif', 'Adaptive microcurrent'), ('Aplikasi Vera', 'Vera app'), ('Tubuh', 'Body')),
     what=[
         ('Arus mikro adaptif adalah arus berdenyut bifasik yang terus menyesuaikan diri dengan konduktivitas kulitmu secara real time, jadi intensitasnya optimal tanpa mengurangi kenyamanan. Node logam berbentuk khusus (dalam proses paten di AS dan pasar lain) memberi pijatan halus sambil menstimulasi kulit.',
@@ -220,7 +221,7 @@ WELLSPA = dict(
     ],
     who=(('Cocok untuk siapa', 'Who it suits'),
          ('Kamu yang mau menggabungkan perawatan kulit tubuh dan pemulihan setelah olahraga dalam satu alat. Baca petunjuk keselamatan di manual perangkat sebelum memakai.',
-          'You want to combine body skin care and post-workout recovery in one device. Read the safety information in the device manual before use.')),
+          'Good if you want to combine body skin care and post-workout recovery in one device. Read the safety information in the device manual before use.')),
     bens=[
         (('Restore', 'Restore'), [
             ('Membantu pergerakan cairan dan mendukung proses alami tubuh lewat pijatan', 'Helps fluid movement and supports the body’s natural processes through massage'),
@@ -238,11 +239,11 @@ WELLSPA = dict(
     use=[
         (('Dengan ageLOC Body Serum', 'With ageLOC Body Serum'), ('Tiga kali seminggu sampai tiap hari. Oleskan serum ke area, lalu gerakkan perangkat memutar naik dengan perlahan. Oleskan lagi bila perlu agar kulit dan perangkat tetap terhubung. Untuk hasil terbaik, mulai dengan ageLOC Body Polish dan akhiri dengan ageLOC Dermatic Effects.',
           'Three times a week up to daily. Apply the serum to the area, then glide the device in slow upward circles. Reapply as needed so skin and device stay connected. For best results start with ageLOC Body Polish and finish with ageLOC Dermatic Effects.')),
-        (('Dengan ageLOC Body Activating Gel', 'With ageLOC Body Activating Gel'), ('Sekali sehari. Oleskan gel dalam jumlah banyak ke area otot, lalu gerakkan perangkat ke atas atau memutar perlahan sekitar satu menit per kelompok otot.',
-          'Once a day. Apply a generous amount of gel to the muscle area, then glide the device upward or in slow circles for about one minute per muscle group.')),
+        (('Dengan ageLOC Body Activating Gel', 'With ageLOC Body Activating Gel'), ('Sekali sehari. Oleskan gel dalam jumlah banyak ke area perawatan, lalu gerakkan perangkat lurus ke atas atau memutar perlahan.',
+          'Once a day. Apply a generous amount of gel to the treatment area, then glide the device straight upward or in slow circular motions.')),
         (('Batas waktu', 'Time limit'), ('Maksimal 5 menit per area tubuh per hari.', 'Up to 5 minutes per body area per day.')),
     ],
-    inside=[dict(h=('Isi sistem', 'What is in the system'), kind='list', items=[
+    inside=[dict(h=('Yang dipakai bersama', 'What is used together'), kind='list', items=[
         ('Perangkat ageLOC WellSpa iO, bercover silikon agar mudah dibersihkan, baterai isi ulang', 'The ageLOC WellSpa iO device, with a silicone cover for easy cleaning and a rechargeable battery'),
         ('ageLOC Body Serum untuk rutinitas Revitalize', 'ageLOC Body Serum for the Revitalize routine'),
         ('ageLOC Body Activating Gel untuk rutinitas Restore dan Rejuvenate', 'ageLOC Body Activating Gel for the Restore and Rejuvenate routines'),
@@ -250,7 +251,7 @@ WELLSPA = dict(
     ])],
     know=[
         ('Baca manual ageLOC WellSpa iO untuk informasi keselamatan sebelum memakai. Perangkat ini bukan alat medis.', 'Read the ageLOC WellSpa iO manual for safety information before use. This is not a medical device.'),
-        ('PIP resminya memuat grafik hasil klinis dalam persen. Angka grafiknya tidak aku salin ke sini, lihat dokumen resmi untuk angka lengkapnya.', 'The official PIP contains clinical result charts in percentages. I did not copy the chart numbers here, see the official document for the full figures.'),
+        ('Klaim soal tampilan selulit dan kulit bersifat kosmetik, bukan pengobatan. Grafik hasil klinis lengkap ada di dokumen resmi Nu Skin.', 'Claims about the look of cellulite and skin are cosmetic, not a treatment. The full clinical result charts are in the official Nu Skin document.'),
     ],
     faq=[
         (('Apa bedanya dengan Galvanic Body Spa?', 'How is it different from Galvanic Body Spa?'),
@@ -280,18 +281,18 @@ COLLAGEN = dict(
           'What Inner Focus Collagen Plus from Pharmanex (Nu Skin) is: collagen peptides, lutein and phytoceramides in one orange-flavored stick pack. Clinical study results, how to take it, wheat allergen note, and FAQ.'),
     hub=('Stick pack rasa jeruk dengan Bioactive Collagen Peptides, lutein dan phytoceramides. Bersertifikat SCS.',
          'An orange-flavored stick pack with Bioactive Collagen Peptides, lutein and phytoceramides. SCS-certified.'),
-    lede=('Inner Focus Collagen Plus adalah suplemen minum untuk kulit dari dalam. Satu stick pack sehari dicampur air. Halaman ini merangkum Product Information Page resminya.',
-          'Inner Focus Collagen Plus is a drink supplement for skin from the inside. One stick pack a day, mixed with water. This page sums up its official Product Information Page.'),
+    lede=('Inner Focus Collagen Plus adalah suplemen minum untuk kulit dari dalam. Satu stick pack sehari dicampur air. Halaman ini merangkum lembar informasi produk resminya.',
+          'Inner Focus Collagen Plus is a drink supplement for skin from the inside. One stick pack a day, mixed with water. This page sums up its official product information sheet.'),
     chips=(('Stick pack', 'Stick pack'), ('Bersertifikat SCS', 'SCS-certified'), ('Mengandung gandum', 'Contains wheat')),
     what=[
         ('Formulanya punya tiga bahan utama. Bioactive Collagen Peptides yang menurut materi Nu Skin membantu merangsang produksi kolagen dan elastin. Lutein dari bunga marigold, karotenoid yang membantu melindungi kulit dari stres oksidatif. Dan phytoceramides dari ekstrak lipid gandum yang membantu menjaga pelindung kelembapan kulit.',
          'The formula has three main ingredients. Bioactive Collagen Peptides, which Nu Skin material says help stimulate collagen and elastin production. Lutein from marigold flowers, a carotenoid that helps protect skin from oxidative stress. And phytoceramides from wheat lipid extract, which help keep the skin’s moisture barrier healthy.'),
-        ('Dalam studi tersertifikasi pihak ketiga, double-blind dengan plasebo, selama 4 bulan, Collagen Plus dinilai membantu memperbaiki tekstur, kecerahan dan penampilan kulit secara keseluruhan.',
+        ('Dalam studi pihak ketiga, double-blind dengan plasebo, selama 4 bulan, Collagen Plus dinilai membantu memperbaiki tekstur, kecerahan dan penampilan kulit secara keseluruhan.',
          'In a third-party, double-blind, placebo-controlled study over 4 months, Collagen Plus was graded as helping improve skin texture, radiance and overall appearance.'),
     ],
     who=(('Cocok untuk siapa', 'Who it suits'),
          ('Kamu yang mau merawat kulit dari dalam, terutama bila sudah memakai perawatan topikal. Jangan pakai kalau kamu alergi gandum.',
-          'You want to care for your skin from within, especially alongside topical skin care. Do not use it if you are allergic to wheat.')),
+          'Good if you want to care for your skin from within, especially alongside topical skin care. Do not use it if you are allergic to wheat.')),
     bens=[
         (('Menurut materi Nu Skin', 'According to Nu Skin material'), [
             ('Membantu meningkatkan produksi kolagen dan elastin di kulit', 'Helps boost collagen and elastin production in the skin'),
@@ -350,8 +351,8 @@ LUMISPA = dict(
           'What ageLOC LumiSpa iO from Nu Skin is: a facial cleansing device with Micropulse Oscillation, silicone heads, the Vera app, five treatment cleansers, how to use it, and FAQ.'),
     hub=('Perangkat pembersih dan peremajaan wajah dengan kepala silikon, Micropulse Oscillation dan aplikasi Vera.',
          'A facial cleansing and renewal device with silicone heads, Micropulse Oscillation and the Vera app.'),
-    lede=('ageLOC LumiSpa iO adalah perangkat genggam pintar yang membersihkan dan meremajakan kulit sekaligus dalam dua menit, dengan treatment cleanser khusus. Halaman ini merangkum Product Information Page resminya (versi AS).',
-          'ageLOC LumiSpa iO is a smart handheld device that cleanses and renews skin at the same time in two minutes, with dedicated treatment cleansers. This page sums up its official Product Information Page (US version).'),
+    lede=('ageLOC LumiSpa iO adalah perangkat genggam pintar yang membersihkan dan meremajakan kulit sekaligus dalam dua menit, dengan treatment cleanser khusus. Halaman ini merangkum lembar informasi produk resminya (versi AS).',
+          'ageLOC LumiSpa iO is a smart handheld device that cleanses and renews skin at the same time in two minutes, with dedicated treatment cleansers. This page sums up its official product information sheet (US version).'),
     chips=(('Bluetooth + aplikasi Vera', 'Bluetooth + Vera app'), ('Kepala silikon', 'Silicone heads'), ('5 jenis cleanser', '5 cleanser types')),
     what=[
         ('Kepala silikon lembut bergerak dengan frekuensi tertentu (Micropulse Oscillation) untuk mendorong pembaruan kulit, sementara gerakan berputar berlawanan arah mengangkat kotoran, minyak, makeup dan polusi. Menurut materi Nu Skin, kepala silikonnya lebih higienis dibanding sikat dan mengandung perak antimikroba.',
@@ -364,9 +365,12 @@ LUMISPA = dict(
           'All skin types, with a cleanser for dry, normal to combination, oily, sensitive and acne-prone skin. If your acne is severe, keep your regular regimen and ask a dermatologist first.')),
     bens=[
         (('Tujuh manfaat terbukti klinis', 'Seven clinically proven benefits'), [
-            ('Kulit terasa lebih lembut dan halus', 'Skin feels softer and smoother'),
-            ('Lebih bercahaya dan jernih', 'More radiant and clear'),
-            ('Kulit lebih bersih, pori tampak lebih kecil', 'Purified skin, reduced pore appearance'),
+            ('Lembut (softness)', 'Softness'),
+            ('Halus (smoothness)', 'Smoothness'),
+            ('Bercahaya (radiance)', 'Radiance'),
+            ('Jernih (clarity)', 'Clarity'),
+            ('Kulit lebih bersih', 'Purified skin'),
+            ('Pori tampak lebih kecil', 'Reduced pore appearance'),
             ('Kekencangan kulit tampak membaik', 'Visibly improved firmness'),
         ]),
         (('Waktu dan hasil', 'Timing and results'), [
@@ -386,13 +390,13 @@ LUMISPA = dict(
         ('Normal/Combo: untuk kulit normal sampai kombinasi, dengan minyak milk thistle dan antioksidan', 'Normal/Combo: for normal to combination skin, with milk thistle oil and antioxidants'),
         ('Oily: untuk kulit berminyak, dengan Japanese knotweed dan pomegranate', 'Oily: for oily skin, with Japanese knotweed and pomegranate'),
         ('Sensitive: formula paling lembut, low foam, dengan oat dan bisabolol', 'Sensitive: the gentlest formula, low foam, with oat and bisabolol'),
-        ('Acne: dengan 0,5% salicylic acid untuk membantu membersihkan pori dan mengurangi jerawat', 'Acne: with 0.5% salicylic acid to help clear pores and reduce breakouts'),
+        ('Acne: dengan 0,5% salicylic acid untuk membantu membersihkan pori', 'Acne: with 0.5% salicylic acid to help clear pores'),
     ])],
     know=[
         ('Jangan pakai cleanser LumiSpa di area mata. Perangkatnya tahan dipakai di kamar mandi, tetapi jangan dijatuhkan, disemprot air bertekanan tinggi, atau direndam lama.',
          'Do not use LumiSpa cleansers around the eyes. The device can be used in the shower, but do not drop it, hit it with high-pressure water or submerge it for long periods.'),
-        ('Soal jerawat: LumiSpa iO sendiri tidak dirancang mengobati jerawat. Dengan Treatment Cleanser Acne, materi Nu Skin menyebut jerawat sedang berkurang hingga 71% dalam 12 minggu.', 'About acne: LumiSpa iO itself was not designed to treat acne. With the Acne Treatment Cleanser, Nu Skin material reports moderate acne decreased by up to 71% over 12 weeks.'),
-        ('Ini PIP versi AS. Ketersediaan, isi paket dan registrasi di Indonesia bisa berbeda.', 'This is the US PIP. Availability, pack contents and registration in Indonesia may differ.'),
+        ('Ini perangkat kecantikan, bukan alat medis. LumiSpa iO tidak dirancang untuk mengobati jerawat. Kalau jerawatmu parah, tetap pakai perawatanmu dan tanya dokter kulit dulu.', 'This is a beauty device, not a medical device. LumiSpa iO was not designed to treat acne. If your acne is severe, keep your regular care and ask a dermatologist first.'),
+        ('Ini materi versi AS. Ketersediaan, isi paket dan registrasi di Indonesia bisa berbeda.', 'This is the US version of the material. Availability, pack contents and registration in Indonesia may differ.'),
     ],
     faq=[
         (('Harus pakai aplikasi?', 'Do I have to use the app?'),

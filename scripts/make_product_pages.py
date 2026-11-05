@@ -3,7 +3,7 @@
 Reuses scripts/lifepak/page.css. Also writes an og image per product and updates data/products.json.
 Run: python3 scripts/make_product_pages.py   then   python3 scripts/make_products.py
 Content pairs are (indonesian, english) tuples; plain strings are shared by both languages."""
-import sys, json, html, pathlib
+import sys, json, html, pathlib, re
 ROOT = pathlib.Path(__file__).resolve().parent.parent
 sys.path.insert(0, str(ROOT / 'scripts'))
 from products import wellness, skincare
@@ -23,6 +23,18 @@ CSS = (ROOT / 'scripts' / 'lifepak' / 'page.css').read_text(encoding='utf-8').st
 """
 
 E = html.escape
+SUPP = {'g3', 'r2', 'youth', 'marineomega', 'reset'}
+
+
+def short(x, n):
+    if len(x) <= n:
+        return x
+    cut = x[:n]
+    for sep in ('. ', ', ', ' '):
+        k = cut.rfind(sep)
+        if k > n * 0.55:
+            return cut[:k].rstrip(',. ')
+    return cut
 ENTRIES = [(m, p) for m in (wellness, skincare) for p in m.PRODUCTS]
 ALL = {p['slug']: p for _, p in ENTRIES}
 EXTRA = {'lifepak': ('LifePak®', '/lifepak/', '/en/lifepak/')}
@@ -45,10 +57,10 @@ def build(p, en):
                f'<div class="who reveal"><b>{t(p["who"][0])}</b><p>{t(p["who"][1])}</p></div></div></section>')
     nav.append(('#apa', ('Apa itu', 'What it is')))
     cards = ''.join(f'<article class="bc"><h3>{t(h)}</h3><ul>{"".join("<li>" + t(i) + "</li>" for i in items)}</ul></article>' for h, items in p['bens'])
-    sec.append(f'<section id="manfaat" style="background:linear-gradient(var(--sky),transparent)"><div class="wrap"><div class="head reveal"><p class="kicker">{t(("Manfaat", "Benefits"))}</p><h2>{t(("Yang dijanjikan materi resminya.", "What its official material says."))}</h2></div><div class="bens reveal">{cards}</div></div></section>')
+    sec.append(f'<section id="manfaat" style="background:linear-gradient(var(--sky),transparent)"><div class="wrap"><div class="head reveal"><p class="kicker">{t(("Manfaat", "Benefits"))}</p><h2>{t(("Manfaat menurut materi resmi", "Benefits per the official material"))}</h2></div><div class="bens reveal">{cards}</div></div></section>')
     nav.append(('#manfaat', ('Manfaat', 'Benefits')))
     tc = ''.join(f'<article class="tc"><span class="n">{i + 1:02d}</span><h3>{t(h)}</h3><p>{t(x)}</p></article>' for i, (h, x) in enumerate(p['use']))
-    sec.append(f'<section id="pakai"><div class="wrap"><div class="head reveal"><p class="kicker">{t(("Cara pakai", "How to use"))}</p><h2>{t(("Pakainya begini.", "Here is how to use it."))}</h2></div><div class="three reveal">{tc}</div></div></section>')
+    sec.append(f'<section id="pakai"><div class="wrap"><div class="head reveal"><p class="kicker">{t(("Cara pakai", "How to use"))}</p><h2>{t(("Cara pakainya", "How to take or use it"))}</h2></div><div class="three reveal">{tc}</div></div></section>')
     nav.append(('#pakai', ('Cara pakai', 'How to use')))
     blocks = []
     for b in p['inside']:
@@ -61,10 +73,10 @@ def build(p, en):
         else:
             body = f'<p class="ing">{t(b["text"])}</p>'
         blocks.append(f'<article class="pc"><div class="ph">{h}</div>{body}</article>')
-    sec.append(f'<section id="isi" style="background:linear-gradient(var(--sky),transparent)"><div class="wrap"><div class="head reveal"><p class="kicker">{t(("Isinya", "Inside"))}</p><h2>{t(("Dari label dan materi resmi.", "From the label and official material."))}</h2></div><div class="pcs reveal">{"".join(blocks)}</div></div></section>')
+    sec.append(f'<section id="isi" style="background:linear-gradient(var(--sky),transparent)"><div class="wrap"><div class="head reveal"><p class="kicker">{t(("Isinya", "Inside"))}</p><h2>{t(("Isinya, dari label dan materi resmi", "What is inside, from the label and official material"))}</h2></div><div class="pcs reveal">{"".join(blocks)}</div></div></section>')
     nav.append(('#isi', ('Isinya', 'Inside')))
     knw = ''.join(f'<p>{t(x)}</p>' for x in p['know'])
-    sec.append(f'<section id="catatan"><div class="wrap"><div class="head reveal"><p class="kicker">{t(("Perlu diketahui", "Good to know"))}</p><h2>{t(("Baca ini dulu.", "Read this first."))}</h2></div><div class="knw reveal">{knw}</div></div></section>')
+    sec.append(f'<section id="catatan"><div class="wrap"><div class="head reveal"><p class="kicker">{t(("Perlu diketahui", "Good to know"))}</p><h2>{t(("Sebelum mulai", "Before you start"))}</h2></div><div class="knw reveal">{knw}</div></div></section>')
     faq = ''.join(f'<details><summary>{t(q)}</summary><p>{t(a)}</p></details>' for q, a in p['faq'])
     rel = ''
     for s in p['links']:
@@ -73,15 +85,21 @@ def build(p, en):
         else:
             nm, ip, ep = EXTRA[s]
         rel += f'<a class="btn quiet" href="{ep if en else ip}">{E(nm)}</a>'
-    sec.append(f'<section id="tanya"><div class="wrap"><div class="head reveal"><p class="kicker">{t(("Tanya jawab", "FAQ"))}</p><h2>{t(("Yang sering ditanyakan.", "Frequently asked."))}</h2></div><div class="faq reveal">{faq}</div>'
+    sec.append(f'<section id="tanya"><div class="wrap"><div class="head reveal"><p class="kicker">{t(("Tanya jawab", "FAQ"))}</p><h2>{t(("Pertanyaan yang sering muncul", "Common questions"))}</h2></div><div class="faq reveal">{faq}</div>'
                f'<p class="seealso">{t(("Lihat juga", "See also"))}</p><div class="rel">{rel}</div></div></section>')
     nav.append(('#tanya', ('Tanya jawab', 'FAQ')))
-    sec.append(f'<section><div class="wrap"><div class="cta reveal"><h2>{t(("Mau tanya soal ini?", "Want to ask about this?"))}</h2>'
-               f'<p>{t(("Ceritakan kebutuhanmu. Aku jawab apa adanya. Aku bukan dokter, jadi untuk urusan medis aku arahkan ke dokter kamu.", "Tell me what you need. I will answer plainly. I am not a doctor, so for medical questions I send you to yours."))}</p>'
+    sec.append(f'<section><div class="wrap"><div class="cta reveal"><h2>{t(("Mau tanya soal ini?", "Questions about this?"))}</h2>'
+               f'<p>{t(("Ceritakan kebutuhanmu. Aku jawab apa adanya. Aku bukan dokter, jadi untuk urusan medis aku arahkan ke dokter kamu.", "Tell me what you need and I will answer plainly. I am not a doctor, so for medical questions I will point you to yours."))}</p>'
                f'<div class="ctas"><a class="btn primary js-wa" href="{WA}"><span>Chat <span class="cn">Coach AJ</span> {t(("di WhatsApp", "on WhatsApp"))}</span></a>'
                f'<a class="btn quiet" href="{"/en" if en else ""}/test/?utm_source={p["slug"]}-page&amp;utm_medium=halaman">{t(("Cek body age gratis", "Free body age check"))}</a></div></div></div></section>')
 
     chips = ''.join(f'<span>{t(c)}</span>' for c in p['chips'])
+    chips += f'<span>{t(("Cek ketersediaan di Indonesia lewat Coach AJ", "Check availability in Indonesia with Coach AJ"))}</span>'
+    if p['slug'] in SUPP:
+        p = dict(p, know=list(p['know']) + [('Pernyataan khasiat belum dievaluasi oleh badan pengawas obat dan makanan AS (FDA). Produk ini tidak dimaksudkan untuk mendiagnosis, mengobati, menyembuhkan atau mencegah penyakit.', 'These statements have not been evaluated by the US Food and Drug Administration. This product is not intended to diagnose, treat, cure or prevent any disease.')])
+        # rebuild the know section with the extra line
+        knw2 = ''.join(f'<p>{t(x)}</p>' for x in p['know'])
+        sec = [re.sub(r'(<div class="knw reveal">).*?(</div></div></section>)', lambda m: m.group(1) + knw2 + m.group(2), x, flags=re.S) if 'id="catatan"' in x else x for x in sec]
     navhtml = ''.join(f'<a href="{h}" class="hide-sm">{t(l)}</a>' for h, l in nav)
     ld = {"@context": "https://schema.org", "@type": "WebPage", "name": P(p['title'], en), "url": f"https://alvacy.com{path}",
           "inLanguage": 'en' if en else 'id', "description": P(p['desc'], en)}
@@ -93,8 +111,8 @@ def build(p, en):
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <!-- GENERATED by scripts/make_product_pages.py from scripts/products/*.py. Edit those, then run it. -->
-<title>{t(p["title"])} · #transformwithST</title>
-<meta name="description" content="{t(p["desc"])}">
+<title>{E(short(P(p["title"], en), 60))}</title>
+<meta name="description" content="{E(short(P(p["desc"], en), 158))}">
 <link rel="canonical" href="https://alvacy.com{path}">
 <link rel="alternate" hreflang="id" href="https://alvacy.com/{p['slug']}/">
 <link rel="alternate" hreflang="en" href="https://alvacy.com/en/{p['slug']}/">
@@ -105,7 +123,7 @@ def build(p, en):
 <meta name="theme-color" content="#1E3A8A">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="#transformwithST">
-<meta property="og:title" content="{t(p["title"])}">
+<meta property="og:title" content="{E(short(P(p["title"], en), 60))}">
 <meta property="og:description" content="{t(p["hub"])}">
 <meta property="og:url" content="https://alvacy.com{path}">
 <meta property="og:image" content="https://alvacy.com/images/products/og-{p['slug']}.jpg">
@@ -147,7 +165,7 @@ document.documentElement.setAttribute('data-theme','light');
   <p class="lede">{t(p["lede"])}</p>
   <div class="ctas">
     <a class="btn primary" href="#manfaat">{t(("Lihat manfaatnya", "See the benefits"))}</a>
-    <a class="btn quiet js-wa" href="{WA}"><span>{t(("Tanya", "Ask"))} <span class="cn">Coach AJ</span></span></a>
+    <a class="btn quiet js-wa" href="{WA}"><span>{t(("Tanya", "Message"))} <span class="cn">Coach AJ</span></span></a>
   </div>
   <div class="meta"><span><span>{P(("Dikelola <b class=\"cn\">Coach AJ</b>, Distributor Nu Skin Resmi, bukan situs resmi Nu Skin", "Run by <b class=\"cn\">Coach AJ</b>, an official Nu Skin distributor, not the official Nu Skin site"), en)}</span></span>{chips}</div>
   <img class="pimg" src="{p['img']}" alt="{E(p["full"])}" width="520" height="420" fetchpriority="high">
@@ -162,7 +180,7 @@ document.documentElement.setAttribute('data-theme','light');
     <p>{('Dikelola oleh <span class="cn">Coach AJ</span>, Distributor Nu Skin Resmi. Bukan situs resmi Nu Skin. Foto produk berasal dari Product Information Page Nu Skin.' if not en else 'Run by <span class="cn">Coach AJ</span>, an official Nu Skin distributor. Not the official Nu Skin site. Product photos come from the Nu Skin Product Information Page.')}</p>
   </div>
   <nav><a href="{'/en/' if en else '/'}">#transformwithST</a><a class="js-about" href="{'/en/transformwithAJ/' if en else '/transformwithAJ/'}">{t(("Tentang AJ", "About AJ"))}</a><a href="{'/en/privacy/' if en else '/privacy/'}">Privacy Policy</a></nav>
-  <span>{t(("© #transformwithST. Konten edukasi, bukan nasihat medis. Suplemen dan perangkat tidak menggantikan pola makan seimbang atau perawatan dokter. Hasil tiap orang beda-beda. Kalau sedang hamil, menyusui, minum obat, atau punya kondisi medis, konsultasikan dengan dokter. Ketersediaan dan izin edar di Indonesia belum tentu sama dengan materi sumber, tanya aku dulu.", "© #transformwithST. Educational content, not medical advice. Supplements and devices do not replace a balanced diet or medical care. Results differ from person to person. If you are pregnant, nursing, on medication or have a medical condition, talk to your doctor. Availability and registration in Indonesia may differ from the source material, ask me first."))}</span>
+  <span>{t(("© #transformwithST. Konten edukasi, bukan nasihat medis. Suplemen dan perangkat tidak menggantikan pola makan seimbang atau perawatan dokter. Hasil tiap orang beda-beda. Kalau sedang hamil, menyusui, minum obat, atau punya kondisi medis, konsultasikan dengan dokter. Ketersediaan dan izin edar di Indonesia belum tentu sama dengan materi sumber, tanya aku dulu.", "© #transformwithST. Educational content, not medical advice. Supplements and devices do not replace a balanced diet or medical care. Results differ from person to person. If you are pregnant, nursing, on medication or have a medical condition, talk to your doctor. Availability and registration in Indonesia may differ from the source material, check with me first."))}</span>
 </div></footer>
 
 <div class="dock"><a class="btn primary js-wa" href="{WA}"><span>Chat <span class="cn">Coach AJ</span> {t(("di WhatsApp", "on WhatsApp"))}</span></a></div>
