@@ -373,7 +373,7 @@ const UI = {
   resK:'Your Body Age Assessment', score:'score',
   gateH:'Your full results are ready',
   gateP:c=>`Add your details to unlock your area scores and 2 first steps. ${c} will contact you on WhatsApp to go through your results.`,
-  fWa:'WhatsApp number', fEmail:'Email', submit:'See my full results', lockPill:'Locked · add your details below to unlock', consentCheck:c=>`I agree that my details and quiz results are saved, and that ${c} may contact me on WhatsApp or email.`, errWa:'Please enter a valid WhatsApp number.', errEmail:'Please enter a valid email address.', errConsent:'Please tick the consent box first.', privacy:'Your details are only used by your coach and are never shared with anyone else.',
+  fWa:'WhatsApp number', fIg:'Instagram', optional:'optional', errIg:'Instagram username looks off. Use letters, numbers, dots or underscores only, or leave it empty.', fEmail:'Email', submit:'See my full results', lockPill:'Locked · add your details below to unlock', consentCheck:c=>`I agree that my details and quiz results are saved, and that ${c} may contact me on WhatsApp or email.`, errWa:'Please enter a valid WhatsApp number.', errEmail:'Please enter a valid email address.', errConsent:'Please tick the consent box first.', privacy:'Your details are only used by your coach and are never shared with anyone else.',
   fName:'Your name', fCity:'City', cities:['Jakarta','Tangerang','Bekasi','Depok','Bogor','Bandung','Other city'],
   fMode:'How would you like to meet?', modes:['In person (full assessment)','Online first (video call)'],
   send:c=>`Send to ${c} on WhatsApp`, errName:'Please add your name first.',
@@ -407,7 +407,7 @@ const o4 = (a,b,c,d) => [a,b,c,d].map((x,i)=>({id:x[0],en:x[1],v:3-i}));
 const Q = [
  // About you (not scored)
  {s:0,q:{id:'Berapa usia kamu?',en:'How old are you?'},h:{id:'Setelah 35, badan berubah pelan-pelan. Ini bantu baca hasil kamu.',en:'Bodies change gradually after 35. This helps read your results.'},
-  o:[['30–34','30–34'],['35–39','35–39'],['40–44','40–44'],['45–49','45–49'],['50+','50+']].map(x=>({id:x[0],en:x[1],v:0}))},
+  o:[['20–24','20–24'],['25–29','25–29'],['30–34','30–34'],['35–39','35–39'],['40–44','40–44'],['45–49','45–49'],['50+','50+']].map(x=>({id:x[0],en:x[1],v:0}))},
  {s:0,q:{id:'Jenis kelamin',en:'Gender'},h:{id:'Pola lemak dan otot pria dan wanita beda.',en:'Men and women store fat and build muscle differently.'},
   o:[['Pria','Male'],['Wanita','Female'],['Lebih baik tidak disebut','Prefer not to say']].map(x=>({id:x[0],en:x[1],v:0}))},
  {s:0,num:{min:120,max:220,unit:'cm',ph:'165',step:1},q:{id:'Berapa tinggi badan kamu?',en:'How tall are you?'},h:{id:'Dari tinggi badan, kita hitung berat, lemak, lingkar pinggang, protein, dan kalori yang pas buat kamu.',en:'From your height we work out the weight, body fat, waist, protein and calories that suit you.'},o:[]},
@@ -487,7 +487,7 @@ const svg = (p,s=22)=>`<svg width="${s}" height="${s}" viewBox="0 0 24 24" fill=
 const CHECK = '<path d="M5 12.5l4.5 4.5L19 7.5"/>';
 
 let lang = ALV.getLang();
-const S = {view:'landing', i:0, a:{}, interFor:null, lead:{name:'',city:0,mode:0,cc:'62',wa:'',email:'',consent:false}, unlocked:false};
+const S = {view:'landing', i:0, a:{}, interFor:null, lead:{name:'',ig:'',city:0,mode:0,cc:'62',wa:'',email:'',consent:false}, unlocked:false};
 let timer = null;
 const app = document.getElementById('app');
 const L = o => o[lang];
@@ -656,7 +656,7 @@ const BU = {
   numErr:(a,b,u)=>`Enter a number between ${a} and ${b} ${u}.`, skip:'Skip' }
 };
 UI.id.numErr=BU.id.numErr; UI.en.numErr=BU.en.numErr; UI.id.skip=BU.id.skip; UI.en.skip=BU.en.skip;
-const AGE_MID=[32,37,42,47,52];
+const AGE_MID=[22,27,32,37,42,47,52];
 function bodyModel(sc){
   const hq=S.a[2], wq=S.a[3];
   if(!hq||hq.n==null) return null;
@@ -744,6 +744,7 @@ function waMessage(c){
     row(m.age, ansText(0)), row(m.gender, ansText(1)),
     row(lang==='id'?'Tinggi':'Height', h?h+' cm':''), row(lang==='id'?'Berat':'Weight', w?w+' kg':''),
     row(m.goal, ansText(4)), row(m.start, ansText(5)), row(m.tried, ansText(6)),
+    row('Instagram', S.lead.ig),
     row(m.want, u.modes[S.lead.mode])
   ].filter((x,i,arr)=>x!==''||(i>0&&arr[i-1]!==''));
   return lines.join('\n').trim();
@@ -790,6 +791,7 @@ function results(u,c){
             <div class="field full"><label for="f-name">${u.fName}</label><input id="f-name" autocomplete="name" value="${esc(lead.name)}"></div>
             <div class="field full"><label for="f-wa">${u.fWa}</label><div class="phone"><select id="f-cc" aria-label="Country code">${[['62','ID +62'],['65','SG +65'],['60','MY +60']].map(x=>`<option value="${x[0]}"${lead.cc===x[0]?' selected':''}>${x[1]}</option>`).join('')}</select><input id="f-wa" type="tel" inputmode="tel" autocomplete="tel-national" placeholder="812 3456 7890" value="${esc(lead.wa)}"></div></div>
             <div class="field full"><label for="f-email">${u.fEmail}</label><input id="f-email" type="email" inputmode="email" autocomplete="email" placeholder="nama@email.com" value="${esc(lead.email)}"></div>
+            <div class="field full"><label for="f-ig">${u.fIg} <span class="small">(${u.optional})</span></label><input id="f-ig" autocomplete="off" autocapitalize="off" spellcheck="false" placeholder="@username" value="${esc(lead.ig)}"></div>
             <div class="field"><label for="f-city">${u.fCity}</label><select id="f-city">${cityOpts}</select></div>
             <div class="field full"><fieldset><legend>${u.fMode}</legend>${modeOpts}</fieldset></div>
             <label class="check full"><input type="checkbox" id="f-consent"${lead.consent?' checked':''}> <span>${u.consentCheck(c.name)}</span></label>
@@ -814,9 +816,15 @@ function syncLead(){
   if(v('f-cc')) S.lead.cc = v('f-cc').value;
   if(v('f-wa')) S.lead.wa = v('f-wa').value.trim();
   if(v('f-email')) S.lead.email = v('f-email').value.trim();
+  if(v('f-ig')) S.lead.ig = igHandle(v('f-ig').value);
   if(v('f-city')) S.lead.city = +v('f-city').value;
   const md=document.querySelector('input[name="mode"]:checked'); if(md) S.lead.mode = +md.value;
   if(v('f-consent')) S.lead.consent = v('f-consent').checked;
+}
+/* Instagram is optional: accepts "@name", "name" or a pasted instagram.com link, returns "@name" or ''. */
+function igHandle(raw){
+  let x=String(raw||'').trim().replace(/^https?:\/\/(www\.)?instagram\.com\//i,'').replace(/[/?#].*$/,'').replace(/^@+/,'');
+  return x?'@'+x:'';
 }
 function fullWa(){
   let d = S.lead.wa.replace(/\D/g,'');
@@ -828,6 +836,7 @@ function leadError(u){
   if(!S.lead.name) return [u.errName,'f-name'];
   if(!fullWa()) return [u.errWa,'f-wa'];
   if(!/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(S.lead.email)) return [u.errEmail,'f-email'];
+  if(S.lead.ig && !/^@[A-Za-z0-9._]{1,30}$/.test(S.lead.ig)) return [u.errIg,'f-ig'];
   if(!S.lead.consent) return [u.errConsent,'f-consent'];
   return null;
 }
@@ -841,7 +850,7 @@ function logLead(status, withContact){
     food:sc.food, energy:sc.energy, sleep:sc.sleep, move:sc.move, trend:sc.trend,
     age:pick(0), gender:pick(1), height:pick(2), weight:pick(3), goal:pick(4), start:pick(5), tried:pick(6),
     src:[ALV.source().source,ALV.source().medium].filter(Boolean).join(' / '), campaign:ALV.source().campaign, content:ALV.source().content, landing:ALV.source().landing,
-    name: withContact ? S.lead.name : '', wa: withContact ? fullWa() : '', email: withContact ? S.lead.email : '', consent: withContact ? 'Ya' : '', city: withContact ? u.cities[S.lead.city] : '', mode: withContact ? u.modes[S.lead.mode] : ''};
+    name: withContact ? S.lead.name : '', wa: withContact ? fullWa() : '', email: withContact ? S.lead.email : '', ig: withContact ? S.lead.ig : '', consent: withContact ? 'Ya' : '', city: withContact ? u.cities[S.lead.city] : '', mode: withContact ? u.modes[S.lead.mode] : ''};
   try{ fetch(LEADS_URL, {method:'POST', mode:'no-cors', keepalive:true, headers:{'Content-Type':'text/plain;charset=utf-8'}, body:JSON.stringify(d)}).catch(()=>{}); }catch(e){}
 }
 

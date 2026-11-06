@@ -15,10 +15,10 @@ const SRC_COL = 26;
 const SRC_HEADERS = ['Sumber','Campaign','Konten iklan','Halaman masuk'];
 const SRC_KEYS = ['src','campaign','content','landing'];
 
-/* Height and weight from the quiz live in columns AD-AE, right after the source columns. */
+/* Height and weight from the quiz live in columns AD-AE, and the optional Instagram handle in AF, right after the source columns. */
 const BODY_COL = SRC_COL + SRC_HEADERS.length;
-const BODY_HEADERS = ['Tinggi (cm)','Berat (kg)'];
-const BODY_KEYS = ['height','weight'];
+const BODY_HEADERS = ['Tinggi (cm)','Berat (kg)','Instagram'];
+const BODY_KEYS = ['height','weight','ig'];
 
 /* Who gets an email when a new lead arrives, by coach name shown on the site (COACHES[...].name in assets/site.js).
    Coaches' own addresses are NOT kept here, because this file is in a public repo. Put them in the Sheet's Apps Script:
@@ -129,6 +129,7 @@ function notify_(d) {
     'Nama: ' + d.name,
     'WhatsApp: +' + wa + '  ->  https://wa.me/' + wa,
     'Email: ' + d.email,
+    'Instagram: ' + (d.ig || '-'),
     'Kota: ' + d.city + ' | Mau: ' + d.mode,
     'Sumber: ' + (d.src || '-') + (d.campaign ? ' | Campaign: ' + d.campaign : '') + (d.content ? ' | Iklan: ' + d.content : ''),
     '',
