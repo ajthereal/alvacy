@@ -7,6 +7,13 @@
  * Lead emails go through a queue (sheet "Antrean Email"), one digest email per coach at most every MAIL_GAP_MIN minutes,
  * so a busy coach never uses up Gmail's daily sending limit. Every lead's email status is visible in that sheet.
  * One-time setup after pasting this file: run setupEmailQueue() once from the editor, then Deploy -> New version.
+ *
+ * SENDING: Apps Script's own MailApp stops at about 100 recipients a day on a personal Gmail. For more room, lead emails
+ * can go through Brevo's API (free plan: 300 emails a day). Project Settings -> Script properties:
+ *   BREVO_API_KEY  = the API key from Brevo (SMTP & API -> API keys)
+ *   BREVO_SENDER   = the sender address you verified in Brevo (default: aj.thereal@gmail.com)
+ *   BREVO_DAILY_CAP = optional, default 300 (raise it if you move to a paid Brevo plan)
+ * Without BREVO_API_KEY it keeps using MailApp. If Brevo fails, it falls back to MailApp while MailApp has quota left.
  */
 const HEADERS = ['Timestamp','Session ID','Status','Coach','Bahasa','Nama','WhatsApp','Email','Kota','Mau ketemu',
   'Skor total','Kategori','Pola makan','Energi','Tidur & stres','Gerak & otot','Tren badan',
@@ -156,6 +163,37 @@ function notify_(d) {
    AJ is no longer copied on every lead: he gets a daily summary and a warning when mail is stuck.
    Columns: A Masuk | B Coach | C Penerima | D Session ID | E Subjek | F Isi | G Status | H Dikirim | I Catatan
    ===================================================================================================================== */
+/* One place that sends an email. Brevo first (when BREVO_API_KEY is set), MailApp as the fallback. Throws if neither can. */
+function sendMail_(to, subject, body) {
+  const props = PropertiesService.getScriptProperties();
+  const key = props.getProperty('BREVO_API_KEY');
+  let brevoErr = '';
+  if (key && brevoLeft_() > 0) {
+    try {
+      const res = UrlFetchApp.fetch('https://api.brevo.com/v3/smtp/email', {
+        method: 'post', contentType: 'application/json', muteHttpExceptions: true, headers: { 'api-key': key, accept: 'application/json' },
+        payload: JSON.stringify({ sender: { name: '#transformwithST', email: props.getProperty('BREVO_SENDER') || DEFAULT_EMAIL }, to: [{ email: to }], subject: subject, textContent: body })
+      });
+      const code = res.getResponseCode();
+      if (code >= 200 && code < 300) { brevoCount_(1); return 'brevo'; }
+      brevoErr = 'Brevo ' + code + ': ' + String(res.getContentText()).slice(0, 150);
+    } catch (err) { brevoErr = 'Brevo: ' + String(err && err.message || err).slice(0, 150); }
+  }
+  if (MailApp.getRemainingDailyQuota() > 0) { MailApp.sendEmail({ to: to, subject: subject, body: body }); return 'mailapp'; }
+  throw new Error(brevoErr || (key ? 'Brevo daily cap reached and MailApp quota used up' : 'MailApp daily quota used up'));
+}
+function brevoDay_() { return Utilities.formatDate(new Date(), Session.getScriptTimeZone(), 'yyyy-MM-dd'); }
+function brevoUsed_() {
+  const v = String(PropertiesService.getScriptProperties().getProperty('BREVO_COUNT') || '').split('|');
+  return v[0] === brevoDay_() ? Number(v[1]) || 0 : 0;
+}
+function brevoCount_(n) { PropertiesService.getScriptProperties().setProperty('BREVO_COUNT', brevoDay_() + '|' + (brevoUsed_() + n)); }
+function brevoLeft_() { return Math.max(0, (Number(PropertiesService.getScriptProperties().getProperty('BREVO_DAILY_CAP')) || 300) - brevoUsed_()); }
+/* Emails that can still go out today across both senders. */
+function mailLeft_() {
+  return (PropertiesService.getScriptProperties().getProperty('BREVO_API_KEY') ? brevoLeft_() : 0) + MailApp.getRemainingDailyQuota();
+}
+
 const QUEUE_SHEET = 'Antrean Email';
 const MAIL_GAP_MIN = 30;     /* at most one email per recipient per this many minutes */
 const MAIL_BATCH = 25;       /* leads per email; the rest follow in the next one */
@@ -204,7 +242,7 @@ function flushQueue_() {
       if (now - new Date(v[0]) > 24 * 3600 * 1000) { setQ_(sh, i + 2, 'Gagal: tidak terkirim dalam 24 jam', '', String(v[8] || '')); return; }
       (waiting[v[2]] = waiting[v[2]] || []).push(i);
     });
-    let quota = MailApp.getRemainingDailyQuota();
+    let quota = mailLeft_();
     Object.keys(waiting).forEach(to => {
       const idx = waiting[to].slice(0, MAIL_BATCH);
       const nextAt = Number(props.getProperty('LAST_MAIL_' + to) || 0) + MAIL_GAP_MIN * 60000;
@@ -213,7 +251,7 @@ function flushQueue_() {
         return;
       }
       if (quota < 1) {
-        waiting[to].forEach(i => setQ_(sh, i + 2, 'Menunggu: batas kirim email harian Gmail sudah habis, dicoba lagi otomatis', '', 'Kuota reset sendiri dalam 24 jam'));
+        waiting[to].forEach(i => setQ_(sh, i + 2, 'Menunggu: batas kirim email harian sudah habis, dicoba lagi otomatis', '', 'Kuota reset sendiri dalam 24 jam'));
         return;
       }
       const one = idx.length === 1;
@@ -221,7 +259,7 @@ function flushQueue_() {
       const body = idx.map((i, n) => (one ? '' : (n + 1) + '/' + idx.length + '\n') + vals[i][5]).join('\n\n----------------------------------------\n\n')
         + (waiting[to].length > idx.length ? '\n\n(' + (waiting[to].length - idx.length) + ' lead lain menyusul di email berikutnya)' : '');
       try {
-        MailApp.sendEmail({ to: to, subject: subject, body: body });
+        sendMail_(to, subject, body);
         quota--;
         props.setProperty('LAST_MAIL_' + to, String(now.getTime()));
         idx.forEach(i => setQ_(sh, i + 2, 'Terkirim', now, idx.length > 1 ? 'Dalam 1 email rangkuman (' + idx.length + ' lead)' : ''));
@@ -246,14 +284,14 @@ function warnIfStuck_(sh) {
   if (!stuck.length) return;
   const props = PropertiesService.getScriptProperties();
   if (now.getTime() - Number(props.getProperty('LAST_STUCK_ALERT') || 0) < 6 * 3600 * 1000) return;
-  if (MailApp.getRemainingDailyQuota() < 1) return;   /* nothing can be sent; the sheet "Antrean Email" shows it */
+  if (mailLeft_() < 1) return;   /* nothing can be sent; the sheet "Antrean Email" shows it */
   const byCoach = {};
   stuck.forEach(v => { byCoach[v[1]] = (byCoach[v[1]] || 0) + 1; });
   try {
-    MailApp.sendEmail({ to: DEFAULT_EMAIL, subject: 'Email lead tertahan: ' + stuck.length + ' lead belum terkirim', body:
+    sendMail_(DEFAULT_EMAIL, 'Email lead tertahan: ' + stuck.length + ' lead belum terkirim',
       'Ada ' + stuck.length + ' lead yang emailnya belum terkirim lebih dari ' + STUCK_MIN + ' menit.\n\n' +
       Object.keys(byCoach).map(c => '- ' + c + ': ' + byCoach[c]).join('\n') + '\n\nAlasan terakhir: ' + (stuck[stuck.length - 1][6] + ' ' + stuck[stuck.length - 1][8]).trim() +
-      '\nSisa kuota kirim email hari ini: ' + MailApp.getRemainingDailyQuota() + '\nDetail per lead: sheet "' + QUEUE_SHEET + '" -> ' + SpreadsheetApp.getActiveSpreadsheet().getUrl() });
+      '\nSisa kuota kirim email hari ini: ' + mailLeft_() + '\nDetail per lead: sheet "' + QUEUE_SHEET + '" -> ' + SpreadsheetApp.getActiveSpreadsheet().getUrl());
     props.setProperty('LAST_STUCK_ALERT', String(now.getTime()));
   } catch (err) { logMailError_('peringatan tertahan', err); }
 }
@@ -273,8 +311,8 @@ function dailySummary_() {
     if (st === 'Terkirim') o.sent++; else if (st.indexOf('Menunggu') === 0) o.wait++; else o.fail++;
   });
   const lines = Object.keys(by).map(c => '- ' + c + ': ' + by[c].total + ' lead, ' + by[c].sent + ' terkirim, ' + by[c].wait + ' menunggu, ' + by[c].fail + ' gagal');
-  MailApp.sendEmail({ to: DEFAULT_EMAIL, subject: 'Ringkasan lead hari ini: ' + todays.length + ' lead',
-    body: (lines.length ? lines.join('\n') : 'Tidak ada lead hari ini.') + '\n\nSisa kuota kirim email hari ini: ' + MailApp.getRemainingDailyQuota() + '\nDetail: ' + SpreadsheetApp.getActiveSpreadsheet().getUrl() });
+  sendMail_(DEFAULT_EMAIL, 'Ringkasan lead hari ini: ' + todays.length + ' lead',
+    (lines.length ? lines.join('\n') : 'Tidak ada lead hari ini.') + '\n\nSisa kuota kirim email hari ini: ' + mailLeft_() + '\nDetail: ' + SpreadsheetApp.getActiveSpreadsheet().getUrl());
 }
 
 /* Run once from the editor after pasting this file. Creates the queue sheet and the two triggers. */
@@ -283,7 +321,7 @@ function setupEmailQueue() {
   ScriptApp.getProjectTriggers().forEach(t => { if (['flushQueue_', 'dailySummary_'].indexOf(t.getHandlerFunction()) >= 0) ScriptApp.deleteTrigger(t); });
   ScriptApp.newTrigger('flushQueue_').timeBased().everyMinutes(5).create();
   ScriptApp.newTrigger('dailySummary_').timeBased().atHour(21).everyDays(1).create();
-  const msg = 'Siap: sheet "' + QUEUE_SHEET + '" dibuat, email rangkuman jalan tiap 5 menit, ringkasan harian jam 21:00. Sisa kuota email hari ini: ' + MailApp.getRemainingDailyQuota() + '. Jangan lupa Deploy -> Manage deployments -> New version.';
+  const msg = 'Siap: sheet "' + QUEUE_SHEET + '" dibuat, email rangkuman jalan tiap 5 menit, ringkasan harian jam 21:00. Pengirim: ' + (PropertiesService.getScriptProperties().getProperty('BREVO_API_KEY') ? 'Brevo (sisa ' + brevoLeft_() + ' hari ini), cadangan MailApp' : 'MailApp saja (belum ada BREVO_API_KEY)') + '. Sisa kuota email hari ini: ' + mailLeft_() + '. Jangan lupa Deploy -> Manage deployments -> New version.';
   Logger.log(msg);
   try { SpreadsheetApp.getActiveSpreadsheet().toast(msg, 'Antrean email', 20); } catch (e) {}
   return msg;
