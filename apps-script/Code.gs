@@ -3,6 +3,10 @@
  * Lives in the leads Google Sheet: Extensions -> Apps Script.
  * After editing: Deploy -> Manage deployments -> (edit) -> Version: New version -> Deploy.
  * One row per quiz session (Session ID); later events update the same row.
+ *
+ * Lead emails go through a queue (sheet "Antrean Email"), one digest email per coach at most every MAIL_GAP_MIN minutes,
+ * so a busy coach never uses up Gmail's daily sending limit. Every lead's email status is visible in that sheet.
+ * One-time setup after pasting this file: run setupEmailQueue() once from the editor, then Deploy -> New version.
  */
 const HEADERS = ['Timestamp','Session ID','Status','Coach','Bahasa','Nama','WhatsApp','Email','Kota','Mau ketemu',
   'Skor total','Kategori','Pola makan','Energi','Tidur & stres','Gerak & otot','Tren badan',
@@ -60,6 +64,7 @@ function doPost(e) {
   if (first && first.kind === 'coach') return json_(coachPost_(first));
   const lock = LockService.getScriptLock();
   lock.waitLock(10000);
+  let queued = false;
   try {
     const d = JSON.parse(e.postData.contents || '{}');
     if (!d.sid) return ContentService.createTextOutput('missing sid');
@@ -93,10 +98,11 @@ function doPost(e) {
       const curBody = sh.getRange(r, BODY_COL, 1, BODY_KEYS.length).getValues()[0];
       sh.getRange(r, BODY_COL, 1, BODY_KEYS.length).setValues([bodyRow.map((v, i) => v === '' ? curBody[i] : v)]);
     }
-    if (d.status === 'Lead masuk') notify_(d);
+    if (d.status === 'Lead masuk') { notify_(d); queued = true; }
     return ContentService.createTextOutput('ok');
   } finally {
     lock.releaseLock();
+    if (queued) { try { flushQueue_(); } catch (err) { logMailError_('flush', err); } }
   }
 }
 
@@ -118,9 +124,7 @@ function notify_(d) {
       'Yang sudah dicoba: ' + d.tried,
       'Yang dirasakan: ' + d.goal
     ].concat(to === DEFAULT_EMAIL ? ['', 'Sheet: ' + SpreadsheetApp.getActiveSpreadsheet().getUrl()] : []).join('\n');
-    const pm = { to: to, subject: 'Lead baru (Plateau Check): ' + d.name, body: pb };
-    if (to !== DEFAULT_EMAIL) pm.cc = DEFAULT_EMAIL;
-    try { MailApp.sendEmail(pm); } catch (err) {}
+    enqueue_(d, to, 'Lead baru (Plateau Check): ' + d.name, pb);
     return;
   }
   const body = [
@@ -140,9 +144,149 @@ function notify_(d) {
     'Goal: ' + d.goal + ' | Mulai: ' + d.start,
     'Pernah coba: ' + d.tried
   ].concat(to === DEFAULT_EMAIL ? ['', 'Sheet: ' + SpreadsheetApp.getActiveSpreadsheet().getUrl()] : []).join('\n');
-  const mail = { to: to, subject: 'Lead baru: ' + d.name + ' (' + d.total + '/100)', body: body };
-  if (to !== DEFAULT_EMAIL) mail.cc = DEFAULT_EMAIL;
-  try { MailApp.sendEmail(mail); } catch (err) {}
+  enqueue_(d, to, 'Lead baru: ' + d.name + ' (' + d.total + '/100)', body);
+}
+
+/* =====================================================================================================================
+   EMAIL QUEUE
+   A personal Gmail account may send to about 100 recipients a day from Apps Script. Mailing every lead (coach + a copy
+   to AJ) used that up in one busy day, and the old code swallowed the error, so nothing was sent and nobody knew.
+   Now every lead is first written to the sheet "Antrean Email" (Status "Menunggu"). flushQueue_ sends at most one email
+   per recipient every MAIL_GAP_MIN minutes, with all that coach's waiting leads in it (a lone lead goes out at once).
+   AJ is no longer copied on every lead: he gets a daily summary and a warning when mail is stuck.
+   Columns: A Masuk | B Coach | C Penerima | D Session ID | E Subjek | F Isi | G Status | H Dikirim | I Catatan
+   ===================================================================================================================== */
+const QUEUE_SHEET = 'Antrean Email';
+const MAIL_GAP_MIN = 30;     /* at most one email per recipient per this many minutes */
+const MAIL_BATCH = 25;       /* leads per email; the rest follow in the next one */
+const STUCK_MIN = 60;        /* tell AJ when a lead has waited longer than this */
+const QUEUE_HEADS = ['Masuk', 'Coach', 'Penerima', 'Session ID', 'Subjek', 'Isi', 'Status', 'Dikirim', 'Catatan'];
+
+function queueSheet_() {
+  const ss = SpreadsheetApp.getActiveSpreadsheet();
+  let sh = ss.getSheetByName(QUEUE_SHEET);
+  if (!sh) {
+    sh = ss.insertSheet(QUEUE_SHEET);
+    sh.getRange(1, 1, 1, QUEUE_HEADS.length).setValues([QUEUE_HEADS]).setFontWeight('bold');
+    sh.setFrozenRows(1);
+    sh.setColumnWidth(5, 220); sh.setColumnWidth(6, 120); sh.setColumnWidth(7, 330); sh.setColumnWidth(9, 330);
+  }
+  return sh;
+}
+function logMailError_(where, err) {
+  try { queueSheet_().appendRow([new Date(), '-', '-', '-', 'Kesalahan: ' + where, '', 'Gagal: ' + String(err && err.message || err).slice(0, 200), '', '']); } catch (e) {}
+}
+/* Puts one lead's email in the queue. Each Session ID is queued once. */
+function enqueue_(d, to, subject, body) {
+  const sh = queueSheet_();
+  const last = sh.getLastRow();
+  if (d.sid && last > 1 && sh.getRange(2, 4, last - 1, 1).getValues().some(r => r[0] === d.sid)) return;
+  sh.appendRow([new Date(), d.coach || '-', to, d.sid || '', subject, body, 'Menunggu', '', '']);
+}
+function setQ_(sh, row, status, sent, note) {
+  sh.getRange(row, 7, 1, 3).setValues([[status, sent || '', note || '']]);
+}
+function hhmm_(t) { return Utilities.formatDate(new Date(t), Session.getScriptTimeZone(), 'HH:mm'); }
+
+function flushQueue_() {
+  const lock = LockService.getScriptLock();
+  if (!lock.tryLock(8000)) return;
+  try {
+    const sh = queueSheet_();
+    const last = sh.getLastRow();
+    if (last < 2) return;
+    const vals = sh.getRange(2, 1, last - 1, QUEUE_HEADS.length).getValues();
+    const props = PropertiesService.getScriptProperties();
+    const now = new Date();
+    const waiting = {};
+    vals.forEach((v, i) => {
+      if (String(v[6]).indexOf('Menunggu') !== 0) return;
+      if (now - new Date(v[0]) > 24 * 3600 * 1000) { setQ_(sh, i + 2, 'Gagal: tidak terkirim dalam 24 jam', '', String(v[8] || '')); return; }
+      (waiting[v[2]] = waiting[v[2]] || []).push(i);
+    });
+    let quota = MailApp.getRemainingDailyQuota();
+    Object.keys(waiting).forEach(to => {
+      const idx = waiting[to].slice(0, MAIL_BATCH);
+      const nextAt = Number(props.getProperty('LAST_MAIL_' + to) || 0) + MAIL_GAP_MIN * 60000;
+      if (now.getTime() < nextAt) {
+        waiting[to].forEach(i => setQ_(sh, i + 2, 'Menunggu: email rangkuman berikutnya sekitar ' + hhmm_(nextAt), '', ''));
+        return;
+      }
+      if (quota < 1) {
+        waiting[to].forEach(i => setQ_(sh, i + 2, 'Menunggu: batas kirim email harian Gmail sudah habis, dicoba lagi otomatis', '', 'Kuota reset sendiri dalam 24 jam'));
+        return;
+      }
+      const one = idx.length === 1;
+      const subject = one ? vals[idx[0]][4] : idx.length + ' lead baru (' + vals[idx[0]][1] + (vals[idx[0]][1] !== vals[idx[idx.length - 1]][1] ? ' dan lainnya' : '') + ')';
+      const body = idx.map((i, n) => (one ? '' : (n + 1) + '/' + idx.length + '\n') + vals[i][5]).join('\n\n----------------------------------------\n\n')
+        + (waiting[to].length > idx.length ? '\n\n(' + (waiting[to].length - idx.length) + ' lead lain menyusul di email berikutnya)' : '');
+      try {
+        MailApp.sendEmail({ to: to, subject: subject, body: body });
+        quota--;
+        props.setProperty('LAST_MAIL_' + to, String(now.getTime()));
+        idx.forEach(i => setQ_(sh, i + 2, 'Terkirim', now, idx.length > 1 ? 'Dalam 1 email rangkuman (' + idx.length + ' lead)' : ''));
+      } catch (err) {
+        const msg = String(err && err.message || err).slice(0, 200);
+        idx.forEach(i => setQ_(sh, i + 2, 'Menunggu: gagal kirim, dicoba lagi otomatis', '', msg));
+      }
+    });
+    warnIfStuck_(sh);
+  } finally {
+    lock.releaseLock();
+  }
+}
+
+/* Emails AJ once every 6 hours while any lead has been waiting longer than STUCK_MIN. */
+function warnIfStuck_(sh) {
+  const last = sh.getLastRow();
+  if (last < 2) return;
+  const vals = sh.getRange(2, 1, last - 1, QUEUE_HEADS.length).getValues();
+  const now = new Date();
+  const stuck = vals.filter(v => String(v[6]).indexOf('Menunggu') === 0 && now - new Date(v[0]) > STUCK_MIN * 60000);
+  if (!stuck.length) return;
+  const props = PropertiesService.getScriptProperties();
+  if (now.getTime() - Number(props.getProperty('LAST_STUCK_ALERT') || 0) < 6 * 3600 * 1000) return;
+  if (MailApp.getRemainingDailyQuota() < 1) return;   /* nothing can be sent; the sheet "Antrean Email" shows it */
+  const byCoach = {};
+  stuck.forEach(v => { byCoach[v[1]] = (byCoach[v[1]] || 0) + 1; });
+  try {
+    MailApp.sendEmail({ to: DEFAULT_EMAIL, subject: 'Email lead tertahan: ' + stuck.length + ' lead belum terkirim', body:
+      'Ada ' + stuck.length + ' lead yang emailnya belum terkirim lebih dari ' + STUCK_MIN + ' menit.\n\n' +
+      Object.keys(byCoach).map(c => '- ' + c + ': ' + byCoach[c]).join('\n') + '\n\nAlasan terakhir: ' + (stuck[stuck.length - 1][6] + ' ' + stuck[stuck.length - 1][8]).trim() +
+      '\nSisa kuota kirim email hari ini: ' + MailApp.getRemainingDailyQuota() + '\nDetail per lead: sheet "' + QUEUE_SHEET + '" -> ' + SpreadsheetApp.getActiveSpreadsheet().getUrl() });
+    props.setProperty('LAST_STUCK_ALERT', String(now.getTime()));
+  } catch (err) { logMailError_('peringatan tertahan', err); }
+}
+
+/* Daily summary to AJ (trigger at 21:00). */
+function dailySummary_() {
+  const sh = queueSheet_();
+  const last = sh.getLastRow();
+  const tz = Session.getScriptTimeZone(), today = Utilities.formatDate(new Date(), tz, 'yyyy-MM-dd');
+  const vals = last > 1 ? sh.getRange(2, 1, last - 1, QUEUE_HEADS.length).getValues() : [];
+  const todays = vals.filter(v => v[0] && Utilities.formatDate(new Date(v[0]), tz, 'yyyy-MM-dd') === today && v[3]);
+  const by = {};
+  todays.forEach(v => {
+    const o = by[v[1]] = by[v[1]] || { total: 0, sent: 0, wait: 0, fail: 0 };
+    o.total++;
+    const st = String(v[6]);
+    if (st === 'Terkirim') o.sent++; else if (st.indexOf('Menunggu') === 0) o.wait++; else o.fail++;
+  });
+  const lines = Object.keys(by).map(c => '- ' + c + ': ' + by[c].total + ' lead, ' + by[c].sent + ' terkirim, ' + by[c].wait + ' menunggu, ' + by[c].fail + ' gagal');
+  MailApp.sendEmail({ to: DEFAULT_EMAIL, subject: 'Ringkasan lead hari ini: ' + todays.length + ' lead',
+    body: (lines.length ? lines.join('\n') : 'Tidak ada lead hari ini.') + '\n\nSisa kuota kirim email hari ini: ' + MailApp.getRemainingDailyQuota() + '\nDetail: ' + SpreadsheetApp.getActiveSpreadsheet().getUrl() });
+}
+
+/* Run once from the editor after pasting this file. Creates the queue sheet and the two triggers. */
+function setupEmailQueue() {
+  queueSheet_();
+  ScriptApp.getProjectTriggers().forEach(t => { if (['flushQueue_', 'dailySummary_'].indexOf(t.getHandlerFunction()) >= 0) ScriptApp.deleteTrigger(t); });
+  ScriptApp.newTrigger('flushQueue_').timeBased().everyMinutes(5).create();
+  ScriptApp.newTrigger('dailySummary_').timeBased().atHour(21).everyDays(1).create();
+  const msg = 'Siap: sheet "' + QUEUE_SHEET + '" dibuat, email rangkuman jalan tiap 5 menit, ringkasan harian jam 21:00. Sisa kuota email hari ini: ' + MailApp.getRemainingDailyQuota() + '. Jangan lupa Deploy -> Manage deployments -> New version.';
+  Logger.log(msg);
+  try { SpreadsheetApp.getActiveSpreadsheet().toast(msg, 'Antrean email', 20); } catch (e) {}
+  return msg;
 }
 
 function doGet(e) {
