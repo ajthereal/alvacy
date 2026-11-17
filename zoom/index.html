@@ -290,7 +290,7 @@ function mineCard() {
   const rows = up.concat(past).slice(0, 12);
   const label = { active: 'Booked', cancelled: 'Cancelled', ended: 'Finished', done: 'Finished' };
   return el('div', { class: 'card' }, el('h2', null, 'My bookings'),
-    rows.length ? rows.map(b => el('div', { class: 'item' }, el('div', { class: 'row sb' }, el('div', null, el('div', { class: 'mono' }, hm(b.start) + ' – ' + hm(b.end)), el('div', { class: 'small muted' }, dayName(b.start, true))), el('span', { class: 'tag ' + (b.status === 'active' && b.end > now() ? 'active' : '') }, b.status === 'active' && b.end > now() ? 'Booked' : (label[b.status] || b.status))))) : el('div', { class: 'muted' }, 'Nothing yet.'));
+    rows.length ? rows.map(b => el('div', { class: 'item' }, el('div', { class: 'row sb' }, el('div', null, el('div', { class: 'mono' }, hm(b.start) + ' – ' + hm(b.end)), el('div', { class: 'small muted' }, dayName(b.start, true))), el('div', { class: 'row' }, el('span', { class: 'tag ' + (b.status === 'active' && b.end > now() ? 'active' : '') }, b.status === 'active' && b.end > now() ? 'Booked' : (label[b.status] || b.status)), b.status === 'active' && b.end > now() ? el('button', { class: 'btn sm warn', onclick: () => confirmCancel(b, b.start <= now()) }, b.start <= now() ? 'End early' : 'Cancel') : null)))) : el('div', { class: 'muted' }, 'Nothing yet.'));
 }
 function openBook(t) {
   const r = S.data.rules, t0 = now();
