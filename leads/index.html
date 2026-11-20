@@ -342,6 +342,23 @@ function message(L) {
   return `Halo ${nm}, aku ${who} dari #transformwithST 👋\n\nMakasih ya udah ikut Cek Sinyal Badan. ${score}${weak ? ', dan area yang paling perlu dibenahi itu ' + weak : ''}.\n\nAku mau bantu jelasin arti hasilnya dan langkah yang pas buat goal kamu${L.goal ? ' (' + lc(L.goal) + ')' : ''}. ${video ? 'Kamu lebih enak lewat chat dulu atau video call 15 menit?' : 'Kamu lebih enak ngobrol di chat dulu atau ketemu langsung?'}`;
 }
 function waLink(L, text) { return 'https://wa.me/' + L.wa + (text ? '?text=' + encodeURIComponent(text) : ''); }
+/* Open the WhatsApp app straight away (no extra browser tab). If WhatsApp is not installed, the page is still
+   showing after a moment, so fall back to the wa.me web link in this same tab, and say so. */
+function openWhatsApp(phone, text) {
+  const app = 'whatsapp://send?phone=' + phone + (text ? '&text=' + encodeURIComponent(text) : '');
+  let left = false;
+  const gone = () => { left = true; };
+  document.addEventListener('visibilitychange', gone, { once: true });
+  window.addEventListener('pagehide', gone, { once: true });
+  location.href = app;
+  setTimeout(() => {
+    document.removeEventListener('visibilitychange', gone);
+    if (!left && document.visibilityState === 'visible') {
+      banner('warn', 'The WhatsApp app did not open on this device, so WhatsApp Web is opening instead.');
+      location.href = 'https://wa.me/' + phone + (text ? '?text=' + encodeURIComponent(text) : '');
+    }
+  }, 1800);
+}
 
 /* ---------- saving ---------- */
 async function save(L, change, statusEl) {
@@ -569,8 +586,7 @@ function composeNodes(L) {
   const box = el('textarea', { class: 'field msgbox', 'aria-label': 'WhatsApp message' });
   box.value = message(L);
   const back = () => { if (wide()) { S.compose = false; render(); } else openLead(L); };
-  const go = el('a', { class: 'btn wa full', href: waLink(L, box.value), target: '_blank', rel: 'noopener', onclick: () => { markContacted(L); setTimeout(back, 300); } }, 'Open WhatsApp');
-  box.addEventListener('input', () => { go.href = waLink(L, box.value); });
+  const go = el('button', { class: 'btn wa full', type: 'button', onclick: () => { markContacted(L); openWhatsApp(L.wa, box.value); setTimeout(back, 300); } }, 'Open WhatsApp');
   return el('div', { class: 'dt' },
     el('div', { class: 'dt-h' }, el('div', null, el('h2', null, 'Message ' + firstName(L.name)), el('div', { class: 'f' }, 'Written from their quiz answers. Change anything before you send it.')), el('button', { class: 'btn sm', onclick: back }, 'Back')),
     box, go,
@@ -596,7 +612,7 @@ function renderBoard() {
             el('div', null, el('b', null, s.due), 'due'), el('div', null, el('b', null, s.active), 'in progress'), el('div', null, el('b', null, s.customers), 'customers'), el('div', null, el('b', null, s.total), 'total'))),
         el('div', { class: 'acts' },
           el('button', { class: 'btn sm pri', onclick: () => { S.viewCoach = c.code; S.filter = 'waiting'; S.q = ''; S.data = null; S.sel = ''; render(); refresh(); } }, 'Open leads'),
-          c.link ? el('a', { class: 'btn sm wa', href: 'https://wa.me/' + c.wa + '?text=' + encodeURIComponent(share(c)), target: '_blank', rel: 'noopener' }, 'Send link') : null,
+          c.link ? el('button', { class: 'btn sm wa', type: 'button', onclick: () => openWhatsApp(c.wa, share(c)) }, 'Send link') : null,
           c.link ? el('button', { class: 'btn sm', onclick: e => copy(c.link, e.target) }, 'Copy link') : null,
           el('button', { class: 'btn sm', onclick: () => rotate(c) }, c.link ? 'New link' : 'Make link')));
     }),
