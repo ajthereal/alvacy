@@ -246,4 +246,16 @@
     <xhtml:link rel="alternate" hreflang="en" href="https://alvacy.com/en/lumispa-io/"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://alvacy.com/lumispa-io/"/>
   </url>
+  <url>
+    <loc>https://alvacy.com/jungamals/</loc>
+    <xhtml:link rel="alternate" hreflang="id" href="https://alvacy.com/jungamals/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://alvacy.com/en/jungamals/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://alvacy.com/jungamals/"/>
+  </url>
+  <url>
+    <loc>https://alvacy.com/en/jungamals/</loc>
+    <xhtml:link rel="alternate" hreflang="id" href="https://alvacy.com/jungamals/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://alvacy.com/en/jungamals/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://alvacy.com/jungamals/"/>
+  </url>
 </urlset>
