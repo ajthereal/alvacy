@@ -384,4 +384,89 @@ RESET = dict(
          'Nu Skin / Pharmanex Product Information Page “ageLOC Reset” (Indonesian version, ©2021).'),
 )
 
-PRODUCTS = [G3, R2, YOUTH, MARINE, RESET]
+JUNGAMALS = dict(
+    slug='jungamals', img='/images/products/jungamals.png', cat='wellness', brand='Pharmanex', name='Jungamals® Chewable',
+    full='Pharmanex® Kids Jungamals® Chewable',
+    h1=('Jungamals®, multivitamin kunyah untuk anak', 'Jungamals®, a chewable multivitamin for kids'),
+    sub=('12 vitamin dan 10 mineral dalam tablet kunyah rasa anggur', '12 vitamins and 10 minerals in a grape-flavored chewable'),
+    title=('Jungamals Pharmanex: multivitamin kunyah anak, isi, cara pakai, tanya jawab', 'Jungamals by Pharmanex: kids chewable multivitamin, what is in it, how to take it, FAQ'),
+    desc=('Penjelasan Jungamals Chewable dari Pharmanex (Nu Skin): multivitamin dan mineral kunyah untuk anak, isi per 4 tablet, cara pakai, peringatan alergi kedelai, dan jawaban pertanyaan yang sering muncul.',
+          'What Jungamals Chewable from Pharmanex (Nu Skin) is: a chewable multivitamin and mineral for kids, contents per 4 tablets, how to take it, the soy allergy warning, and answers to common questions.'),
+    hub=('Multivitamin dan mineral kunyah rasa anggur untuk anak, dari keluarga LifePak. Isi label, cara pakai, dan peringatan alergi kedelai.',
+         'A grape-flavored chewable multivitamin and mineral for kids, from the LifePak family. Label contents, how to use it and the soy allergy warning.'),
+    lede=('Jungamals adalah multivitamin dan mineral kunyah untuk anak dari Pharmanex, dibuat dari riset LifePak. Halaman ini merangkum label versi Jepang dan lembar informasi produk Pharmanex.',
+          'Jungamals is a chewable multivitamin and mineral for kids from Pharmanex, built on LifePak research. This page sums up the Japan label and the Pharmanex product information sheet.'),
+    chips=(('Rasa anggur', 'Grape flavor'), ('Tablet kunyah', 'Chewable'), ('Mengandung kedelai', 'Contains soy')),
+    what=[
+        ('Banyak anak belum mendapat vitamin dan mineral yang cukup dari makanan. Menurut materi Pharmanex, sebagian besar anak usia 2 sampai 8 tahun asupannya di bawah angka kecukupan untuk folat, vitamin E, kalsium, zat besi, zinc, vitamin A, vitamin B6, magnesium, dan vitamin D. Jungamals dibuat untuk menutup celah itu.',
+         'Many kids do not get enough vitamins and minerals from food. According to Pharmanex material, a large share of children aged 2 to 8 take in less than the recommended amount of folate, vitamin E, calcium, iron, zinc, vitamin A, vitamin B6, magnesium and vitamin D. Jungamals is made to close that gap.'),
+        ('Label versi Jepang mencantumkan 12 vitamin dan 10 mineral, ditambah likopen dari tomat dan lutein dari marigold. Takarannya 4 tablet per hari, dikunyah, tanpa perlu air.',
+         'The Japan label lists 12 vitamins and 10 minerals, plus tomato lycopene and marigold lutein. The serving is 4 tablets a day, chewed, no water needed.'),
+    ],
+    who=(('Cocok untuk siapa', 'Who it suits'),
+         ('Anak yang makannya belum seimbang dan orang tua yang mau menambah asupan vitamin dan mineralnya. Kalau anak alergi kedelai, jangan pakai, karena isinya mengandung kedelai.',
+          'Kids whose meals are not yet balanced, and parents who want to add vitamins and minerals. If your child is allergic to soy, do not use it, because it contains soy.')),
+    bens=[
+        (('Menurut materi Pharmanex', 'According to Pharmanex material'), [
+            ('Antioksidan seperti vitamin C, vitamin E, selenium dan tembaga untuk melindungi tubuh anak', 'Antioxidants such as vitamin C, vitamin E, selenium and copper to protect a growing body'),
+            ('Kalsium dan nutrisi lain yang dibutuhkan tulang yang sedang tumbuh', 'Calcium and other nutrients growing bones need'),
+            ('Vitamin C, zinc dan nutrisi lain untuk daya tahan tubuh', 'Vitamin C, zinc and other nutrients for immune defenses'),
+        ]),
+        (('Yang membedakan', 'What sets it apart'), [
+            ('Dikembangkan dari riset LifePak, lini multivitamin utama Nu Skin', 'Developed from LifePak research, the main Nu Skin multivitamin line'),
+            ('Ada likopen dari tomat dan lutein dari marigold, selain vitamin dan mineral', 'Tomato lycopene and marigold lutein on top of the vitamins and minerals'),
+            ('Tablet kunyah rasa anggur, tidak perlu air', 'Grape-flavored chewable, no water needed'),
+        ]),
+    ],
+    use=[
+        (('Takaran', 'Serving'), ('Kunyah 4 tablet per hari sampai halus. Satu kemasan 120 tablet cukup untuk sekitar 30 hari.', 'Chew 4 tablets a day, thoroughly. One pack of 120 tablets lasts about 30 days.')),
+        (('Penyimpanan', 'Storage'), ('Simpan di tempat sejuk dan kering, jauh dari jangkauan anak kecil.', 'Store in a cool, dry place, out of reach of young children.')),
+        (('Penting', 'Important'), ('Berhenti kalau tidak cocok dengan kondisi anak, dan jangan dipakai kalau ada alergi kedelai.', 'Stop if it does not suit your child, and do not use it with a soy allergy.')),
+    ],
+    inside=[
+        dict(h=('Vitamin (per 4 tablet)', 'Vitamins (per 4 tablets)'), kind='facts', rows=[
+            (('Vitamin A', 'Vitamin A'), '500 μg'), (('Vitamin D', 'Vitamin D'), '20 μg'), (('Vitamin E', 'Vitamin E'), '30 mg'), (('Vitamin K', 'Vitamin K'), '15 μg'),
+            (('Vitamin B1', 'Vitamin B1'), '0.9 mg'), (('Vitamin B2', 'Vitamin B2'), '0.9 mg'), (('Niasin', 'Niacin'), '12 mg'), (('Vitamin B6', 'Vitamin B6'), '1.2 mg'),
+            (('Asam folat', 'Folic acid'), '200 μg'), (('Vitamin B12', 'Vitamin B12'), '2.1 μg'), (('Asam pantotenat', 'Pantothenic acid'), '4.5 mg'), (('Vitamin C', 'Vitamin C'), '60 mg'),
+        ]),
+        dict(h=('Mineral dan fitonutrien (per 4 tablet)', 'Minerals and phytonutrients (per 4 tablets)'), kind='facts', rows=[
+            (('Kalsium', 'Calcium'), '124.8 mg'), (('Zat besi', 'Iron'), '6 mg'), (('Magnesium', 'Magnesium'), '60.44 mg'), (('Zinc', 'Zinc'), '7.5 mg'),
+            (('Tembaga', 'Copper'), '0.19 mg'), (('Mangan', 'Manganese'), '2.1 mg'), (('Yodium', 'Iodine'), '135 μg'), (('Selenium', 'Selenium'), '60 μg'),
+            (('Kromium', 'Chromium'), '24 μg'), (('Molibdenum', 'Molybdenum'), '33 μg'),
+            (('Likopen dari tomat', 'Tomato lycopene'), '3 mg'), (('Lutein dari marigold', 'Marigold lutein'), '1 mg'),
+        ]),
+        dict(h=('Energi dan kemasan', 'Energy and pack'), kind='facts', rows=[
+            (('Energi', 'Energy'), '15.8 kcal'), (('Protein', 'Protein'), '0.1 g'), (('Lemak', 'Fat'), '0.1 g'), (('Karbohidrat', 'Carbohydrate'), '3.5 g'),
+            (('Setara garam', 'Salt equivalent'), '0.03 g'), (('Isi kemasan', 'Pack'), '120 tablet, 145.08 g'),
+        ], text=('Takaran 4 tablet. Bahan utama: ragi berisi zinc, mangan, selenium, tembaga, molibdenum, kromium dan yodium, karang kalsium tanpa pembakaran, magnesium fosfat, vitamin C, vitamin E, ferri pirofosfat, niasinamida, beta-karoten, kalsium pantotenat, likopen tomat, vitamin B6, B1, pewarna marigold (sumber lutein), B2, natrium askorbat, asam folat, vitamin D, vitamin K2 dan B12. Bahan lain: sukrosa, maltodekstrin, dekstrin, pati kacang polong, pati jagung, xylitol, asam sitrat, kalsium sitrat, selulosa mikrokristalin, pengental, asam lemak, pengemulsi, pati termodifikasi, asam alginat, perisa, pewarna bit merah dan spirulina, silikon dioksida, natrium sitrat. Mengandung kedelai.',
+                 'Serving is 4 tablets. Main ingredients: yeast containing zinc, manganese, selenium, copper, molybdenum, chromium and iodine, uncalcined coral calcium, magnesium phosphate, vitamin C, vitamin E, ferric pyrophosphate, niacinamide, beta-carotene, calcium pantothenate, tomato lycopene, vitamin B6, B1, marigold color (lutein source), B2, sodium ascorbate, folic acid, vitamin D, vitamin K2 and B12. Other ingredients: sucrose, maltodextrin, dextrin, pea starch, cornstarch, xylitol, citric acid, calcium citrate, microcrystalline cellulose, thickener, fatty acids, emulsifier, modified starch, alginic acid, flavoring, red beet and spirulina colors, silicon dioxide, sodium citrate. Contains soy.')),
+    ],
+    know=[
+        ('Cek semua bahan sebelum dipakai. Kalau anak punya alergi makanan, terutama kedelai, jangan pakai. Kalau anak sedang minum obat atau dalam perawatan dokter, tanya dokter atau apoteker dulu.',
+         'Check all the ingredients before use. If your child has a food allergy, especially to soy, do not use it. If your child is on medication or under a doctor\'s care, ask the doctor or a pharmacist first.'),
+        ('Ini label versi Jepang. Versi Amerika dan versi lain isinya berbeda, jadi cek dulu versi mana yang kamu pegang.',
+         'This is the Japan label. The US version and others differ, so check which version you have.'),
+    ],
+    faq=[
+        (('Untuk anak umur berapa?', 'What age is it for?'),
+         ('Lembar informasi Pharmanex versi Amerika menyebut anak usia 2 sampai 8 tahun. Label Jepang yang aku pegang tidak mencantumkan usia, jadi tanya aku dulu sebelum memberikannya ke anak yang masih kecil.',
+          'The US Pharmanex information sheet says children aged 2 to 8. The Japan label I have does not state an age, so ask me before giving it to a young child.')),
+        (('Kenapa anak perlu multivitamin?', 'Why would a child need a multivitamin?'),
+         ('Menurut materi Pharmanex, banyak anak makan buah dan sayur kurang dari anjuran dan makanannya tinggi kalori tapi rendah nutrisi. Suplemen membantu menutup celahnya, tapi tidak menggantikan makanan.',
+          'According to Pharmanex material, many kids eat fewer fruits and vegetables than recommended and eat calorie-heavy, nutrient-light food. A supplement helps fill the gap but does not replace food.')),
+        (('Apa bedanya dengan LifePak?', 'How is it different from LifePak?'),
+         ('Jungamals dikembangkan dari riset LifePak, tapi disusun untuk kebutuhan anak, dan bentuknya tablet kunyah.',
+          'Jungamals is developed from LifePak research but formulated for kids, and it comes as a chewable tablet.')),
+        (('Ada fluoride?', 'Does it have fluoride?'),
+         ('Label Jepang tidak mencantumkan fluoride. Materi Pharmanex menjelaskan fluoride sebaiknya dinilai dokter atau dokter gigi sesuai air minum dan kesehatan gigi anak.',
+          'The Japan label does not list fluoride. Pharmanex material says fluoride should be judged by a doctor or dentist based on drinking water and the child\'s dental health.')),
+        (('Apakah dijual di Indonesia?', 'Is it sold in Indonesia?'),
+         ('Izin edar dan ketersediaan di Indonesia belum tentu sama dengan label ini. Tanya aku dulu soal versi yang bisa kamu dapat.',
+          'Registration and availability in Indonesia may differ from this label. Ask me first about which version you can get.')),
+    ],
+    links=['lifepak', 'youth', 'marineomega'],
+    src=('Label produk Nu Skin Jepang “ジャンガマルズ チューワブル” (kode 03001956) dan Pharmanex Product Information Page “Jungamals” (versi Amerika berbahasa Inggris).',
+         'Nu Skin Japan product label “ジャンガマルズ チューワブル” (code 03001956) and the Pharmanex Product Information Page “Jungamals” (US English version).'),
+)
+
+PRODUCTS = [G3, R2, YOUTH, MARINE, RESET, JUNGAMALS]

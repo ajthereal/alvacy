@@ -166,5 +166,17 @@
   "name": "ageLOC® LumiSpa® iO",
   "id_line": "Perangkat pembersih dan peremajaan wajah dengan kepala silikon, Micropulse Oscillation dan aplikasi Vera.",
   "en_line": "A facial cleansing and renewal device with silicone heads, Micropulse Oscillation and the Vera app."
+ },
+ {
+  "id": "jungamals",
+  "added": "2026-11-20",
+  "cat": "wellness",
+  "brand": "Pharmanex",
+  "path": "/jungamals/",
+  "en_path": "/en/jungamals/",
+  "img": "/images/products/jungamals.png",
+  "name": "Jungamals® Chewable",
+  "id_line": "Multivitamin dan mineral kunyah rasa anggur untuk anak, dari keluarga LifePak. Isi label, cara pakai, dan peringatan alergi kedelai.",
+  "en_line": "A grape-flavored chewable multivitamin and mineral for kids, from the LifePak family. Label contents, how to use it and the soy allergy warning."
  }
 ]
