@@ -1,0 +1,487 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>My Leads · #transformwithST</title>
+<meta name="robots" content="noindex,nofollow">
+<meta name="description" content="Your private list of Cek Sinyal Badan leads.">
+<meta name="theme-color" content="#1E3A8A">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="My Leads">
+<meta name="referrer" content="no-referrer">
+<link rel="icon" href="/images/icon.svg?v=2" type="image/svg+xml">
+<link rel="icon" href="/images/icon-192.png?v=2" sizes="192x192" type="image/png">
+<link rel="apple-touch-icon" href="/images/apple-touch-icon.png?v=2">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Geist+Mono:wght@500&display=swap">
+<link rel="stylesheet" href="/assets/site.css?v=1793167738">
+<style>
+.lp{max-width:620px;margin:0 auto;padding:18px 16px 96px;display:grid;grid-template-columns:minmax(0,1fr);gap:14px}
+#view{display:grid;grid-template-columns:minmax(0,1fr);gap:12px}
+.lp header{display:grid;gap:4px;padding-top:6px}
+.lp .brand{font-size:.82rem;font-weight:700;letter-spacing:.02em;color:var(--muted)}
+.lp h1{font-size:clamp(1.8rem,8vw,2.4rem)}
+.lp .sub{color:var(--muted);font-size:.95rem}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:22px;padding:16px;display:grid;gap:10px;box-shadow:var(--lift);min-width:0}
+.card h2{font-size:1.1rem;letter-spacing:-.02em;line-height:1.2}
+.row{display:flex;gap:8px;align-items:center;flex-wrap:wrap}
+.row.sb{justify-content:space-between}
+.muted{color:var(--muted)}
+.small{font-size:.85rem}
+.mono{font-family:var(--f-mono);font-variant-numeric:tabular-nums}
+.btn{appearance:none;border:0;border-radius:999px;background:var(--cta);color:var(--cta-ink);font:600 .96rem var(--f-body);padding:11px 18px;min-height:46px;cursor:pointer;text-decoration:none;display:inline-flex;align-items:center;justify-content:center;gap:8px}
+.btn:hover{background:var(--cta-hover)}
+.btn.ghost{background:transparent;color:var(--head);border:1.5px solid var(--sky-line)}
+.btn.ghost:hover{background:var(--accent-soft)}
+.btn.wa{background:#128C4A;color:#fff}
+.btn.wa:hover{background:#0E7A40}
+.btn.warn{background:transparent;color:var(--bad);border:1.5px solid var(--bad)}
+.btn.sm{min-height:38px;padding:7px 14px;font-size:.87rem}
+.btn.full{width:100%}
+.btn[disabled]{opacity:.45;cursor:default}
+.banner{border-radius:16px;padding:12px 14px;font-size:.93rem;line-height:1.45;border:1px solid}
+.banner.err{background:var(--bad-soft);border-color:var(--bad);color:var(--bad)}
+.banner.warn{background:var(--warn-soft);border-color:var(--warn);color:var(--warn)}
+.banner.ok{background:var(--good-soft);border-color:var(--good);color:var(--good)}
+.banner button{margin-left:8px}
+.stats{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:8px}
+.stat{background:var(--surface);border:1px solid var(--line);border-radius:18px;padding:10px 8px;text-align:center;cursor:pointer;font:inherit;color:inherit}
+.stat b{display:block;font-size:1.5rem;font-weight:800;color:var(--head);font-variant-numeric:tabular-nums;line-height:1.1}
+.stat span{font-size:.74rem;font-weight:700;color:var(--muted);letter-spacing:.01em}
+.stat.hot{background:var(--bad-soft);border-color:var(--bad)}
+.stat.hot b,.stat.hot span{color:var(--bad)}
+.stat.due{background:var(--warn-soft);border-color:var(--warn)}
+.stat.due b,.stat.due span{color:var(--warn)}
+.chips{display:flex;gap:8px;overflow-x:auto;padding:2px 2px 4px;scrollbar-width:none;-webkit-overflow-scrolling:touch}
+.chips::-webkit-scrollbar{display:none}
+.chip{flex:0 0 auto;border:1.5px solid var(--sky-line);background:var(--surface);color:var(--head);border-radius:999px;padding:8px 14px;min-height:40px;font:600 .9rem var(--f-body);cursor:pointer;white-space:nowrap}
+.chip[aria-pressed=true]{background:var(--cta);color:var(--cta-ink);border-color:var(--cta)}
+.chip .n{font-family:var(--f-mono);margin-left:4px;opacity:.75}
+.search{font:500 1rem var(--f-body);color:var(--ink);background:var(--surface);border:1.5px solid var(--line);border-radius:14px;padding:11px 12px;min-height:46px;width:100%}
+.lead{display:grid;gap:8px;cursor:pointer;text-align:left}
+.lead .nm{font-weight:800;font-size:1.06rem;color:var(--head);overflow-wrap:anywhere}
+.lead .meta{font-size:.86rem;color:var(--muted);overflow-wrap:anywhere}
+.lead.late{border-color:var(--bad);box-shadow:0 0 0 1px var(--bad) inset,var(--lift)}
+.tag{display:inline-block;border-radius:999px;padding:2px 10px;font-size:.76rem;font-weight:700;background:var(--sand);color:var(--muted);white-space:nowrap}
+.tag.good{background:var(--good-soft);color:var(--good)}
+.tag.bad{background:var(--bad-soft);color:var(--bad)}
+.tag.warn{background:var(--warn-soft);color:var(--warn)}
+.tag.blue{background:var(--accent-soft);color:var(--accent)}
+.sheet-bg{position:fixed;inset:0;background:rgba(15,23,48,.45);display:flex;align-items:flex-end;justify-content:center;z-index:50}
+.sheet{background:var(--bg);width:100%;max-width:620px;border-radius:26px 26px 0 0;padding:18px 16px calc(22px + env(safe-area-inset-bottom,0px));display:grid;gap:14px;max-height:92vh;overflow:auto;overscroll-behavior:contain}
+.sheet h2{font-size:1.4rem;letter-spacing:-.02em;overflow-wrap:anywhere}
+.sec{display:grid;gap:8px}
+.sec h3{font-size:.8rem;font-weight:800;letter-spacing:.06em;text-transform:uppercase;color:var(--muted)}
+.kv{display:grid;grid-template-columns:auto minmax(0,1fr);gap:6px 12px;font-size:.93rem}
+.kv .k{color:var(--muted)}
+.kv .v{overflow-wrap:anywhere;color:var(--ink)}
+.bars{display:grid;gap:7px}
+.bar{display:grid;grid-template-columns:118px minmax(0,1fr) 34px;gap:8px;align-items:center;font-size:.86rem}
+.bar .tr{height:9px;border-radius:9px;background:var(--sand);overflow:hidden}
+.bar .fl{height:100%;border-radius:9px}
+.bar .n{font-family:var(--f-mono);text-align:right}
+.stages{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:6px}
+.stg{border:1.5px solid var(--line);background:var(--surface);color:var(--ink);border-radius:14px;min-height:46px;padding:6px;font:600 .86rem var(--f-body);cursor:pointer}
+.stg[aria-pressed=true]{background:var(--cta);color:var(--cta-ink);border-color:var(--cta)}
+.chk{display:flex;gap:10px;align-items:center;font-size:.95rem;min-height:40px}
+.chk input{width:22px;height:22px;flex:0 0 auto}
+textarea.f,input.f{font:500 1rem var(--f-body);color:var(--ink);background:var(--surface);border:1.5px solid var(--line);border-radius:14px;padding:11px 12px;min-height:46px;width:100%}
+textarea.f{min-height:84px;resize:vertical}
+.note{border-left:3px solid var(--sky-line);padding:2px 0 2px 10px;font-size:.92rem;overflow-wrap:anywhere}
+.note .t{font-size:.76rem;color:var(--muted);font-family:var(--f-mono)}
+.saving{font-size:.8rem;color:var(--muted);min-height:1em}
+.foot{color:var(--muted);font-size:.82rem;text-align:center;padding:6px 8px}
+.empty{padding:26px 8px;text-align:center;color:var(--muted)}
+.spin{display:inline-block;width:14px;height:14px;border:2px solid var(--sky-line);border-top-color:var(--accent);border-radius:50%;animation:sp .8s linear infinite;vertical-align:-2px}
+@keyframes sp{to{transform:rotate(360deg)}}
+.link{background:none;border:0;padding:0;color:var(--accent);text-decoration:underline;font:inherit;cursor:pointer}
+.coachrow{display:grid;gap:8px}
+.coachrow .nums{display:flex;gap:6px;flex-wrap:wrap}
+@media (max-width:380px){.stats{grid-template-columns:repeat(2,minmax(0,1fr))}.stages{grid-template-columns:repeat(2,minmax(0,1fr))}.bar{grid-template-columns:96px minmax(0,1fr) 30px}}
+@media (prefers-reduced-motion:reduce){.spin{animation:none}}
+</style>
+</head>
+<body>
+<main class="lp">
+  <header>
+    <div class="brand">#transformwithST</div>
+    <h1 id="title">My Leads</h1>
+    <div class="sub" id="sub">Loading…</div>
+  </header>
+  <div id="banner" role="alert" aria-live="polite"></div>
+  <div id="view"></div>
+  <div class="foot" id="foot"></div>
+</main>
+<div id="sheet"></div>
+
+<script>
+/* Leads portal. The server (apps-script/Code.gs, "LEADS PORTAL") decides what each link may see:
+   a coach's link only ever receives that coach's leads. This page only shows what the server sends. */
+const API = 'https://script.google.com/macros/s/AKfycbzHYCy85pcm4xrpc_WEtsaBsibqSqL1nnCM9J73-kLUhlQXbolvuyQogj7fnDmW17WiRg/exec';
+const API_V = 1;
+const MIN = 60000, HOUR = 3600000, DAY = 86400000;
+
+/* ---------- helpers ---------- */
+function el(tag, props, ...kids) {
+  const n = document.createElement(tag);
+  if (props) for (const k in props) {
+    const v = props[k];
+    if (k === 'class') n.className = v;
+    else if (k === 'value') n.value = v;
+    else if (k === 'checked') n.checked = !!v;
+    else if (k.slice(0, 2) === 'on') n.addEventListener(k.slice(2), v);
+    else if (v === true) n.setAttribute(k, '');
+    else if (v !== false && v != null) n.setAttribute(k, v);
+  }
+  kids.flat(Infinity).forEach(c => { if (c == null || c === false) return; n.append(c.nodeType ? c : document.createTextNode(String(c))); });
+  return n;
+}
+const $ = id => document.getElementById(id);
+function put(node, ...kids) { node.replaceChildren(...kids.flat(Infinity).filter(Boolean)); }
+function store(k, v) { try { if (v == null) localStorage.removeItem(k); else localStorage.setItem(k, v); } catch (e) {} }
+function load(k) { try { return localStorage.getItem(k) || ''; } catch (e) { return ''; } }
+const pad = n => String(n).padStart(2, '0');
+function ymd(ms) { const d = new Date(ms); return d.getFullYear() + '-' + pad(d.getMonth() + 1) + '-' + pad(d.getDate()); }
+function ago(ms) {
+  const d = now() - ms;
+  if (d < HOUR) return Math.max(1, Math.round(d / MIN)) + ' min';
+  if (d < DAY) return Math.round(d / HOUR) + ' h';
+  const n = Math.floor(d / DAY); return n + (n === 1 ? ' day' : ' days');
+}
+function when(ms) { return new Date(ms).toLocaleString('en-GB', { day: 'numeric', month: 'short', hour: '2-digit', minute: '2-digit' }); }
+function niceDay(s) {
+  if (!s) return '';
+  if (s === S.today) return 'today';
+  const t = new Date(s + 'T00:00:00').getTime(), td = new Date(S.today + 'T00:00:00').getTime(), diff = Math.round((t - td) / DAY);
+  if (diff === 1) return 'tomorrow';
+  if (diff === -1) return 'yesterday';
+  return new Date(t).toLocaleDateString('en-GB', { weekday: 'short', day: 'numeric', month: 'short' });
+}
+function addDays(n) { return ymd(new Date(S.today + 'T00:00:00').getTime() + n * DAY); }
+
+/* ---------- state ---------- */
+const S = { key: '', admin: '', viewCoach: '', data: null, board: null, filter: 'waiting', q: '', open: '', skew: 0, today: ymd(Date.now()), lastOk: 0 };
+const now = () => Date.now() + S.skew;
+const OPEN = ['New', 'Contacted', 'Consult booked', 'Consult done'];
+
+function readKeys() {
+  const h = new URLSearchParams((location.hash || '').replace(/^#/, ''));
+  if (h.get('k')) store('ld-key', h.get('k'));
+  if (h.get('admin')) store('ld-admin', h.get('admin'));
+  if (h.get('l')) S.open = h.get('l');
+  S.key = load('ld-key'); S.admin = load('ld-admin');
+  if (h.get('admin')) S.key = '';           /* AJ opening his own board on a phone that also has a coach link */
+  /* Keep the key in the address, so "Add to Home Screen" works; drop the one-time lead id. */
+  const keep = h.get('admin') ? '#admin=' + h.get('admin') : (S.key ? '#k=' + S.key : (S.admin ? '#admin=' + S.admin : ''));
+  try { history.replaceState(null, '', location.pathname + keep); } catch (e) {}
+}
+const isAdmin = () => !!S.admin && !S.key;
+
+/* ---------- server ---------- */
+class ApiError extends Error { constructor(msg, code) { super(msg); this.code = code; } }
+async function api(payload, opts) {
+  const body = Object.assign({ kind: 'leads', k: isAdmin() ? S.admin : S.key }, isAdmin() && S.viewCoach && payload.a.indexOf('a_') !== 0 ? { coach: S.viewCoach } : {}, payload);
+  const ctl = new AbortController();
+  const timer = setTimeout(() => ctl.abort(), 30000);
+  let text;
+  try {
+    const res = await fetch(API, { method: 'POST', headers: { 'Content-Type': 'text/plain;charset=utf-8' }, body: JSON.stringify(body), signal: ctl.signal, redirect: 'follow', keepalive: !!(opts && opts.keepalive) });
+    text = await res.text();
+  } catch (e) {
+    throw new ApiError(e && e.name === 'AbortError' ? 'The server took too long to answer, so this may not be saved. Please try again.' : 'Cannot reach the server. Check your internet connection. This was not saved.', 'NET');
+  } finally { clearTimeout(timer); }
+  let j;
+  try { j = JSON.parse(text); } catch (e) {
+    if (/lead logger is running/.test(text)) throw new ApiError('The leads server has not been updated yet. Coach AJ needs to deploy the new version of the script.', 'SETUP');
+    throw new ApiError('The server sent an unexpected reply, so it may be busy or down. Nothing was changed. Please try again in a minute.', 'HTML');
+  }
+  if (!j.ok) throw new ApiError(j.msg || 'Something went wrong. Please try again.', j.code);
+  if (j.now) S.skew = j.now - Date.now();
+  if (j.v && j.v !== API_V) throw new ApiError('This page is out of date. Please close it and open your link again.', 'VERSION');
+  return j;
+}
+function banner(kind, msg, action) {
+  if (!msg) { put($('banner')); return; }
+  put($('banner'), el('div', { class: 'banner ' + kind }, msg, action || null));
+}
+function showError(e) {
+  banner(e && e.code === 'NET' ? 'warn' : 'err', (e && e.message) || 'Something went wrong. Please try again.', el('button', { class: 'btn sm ghost', onclick: () => banner() }, 'OK'));
+}
+
+/* Work that could not reach the server is kept on this phone and sent again, so a tap is never lost silently. */
+function pending() { try { return JSON.parse(load('ld-pending') || '[]'); } catch (e) { return []; } }
+function setPending(p) { store('ld-pending', p.length ? JSON.stringify(p) : null); }
+async function flushPending() {
+  const p = pending(); if (!p.length || isAdmin()) return;
+  const left = [];
+  for (const job of p) {
+    try { const r = await api(job); mergeLead(r.lead); }
+    catch (e) { if (e.code === 'NET' || e.code === 'HTML' || e.code === 'BUSY') left.push(job); }
+  }
+  setPending(left);
+  if (left.length) banner('warn', left.length + ' change' + (left.length > 1 ? 's are' : ' is') + ' saved on this phone only and will be sent when the connection is back.');
+}
+
+/* ---------- loading ---------- */
+async function refresh(quiet) {
+  if (!S.key && !S.admin) return;
+  if (!quiet) put($('sub'), el('span', { class: 'spin' }), ' Loading…');
+  try {
+    if (isAdmin() && !S.viewCoach) S.board = await api({ a: 'a_overview' });
+    else { S.data = await api({ a: 'list' }); S.today = S.data.today || S.today; }
+    S.lastOk = Date.now();
+    if ($('banner').textContent.indexOf('Cannot reach') === 0) banner();
+  } catch (e) {
+    if (e.code === 'AUTH') { if (!isAdmin()) { store('ld-key', null); S.key = ''; } else { store('ld-admin', null); S.admin = ''; } S.data = null; S.board = null; }
+    showError(e);
+  }
+  render();
+  if (S.open && S.data) { const sid = S.open; S.open = ''; const L = S.data.leads.find(x => x.sid === sid); if (L) openLead(L); else banner('warn', 'That lead is not in your list. It may belong to another coach, or the link is old.'); }
+}
+function mergeLead(L) {
+  if (!L || !S.data) return;
+  const i = S.data.leads.findIndex(x => x.sid === L.sid);
+  if (i >= 0) S.data.leads[i] = L;
+  S.data.stats = statsOf(S.data.leads);
+}
+function statsOf(leads) {
+  const o = { waiting: 0, late: 0, due: 0, active: 0, customers: 0, notNow: 0 };
+  leads.forEach(L => {
+    if (L.stage === 'New') { o.waiting++; if (now() - L.ts > DAY) o.late++; }
+    else if (L.stage === 'Customer') o.customers++;
+    else if (L.stage === 'Not now') o.notNow++;
+    else o.active++;
+    if (L.next && L.next <= S.today && OPEN.includes(L.stage)) o.due++;
+  });
+  return o;
+}
+
+/* ---------- WhatsApp first message, written from the lead's quiz answers ---------- */
+const AREAS = { id: ['pola makan', 'energi', 'tidur dan stres', 'gerak dan otot', 'tren berat badan'], en: ['eating pattern', 'energy', 'sleep and stress', 'movement and muscle', 'body trend'] };
+function coachCall() {
+  const c = (S.data && S.data.coach) || {};
+  const name = String(c.name || '');
+  if (/^dr\.?\s/i.test(name)) return name;
+  const words = String(c.fullName || name).replace(/^(ms|mrs|mr|coach)\.?\s+/i, '').trim().split(/\s+/);
+  const first = words[0] || name; const pick = first.length <= 3 && words[1] ? first + ' ' + words[1] : first;
+  return pick.charAt(0).toUpperCase() + pick.slice(1).toLowerCase().replace(/ (\w)/g, (m, a) => ' ' + a.toUpperCase());
+}
+function firstName(n) { const w = String(n || '').trim().split(/\s+/)[0] || ''; return w.charAt(0).toUpperCase() + w.slice(1); }
+function lc(s) { s = String(s || '').trim(); return s ? s.charAt(0).toLowerCase() + s.slice(1) : ''; }
+function message(L) {
+  const en = L.lang === 'en', who = coachCall(), nm = firstName(L.name);
+  const video = /online|video|call/i.test(L.mode) || !L.mode;
+  if (L.plateau) {
+    return en
+      ? `Hi ${nm}, it's ${who} from #transformwithST 👋\n\nThanks for doing the Plateau Check. From your answers, your main pattern is ${lc(L.band)}. This is very common, and there is a way out.\n\nCan I walk you through it? Would chat or a short video call work better for you?`
+      : `Halo ${nm}, aku ${who} dari #transformwithST 👋\n\nMakasih ya udah ikut Plateau Check. Dari jawaban kamu, pola utamanya ${lc(L.band)}. Ini sering banget kejadian, dan ada jalan keluarnya.\n\nBoleh aku jelasin lebih detail? Enaknya lewat chat atau video call singkat?`;
+  }
+  const sc = L.s || [], idx = sc.reduce((b, v, i) => (v != null && (b < 0 || v < sc[b]) ? i : b), -1);
+  const weak = idx >= 0 ? AREAS[en ? 'en' : 'id'][idx] : '';
+  const score = L.total != null ? (en ? `Your score is ${L.total}/100 (${L.band})` : `Skor kamu ${L.total}/100 (${L.band})`) : '';
+  if (en) return `Hi ${nm}, it's ${who} from #transformwithST 👋\n\nThanks for taking the Body Age check. ${score}${weak ? ', and the area that needs the most care is your ' + weak : ''}.\n\nI'd love to explain what your result means and the right next step for your goal${L.goal ? ' (' + lc(L.goal) + ')' : ''}. ${video ? 'Would chat or a 15-minute video call be easier for you?' : 'Would you like to chat here first, or meet in person?'}`;
+  return `Halo ${nm}, aku ${who} dari #transformwithST 👋\n\nMakasih ya udah ikut Cek Sinyal Badan. ${score}${weak ? ', dan area yang paling perlu dibenahi itu ' + weak : ''}.\n\nAku mau bantu jelasin arti hasilnya dan langkah yang pas buat goal kamu${L.goal ? ' (' + lc(L.goal) + ')' : ''}. ${video ? 'Kamu lebih enak lewat chat dulu atau video call 15 menit?' : 'Kamu lebih enak ngobrol di chat dulu atau ketemu langsung?'}`;
+}
+function waLink(L, text) { return 'https://wa.me/' + L.wa + (text ? '?text=' + encodeURIComponent(text) : ''); }
+
+/* ---------- saving ---------- */
+async function save(L, change, statusEl) {
+  const job = Object.assign({ a: 'save', sid: L.sid }, change);
+  if (statusEl) put(statusEl, el('span', { class: 'spin' }), ' Saving…');
+  try {
+    const r = await api(job);
+    mergeLead(r.lead);
+    if (statusEl) put(statusEl, 'Saved ' + new Date().toLocaleTimeString('en-GB', { hour: '2-digit', minute: '2-digit' }));
+    return r.lead;
+  } catch (e) {
+    if (statusEl) put(statusEl);
+    showError(e);
+    return null;
+  }
+}
+function markContacted(L) {
+  /* Optimistic: the coach is already in WhatsApp. If the server cannot be reached, the tap is kept and sent later. */
+  if (L.stage === 'New') { L.stage = 'Contacted'; L.first = L.first || now(); S.data.stats = statsOf(S.data.leads); }
+  const job = { a: 'contacted', sid: L.sid };
+  api(job, { keepalive: true }).then(r => { mergeLead(r.lead); render(); }).catch(e => {
+    if (e.code === 'NET' || e.code === 'HTML' || e.code === 'BUSY') { setPending(pending().concat([job])); banner('warn', '"Contacted" for ' + L.name + ' is saved on this phone only for now. It will be sent when the connection is back.'); }
+    else showError(e);
+  });
+  render();
+}
+
+/* ---------- views ---------- */
+const FILTERS = [
+  ['waiting', 'Not contacted', L => L.stage === 'New'],
+  ['due', 'Follow-up due', L => L.next && L.next <= S.today && OPEN.includes(L.stage)],
+  ['progress', 'In progress', L => ['Contacted', 'Consult booked', 'Consult done'].includes(L.stage)],
+  ['customers', 'Customers', L => L.stage === 'Customer'],
+  ['notnow', 'Not now', L => L.stage === 'Not now'],
+  ['all', 'All', () => true]
+];
+function stageTag(L) {
+  const cls = { New: 'bad', Contacted: 'blue', 'Consult booked': 'blue', 'Consult done': 'blue', Customer: 'good', 'Not now': '' }[L.stage] || '';
+  return el('span', { class: 'tag ' + cls }, L.stage === 'New' ? 'Not contacted' : L.stage);
+}
+function leadCard(L) {
+  const late = L.stage === 'New' && now() - L.ts > DAY;
+  const due = L.next && OPEN.includes(L.stage) ? (L.next <= S.today ? el('span', { class: 'tag warn' }, 'Follow up ' + niceDay(L.next)) : el('span', { class: 'tag' }, 'Next: ' + niceDay(L.next))) : null;
+  return el('div', { class: 'card lead' + (late ? ' late' : ''), role: 'button', tabindex: '0', onclick: () => openLead(L), onkeydown: e => { if (e.key === 'Enter') openLead(L); } },
+    el('div', { class: 'row sb' }, el('span', { class: 'nm' }, L.name), stageTag(L)),
+    el('div', { class: 'meta' }, [L.plateau ? 'Plateau Check' : (L.total != null ? 'Score ' + L.total + ' · ' + L.band : ''), L.goal, L.start].filter(Boolean).join(' · ')),
+    el('div', { class: 'row' },
+      el('span', { class: 'tag ' + (late ? 'bad' : '') }, (L.stage === 'New' ? 'Waiting ' : 'Came in ') + ago(L.ts) + (L.stage === 'New' ? '' : ' ago')),
+      due, L.dup > 1 ? el('span', { class: 'tag' }, 'Took it ' + L.dup + '×') : null),
+    L.stage === 'New' && L.wa ? el('button', { class: 'btn wa full', onclick: e => { e.stopPropagation(); compose(L); } }, 'Message on WhatsApp') : null);
+}
+function renderCoach() {
+  const d = S.data;
+  if (!d) { put($('view')); return; }
+  const st = d.stats || statsOf(d.leads);
+  $('title').textContent = isAdmin() ? d.coach.name + '’s leads' : 'My Leads';
+  put($('sub'), st.waiting ? st.waiting + ' not contacted yet' + (st.late ? ', ' + st.late + ' waiting over a day' : '') : 'Everyone has been contacted. Nice work.');
+  const counts = Object.fromEntries(FILTERS.map(f => [f[0], d.leads.filter(f[2]).length]));
+  const q = S.q.trim().toLowerCase(), qd = q.replace(/\D/g, '');
+  let list = d.leads.filter(FILTERS.find(f => f[0] === S.filter)[2]);
+  if (q) list = d.leads.filter(L => L.name.toLowerCase().includes(q) || (qd.length >= 4 && L.wa.includes(qd)) || L.email.toLowerCase().includes(q));
+  if (S.filter === 'due' && !q) list.sort((a, b) => a.next < b.next ? -1 : 1);
+  const stat = (n, label, cls, f) => el('button', { class: 'stat ' + (n ? cls : ''), onclick: () => { S.filter = f; S.q = ''; render(); } }, el('b', null, n), el('span', null, label));
+  put($('view'),
+    isAdmin() ? el('div', { class: 'row' }, el('button', { class: 'btn sm ghost', onclick: () => { S.viewCoach = ''; S.data = null; render(); refresh(); } }, '← All coaches'), el('span', { class: 'small muted' }, 'You are viewing as Coach AJ. Notes you add are marked [AJ].')) : null,
+    el('div', { class: 'stats' }, stat(st.waiting, 'Not contacted', 'hot', 'waiting'), stat(st.due, 'Due today', 'due', 'due'), stat(st.active, 'In progress', '', 'progress'), stat(st.customers, 'Customers', '', 'customers')),
+    el('input', { class: 'search', type: 'search', placeholder: 'Search name, number or email', value: S.q, oninput: e => { S.q = e.target.value; renderListOnly(); } }),
+    el('div', { class: 'chips', role: 'tablist' }, FILTERS.map(f => el('button', { class: 'chip', 'aria-pressed': S.filter === f[0] && !q ? 'true' : 'false', onclick: () => { S.filter = f[0]; S.q = ''; render(); } }, f[1], el('span', { class: 'n' }, counts[f[0]])))),
+    el('div', { id: 'list', style: 'display:grid;gap:10px' }, listNodes(list, q)));
+  put($('foot'), d.partial ? d.partial + ' more ' + (d.partial === 1 ? 'person' : 'people') + ' finished the quiz in the last 30 days without leaving contact details, so there is no way to reach them.' : '', d.partial ? el('br') : null,
+    S.lastOk ? 'Updated ' + new Date(S.lastOk).toLocaleTimeString('en-GB', { hour: '2-digit', minute: '2-digit' }) + ' · ' : '', el('button', { class: 'link', onclick: () => refresh() }, 'Refresh'));
+}
+function listNodes(list, q) {
+  if (list.length) return list.slice(0, 200).map(leadCard).concat(list.length > 200 ? [el('div', { class: 'empty' }, 'Showing the first 200. Use search to find someone.')] : []);
+  const msg = q ? 'No lead matches “' + S.q + '”.' : { waiting: 'No one is waiting. Every lead has been contacted.', due: 'No follow-ups due today.', progress: 'No leads in progress.', customers: 'No customers yet. They will show here when you mark a lead Customer.', notnow: 'Nobody is marked Not now.', all: 'No leads yet. New ones show up here as soon as someone finishes the quiz.' }[S.filter];
+  return [el('div', { class: 'empty' }, msg)];
+}
+function renderListOnly() {
+  const d = S.data, q = S.q.trim().toLowerCase(), qd = q.replace(/\D/g, '');
+  let list = q ? d.leads.filter(L => L.name.toLowerCase().includes(q) || (qd.length >= 4 && L.wa.includes(qd)) || L.email.toLowerCase().includes(q)) : d.leads.filter(FILTERS.find(f => f[0] === S.filter)[2]);
+  put($('list'), listNodes(list, q));
+  document.querySelectorAll('.chip').forEach((c, i) => c.setAttribute('aria-pressed', !q && FILTERS[i][0] === S.filter ? 'true' : 'false'));
+}
+
+/* ---------- one lead ---------- */
+function closeSheet() { put($('sheet')); document.body.style.overflow = ''; render(); }
+function sheet(...kids) {
+  document.body.style.overflow = 'hidden';
+  put($('sheet'), el('div', { class: 'sheet-bg', onclick: e => { if (e.target === e.currentTarget) closeSheet(); } }, el('div', { class: 'sheet', role: 'dialog', 'aria-modal': 'true' }, kids)));
+}
+function barColor(v) { return v < 40 ? 'var(--bad)' : v < 60 ? 'var(--warn)' : 'var(--good)'; }
+function openLead(L0) {
+  const L = S.data.leads.find(x => x.sid === L0.sid) || L0;
+  const status = el('div', { class: 'saving' });
+  const kv = rows => el('div', { class: 'kv' }, rows.filter(r => r[1]).map(r => [el('div', { class: 'k' }, r[0]), el('div', { class: 'v' }, r[1])]));
+  const names = L.lang === 'en' ? AREAS.en : ['Eating pattern', 'Energy', 'Sleep & stress', 'Movement & muscle', 'Body trend'];
+  const due = L.next ? (L.next < S.today ? 'overdue, ' : '') + niceDay(L.next) : 'none';
+  const noteBox = el('textarea', { class: 'f', placeholder: 'What happened? e.g. Replied, wants a video call Tuesday evening', maxlength: '600' });
+  const dateIn = el('input', { class: 'f', type: 'date', value: L.next || '', onchange: async e => { const r = await save(L, { next: e.target.value }, status); if (r) openLead(r); } });
+  const setNext = async v => { const r = await save(L, { next: v }, status); if (r) openLead(r); };
+  sheet(
+    el('div', { class: 'row sb' }, el('h2', null, L.name), el('button', { class: 'btn sm ghost', onclick: closeSheet }, 'Close')),
+    el('div', { class: 'row' }, stageTag(L), el('span', { class: 'tag' }, 'Came in ' + when(L.ts)), L.first ? el('span', { class: 'tag good' }, 'First contact after ' + (L.first - L.ts < HOUR ? Math.max(1, Math.round((L.first - L.ts) / MIN)) + ' min' : Math.round((L.first - L.ts) / HOUR * 10) / 10 + ' h')) : null),
+    L.dup > 1 ? el('div', { class: 'small muted' }, 'This person took the quiz ' + L.dup + ' times. You are seeing the latest answers.') : null,
+    L.wa ? el('div', { class: 'row' }, el('button', { class: 'btn wa', onclick: () => compose(L) }, 'WhatsApp'), L.stage === 'New' ? el('button', { class: 'btn ghost', onclick: () => { markContacted(L); openLead(L); } }, 'Already contacted') : null)
+      : el('div', { class: 'banner warn' }, 'No WhatsApp number was left. Try the email below.'),
+    el('div', { class: 'sec' }, el('h3', null, 'Stage'),
+      el('div', { class: 'stages' }, (S.data.stages || []).map(s => el('button', { class: 'stg', 'aria-pressed': L.stage === s ? 'true' : 'false', onclick: async () => { if (s === L.stage) return; const r = await save(L, { stage: s }, status); if (r) openLead(r); } }, s === 'New' ? 'Not contacted' : s))),
+      status),
+    el('div', { class: 'sec' }, el('h3', null, 'Next follow-up: ' + due),
+      el('div', { class: 'row' }, el('button', { class: 'btn sm ghost', onclick: () => setNext(addDays(1)) }, 'Tomorrow'), el('button', { class: 'btn sm ghost', onclick: () => setNext(addDays(3)) }, 'In 3 days'), el('button', { class: 'btn sm ghost', onclick: () => setNext(addDays(7)) }, 'Next week'), L.next ? el('button', { class: 'btn sm ghost', onclick: () => setNext('') }, 'Clear') : null),
+      dateIn),
+    el('div', { class: 'sec' }, el('h3', null, 'Checklist'),
+      (S.data.checks || []).map(c => el('label', { class: 'chk' }, el('input', { type: 'checkbox', checked: L.checks.includes(c), onchange: async e => {
+        const next = (S.data.checks || []).filter(x => x === c ? e.target.checked : L.checks.includes(x));
+        const r = await save(L, { checks: next }, status); if (r) openLead(r); else e.target.checked = !e.target.checked; } }), c))),
+    el('div', { class: 'sec' }, el('h3', null, 'Notes'),
+      L.notes.length ? L.notes.slice().reverse().map(n => el('div', { class: 'note' }, el('div', { class: 't' }, n.t), n.x)) : el('div', { class: 'small muted' }, 'No notes yet.'),
+      noteBox,
+      el('button', { class: 'btn', onclick: async () => { const t = noteBox.value.trim(); if (!t) { noteBox.focus(); return; } const r = await save(L, { note: t }, status); if (r) openLead(r); } }, 'Add note')),
+    el('div', { class: 'sec' }, el('h3', null, L.plateau ? 'Plateau Check answers' : 'Quiz result'),
+      L.plateau ? kv([['Main pattern', L.band], ['Stuck for', L.start], ['Tried', L.tried], ['Feels', L.goal], ['Age', L.age]])
+        : [el('div', { class: 'row' }, el('b', { style: 'font-size:1.5rem;color:var(--head)' }, L.total != null ? L.total + '/100' : '-'), el('span', { class: 'tag warn' }, L.band)),
+          el('div', { class: 'bars' }, (L.s || []).map((v, i) => v == null ? null : el('div', { class: 'bar' }, el('span', null, names[i].charAt(0).toUpperCase() + names[i].slice(1)), el('div', { class: 'tr' }, el('div', { class: 'fl', style: 'width:' + Math.max(3, Math.min(100, v)) + '%;background:' + barColor(v) })), el('span', { class: 'n' }, v)))),
+          el('div', { class: 'small muted' }, 'Lower means a stronger signal in that area.'),
+          kv([['Goal', L.goal], ['Wants to start', L.start], ['Tried before', L.tried], ['Age', L.age], ['Gender', L.gender], ['Height', L.h ? L.h + ' cm' : ''], ['Weight', L.w ? L.w + ' kg' : '']])]),
+    el('div', { class: 'sec' }, el('h3', null, 'Contact'),
+      kv([['WhatsApp', L.wa ? '+' + L.wa : ''], ['Email', L.email ? el('a', { href: 'mailto:' + L.email }, L.email) : ''], ['Instagram', L.ig && L.ig !== '-' ? el('a', { href: 'https://instagram.com/' + L.ig.replace(/^@/, ''), target: '_blank', rel: 'noopener' }, L.ig) : ''], ['City', L.city], ['Prefers', L.mode], ['Came from', L.src]]))
+  );
+}
+function compose(L) {
+  const box = el('textarea', { class: 'f', style: 'min-height:220px' });
+  box.value = message(L);
+  const go = el('a', { class: 'btn wa full', href: waLink(L, box.value), target: '_blank', rel: 'noopener', onclick: () => { markContacted(L); setTimeout(() => openLead(L), 300); } }, 'Open WhatsApp');
+  box.addEventListener('input', () => { go.href = waLink(L, box.value); });
+  sheet(
+    el('div', { class: 'row sb' }, el('h2', null, 'Message ' + firstName(L.name)), el('button', { class: 'btn sm ghost', onclick: () => openLead(L) }, 'Back')),
+    el('div', { class: 'small muted' }, 'Written from their quiz answers. Change anything you like before you send it.'),
+    box, go,
+    el('div', { class: 'small muted' }, 'Opening WhatsApp marks this lead Contacted, with the time, so your reply speed is counted.'));
+}
+
+/* ---------- AJ's speed board ---------- */
+function renderBoard() {
+  const b = S.board;
+  $('title').textContent = 'Leads speed board';
+  if (!b) { put($('view')); return; }
+  const tot = b.coaches.reduce((a, c) => { a.w += c.stats.waiting; a.l += c.stats.late; a.d += c.stats.due; a.c += c.stats.customers; return a; }, { w: 0, l: 0, d: 0, c: 0 });
+  put($('sub'), tot.w + ' leads not contacted across the team' + (tot.l ? ', ' + tot.l + ' waiting over a day' : '') + '. Only you can see this page.');
+  const share = c => 'Hi ' + c.name + ', this is your private leads page. Only your own leads are in it. Open it, then tap Share and "Add to Home Screen" so it is one tap away. Please don\'t share this link with anyone.\n\n' + c.link;
+  put($('view'),
+    b.coaches.map(c => {
+      const s = c.stats;
+      return el('div', { class: 'card coachrow' },
+        el('div', { class: 'row sb' }, el('h2', null, c.name), s.late ? el('span', { class: 'tag bad' }, s.late + ' over 24 h') : el('span', { class: 'tag good' }, 'On time')),
+        el('div', { class: 'nums' },
+          el('span', { class: 'tag ' + (s.waiting ? 'bad' : '') }, s.waiting + ' not contacted'), el('span', { class: 'tag ' + (s.due ? 'warn' : '') }, s.due + ' due'),
+          el('span', { class: 'tag blue' }, s.active + ' in progress'), el('span', { class: 'tag good' }, s.customers + ' customers'), el('span', { class: 'tag' }, s.total + ' total')),
+        el('div', { class: 'small muted' }, (s.median != null ? 'Median first reply ' + s.median + ' h (last 30 days)' : 'No first replies recorded yet') + ' · ' + (s.last ? 'last active ' + ago(s.last) + ' ago' : 'not opened yet')),
+        el('div', { class: 'row' },
+          el('button', { class: 'btn sm', onclick: () => { S.viewCoach = c.code; S.filter = 'waiting'; S.q = ''; S.data = null; render(); refresh(); } }, 'Open leads'),
+          c.link ? el('a', { class: 'btn sm wa', href: 'https://wa.me/' + c.wa + '?text=' + encodeURIComponent(share(c)), target: '_blank', rel: 'noopener' }, 'Send link') : null,
+          c.link ? el('button', { class: 'btn sm ghost', onclick: e => copy(c.link, e.target) }, 'Copy link') : null,
+          el('button', { class: 'btn sm ghost', onclick: () => rotate(c) }, c.link ? 'New link' : 'Make link')));
+    }),
+    Object.keys(b.orphans || {}).length ? el('div', { class: 'card' }, el('h2', null, 'Leads with no portal'),
+      el('div', { class: 'small muted' }, 'These coach names on leads don’t match an approved coach, so nobody sees these leads in the portal. Usually the coach is hidden, not set up yet, or changed their display name.'),
+      Object.keys(b.orphans).map(n => el('div', null, n + ': ' + b.orphans[n] + ' lead' + (b.orphans[n] > 1 ? 's' : '')))) : null);
+  put($('foot'), S.lastOk ? 'Updated ' + new Date(S.lastOk).toLocaleTimeString('en-GB', { hour: '2-digit', minute: '2-digit' }) + ' · ' : '', el('button', { class: 'link', onclick: () => refresh() }, 'Refresh'));
+}
+async function copy(text, btn) {
+  try { await navigator.clipboard.writeText(text); btn.textContent = 'Copied'; setTimeout(() => { btn.textContent = 'Copy link'; }, 2000); }
+  catch (e) { banner('warn', 'Could not copy automatically. Here is the link: ' + text); }
+}
+function rotate(c) {
+  sheet(el('h2', null, (c.link ? 'New link for ' : 'Make a link for ') + c.name + '?'),
+    el('div', null, c.link ? 'Their current link stops working right away. You then send them the new one.' : 'This makes their private leads link. You then send it to them.'),
+    el('div', { class: 'row' },
+      el('button', { class: 'btn', onclick: async e => { e.target.disabled = true; try { await api({ a: 'a_rotate', coach: c.code }); closeSheet(); banner('ok', 'Done. Tap "Send link" to send ' + c.name + ' the new link.'); refresh(true); } catch (err) { closeSheet(); showError(err); } } }, c.link ? 'Yes, make a new link' : 'Make link'),
+      el('button', { class: 'btn ghost', onclick: closeSheet }, 'Cancel')));
+}
+
+/* ---------- boot ---------- */
+function render() {
+  if (!S.key && !S.admin) {
+    $('title').textContent = 'My Leads';
+    put($('sub'), 'Your private leads page.');
+    put($('view'), el('div', { class: 'card' }, el('h2', null, 'Open your personal link'), el('div', null, 'This page needs the private link Coach AJ sent you. Please open that link again, or ask Coach AJ for a new one.')));
+    put($('foot')); return;
+  }
+  if (isAdmin() && !S.viewCoach) renderBoard(); else renderCoach();
+}
+readKeys();
+render();
+refresh().then(flushPending);
+document.addEventListener('visibilitychange', () => { if (document.visibilityState === 'visible' && Date.now() - S.lastOk > 60000) { flushPending().then(() => refresh(true)); } });
+window.addEventListener('hashchange', () => { readKeys(); S.data = null; S.board = null; S.viewCoach = ''; render(); refresh(); });
+</script>
+</body>
+</html>

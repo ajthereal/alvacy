@@ -69,6 +69,7 @@ function doPost(e) {
   let first = null;
   try { first = JSON.parse((e && e.postData && e.postData.contents) || '{}'); } catch (err) {}
   if (first && first.kind === 'coach') return json_(coachPost_(first));
+  if (first && first.kind === 'leads') return json_(portalPost_(first));
   const lock = LockService.getScriptLock();
   lock.waitLock(10000);
   let queued = false;
@@ -130,7 +131,8 @@ function notify_(d) {
       'Umur: ' + d.age + ' | Stuck sejak: ' + d.start,
       'Yang sudah dicoba: ' + d.tried,
       'Yang dirasakan: ' + d.goal
-    ].concat(to === DEFAULT_EMAIL ? ['', 'Sheet: ' + SpreadsheetApp.getActiveSpreadsheet().getUrl()] : []).join('\n');
+    ].concat(to === DEFAULT_EMAIL ? ['', 'Sheet: ' + SpreadsheetApp.getActiveSpreadsheet().getUrl()] : [])
+     .concat(portalLine_(d)).join('\n');
     enqueue_(d, to, 'Lead baru (Plateau Check): ' + d.name, pb);
     return;
   }
@@ -150,7 +152,8 @@ function notify_(d) {
     'Usia: ' + d.age + ' | Gender: ' + d.gender + ' | Tinggi: ' + (d.height || '-') + ' cm | Berat: ' + (d.weight || '-') + ' kg',
     'Goal: ' + d.goal + ' | Mulai: ' + d.start,
     'Pernah coba: ' + d.tried
-  ].concat(to === DEFAULT_EMAIL ? ['', 'Sheet: ' + SpreadsheetApp.getActiveSpreadsheet().getUrl()] : []).join('\n');
+  ].concat(to === DEFAULT_EMAIL ? ['', 'Sheet: ' + SpreadsheetApp.getActiveSpreadsheet().getUrl()] : [])
+   .concat(portalLine_(d)).join('\n');
   enqueue_(d, to, 'Lead baru: ' + d.name + ' (' + d.total + '/100)', body);
 }
 
@@ -312,7 +315,7 @@ function dailySummary_() {
   });
   const lines = Object.keys(by).map(c => '- ' + c + ': ' + by[c].total + ' lead, ' + by[c].sent + ' terkirim, ' + by[c].wait + ' menunggu, ' + by[c].fail + ' gagal');
   sendMail_(DEFAULT_EMAIL, 'Ringkasan lead hari ini: ' + todays.length + ' lead',
-    (lines.length ? lines.join('\n') : 'Tidak ada lead hari ini.') + '\n\nSisa kuota kirim email hari ini: ' + mailLeft_() + '\nDetail: ' + SpreadsheetApp.getActiveSpreadsheet().getUrl());
+    (lines.length ? lines.join('\n') : 'Tidak ada lead hari ini.') + portalSpeedText_() + '\n\nSisa kuota kirim email hari ini: ' + mailLeft_() + '\nDetail: ' + SpreadsheetApp.getActiveSpreadsheet().getUrl());
 }
 
 /* Run once from the editor after pasting this file. Creates the queue sheet and the two triggers. */
@@ -357,11 +360,11 @@ const COACH_FIELDS = [
   ['kgFrom', 'Berat awal'], ['kgTo', 'Berat sekarang'], ['fatFrom', 'Lemak awal'], ['fatTo', 'Lemak sekarang'], ['vfaFrom', 'VFA awal'], ['vfaTo', 'VFA sekarang'],
   ['storyId', 'Cerita (ID)'], ['hlId', 'Highlight (ID)'], ['storyEn', 'Cerita (EN)'], ['hlEn', 'Highlight (EN)'],
   ['token', 'Token edit'], ['approveKey', 'Kunci approve'], ['folder', 'Folder Drive'], ['files', 'File gambar'],
-  ['imgNew', 'Gambar baru'], ['published', 'Tayang terakhir'], ['reqId', 'Request ID'], ['note', 'Catatan']
+  ['imgNew', 'Gambar baru'], ['published', 'Tayang terakhir'], ['reqId', 'Request ID'], ['note', 'Catatan'], ['leadsKey', 'Kunci leads']
 ];
 /* Codes that must never be taken: the coaches written in assets/site.js and every folder or page on the site. */
 const COACH_RESERVED = ['aj', 'nova', 'lala', 'jevon', 'melita', 'lucky', 'test', 'kalori', 'lunch', 'tools', 'privacy', 'transform', 'en', 'images',
-  'assets', 'scripts', 'data', 'join', 'body-age', 'index', 'api', 'admin', 'coach', 'coaches', 'www', 'alvacy', 'github', 'apps-script', 'tim'];
+  'assets', 'scripts', 'data', 'join', 'leads', 'zoom', 'body-age', 'index', 'api', 'admin', 'coach', 'coaches', 'www', 'alvacy', 'github', 'apps-script', 'tim'];
 const COACH_FIXED_NAMES = ['coach aj', 'dr. nova', 'dr. lala', 'dr. jevon', 'dr. melita', 'dr. lucky'];
 const IMG_KEYS = ['before', 'after', 'photo', 'face'];
 const IMG_MAX_BYTES = 1200000;
@@ -391,6 +394,7 @@ function coachSheet_() {
   let sh = ss.getSheetByName(COACH_SHEET);
   if (!sh) sh = ss.insertSheet(COACH_SHEET);
   const heads = COACH_FIELDS.map(f => f[1]);
+  pEnsureCols_(sh, heads.length);
   const cur = sh.getRange(1, 1, 1, heads.length).getValues()[0];
   if (cur.join('|') !== heads.join('|')) {
     sh.getRange(1, 1, 1, heads.length).setValues([heads]);
@@ -782,7 +786,8 @@ function publish_(message, forceImages) {
 
 /* ---------- menu in the Sheet ---------- */
 function onOpen() {
-  try { SpreadsheetApp.getUi().createMenu('Coaches').addItem('Publish ke website', 'publishFromMenu').addItem('Cek pengaturan', 'setupCoaches').addToUi(); } catch (e) {}
+  try { SpreadsheetApp.getUi().createMenu('Coaches').addItem('Publish ke website', 'publishFromMenu').addItem('Cek pengaturan', 'setupCoaches').addToUi();
+    SpreadsheetApp.getUi().createMenu('Leads portal').addItem('Set up and email me the links', 'setupLeadsPortal').addToUi(); } catch (e) {}
 }
 function publishFromMenu() {
   const ui = SpreadsheetApp.getUi();
@@ -881,4 +886,312 @@ function aktifkanAutoTayang() {
     sh.getRange(2, 2, Math.max(sh.getMaxRows() - 1, 1), 1).setDataValidation(SpreadsheetApp.newDataValidation().requireValueInList(['pending', 'approved', 'rejected', 'hidden'], true).setAllowInvalid(false).build());
   } catch (e) {}
   return 'Aktif. Di tab Coaches, ubah kolom Status ke "approved" untuk menayangkan coach.';
+}
+
+/* =====================================================================================================================
+   LEADS PORTAL: alvacy.com/leads
+   Each coach opens alvacy.com/leads/#k=<their key> and sees ONLY their own leads (the server filters by the coach's
+   display name in column D; nothing about other coaches is ever sent). They can tap WhatsApp (marks the lead Contacted
+   with the time), move the stage, set the next follow-up date, tick a checklist and add notes.
+   Their work is saved in the Leads sheet, columns AG-AL, and every change is appended to the "Lead History" sheet
+   (never overwritten). AJ opens alvacy.com/leads/#admin=<LEADS_ADMIN_KEY> for the speed board of every coach.
+   Coach AJ is left out on purpose: his leads go to HQ's CRM.
+
+   One-time setup: run setupLeadsPortal() from the editor (or the Sheet menu "Leads portal"), then
+   Deploy -> Manage deployments -> edit -> Version: New version -> Deploy. It makes a key for every approved coach
+   (column "Kunci leads" in Coaches), emails AJ every coach's link and his admin link, and adds the 08:00 reminder.
+   To switch a coach off: set their Status to hidden, or make a new link for them in the admin view.
+   ===================================================================================================================== */
+const PORTAL_URL = SITE_URL + '/leads/';
+const PORTAL_V = 1;
+const P_COL = BODY_COL + BODY_HEADERS.length;   /* column AG */
+const P_HEADERS = ['Stage', 'First contact', 'Next follow-up', 'Checklist', 'Coach notes', 'Coach updated'];
+const P_STAGES = ['New', 'Contacted', 'Consult booked', 'Consult done', 'Customer', 'Not now'];
+const P_OPEN = ['New', 'Contacted', 'Consult booked', 'Consult done'];
+const P_CHECKS = ['Replied', 'Explained result', 'Shared a story', 'Sent program info', 'Body check done'];
+const P_HISTORY = 'Lead History';
+const P_HISTORY_HEADS = ['Time', 'Coach', 'Session ID', 'Lead', 'Action', 'Detail'];
+const P_SKIP = ['coach aj'];                    /* coaches whose leads stay in HQ only */
+const P_LAST = P_COL + P_HEADERS.length - 1;    /* last column read from Leads */
+
+function pNorm_(s) { return String(s == null ? '' : s).replace(/\s+/g, ' ').trim().toLowerCase(); }
+function pMs_(v) { if (v instanceof Date) return v.getTime(); const t = Date.parse(v); return isNaN(t) ? 0 : t; }
+function pDay_(v) {
+  if (v instanceof Date) return Utilities.formatDate(v, 'Asia/Jakarta', 'yyyy-MM-dd');
+  const m = String(v || '').match(/^\d{4}-\d{2}-\d{2}/); return m ? m[0] : '';
+}
+function pToday_() { return Utilities.formatDate(new Date(), 'Asia/Jakarta', 'yyyy-MM-dd'); }
+function pWaKey_(wa) {
+  let d = String(wa || '').replace(/\D/g, '');
+  if (d.indexOf('0') === 0) d = '62' + d.slice(1); else if (d.indexOf('8') === 0) d = '62' + d;
+  return d;
+}
+function pFail_(code, msg) { return { ok: false, code: code, msg: msg }; }
+
+/* A sheet only has the columns it was made with; add any that are missing before writing past them. */
+function pEnsureCols_(sh, n) { const have = sh.getMaxColumns(); if (have < n) sh.insertColumnsAfter(have, n - have); }
+function pLeadsSheet_() {
+  const sh = sheet_();
+  pEnsureCols_(sh, P_LAST);
+  const cur = sh.getRange(1, P_COL, 1, P_HEADERS.length).getValues()[0];
+  if (cur.join('|') !== P_HEADERS.join('|')) {
+    sh.getRange(1, P_COL, 1, P_HEADERS.length).setValues([P_HEADERS]);
+    sh.getRange(2, P_COL + 2, Math.max(sh.getMaxRows() - 1, 1), 1).setNumberFormat('@');   /* Next follow-up stays plain yyyy-mm-dd text */
+  }
+  return sh;
+}
+function pHistory_() {
+  const ss = SpreadsheetApp.getActiveSpreadsheet();
+  let sh = ss.getSheetByName(P_HISTORY);
+  if (!sh) {
+    sh = ss.insertSheet(P_HISTORY);
+    sh.getRange(1, 1, 1, P_HISTORY_HEADS.length).setValues([P_HISTORY_HEADS]).setFontWeight('bold');
+    sh.setFrozenRows(1);
+  }
+  return sh;
+}
+function pLog_(coach, sid, lead, action, detail) {
+  try { pHistory_().appendRow([new Date(), coach, sid, clean_(lead), action, clean_(String(detail || '').slice(0, 300))]); } catch (e) {}
+}
+
+/* Coaches who can use the portal: approved, with a key, not in P_SKIP. */
+function pCoaches_() {
+  return readCoaches_(coachSheet_()).filter(c => c.status === 'approved' && c.leadsKey && P_SKIP.indexOf(pNorm_(c.name)) < 0);
+}
+function pAuth_(d) {
+  const k = String(d.k || '');
+  const admin = prop_('LEADS_ADMIN_KEY');
+  if (admin && k.length >= 20 && sameStr_(k, admin)) {
+    const r = { admin: true, coach: null };
+    if (d.coach) { r.coach = pCoaches_().filter(c => c.code === String(d.coach))[0] || null; if (!r.coach) return { err: pFail_('NOCOACH', 'That coach was not found or has no portal link yet.') }; }
+    return r;
+  }
+  const row = findBy_(readCoaches_(coachSheet_()), 'leadsKey', k);
+  if (!row) return { err: pFail_('AUTH', 'This link is not valid any more. Please ask Coach AJ for your new link.') };
+  if (row.status !== 'approved') return { err: pFail_('AUTH', 'This link has been switched off. Please ask Coach AJ if you think this is a mistake.') };
+  return { admin: false, coach: row };
+}
+
+/* Reads every lead row once. r = sheet row number. */
+function pReadLeads_() {
+  const sh = pLeadsSheet_();
+  const last = sh.getLastRow();
+  if (last < 2) return { sh: sh, rows: [] };
+  const vals = sh.getRange(2, 1, last - 1, P_LAST).getValues();
+  return { sh: sh, rows: vals.map((v, i) => ({ r: i + 2, v: v })) };
+}
+function pChecks_(s) { const have = String(s || '').split(',').map(x => x.trim()); return P_CHECKS.filter(c => have.indexOf(c) >= 0); }
+function pNotes_(s) {
+  return String(s || '').split('\n').filter(Boolean).map(line => {
+    const m = line.match(/^(\d{4}-\d{2}-\d{2} \d{2}:\d{2})\s+(.*)$/);
+    return m ? { t: m[1], x: m[2] } : { t: '', x: line.replace(/^'/, '') };
+  });
+}
+function pStage_(v) { const s = String(v[P_COL - 1] || ''); return P_STAGES.indexOf(s) >= 0 ? s : 'New'; }
+function pLeadOut_(row, dup) {
+  const v = row.v, n = i => (v[i] === '' || v[i] == null) ? null : Number(v[i]);
+  return {
+    sid: String(v[1]), ts: pMs_(v[0]), name: String(v[5]), wa: pWaKey_(v[6]), email: String(v[7]), ig: String(v[31] || ''),
+    city: String(v[8]), mode: String(v[9]), lang: String(v[4] || 'id'), total: n(10), band: String(v[11]),
+    s: [n(12), n(13), n(14), n(15), n(16)], age: String(v[17]), gender: String(v[18]), goal: String(v[19]), start: String(v[20]),
+    tried: String(v[21]), h: n(29), w: n(30), src: String(v[25] || ''), plateau: /plateau/i.test(String(v[28] || '')),
+    stage: pStage_(v), first: pMs_(v[P_COL]), next: pDay_(v[P_COL + 1]), checks: pChecks_(v[P_COL + 2]),
+    notes: pNotes_(v[P_COL + 3]), upd: pMs_(v[P_COL + 4]), dup: dup || 1
+  };
+}
+/* One coach's full leads, one entry per person (same WhatsApp number = same person). */
+function pCoachLeads_(all, coach) {
+  const name = pNorm_(coach.name);
+  const mine = all.filter(x => pNorm_(x.v[3]) === name && x.v[2] === 'Lead masuk' && String(x.v[5]).trim());
+  const groups = {};
+  mine.forEach(x => { const k = pWaKey_(x.v[6]) || ('sid:' + x.v[1]); (groups[k] = groups[k] || []).push(x); });
+  return Object.keys(groups).map(k => {
+    const g = groups[k].sort((a, b) => pMs_(b.v[0]) - pMs_(a.v[0]));
+    const worked = g.filter(x => x.v[P_COL - 1] || x.v[P_COL + 3]);
+    return { row: worked[0] || g[0], dup: g.length };
+  });
+}
+function pPartials_(all, coach) {
+  const name = pNorm_(coach.name), since = Date.now() - 30 * 86400000;
+  return all.filter(x => pNorm_(x.v[3]) === name && x.v[2] !== 'Lead masuk' && pMs_(x.v[0]) > since).length;
+}
+function pStats_(leads) {
+  const now = Date.now(), today = pToday_(), since = now - 30 * 86400000;
+  const o = { total: leads.length, waiting: 0, late: 0, due: 0, active: 0, customers: 0, notNow: 0, median: null, last: 0 };
+  const waits = [];
+  leads.forEach(L => {
+    if (L.stage === 'New') { o.waiting++; if (now - L.ts > 86400000) o.late++; }
+    else if (L.stage === 'Customer') o.customers++;
+    else if (L.stage === 'Not now') o.notNow++;
+    else o.active++;
+    if (L.next && L.next <= today && P_OPEN.indexOf(L.stage) >= 0) o.due++;
+    if (L.first && L.ts > since && L.first >= L.ts) waits.push((L.first - L.ts) / 3600000);
+    if (L.upd > o.last) o.last = L.upd;
+  });
+  if (waits.length) { waits.sort((a, b) => a - b); o.median = Math.round(waits[Math.floor(waits.length / 2)] * 10) / 10; }
+  return o;
+}
+
+function portalPost_(d) {
+  try {
+    const a = String(d.a || '');
+    const au = pAuth_(d);
+    if (au.err) return au.err;
+    if (a === 'a_overview' || a === 'a_rotate') {
+      if (!au.admin) return pFail_('AUTH', 'Only Coach AJ can open this.');
+      return a === 'a_overview' ? pOverview_() : pRotate_(d);
+    }
+    if (!au.coach) return pFail_('NOCOACH', 'Pick a coach first.');
+    if (a === 'list') return pList_(au.coach, au.admin);
+    if (a === 'save' || a === 'contacted') {
+      const lock = LockService.getScriptLock();
+      if (!lock.tryLock(15000)) return pFail_('BUSY', 'The sheet is busy right now. Nothing was saved. Please try again in a few seconds.');
+      try { return pSave_(au.coach, d, a === 'contacted', au.admin); } finally { lock.releaseLock(); }
+    }
+    return pFail_('BAD', 'Unknown request.');
+  } catch (err) {
+    return pFail_('SERVER', 'The server had a problem: ' + String(err && err.message || err).slice(0, 160) + '. Nothing was changed.');
+  }
+}
+function pList_(coach, admin) {
+  const all = pReadLeads_().rows;
+  const leads = pCoachLeads_(all, coach).map(g => pLeadOut_(g.row, g.dup)).sort((a, b) => b.ts - a.ts);
+  return { ok: true, v: PORTAL_V, now: Date.now(), today: pToday_(), admin: !!admin,
+    coach: { code: coach.code, name: coach.name, fullName: coach.fullName },
+    stages: P_STAGES, checks: P_CHECKS, leads: leads, partial: pPartials_(all, coach), stats: pStats_(leads) };
+}
+function pSave_(coach, d, contacted, admin) {
+  const sid = String(d.sid || '');
+  const all = pReadLeads_();
+  const g = pCoachLeads_(all.rows, coach).filter(x => String(x.row.v[1]) === sid)[0];
+  if (!g) return pFail_('NOLEAD', 'This lead was not found in your list. Pull down to refresh.');
+  const row = g.row, v = row.v.slice();
+  const who = coach.name + (admin ? ' (by AJ)' : ''), lead = String(v[5]);
+  const before = pStage_(v);
+  let stage = before, first = v[P_COL], next = pDay_(v[P_COL + 1]), checks = pChecks_(v[P_COL + 2]), notes = String(v[P_COL + 3] || '');
+  const log = [];
+  if (contacted) {
+    if (stage === 'New') { stage = 'Contacted'; log.push(['Stage', 'New -> Contacted (WhatsApp opened)']); }
+    else log.push(['WhatsApp', 'opened chat']);
+  }
+  if (d.stage != null && String(d.stage) !== stage) {
+    if (P_STAGES.indexOf(String(d.stage)) < 0) return pFail_('BAD', 'Unknown stage.');
+    log.push(['Stage', stage + ' -> ' + d.stage]); stage = String(d.stage);
+  }
+  if (d.next != null && String(d.next) !== next) {
+    const nx = String(d.next);
+    if (nx && !/^\d{4}-\d{2}-\d{2}$/.test(nx)) return pFail_('BAD', 'The follow-up date is not valid.');
+    log.push(['Follow-up', nx || 'cleared']); next = nx;
+  }
+  if (Array.isArray(d.checks)) {
+    const nc = P_CHECKS.filter(c => d.checks.indexOf(c) >= 0);
+    if (nc.join(',') !== checks.join(',')) {
+      const add = nc.filter(c => checks.indexOf(c) < 0), rem = checks.filter(c => nc.indexOf(c) < 0);
+      log.push(['Checklist', (add.length ? '+ ' + add.join(', ') : '') + (add.length && rem.length ? ' / ' : '') + (rem.length ? '- ' + rem.join(', ') : '')]);
+      checks = nc;
+    }
+  }
+  const note = String(d.note || '').replace(/[\u0000-\u001f\u2028\u2029]/g, ' ').replace(/\s+/g, ' ').trim().slice(0, 600);
+  if (note) {
+    const line = Utilities.formatDate(new Date(), 'Asia/Jakarta', 'yyyy-MM-dd HH:mm') + '  ' + (admin ? '[AJ] ' : '') + note;
+    notes = (notes ? notes + '\n' : '') + line;
+    if (notes.length > 45000) return pFail_('FULL', 'This lead has too many notes to add more.');
+    log.push(['Note', note]);
+  }
+  if (!log.length) return { ok: true, v: PORTAL_V, now: Date.now(), lead: pLeadOut_(row, g.dup) };
+  if (!first && stage !== 'New') first = new Date();
+  const out = [stage, first || '', next, checks.join(', '), notes, new Date()];
+  all.sh.getRange(row.r, P_COL, 1, out.length).setValues([out]);
+  log.forEach(l => pLog_(who, sid, lead, l[0], l[1]));
+  for (let i = 0; i < out.length; i++) v[P_COL - 1 + i] = out[i];
+  return { ok: true, v: PORTAL_V, now: Date.now(), lead: pLeadOut_({ r: row.r, v: v }, g.dup) };
+}
+function pLink_(c) { return PORTAL_URL + '#k=' + c.leadsKey; }
+function pOverview_() {
+  const all = pReadLeads_().rows;
+  const coaches = readCoaches_(coachSheet_()).filter(c => c.status === 'approved' && P_SKIP.indexOf(pNorm_(c.name)) < 0);
+  const known = coaches.map(c => pNorm_(c.name)).concat(P_SKIP);
+  const list = coaches.map(c => {
+    const leads = pCoachLeads_(all, c).map(g => pLeadOut_(g.row, g.dup));
+    return { code: c.code, name: c.name, wa: pWaKey_(c.wa), link: c.leadsKey ? pLink_(c) : '', stats: pStats_(leads), partial: pPartials_(all, c) };
+  }).sort((a, b) => b.stats.late - a.stats.late || b.stats.total - a.stats.total);
+  const orphans = {};
+  all.forEach(x => { if (x.v[2] === 'Lead masuk' && known.indexOf(pNorm_(x.v[3])) < 0) { const k = String(x.v[3] || '(no coach)'); orphans[k] = (orphans[k] || 0) + 1; } });
+  return { ok: true, v: PORTAL_V, now: Date.now(), coaches: list, orphans: orphans };
+}
+function pRotate_(d) {
+  const lock = coachLock_(15000);
+  try {
+    const sh = coachSheet_();
+    const row = readCoaches_(sh).filter(c => c.code === String(d.coach || ''))[0];
+    if (!row) return pFail_('NOCOACH', 'That coach was not found.');
+    if (row.status !== 'approved') return pFail_('NOCOACH', 'This coach is not approved, so they cannot have a portal link.');
+    const had = !!row.leadsKey;
+    row.leadsKey = randHex_(24); row.updated = new Date().toISOString();
+    writeCoach_(sh, row);
+    pLog_('AJ', '', '', 'New portal link', row.name + (had ? ': the old link stopped working' : ': first link'));
+    return { ok: true, v: PORTAL_V, now: Date.now(), code: row.code, link: pLink_(row) };
+  } finally { lock.releaseLock(); }
+}
+
+/* Line added to every new-lead email, so the coach opens the lead straight in the portal. */
+function portalLine_(d) {
+  try {
+    const c = pCoaches_().filter(x => pNorm_(x.name) === pNorm_(d.coach))[0];
+    return c ? ['', 'Open this lead in your portal (tap WhatsApp there, so it counts as contacted):', pLink_(c) + '&l=' + encodeURIComponent(d.sid || '')] : [];
+  } catch (e) { return []; }
+}
+/* Block added to AJ's 21:00 daily summary. */
+function portalSpeedText_() {
+  try {
+    const o = pOverview_();
+    if (!o.coaches.length) return '';
+    const lines = o.coaches.map(c => '- ' + c.name + ': ' + c.stats.waiting + ' not contacted (' + c.stats.late + ' over 24 h), ' + c.stats.due + ' follow-ups due, ' + c.stats.customers + ' customers' + (c.stats.median != null ? ', median first reply ' + c.stats.median + ' h' : ''));
+    return '\n\nLeads portal:\n' + lines.join('\n') + '\nSpeed board: ' + PORTAL_URL + '#admin=' + prop_('LEADS_ADMIN_KEY');
+  } catch (e) { return '\n\nLeads portal: could not read the numbers (' + String(e && e.message || e).slice(0, 120) + ')'; }
+}
+/* 08:00 every day: each coach with leads waiting or follow-ups due gets one short email. */
+function portalNudge_() {
+  const all = pReadLeads_().rows;
+  pCoaches_().forEach(c => {
+    if (!c.email) return;
+    const st = pStats_(pCoachLeads_(all, c).map(g => pLeadOut_(g.row, g.dup)));
+    if (!st.waiting && !st.due) return;
+    const parts = [];
+    if (st.waiting) parts.push(st.waiting + ' lead' + (st.waiting > 1 ? 's' : '') + ' not contacted yet' + (st.late ? ' (' + st.late + ' waiting over 24 hours)' : ''));
+    if (st.due) parts.push(st.due + ' follow-up' + (st.due > 1 ? 's' : '') + ' due today');
+    try {
+      sendMail_(c.email, 'Good morning ' + c.name + ': ' + parts.join(', '),
+        'Hi ' + c.name + ',\n\nYou have ' + parts.join(' and ') + '.\nThe faster the first chat, the more people say yes, so start with the newest ones.\n\nOpen your leads: ' + pLink_(c) + '\n\n#transformwithST');
+    } catch (err) { logMailError_('portal reminder ' + c.name, err); }
+  });
+}
+
+/* Run once from the editor (or Sheet menu "Leads portal"). Safe to run again: it only fills in what is missing. */
+function setupLeadsPortal() {
+  pLeadsSheet_(); pHistory_();
+  const props = PropertiesService.getScriptProperties();
+  if (!props.getProperty('LEADS_ADMIN_KEY')) props.setProperty('LEADS_ADMIN_KEY', randHex_(32));
+  const lock = coachLock_(15000);
+  const made = [];
+  try {
+    const sh = coachSheet_();
+    readCoaches_(sh).forEach(c => {
+      if (c.status !== 'approved' || c.leadsKey || P_SKIP.indexOf(pNorm_(c.name)) >= 0) return;
+      c.leadsKey = randHex_(24); writeCoach_(sh, c); made.push(c.name);
+    });
+  } finally { lock.releaseLock(); }
+  ScriptApp.getProjectTriggers().forEach(t => { if (t.getHandlerFunction() === 'portalNudge_') ScriptApp.deleteTrigger(t); });
+  ScriptApp.newTrigger('portalNudge_').timeBased().atHour(8).everyDays(1).create();
+  const admin = PORTAL_URL + '#admin=' + props.getProperty('LEADS_ADMIN_KEY');
+  const links = pCoaches_().map(c => '- ' + c.name + (c.email ? '' : ' (no email, send by WhatsApp)') + ': ' + pLink_(c));
+  const body = 'Your speed board (keep this private):\n' + admin + '\n\nEach coach\'s private link (send each coach only their own):\n' + links.join('\n') +
+    '\n\nYou can also send them from the speed board with one tap each.\nCoaches get a reminder email at 08:00 when leads are waiting.' +
+    '\n\nLast step if not done yet: Deploy -> Manage deployments -> edit -> Version: New version -> Deploy.';
+  let mailed = 'emailed to ' + DEFAULT_EMAIL;
+  try { sendMail_(DEFAULT_EMAIL, 'Leads portal links', body); } catch (err) { mailed = 'NOT emailed (' + String(err && err.message || err) + '), copy them from this log'; }
+  const msg = 'Leads portal ready. New links for: ' + (made.join(', ') || 'nobody new') + '. Links ' + mailed + '.\n\n' + body;
+  Logger.log(msg);
+  try { SpreadsheetApp.getActiveSpreadsheet().toast('Leads portal ready. Links ' + mailed + '.', 'Leads portal', 20); } catch (e) {}
+  return msg;
 }
