@@ -3,149 +3,182 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-<title>My Leads · #transformwithST</title>
+<title>Leads · #transformwithST</title>
 <meta name="robots" content="noindex,nofollow">
 <meta name="description" content="Your private list of Cek Sinyal Badan leads.">
-<meta name="theme-color" content="#1E3A8A">
+<meta name="theme-color" content="#FFFFFF">
 <meta name="apple-mobile-web-app-capable" content="yes">
-<meta name="apple-mobile-web-app-title" content="My Leads">
+<meta name="apple-mobile-web-app-title" content="Leads">
 <meta name="referrer" content="no-referrer">
 <link rel="icon" href="/images/icon.svg?v=2" type="image/svg+xml">
 <link rel="icon" href="/images/icon-192.png?v=2" sizes="192x192" type="image/png">
 <link rel="apple-touch-icon" href="/images/apple-touch-icon.png?v=2">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Geist+Mono:wght@500&display=swap">
-<link rel="stylesheet" href="/assets/site.css?v=1793167738">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap">
 <style>
-.lp{max-width:620px;margin:0 auto;padding:18px 16px 96px;display:grid;grid-template-columns:minmax(0,1fr);gap:14px}
-#view{display:grid;grid-template-columns:minmax(0,1fr);gap:12px}
-.lp header{display:grid;gap:4px;padding-top:6px}
-.lp .brand{font-size:.82rem;font-weight:700;letter-spacing:.02em;color:var(--muted)}
-.lp h1{font-size:clamp(1.8rem,8vw,2.4rem)}
-.lp .sub{color:var(--muted);font-size:.95rem}
-.card{background:var(--surface);border:1px solid var(--line);border-radius:22px;padding:16px;display:grid;gap:10px;box-shadow:var(--lift);min-width:0}
-.card h2{font-size:1.1rem;letter-spacing:-.02em;line-height:1.2}
-.row{display:flex;gap:8px;align-items:center;flex-wrap:wrap}
-.row.sb{justify-content:space-between}
-.muted{color:var(--muted)}
-.small{font-size:.85rem}
-.mono{font-family:var(--f-mono);font-variant-numeric:tabular-nums}
-.btn{appearance:none;border:0;border-radius:999px;background:var(--cta);color:var(--cta-ink);font:600 .96rem var(--f-body);padding:11px 18px;min-height:46px;cursor:pointer;text-decoration:none;display:inline-flex;align-items:center;justify-content:center;gap:8px}
-.btn:hover{background:var(--cta-hover)}
-.btn.ghost{background:transparent;color:var(--head);border:1.5px solid var(--sky-line)}
-.btn.ghost:hover{background:var(--accent-soft)}
-.btn.wa{background:#128C4A;color:#fff}
-.btn.wa:hover{background:#0E7A40}
-.btn.warn{background:transparent;color:var(--bad);border:1.5px solid var(--bad)}
-.btn.sm{min-height:38px;padding:7px 14px;font-size:.87rem}
-.btn.full{width:100%}
-.btn[disabled]{opacity:.45;cursor:default}
-.banner{border-radius:16px;padding:12px 14px;font-size:.93rem;line-height:1.45;border:1px solid}
-.banner.err{background:var(--bad-soft);border-color:var(--bad);color:var(--bad)}
-.banner.warn{background:var(--warn-soft);border-color:var(--warn);color:var(--warn)}
-.banner.ok{background:var(--good-soft);border-color:var(--good);color:var(--good)}
-.banner button{margin-left:8px}
-.stats{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:8px}
-.stat{background:var(--surface);border:1px solid var(--line);border-radius:18px;padding:10px 8px;text-align:center;cursor:pointer;font:inherit;color:inherit}
-.stat b{display:block;font-size:1.5rem;font-weight:800;color:var(--head);font-variant-numeric:tabular-nums;line-height:1.1}
-.stat span{font-size:.74rem;font-weight:700;color:var(--muted);letter-spacing:.01em}
-.stat.hot{background:var(--bad-soft);border-color:var(--bad)}
-.stat.hot b,.stat.hot span{color:var(--bad)}
-.stat.due{background:var(--warn-soft);border-color:var(--warn)}
-.stat.due b,.stat.due span{color:var(--warn)}
-.chips{display:flex;gap:8px;overflow-x:auto;padding:2px 2px 4px;scrollbar-width:none;-webkit-overflow-scrolling:touch}
-.chips::-webkit-scrollbar{display:none}
-.chip{flex:0 0 auto;border:1.5px solid var(--sky-line);background:var(--surface);color:var(--head);border-radius:999px;padding:8px 14px;min-height:40px;font:600 .9rem var(--f-body);cursor:pointer;white-space:nowrap}
-.chip[aria-pressed=true]{background:var(--cta);color:var(--cta-ink);border-color:var(--cta)}
-.chip .n{font-family:var(--f-mono);margin-left:4px;opacity:.75}
-.search{font:500 1rem var(--f-body);color:var(--ink);background:var(--surface);border:1.5px solid var(--line);border-radius:14px;padding:11px 12px;min-height:46px;width:100%}
-.lead{display:grid;gap:8px;cursor:pointer;text-align:left}
-.lead .nm{font-weight:800;font-size:1.06rem;color:var(--head);overflow-wrap:anywhere}
-.lead .meta{font-size:.86rem;color:var(--muted);overflow-wrap:anywhere}
-.lead.sel{border-color:var(--cta);box-shadow:0 0 0 2px var(--cta) inset,var(--lift)}
-.lead.late{border-color:var(--bad);box-shadow:0 0 0 1px var(--bad) inset,var(--lift)}
-.tag{display:inline-block;border-radius:999px;padding:2px 10px;font-size:.76rem;font-weight:700;background:var(--sand);color:var(--muted);white-space:nowrap}
-.tag.good{background:var(--good-soft);color:var(--good)}
-.tag.bad{background:var(--bad-soft);color:var(--bad)}
-.tag.warn{background:var(--warn-soft);color:var(--warn)}
-.tag.blue{background:var(--accent-soft);color:var(--accent)}
-.sheet-bg{position:fixed;inset:0;background:rgba(15,23,48,.45);display:flex;align-items:flex-end;justify-content:center;z-index:50}
-.sheet{background:var(--bg);width:100%;max-width:620px;border-radius:26px 26px 0 0;padding:18px 16px calc(22px + env(safe-area-inset-bottom,0px));display:grid;gap:14px;max-height:92vh;overflow:auto;overscroll-behavior:contain}
-.sheet h2{font-size:1.4rem;letter-spacing:-.02em;overflow-wrap:anywhere}
-.sec{display:grid;gap:8px}
-.sec h3{font-size:.8rem;font-weight:800;letter-spacing:.06em;text-transform:uppercase;color:var(--muted)}
-.kv{display:grid;grid-template-columns:auto minmax(0,1fr);gap:6px 12px;font-size:.93rem}
-.kv .k{color:var(--muted)}
-.kv .v{overflow-wrap:anywhere;color:var(--ink)}
-.bars{display:grid;gap:7px}
-.bar{display:grid;grid-template-columns:118px minmax(0,1fr) 34px;gap:8px;align-items:center;font-size:.86rem}
-.bar .tr{height:9px;border-radius:9px;background:var(--sand);overflow:hidden}
-.bar .fl{height:100%;border-radius:9px}
-.bar .n{font-family:var(--f-mono);text-align:right}
-.stages{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:6px}
-.stg{border:1.5px solid var(--line);background:var(--surface);color:var(--ink);border-radius:14px;min-height:46px;padding:6px;font:600 .86rem var(--f-body);cursor:pointer}
-.stg[aria-pressed=true]{background:var(--cta);color:var(--cta-ink);border-color:var(--cta)}
-.chk{display:flex;gap:10px;align-items:center;font-size:.95rem;min-height:40px}
-.chk input{width:22px;height:22px;flex:0 0 auto}
-textarea.f,input.f{font:500 1rem var(--f-body);color:var(--ink);background:var(--surface);border:1.5px solid var(--line);border-radius:14px;padding:11px 12px;min-height:46px;width:100%}
-textarea.f{min-height:84px;resize:vertical}
-.note{border-left:3px solid var(--sky-line);padding:2px 0 2px 10px;font-size:.92rem;overflow-wrap:anywhere}
-.note .t{font-size:.76rem;color:var(--muted);font-family:var(--f-mono)}
-.saving{font-size:.8rem;color:var(--muted);min-height:1em}
-.foot{color:var(--muted);font-size:.82rem;text-align:center;padding:6px 8px}
-.empty{padding:26px 8px;text-align:center;color:var(--muted)}
-.spin{display:inline-block;width:14px;height:14px;border:2px solid var(--sky-line);border-top-color:var(--accent);border-radius:50%;animation:sp .8s linear infinite;vertical-align:-2px}
-@keyframes sp{to{transform:rotate(360deg)}}
-.link{background:none;border:0;padding:0;color:var(--accent);text-decoration:underline;font:inherit;cursor:pointer}
-.coachrow{display:grid;gap:8px}
-.coachrow .nums{display:flex;gap:6px;flex-wrap:wrap}
-.row.nowrap{flex-wrap:nowrap}
-.urg{flex:0 0 auto;display:inline-flex;align-items:baseline;gap:2px;border-radius:999px;padding:3px 10px;font-size:.78rem;font-weight:700;background:var(--sand);color:var(--muted);white-space:nowrap}
-.urg b{font-size:1rem;font-weight:800;font-variant-numeric:tabular-nums}
-.urg.bad{background:var(--bad-soft);color:var(--bad)}
-.urg.warn{background:var(--warn-soft);color:var(--warn)}
-.urg.blue{background:var(--accent-soft);color:var(--accent)}
-.urg.good{background:var(--good-soft);color:var(--good)}
-.big{font-size:1.6rem;font-weight:800;color:var(--head);font-variant-numeric:tabular-nums;line-height:1}
-.urgbox{background:var(--surface);border:1px solid var(--line);border-radius:18px;padding:12px 14px}
-.urgbox.bad{background:var(--bad-soft);border-color:var(--bad)}
-.urgbox.warn{background:var(--warn-soft);border-color:var(--warn)}
-.why{display:flex;justify-content:space-between;gap:10px;font-size:.88rem}
-.seg{display:inline-flex;background:var(--sand);border-radius:999px;padding:3px}
-.seg button{border:0;background:transparent;border-radius:999px;min-height:32px;padding:4px 12px;font:700 .82rem var(--f-body);color:var(--muted);cursor:pointer}
-.seg button[aria-pressed=true]{background:var(--surface);color:var(--head);box-shadow:var(--lift)}
-.list{display:grid;gap:10px}
-.board{display:grid;gap:12px}
-.col{display:grid;gap:16px;align-content:start;min-width:0}
-@media (min-width:768px){
-  .lp{max-width:1320px;padding:20px 24px 60px}
-  .split{display:grid;grid-template-columns:minmax(300px,380px) minmax(0,1fr);gap:18px;align-items:start}
-  .pane-list{position:sticky;top:12px;max-height:calc(100vh - 24px);overflow:auto;display:grid;gap:10px;padding:2px 6px 12px 2px;align-content:start;overscroll-behavior:contain}
-  .pane-list .lead{padding:13px 14px;gap:6px}
-  .pane-detail{padding:20px;gap:14px}
-  .pane-detail h2{font-size:1.6rem;letter-spacing:-.02em;overflow-wrap:anywhere}
-  .detail-grid{display:grid;grid-template-columns:minmax(0,1fr);gap:18px}
-  .board{grid-template-columns:repeat(auto-fill,minmax(340px,1fr))}
+:root{
+  --bg:#FFFFFF; --panel:#F7F8FA; --line:#ECEEF2; --line2:#F1F2F4; --field:#F3F4F6;
+  --ink:#0F172A; --ink2:#334155; --ink3:#475569; --muted:#64748B; --faint:#94A3B8;
+  --accent:#2F6FED; --accent-ink:#1D4ED8; --accent-soft:#E8EEFC; --accent-bg:#F5F8FF;
+  --hot:#EA580C; --hot-soft:#FFEDD5; --warm:#F59E0B; --warm-ink:#B45309; --warm-soft:#FEF3C7; --cool:#CBD5E1;
+  --late:#DC2626; --late-soft:#FEE2E2; --good:#15803D; --good-soft:#DCFCE7; --wa:#16A34A; --wa-hover:#15803D;
+  --r:10px; --r2:12px;
 }
-@media (min-width:1100px){.detail-grid{grid-template-columns:minmax(0,1.1fr) minmax(0,1fr)}}
-@media (max-width:380px){.stats{grid-template-columns:repeat(2,minmax(0,1fr))}.stages{grid-template-columns:repeat(2,minmax(0,1fr))}.bar{grid-template-columns:96px minmax(0,1fr) 30px}}
+*{box-sizing:border-box}
+html,body{margin:0;background:var(--bg);color:var(--ink);font:400 14px/1.45 Inter,system-ui,-apple-system,sans-serif;-webkit-font-smoothing:antialiased;-webkit-text-size-adjust:100%}
+button,input,textarea{font:inherit;color:inherit}
+a{color:var(--accent)}a:hover{color:var(--accent-ink)}
+.app{min-height:100vh;display:flex}
+.side{display:none}
+.listcol{flex:1 1 auto;min-width:0;display:flex;flex-direction:column}
+.detailcol{display:none}
+/* coach header */
+.who{display:flex;align-items:center;gap:10px;min-width:0}
+.av{width:36px;height:36px;flex:0 0 36px;border-radius:50%;background:var(--accent-soft);color:var(--accent-ink);display:flex;align-items:center;justify-content:center;font-weight:700}
+.who .n{font-weight:700;font-size:16px;line-height:1.2;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.who .s{font-size:12px;color:var(--muted)}
+.as-aj{font-size:12px;color:var(--warm-ink);background:var(--warm-soft);border-radius:8px;padding:6px 10px;display:flex;gap:8px;align-items:center;justify-content:space-between}
+.listhead{padding:calc(14px + env(safe-area-inset-top,0px)) 16px 12px;display:grid;gap:12px;border-bottom:1px solid var(--line);background:var(--bg);position:sticky;top:0;z-index:5}
+.chips{display:flex;gap:6px;overflow-x:auto;scrollbar-width:none;-webkit-overflow-scrolling:touch;margin:0 -16px;padding:0 16px}
+.chips::-webkit-scrollbar{display:none}
+.chip{flex:0 0 auto;border:0;border-radius:999px;background:var(--field);color:var(--ink2);padding:7px 12px;font-size:13px;font-weight:500;white-space:nowrap;cursor:pointer;min-height:34px}
+.chip[aria-pressed=true]{background:var(--ink);color:#fff;font-weight:600}
+.search{width:100%;height:38px;border:0;border-radius:8px;background:var(--field);padding:0 12px;outline:none}
+.search:focus{box-shadow:0 0 0 2px var(--accent-soft)}
+.bar1{display:flex;justify-content:space-between;align-items:center;gap:8px}
+.bar1 h1{margin:0;font-size:20px;font-weight:700;letter-spacing:-.01em}
+.seg{display:inline-flex;background:var(--field);border-radius:8px;padding:3px}
+.seg button{border:0;background:transparent;border-radius:6px;padding:4px 10px;font-size:12px;font-weight:500;color:var(--muted);cursor:pointer;min-height:28px}
+.seg button[aria-pressed=true]{background:#fff;color:var(--ink);font-weight:600;box-shadow:0 1px 2px rgba(15,23,42,.08)}
+/* rows */
+.rows{display:flex;flex-direction:column}
+.lr{display:flex;gap:12px;padding:13px 16px;border-bottom:1px solid var(--line2);cursor:pointer;background:var(--bg);border-left:3px solid transparent;text-align:left;width:100%;border-top:0;border-right:0}
+.lr:hover{background:#FAFBFC}
+.lr[aria-current=true]{background:var(--accent-bg);border-left-color:var(--accent)}
+.dot{width:8px;height:8px;flex:0 0 8px;border-radius:50%;margin-top:6px;background:var(--cool)}
+.dot.hot{background:var(--hot)}.dot.warm{background:var(--warm)}.dot.good{background:var(--good)}
+.lr .b{flex:1 1 auto;min-width:0;display:flex;flex-direction:column;gap:2px}
+.lr .t{display:flex;justify-content:space-between;gap:8px}
+.lr .t b{font-weight:600;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.sc{font-weight:600;font-variant-numeric:tabular-nums;color:var(--muted)}
+.sc.hot{color:var(--hot)}.sc.warm{color:var(--warm-ink)}.sc.good{color:var(--good)}
+.l2{color:var(--ink3);overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.l3{color:var(--faint);font-size:12px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.l3 .late{color:var(--late)}
+.l3 .due{color:var(--warm-ink);font-weight:600}
+.empty{padding:40px 20px;text-align:center;color:var(--muted)}
+.foot{padding:16px;color:var(--faint);font-size:12px;line-height:1.6}
+.linkbtn{background:none;border:0;padding:0;color:var(--accent);cursor:pointer;text-decoration:underline;font-size:inherit}
+.mobile-cta{position:sticky;bottom:0;padding:10px 16px calc(12px + env(safe-area-inset-bottom,0px));background:linear-gradient(rgba(255,255,255,0),#fff 30%);}
+/* buttons */
+.btn{appearance:none;border:1px solid var(--line);background:#fff;color:var(--ink);border-radius:var(--r);height:44px;padding:0 16px;font-weight:500;cursor:pointer;display:inline-flex;align-items:center;justify-content:center;gap:8px;text-decoration:none;white-space:nowrap}
+.btn:hover{background:var(--panel);color:var(--ink)}
+.btn.wa{background:var(--wa);border-color:var(--wa);color:#fff;font-weight:600}
+.btn.wa:hover{background:var(--wa-hover);color:#fff}
+.btn.pri{background:var(--ink);border-color:var(--ink);color:#fff;font-weight:600}
+.btn.pri:hover{background:#1E293B;color:#fff}
+.btn.sm{height:34px;padding:0 12px;font-size:13px;border-radius:8px}
+.btn.full{width:100%}
+.btn[disabled]{opacity:.5;cursor:default}
+/* detail */
+.dt{display:flex;flex-direction:column;gap:16px;padding:20px}
+.dt-h{display:flex;justify-content:space-between;align-items:flex-start;gap:12px}
+.dt-h h2{margin:0;font-size:24px;font-weight:700;letter-spacing:-.02em;line-height:1.2;overflow-wrap:anywhere}
+.dt-h .f{color:var(--muted);margin-top:4px}
+.urgbig{display:flex;flex-direction:column;align-items:flex-end;flex:0 0 auto}
+.urgbig b{font-size:30px;line-height:1;font-weight:700;font-variant-numeric:tabular-nums;color:var(--muted)}
+.urgbig b.hot{color:var(--hot)}.urgbig b.warm{color:var(--warm-ink)}
+.urgbig span{font-size:12px;color:var(--muted);margin-top:4px}
+.acts{display:flex;gap:8px;flex-wrap:wrap}
+.stages{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:2px;background:var(--field);border-radius:var(--r);padding:3px}
+.stages button{border:0;background:transparent;border-radius:8px;padding:8px 10px;font-size:13px;color:var(--muted);cursor:pointer;white-space:nowrap;min-height:36px}
+.stages button[aria-pressed=true]{background:#fff;color:var(--ink);font-weight:600;box-shadow:0 1px 2px rgba(15,23,42,.08)}
+.grid2{display:grid;grid-template-columns:minmax(0,1fr);gap:12px}
+.box{border:1px solid var(--line);border-radius:var(--r2);padding:14px 16px;display:flex;flex-direction:column;gap:10px;min-width:0}
+.box h3{margin:0;font-size:11px;font-weight:600;color:var(--muted);letter-spacing:.06em;text-transform:uppercase;display:flex;justify-content:space-between;gap:8px}
+.bars{display:flex;flex-direction:column;gap:8px;font-size:13px}
+.brow{display:grid;grid-template-columns:112px minmax(0,1fr) 28px;align-items:center;gap:10px}
+.trk{height:6px;border-radius:6px;background:#F1F5F9;overflow:hidden}
+.fil{height:6px;border-radius:6px}
+.brow .v{text-align:right;color:var(--muted);font-variant-numeric:tabular-nums;font-size:12px}
+.kv{display:grid;grid-template-columns:auto minmax(0,1fr);gap:6px 14px;font-size:13px}
+.kv .k{color:var(--muted)}
+.kv .v{overflow-wrap:anywhere}
+.why{display:flex;justify-content:space-between;gap:10px;font-size:13px;color:var(--ink3)}
+.why span:last-child{font-variant-numeric:tabular-nums;color:var(--muted)}
+.qbtns{display:flex;gap:6px;flex-wrap:wrap}
+.field{width:100%;border:1px solid var(--line);border-radius:8px;background:#fff;padding:9px 12px;min-height:40px;outline:none}
+.field:focus{border-color:var(--accent);box-shadow:0 0 0 3px var(--accent-soft)}
+textarea.field{min-height:72px;resize:vertical}
+.chk{display:flex;align-items:center;gap:10px;font-size:14px;min-height:36px;cursor:pointer}
+.chk input{width:18px;height:18px;accent-color:var(--accent)}
+.note{display:flex;flex-direction:column;gap:2px;padding:8px 0;border-top:1px solid var(--line2);font-size:13px}
+.note:first-child{border-top:0;padding-top:0}
+.note .t{font-size:11px;color:var(--faint);font-variant-numeric:tabular-nums}
+.pill{display:inline-flex;align-items:center;border-radius:999px;padding:2px 9px;font-size:12px;font-weight:500;background:var(--field);color:var(--ink3);white-space:nowrap}
+.pill.late{background:var(--late-soft);color:var(--late)}
+.pill.good{background:var(--good-soft);color:var(--good)}
+.pill.blue{background:var(--accent-soft);color:var(--accent-ink)}
+.pills{display:flex;gap:6px;flex-wrap:wrap}
+.saving{font-size:12px;color:var(--muted);min-height:16px}
+.msgbox{min-height:220px}
+.qscore{display:flex;align-items:baseline;gap:8px;flex-wrap:wrap}
+.qscore b{font-size:22px;font-weight:700;font-variant-numeric:tabular-nums}
+.qscore span{color:var(--warm-ink);font-size:13px;font-weight:500}
+.sheettop{display:flex;justify-content:flex-end;padding:8px 12px 0}
+.wrap{white-space:normal}
+/* banner, sheet */
+#banner{position:fixed;left:50%;transform:translateX(-50%);bottom:calc(16px + env(safe-area-inset-bottom,0px));z-index:80;width:min(560px,calc(100% - 24px))}
+.banner{border-radius:12px;padding:12px 14px;font-size:13px;line-height:1.45;display:flex;justify-content:space-between;gap:10px;align-items:center;box-shadow:0 8px 24px rgba(15,23,42,.14);border:1px solid}
+.banner.err{background:#FEF2F2;border-color:#FECACA;color:#991B1B}
+.banner.warn{background:#FFFBEB;border-color:#FDE68A;color:#92400E}
+.banner.ok{background:#F0FDF4;border-color:#BBF7D0;color:#166534}
+.sheet-bg{position:fixed;inset:0;background:rgba(15,23,42,.35);display:flex;align-items:flex-end;justify-content:center;z-index:60}
+.sheet{background:#fff;width:100%;max-width:640px;border-radius:18px 18px 0 0;max-height:94vh;overflow:auto;overscroll-behavior:contain;padding-bottom:env(safe-area-inset-bottom,0px)}
+.grab{width:36px;height:4px;border-radius:4px;background:#E2E8F0;margin:8px auto 0}
+.spin{display:inline-block;width:12px;height:12px;border:2px solid var(--accent-soft);border-top-color:var(--accent);border-radius:50%;animation:sp .8s linear infinite;vertical-align:-1px}
+@keyframes sp{to{transform:rotate(360deg)}}
+/* sidebar */
+.side .navi{display:flex;justify-content:space-between;align-items:center;width:100%;border:0;background:transparent;padding:9px 10px;border-radius:8px;color:var(--ink2);cursor:pointer;text-align:left;font-size:14px}
+.side .navi:hover{background:#EEF0F3}
+.side .navi[aria-pressed=true]{background:var(--accent-soft);color:var(--accent-ink);font-weight:600}
+.side .navi .c{color:var(--muted);font-variant-numeric:tabular-nums}
+.side .navi[aria-pressed=true] .c{color:var(--accent-ink)}
+.side .navi .c.alert{color:var(--hot);font-weight:600}
+.kpi{padding:12px 10px;border-top:1px solid var(--line);font-size:12px;color:var(--muted)}
+.kpi b{display:block;font-size:20px;color:var(--ink);font-variant-numeric:tabular-nums}
+/* admin board */
+.board{max-width:1100px;margin:0 auto;padding:calc(20px + env(safe-area-inset-top,0px)) 16px 40px;display:flex;flex-direction:column;gap:16px;width:100%}
+.board h1{margin:0;font-size:24px;letter-spacing:-.02em}
+.crow{border:1px solid var(--line);border-radius:var(--r2);padding:14px 16px;display:grid;gap:10px}
+.crow .top{display:flex;justify-content:space-between;align-items:center;gap:10px}
+.nums{display:flex;gap:18px;flex-wrap:wrap;font-size:12px;color:var(--muted)}
+.nums b{display:block;font-size:18px;color:var(--ink);font-variant-numeric:tabular-nums}
+.nums b.hot{color:var(--hot)}
+@media (min-width:768px){
+  .app{height:100vh;overflow:hidden}
+  .listcol{flex:0 0 360px;border-right:1px solid var(--line);overflow:auto}
+  .detailcol{display:block;flex:1 1 auto;min-width:0;overflow:auto}
+  .dt{padding:24px 28px 40px;max-width:900px}
+  .mobile-cta{display:none}
+  .crow{grid-template-columns:minmax(0,1fr) auto;align-items:center}
+}
+@media (min-width:1024px){
+  .side{display:flex;flex-direction:column;gap:2px;flex:0 0 228px;background:var(--panel);border-right:1px solid var(--line);padding:18px 12px;overflow:auto}
+  .side .who{padding:0 4px 16px}
+  .listcol{flex-basis:380px}
+  .listcol .who-m, .listcol .chips{display:none}
+  .grid2{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .dt-h h2{font-size:26px}
+}
 @media (prefers-reduced-motion:reduce){.spin{animation:none}}
 </style>
 </head>
 <body>
-<main class="lp">
-  <header>
-    <div class="brand">#transformwithST</div>
-    <h1 id="title">My Leads</h1>
-    <div class="sub" id="sub">Loading…</div>
-  </header>
-  <div id="banner" role="alert" aria-live="polite"></div>
-  <div id="view"></div>
-  <div class="foot" id="foot"></div>
-</main>
+<div id="root"></div>
 <div id="sheet"></div>
-
+<div id="banner" role="alert" aria-live="polite"></div>
 <script>
 /* Leads portal. The server (apps-script/Code.gs, "LEADS PORTAL") decides what each link may see:
    a coach's link only ever receives that coach's leads. This page only shows what the server sends. */
@@ -232,14 +265,6 @@ async function api(payload, opts) {
   if (j.v && j.v !== API_V) throw new ApiError('This page is out of date. Please close it and open your link again.', 'VERSION');
   return j;
 }
-function banner(kind, msg, action) {
-  if (!msg) { put($('banner')); return; }
-  put($('banner'), el('div', { class: 'banner ' + kind }, msg, action || null));
-}
-function showError(e) {
-  banner(e && e.code === 'NET' ? 'warn' : 'err', (e && e.message) || 'Something went wrong. Please try again.', el('button', { class: 'btn sm ghost', onclick: () => banner() }, 'OK'));
-}
-
 /* Work that could not reach the server is kept on this phone and sent again, so a tap is never lost silently. */
 function pending() { try { return JSON.parse(load('ld-pending') || '[]'); } catch (e) { return []; } }
 function setPending(p) { store('ld-pending', p.length ? JSON.stringify(p) : null); }
@@ -257,7 +282,7 @@ async function flushPending() {
 /* ---------- loading ---------- */
 async function refresh(quiet) {
   if (!S.key && !S.admin) return;
-  if (!quiet) put($('sub'), el('span', { class: 'spin' }), ' Loading…');
+  if (!quiet) { S.loading = true; render(); }
   try {
     if (isAdmin() && !S.viewCoach) S.board = await api({ a: 'a_overview' });
     else { S.data = await api({ a: 'list' }); S.today = S.data.today || S.today; }
@@ -267,6 +292,7 @@ async function refresh(quiet) {
     if (e.code === 'AUTH') { if (!isAdmin()) { store('ld-key', null); S.key = ''; } else { store('ld-admin', null); S.admin = ''; } S.data = null; S.board = null; }
     showError(e);
   }
+  S.loading = false;
   render();
   if (S.open && S.data) { const sid = S.open; S.open = ''; const L = S.data.leads.find(x => x.sid === sid); if (L) { if (wide()) { S.filter = 'all'; } showLead(L); } else banner('warn', 'That lead is not in your list. It may belong to another coach, or the link is old.'); }
 }
@@ -285,6 +311,7 @@ function statsOf(leads) {
     else o.active++;
     if (L.next && L.next <= S.today && OPEN.includes(L.stage)) o.due++;
   });
+  o.median = S.data && S.data.stats ? S.data.stats.median : null;
   return o;
 }
 
@@ -371,98 +398,119 @@ function urgency(L) {
   s = Math.max(0, Math.min(100, s));
   return { score: s, label: s >= 75 ? 'Hot' : s >= 55 ? 'Warm' : 'Cool', cls: s >= 75 ? 'bad' : s >= 55 ? 'warn' : 'blue', why: why };
 }
-function urgTag(L) { const u = urgency(L); return el('span', { class: 'urg ' + u.cls, title: 'Urgency score' }, el('b', null, u.score), ' ', u.label); }
 
-/* ---------- views ---------- */
+
+/* ---------- views: Inbox layout. Phone: one list, a lead opens from the bottom.
+   iPad upright: list + lead side by side. iPad landscape / computer: stages sidebar + list + lead. ---------- */
 const wideMq = window.matchMedia('(min-width: 768px)');
 const wide = () => wideMq.matches;
+function banner(kind, msg, action) {
+  const b = $('banner');
+  if (!msg) { put(b); return; }
+  put(b, el('div', { class: 'banner ' + kind }, el('span', null, msg), action || el('button', { class: 'btn sm', onclick: () => banner() }, 'OK')));
+  if (kind === 'ok') setTimeout(() => { if (b.textContent.indexOf(msg) === 0) put(b); }, 4000);
+}
+function showError(e) { banner(e && e.code === 'NET' ? 'warn' : 'err', (e && e.message) || 'Something went wrong. Please try again.'); }
+
 const FILTERS = [
   ['waiting', 'Not contacted', L => L.stage === 'New'],
   ['due', 'Follow-up due', L => L.next && L.next <= S.today && OPEN.includes(L.stage)],
   ['progress', 'In progress', L => ['Contacted', 'Consult booked', 'Consult done'].includes(L.stage)],
   ['customers', 'Customers', L => L.stage === 'Customer'],
   ['notnow', 'Not now', L => L.stage === 'Not now'],
-  ['all', 'All', () => true]
+  ['all', 'All leads', () => true]
 ];
-function stageTag(L) {
-  const cls = { New: 'bad', Contacted: 'blue', 'Consult booked': 'blue', 'Consult done': 'blue', Customer: 'good', 'Not now': '' }[L.stage] || '';
-  return el('span', { class: 'tag ' + cls }, L.stage === 'New' ? 'Not contacted' : L.stage);
-}
-function facts(L) {
-  return [L.age ? L.age + ' y' : '', L.gender, L.city, L.h && L.w ? L.h + ' cm · ' + L.w + ' kg' : (L.w ? L.w + ' kg' : '')].filter(Boolean).join(' · ');
-}
+const STAGE_LABEL = s => s === 'New' ? 'Not contacted' : s;
+function urgCls(u) { return u.cls === 'bad' ? 'hot' : u.cls === 'warn' ? 'warm' : u.cls === 'good' ? 'good' : ''; }
 function startText(s) { return { 'Secepatnya': 'Start ASAP', 'Dalam bulan ini': 'Start this month', '1–3 bulan lagi': 'Start in 1–3 months', 'Cuma lihat-lihat dulu': 'Just exploring' }[s] || s; }
-function showLead(L) {
-  if (wide()) { S.sel = L.sid; S.compose = false; render(); const d = document.querySelector('.pane-detail'); if (d && d.getBoundingClientRect().top < 0) d.scrollIntoView({ block: 'start' }); }
-  else openLead(L);
+function triedCount(L) { return String(L.tried || '').split(',').map(x => x.trim()).filter(x => x && !/belum pernah/i.test(x)).length; }
+function facts(L) { return [L.age, L.gender === 'Wanita' ? 'Female' : L.gender === 'Pria' ? 'Male' : L.gender, L.city].filter(Boolean).join(' · '); }
+function initial(name) { const n = String(name || '').replace(/^(dr|ms|mrs|mr|coach)\.?\s+/i, '').trim(); return (n.charAt(0) || '?').toUpperCase(); }
+function coachWho(cls) {
+  const c = (S.data && S.data.coach) || {};
+  const first = String(c.name || '').replace(/^(ms|mrs|mr|coach)\.?\s+/i, '').split(/\s+/)[0];
+  return el('div', { class: 'who ' + (cls || '') }, el('div', { class: 'av', 'aria-hidden': 'true' }, initial(c.name)),
+    el('div', { style: 'min-width:0' }, el('div', { class: 'n' }, c.name || ''), el('div', { class: 's' }, (/^dr\./i.test(c.name) ? c.name : first.charAt(0).toUpperCase() + first.slice(1).toLowerCase()) + '’s leads')));
 }
-function startCompose(L) { if (wide()) { S.sel = L.sid; S.compose = true; render(); } else compose(L); }
-function leadCard(L) {
-  const late = L.stage === 'New' && now() - L.ts > DAY;
-  const due = L.next && OPEN.includes(L.stage) ? (L.next <= S.today ? el('span', { class: 'tag warn' }, 'Follow up ' + niceDay(L.next)) : el('span', { class: 'tag' }, 'Next: ' + niceDay(L.next))) : null;
-  const sel = wide() && S.sel === L.sid;
-  return el('div', { class: 'card lead' + (late ? ' late' : '') + (sel ? ' sel' : ''), role: 'button', tabindex: '0', 'aria-current': sel ? 'true' : null, onclick: () => showLead(L), onkeydown: e => { if (e.key === 'Enter') showLead(L); } },
-    el('div', { class: 'row sb nowrap' }, el('span', { class: 'nm' }, L.name), urgTag(L)),
-    facts(L) ? el('div', { class: 'meta' }, facts(L)) : null,
-    el('div', { class: 'meta' }, [L.plateau ? 'Plateau Check: ' + L.band : (L.total != null ? 'Score ' + L.total + '/100 · ' + L.band : ''), L.goal, startText(L.start)].filter(Boolean).join(' · ')),
-    el('div', { class: 'row' }, stageTag(L),
-      el('span', { class: 'tag ' + (late ? 'bad' : '') }, (L.stage === 'New' ? 'Waiting ' : 'Came in ') + ago(L.ts) + (L.stage === 'New' ? '' : ' ago')),
-      due, /online|video/i.test(L.mode) ? el('span', { class: 'tag' }, 'Video call') : (/ketemu/i.test(L.mode) ? el('span', { class: 'tag' }, 'Meet in person') : null),
-      L.dup > 1 ? el('span', { class: 'tag' }, 'Took it ' + L.dup + '×') : null),
-    L.stage === 'New' && L.wa && !wide() ? el('button', { class: 'btn wa full', onclick: e => { e.stopPropagation(); startCompose(L); } }, 'Message on WhatsApp') : null);
+function asAj() {
+  return isAdmin() ? el('div', { class: 'as-aj' }, el('span', null, 'Viewing as Coach AJ'), el('button', { class: 'btn sm', onclick: () => { S.viewCoach = ''; S.data = null; S.sel = ''; render(); refresh(); } }, 'All coaches')) : null;
 }
 function visible() {
   const d = S.data, q = S.q.trim().toLowerCase(), qd = q.replace(/\D/g, '');
   let list = q ? d.leads.filter(L => L.name.toLowerCase().includes(q) || (qd.length >= 4 && L.wa.includes(qd)) || L.email.toLowerCase().includes(q))
     : d.leads.filter(FILTERS.find(f => f[0] === S.filter)[2]);
   list = list.map(L => [L, urgency(L).score]);
-  if (S.sort === 'urgent') list.sort((a, b) => b[1] - a[1] || b[0].ts - a[0].ts);
+  if (S.filter === 'due' && !q) list.sort((a, b) => (a[0].next < b[0].next ? -1 : a[0].next > b[0].next ? 1 : b[1] - a[1]));
+  else if (S.sort === 'urgent') list.sort((a, b) => b[1] - a[1] || b[0].ts - a[0].ts);
   else list.sort((a, b) => b[0].ts - a[0].ts);
   return { list: list.map(x => x[0]), q: q };
 }
-function renderCoach() {
-  const d = S.data;
-  if (!d) { put($('view')); return; }
-  const st = d.stats || statsOf(d.leads);
-  $('title').textContent = isAdmin() ? d.coach.name + '’s leads' : 'My Leads';
-  put($('sub'), st.waiting ? st.waiting + ' not contacted yet' + (st.late ? ', ' + st.late + ' waiting over a day' : '') : 'Everyone has been contacted. Nice work.');
-  const counts = Object.fromEntries(FILTERS.map(f => [f[0], d.leads.filter(f[2]).length]));
-  const v = visible();
-  if (wide() && (!S.sel || !d.leads.some(L => L.sid === S.sel)) && v.list.length) S.sel = v.list[0].sid;
-  const stat = (n, label, cls, f) => el('button', { class: 'stat ' + (n ? cls : ''), onclick: () => { S.filter = f; S.q = ''; S.sel = ''; render(); } }, el('b', null, n), el('span', null, label));
-  const controls = [
-    el('input', { class: 'search', type: 'search', placeholder: 'Search name, number or email', value: S.q, oninput: e => { S.q = e.target.value; renderListOnly(); } }),
-    el('div', { class: 'chips', role: 'tablist' }, FILTERS.map(f => el('button', { class: 'chip', 'aria-pressed': S.filter === f[0] && !v.q ? 'true' : 'false', onclick: () => { S.filter = f[0]; S.q = ''; S.sel = ''; render(); } }, f[1], el('span', { class: 'n' }, counts[f[0]])))),
-    el('div', { class: 'row sb small muted' }, el('span', null, v.list.length + ' shown'),
-      el('div', { class: 'seg' }, ['urgent', 'newest'].map(s => el('button', { 'aria-pressed': S.sort === s ? 'true' : 'false', onclick: () => { S.sort = s; store('ld-sort', s); render(); } }, s === 'urgent' ? 'Most urgent' : 'Newest'))))
-  ];
-  const listBox = el('div', { id: 'list', class: 'list' }, listNodes(v.list, v.q));
-  const top = [
-    isAdmin() ? el('div', { class: 'row' }, el('button', { class: 'btn sm ghost', onclick: () => { S.viewCoach = ''; S.data = null; S.sel = ''; render(); refresh(); } }, '← All coaches'), el('span', { class: 'small muted' }, 'You are viewing as Coach AJ. Notes you add are marked [AJ].')) : null,
-    el('div', { class: 'stats' }, stat(st.waiting, 'Not contacted', 'hot', 'waiting'), stat(st.due, 'Due today', 'due', 'due'), stat(st.active, 'In progress', '', 'progress'), stat(st.customers, 'Customers', '', 'customers'))
-  ];
-  if (wide()) {
-    const L = d.leads.find(x => x.sid === S.sel);
-    put($('view'), top, el('div', { class: 'split' },
-      el('div', { class: 'pane-list' }, controls, listBox),
-      el('div', { class: 'pane-detail card' }, L ? (S.compose ? composeNodes(L) : detailNodes(L)) : el('div', { class: 'empty' }, 'Pick a lead on the left to see everything about them.'))));
-  } else put($('view'), top, controls, listBox);
-  put($('foot'), d.partial ? d.partial + ' more ' + (d.partial === 1 ? 'person' : 'people') + ' finished the quiz in the last 30 days without leaving contact details, so there is no way to reach them.' : '', d.partial ? el('br') : null,
-    'Urgency score 0–100: quiz signal, how soon they want to start, what they tried, and waiting time or follow-up date. ', el('br'),
-    S.lastOk ? 'Updated ' + new Date(S.lastOk).toLocaleTimeString('en-GB', { hour: '2-digit', minute: '2-digit' }) + ' · ' : '', el('button', { class: 'link', onclick: () => refresh() }, 'Refresh'));
+function setFilter(f) { S.filter = f; S.q = ''; S.sel = ''; render(); }
+function row(L) {
+  const u = urgency(L), late = L.stage === 'New' && now() - L.ts > DAY;
+  const l2 = [L.plateau ? 'Plateau Check' : (L.total != null ? 'Score ' + L.total : ''), startText(L.start), triedCount(L) ? 'tried ' + triedCount(L) : 'first try'].filter(Boolean).join(' · ');
+  let when3;
+  if (L.stage === 'New') when3 = el('span', { class: late ? 'late' : '' }, late ? 'waiting ' + ago(L.ts) : ago(L.ts) + ' ago');
+  else if (L.next && OPEN.includes(L.stage)) when3 = el('span', { class: L.next <= S.today ? 'due' : '' }, 'follow up ' + niceDay(L.next));
+  else when3 = el('span', null, STAGE_LABEL(L.stage));
+  return el('button', { class: 'lr', type: 'button', 'aria-current': wide() && S.sel === L.sid ? 'true' : 'false', onclick: () => showLead(L) },
+    el('span', { class: 'dot ' + urgCls(u), 'aria-hidden': 'true' }),
+    el('span', { class: 'b' },
+      el('span', { class: 't' }, el('b', null, L.name), el('span', { class: 'sc ' + urgCls(u), title: 'Urgency ' + u.score + ' (' + u.label + ')' }, u.score || (L.stage === 'Customer' ? '✓' : '–'))),
+      el('span', { class: 'l2' }, l2),
+      el('span', { class: 'l3' }, [facts(L), ''].filter(Boolean).join(' · '), facts(L) ? ' · ' : '', when3, L.dup > 1 ? ' · took it ' + L.dup + '×' : '')));
 }
-function listNodes(list, q) {
-  if (list.length) return list.slice(0, 200).map(leadCard).concat(list.length > 200 ? [el('div', { class: 'empty' }, 'Showing the first 200. Use search to find someone.')] : []);
-  const msg = q ? 'No lead matches “' + S.q + '”.' : { waiting: 'No one is waiting. Every lead has been contacted.', due: 'No follow-ups due today.', progress: 'No leads in progress.', customers: 'No customers yet. They will show here when you mark a lead Customer.', notnow: 'Nobody is marked Not now.', all: 'No leads yet. New ones show up here as soon as someone finishes the quiz.' }[S.filter];
+function showLead(L) {
+  if (wide()) { S.sel = L.sid; S.compose = false; render(); const d = document.querySelector('.detailcol'); if (d) d.scrollTop = 0; }
+  else openLead(L);
+}
+function startCompose(L) { if (wide()) { S.sel = L.sid; S.compose = true; render(); } else sheet(composeNodes(L)); }
+function rowsNodes(list, q) {
+  if (list.length) return list.slice(0, 300).map(row).concat(list.length > 300 ? [el('div', { class: 'empty' }, 'Showing the first 300. Use search to find someone.')] : []);
+  const msg = q ? 'No lead matches “' + S.q + '”.' : { waiting: 'No one is waiting. Every lead has been contacted.', due: 'No follow-ups due today.', progress: 'No leads in progress.', customers: 'No customers yet. They show here when you mark a lead Customer.', notnow: 'Nobody is marked Not now.', all: 'No leads yet. New ones show up here as soon as someone finishes the quiz.' }[S.filter];
   return [el('div', { class: 'empty' }, msg)];
 }
 function renderListOnly() {
   const v = visible();
-  put($('list'), listNodes(v.list, v.q));
-  document.querySelectorAll('.chip').forEach((c, i) => c.setAttribute('aria-pressed', !v.q && FILTERS[i][0] === S.filter ? 'true' : 'false'));
+  put($('rows'), rowsNodes(v.list, v.q));
+  document.querySelectorAll('.chip,.navi').forEach(c => { const f = c.getAttribute('data-f'); if (f) c.setAttribute('aria-pressed', !v.q && f === S.filter ? 'true' : 'false'); });
+}
+function renderCoach() {
+  const d = S.data;
+  if (!d) { put($('root'), el('div', { class: 'empty', style: 'width:100%' }, S.loading ? [el('span', { class: 'spin' }), ' Loading your leads…'] : '')); return; }
+  const st = d.stats = statsOf(d.leads);
+  document.title = d.coach.name + ' · Leads';
+  const counts = Object.fromEntries(FILTERS.map(f => [f[0], d.leads.filter(f[2]).length]));
+  const v = visible();
+  if (wide() && (!S.sel || !d.leads.some(L => L.sid === S.sel)) && v.list.length) S.sel = v.list[0].sid;
+  const title = v.q ? 'Search' : FILTERS.find(f => f[0] === S.filter)[1];
+  const side = el('nav', { class: 'side', 'aria-label': 'Stages' },
+    coachWho(),
+    asAj(),
+    FILTERS.map(f => el('button', { class: 'navi', 'data-f': f[0], 'aria-pressed': !v.q && S.filter === f[0] ? 'true' : 'false', onclick: () => setFilter(f[0]) },
+      el('span', null, f[1]), el('span', { class: 'c ' + ((f[0] === 'waiting' && st.late) || (f[0] === 'due' && counts.due) ? 'alert' : '') }, counts[f[0]]))),
+    el('div', { style: 'flex-grow:1' }),
+    el('div', { class: 'kpi' }, 'Your median first reply', el('b', null, st.median != null ? st.median + ' h' : '–'), 'last 30 days'),
+    el('div', { class: 'kpi' }, 'Waiting over a day', el('b', { style: st.late ? 'color:var(--late)' : '' }, st.late)));
+  const listcol = el('section', { class: 'listcol', 'aria-label': 'Leads' },
+    el('div', { class: 'listhead' },
+      coachWho('who-m'),
+      asAj() ? el('div', { class: 'who-m' }, asAj()) : null,
+      el('div', { class: 'bar1' }, el('h1', null, title), el('div', { class: 'seg', role: 'group', 'aria-label': 'Sort' }, ['urgent', 'newest'].map(s => el('button', { 'aria-pressed': S.sort === s ? 'true' : 'false', onclick: () => { S.sort = s; store('ld-sort', s); render(); } }, s === 'urgent' ? 'Most urgent' : 'Newest')))),
+      el('input', { class: 'search', type: 'search', placeholder: 'Search name, number or email', value: S.q, 'aria-label': 'Search leads', oninput: e => { S.q = e.target.value; renderListOnly(); } }),
+      el('div', { class: 'chips', role: 'group', 'aria-label': 'Stages' }, FILTERS.map(f => el('button', { class: 'chip', 'data-f': f[0], 'aria-pressed': !v.q && S.filter === f[0] ? 'true' : 'false', onclick: () => setFilter(f[0]) }, f[1] + ' ' + counts[f[0]])))),
+    el('div', { class: 'rows', id: 'rows' }, rowsNodes(v.list, v.q)),
+    el('div', { class: 'foot' },
+      d.partial ? d.partial + ' more ' + (d.partial === 1 ? 'person' : 'people') + ' finished the quiz in the last 30 days without leaving contact details, so they cannot be reached. ' : '',
+      'Urgency 0–100 comes from the quiz score, how soon they want to start, what they tried, and waiting time or follow-up date. ',
+      S.lastOk ? 'Updated ' + new Date(S.lastOk).toLocaleTimeString('en-GB', { hour: '2-digit', minute: '2-digit' }) + '. ' : '', el('button', { class: 'linkbtn', onclick: () => refresh() }, 'Refresh')),
+    !wide() && S.filter === 'waiting' && !v.q && v.list.length && v.list[0].wa ? el('div', { class: 'mobile-cta' }, el('button', { class: 'btn wa full', onclick: () => startCompose(v.list[0]) }, 'Message the most urgent: ' + firstName(v.list[0].name))) : null);
+  const L = wide() ? d.leads.find(x => x.sid === S.sel) : null;
+  const detailcol = el('section', { class: 'detailcol', 'aria-label': 'Lead' }, L ? (S.compose ? composeNodes(L) : detailNodes(L)) : el('div', { class: 'empty' }, v.list.length ? 'Pick a lead to see everything about them.' : ''));
+  put($('root'), el('div', { class: 'app' }, side, listcol, detailcol));
 }
 
-/* ---------- one lead (bottom sheet on phones, right-hand panel on iPad and computer) ---------- */
+/* ---------- one lead ---------- */
 function closeSheet() { put($('sheet')); document.body.style.overflow = ''; render(); }
 function sheet(...kids) {
   document.body.style.overflow = 'hidden';
@@ -470,122 +518,114 @@ function sheet(...kids) {
 }
 function openLead(L0) { const L = S.data.leads.find(x => x.sid === L0.sid) || L0; sheet(detailNodes(L)); }
 function afterSave(r) { if (!r) return; if (wide()) render(); else openLead(r); }
-function barColor(v) { return v < 40 ? 'var(--bad)' : v < 60 ? 'var(--warn)' : 'var(--good)'; }
+function barColor(v) { return v < 40 ? 'var(--hot)' : v < 60 ? 'var(--warm)' : '#10B981'; }
 function detailNodes(L) {
-  const status = el('div', { class: 'saving' });
+  const status = el('div', { class: 'saving', 'aria-live': 'polite' });
   const kv = rows => el('div', { class: 'kv' }, rows.filter(r => r[1]).map(r => [el('div', { class: 'k' }, r[0]), el('div', { class: 'v' }, r[1])]));
   const names = ['Eating pattern', 'Energy', 'Sleep & stress', 'Movement & muscle', 'Body trend'];
-  const due = L.next ? (L.next < S.today ? 'overdue, ' : '') + niceDay(L.next) : 'none';
   const u = urgency(L);
-  const noteBox = el('textarea', { class: 'f', placeholder: 'What happened? e.g. Replied, wants a video call Tuesday evening', maxlength: '600' });
+  const noteBox = el('textarea', { class: 'field', placeholder: 'What happened? e.g. Replied, wants a video call Tuesday evening', maxlength: '600', 'aria-label': 'New note' });
   const setNext = async v => afterSave(await save(L, { next: v }, status));
-  const work = [
-    L.wa ? el('div', { class: 'row' }, el('button', { class: 'btn wa', onclick: () => startCompose(L) }, 'WhatsApp'), L.stage === 'New' ? el('button', { class: 'btn ghost', onclick: () => { markContacted(L); afterSave(L); } }, 'Already contacted') : null)
-      : el('div', { class: 'banner warn' }, 'No WhatsApp number was left. Try the email.'),
-    el('div', { class: 'sec' }, el('h3', null, 'Stage'),
-      el('div', { class: 'stages' }, (S.data.stages || []).map(s => el('button', { class: 'stg', 'aria-pressed': L.stage === s ? 'true' : 'false', onclick: async () => { if (s !== L.stage) afterSave(await save(L, { stage: s }, status)); } }, s === 'New' ? 'Not contacted' : s))),
-      status),
-    el('div', { class: 'sec' }, el('h3', null, 'Next follow-up: ' + due),
-      el('div', { class: 'row' }, el('button', { class: 'btn sm ghost', onclick: () => setNext(addDays(1)) }, 'Tomorrow'), el('button', { class: 'btn sm ghost', onclick: () => setNext(addDays(3)) }, 'In 3 days'), el('button', { class: 'btn sm ghost', onclick: () => setNext(addDays(7)) }, 'Next week'), L.next ? el('button', { class: 'btn sm ghost', onclick: () => setNext('') }, 'Clear') : null),
-      el('input', { class: 'f', type: 'date', value: L.next || '', onchange: async e => afterSave(await save(L, { next: e.target.value }, status)) })),
-    el('div', { class: 'sec' }, el('h3', null, 'Checklist'),
-      (S.data.checks || []).map(c => el('label', { class: 'chk' }, el('input', { type: 'checkbox', checked: L.checks.includes(c), onchange: async e => {
-        const next = (S.data.checks || []).filter(x => x === c ? e.target.checked : L.checks.includes(x));
-        const r = await save(L, { checks: next }, status); if (r) afterSave(r); else e.target.checked = !e.target.checked; } }), c))),
-    el('div', { class: 'sec' }, el('h3', null, 'Notes'),
-      L.notes.length ? L.notes.slice().reverse().map(n => el('div', { class: 'note' }, el('div', { class: 't' }, n.t), n.x)) : el('div', { class: 'small muted' }, 'No notes yet.'),
+  const fl = [facts(L), L.h ? L.h + ' cm' : '', L.w ? L.w + ' kg' : ''].filter(Boolean).join(' · ');
+  const firstAfter = L.first ? (L.first - L.ts < HOUR ? Math.max(1, Math.round((L.first - L.ts) / MIN)) + ' min' : Math.round((L.first - L.ts) / HOUR * 10) / 10 + ' h') : '';
+  return [!wide() ? el('div', { class: 'sheettop' }, el('button', { class: 'btn sm', onclick: closeSheet }, 'Close')) : null, el('div', { class: 'dt' },
+    el('div', { class: 'dt-h' },
+      el('div', { style: 'min-width:0' }, el('h2', null, L.name), el('div', { class: 'f' }, fl)),
+      el('div', { class: 'urgbig' }, el('b', { class: urgCls(u) }, u.score || (L.stage === 'Customer' ? '✓' : '–')), el('span', null, 'Urgency · ' + u.label))),
+    el('div', { class: 'pills' },
+      el('span', { class: 'pill ' + (L.stage === 'New' ? 'late' : L.stage === 'Customer' ? 'good' : 'blue') }, STAGE_LABEL(L.stage)),
+      el('span', { class: 'pill' }, 'Came in ' + when(L.ts)),
+      firstAfter ? el('span', { class: 'pill good' }, 'First contact after ' + firstAfter) : null,
+      L.dup > 1 ? el('span', { class: 'pill' }, 'Took the quiz ' + L.dup + '×') : null),
+    L.wa ? el('div', { class: 'acts' }, el('button', { class: 'btn wa', onclick: () => startCompose(L) }, 'Message on WhatsApp'), L.stage === 'New' ? el('button', { class: 'btn', onclick: () => { markContacted(L); afterSave(L); } }, 'Already contacted') : null)
+      : el('div', { class: 'banner warn', style: 'box-shadow:none' }, 'No WhatsApp number was left. Try the email below.'),
+    el('div', null, el('div', { class: 'stages', role: 'group', 'aria-label': 'Stage' }, (S.data.stages || []).map(s => el('button', { 'aria-pressed': L.stage === s ? 'true' : 'false', onclick: async () => { if (s !== L.stage) afterSave(await save(L, { stage: s }, status)); } }, STAGE_LABEL(s)))), status),
+    el('div', { class: 'grid2' },
+      el('div', { class: 'box' }, el('h3', null, L.plateau ? 'Plateau Check' : 'Quiz result'),
+        !L.plateau && L.total != null ? el('div', { class: 'qscore' }, el('b', null, L.total + '/100'), el('span', null, L.band)) : null,
+        L.plateau ? kv([['Main pattern', L.band], ['Stuck for', L.start], ['Tried', L.tried], ['Feels', L.goal]])
+          : [el('div', { class: 'bars' }, (L.s || []).map((v, i) => v == null ? null : el('div', { class: 'brow' }, el('span', null, names[i]), el('div', { class: 'trk' }, el('div', { class: 'fil', style: 'width:' + Math.max(3, Math.min(100, v)) + '%;background:' + barColor(v) })), el('span', { class: 'v' }, v)))),
+            el('div', { class: 'l3 wrap' }, 'Lower means a stronger signal in that area.')]),
+      el('div', { class: 'box' }, el('h3', null, 'About'),
+        kv([['Goal', L.goal], ['Start', startText(L.start)], ['Tried', L.tried], ['Prefers', L.mode], ['Age', L.age], ['Gender', L.gender === 'Wanita' ? 'Female' : L.gender === 'Pria' ? 'Male' : L.gender], ['City', L.city]]))),
+    el('div', { class: 'grid2' },
+      el('div', { class: 'box' }, el('h3', null, el('span', null, 'Next follow-up'), el('span', null, L.next ? (L.next < S.today ? 'overdue · ' : '') + niceDay(L.next) : 'not set')),
+        el('div', { class: 'qbtns' }, el('button', { class: 'btn sm', onclick: () => setNext(addDays(1)) }, 'Tomorrow'), el('button', { class: 'btn sm', onclick: () => setNext(addDays(3)) }, 'In 3 days'), el('button', { class: 'btn sm', onclick: () => setNext(addDays(7)) }, 'Next week'), L.next ? el('button', { class: 'btn sm', onclick: () => setNext('') }, 'Clear') : null),
+        el('input', { class: 'field', type: 'date', value: L.next || '', 'aria-label': 'Follow-up date', onchange: async e => afterSave(await save(L, { next: e.target.value }, status)) })),
+      el('div', { class: 'box' }, el('h3', null, 'Checklist'),
+        (S.data.checks || []).map(c => el('label', { class: 'chk' }, el('input', { type: 'checkbox', checked: L.checks.includes(c), onchange: async e => {
+          const next = (S.data.checks || []).filter(x => x === c ? e.target.checked : L.checks.includes(x));
+          const r = await save(L, { checks: next }, status); if (r) afterSave(r); else e.target.checked = !e.target.checked; } }), c)))),
+    el('div', { class: 'box' }, el('h3', null, 'Notes'),
+      L.notes.length ? el('div', null, L.notes.slice().reverse().map(n => el('div', { class: 'note' }, el('span', { class: 't' }, n.t), el('span', null, n.x)))) : el('div', { class: 'l3' }, 'No notes yet.'),
       noteBox,
-      el('button', { class: 'btn', onclick: async () => { const t = noteBox.value.trim(); if (!t) { noteBox.focus(); return; } afterSave(await save(L, { note: t }, status)); } }, 'Add note'))
-  ];
-  const info = [
-    el('div', { class: 'sec urgbox ' + u.cls }, el('h3', null, 'Urgency'),
-      el('div', { class: 'row' }, el('b', { class: 'big' }, u.score), el('span', { class: 'tag ' + u.cls }, u.label), el('span', { class: 'small muted' }, 'out of 100')),
-      u.why.map(w => el('div', { class: 'why' }, el('span', null, w[0]), w[1] ? el('span', { class: 'mono' }, '+' + w[1]) : null))),
-    el('div', { class: 'sec' }, el('h3', null, 'About them'),
-      kv([['Age', L.age], ['Gender', L.gender], ['Height', L.h ? L.h + ' cm' : ''], ['Weight', L.w ? L.w + ' kg' : ''], ['City', L.city], ['Prefers', L.mode], ['Goal', L.goal], ['Wants to start', startText(L.start)], ['Tried before', L.tried]])),
-    el('div', { class: 'sec' }, el('h3', null, L.plateau ? 'Plateau Check answers' : 'Quiz result'),
-      L.plateau ? kv([['Main pattern', L.band], ['Stuck for', L.start], ['Tried', L.tried], ['Feels', L.goal]])
-        : [el('div', { class: 'row' }, el('b', { class: 'big' }, L.total != null ? L.total + '/100' : '-'), el('span', { class: 'tag warn' }, L.band)),
-          el('div', { class: 'bars' }, (L.s || []).map((v, i) => v == null ? null : el('div', { class: 'bar' }, el('span', null, names[i]), el('div', { class: 'tr' }, el('div', { class: 'fl', style: 'width:' + Math.max(3, Math.min(100, v)) + '%;background:' + barColor(v) })), el('span', { class: 'n' }, v)))),
-          el('div', { class: 'small muted' }, 'Lower means a stronger signal in that area.')]),
-    el('div', { class: 'sec' }, el('h3', null, 'Contact'),
-      kv([['WhatsApp', L.wa ? '+' + L.wa : ''], ['Email', L.email ? el('a', { href: 'mailto:' + L.email }, L.email) : ''], ['Instagram', L.ig && L.ig !== '-' ? el('a', { href: 'https://instagram.com/' + L.ig.replace(/^@/, ''), target: '_blank', rel: 'noopener' }, L.ig) : ''], ['Came from', L.src]]))
-  ];
-  return [
-    el('div', { class: 'row sb nowrap' }, el('h2', null, L.name), wide() ? urgTag(L) : el('button', { class: 'btn sm ghost', onclick: closeSheet }, 'Close')),
-    el('div', { class: 'row' }, stageTag(L), el('span', { class: 'tag' }, 'Came in ' + when(L.ts)), L.first ? el('span', { class: 'tag good' }, 'First contact after ' + (L.first - L.ts < HOUR ? Math.max(1, Math.round((L.first - L.ts) / MIN)) + ' min' : Math.round((L.first - L.ts) / HOUR * 10) / 10 + ' h')) : null),
-    L.dup > 1 ? el('div', { class: 'small muted' }, 'This person took the quiz ' + L.dup + ' times. You are seeing the latest answers.') : null,
-    wide() ? el('div', { class: 'detail-grid' }, el('div', { class: 'col' }, work), el('div', { class: 'col' }, info)) : [work.slice(0, 1), info.slice(0, 1), work.slice(1), info.slice(1)]
-  ];
+      el('div', null, el('button', { class: 'btn pri', onclick: async () => { const t = noteBox.value.trim(); if (!t) { noteBox.focus(); return; } afterSave(await save(L, { note: t }, status)); } }, 'Add note'))),
+    el('div', { class: 'grid2' },
+      el('div', { class: 'box' }, el('h3', null, el('span', null, 'Why urgency is ' + u.score), el('span', null, u.label)), u.why.map(w => el('div', { class: 'why' }, el('span', null, w[0]), w[1] ? el('span', null, '+' + w[1]) : null))),
+      el('div', { class: 'box' }, el('h3', null, 'Contact'),
+        kv([['WhatsApp', L.wa ? '+' + L.wa : ''], ['Email', L.email ? el('a', { href: 'mailto:' + L.email }, L.email) : ''], ['Instagram', L.ig && L.ig !== '-' ? el('a', { href: 'https://instagram.com/' + L.ig.replace(/^@/, ''), target: '_blank', rel: 'noopener' }, L.ig) : ''], ['Came from', L.src]]))))];
 }
 function composeNodes(L) {
-  const box = el('textarea', { class: 'f', style: 'min-height:220px' });
+  const box = el('textarea', { class: 'field msgbox', 'aria-label': 'WhatsApp message' });
   box.value = message(L);
   const back = () => { if (wide()) { S.compose = false; render(); } else openLead(L); };
   const go = el('a', { class: 'btn wa full', href: waLink(L, box.value), target: '_blank', rel: 'noopener', onclick: () => { markContacted(L); setTimeout(back, 300); } }, 'Open WhatsApp');
   box.addEventListener('input', () => { go.href = waLink(L, box.value); });
-  return [
-    el('div', { class: 'row sb nowrap' }, el('h2', null, 'Message ' + firstName(L.name)), el('button', { class: 'btn sm ghost', onclick: back }, 'Back')),
-    el('div', { class: 'small muted' }, 'Written from their quiz answers. Change anything you like before you send it.'),
+  return el('div', { class: 'dt' },
+    el('div', { class: 'dt-h' }, el('div', null, el('h2', null, 'Message ' + firstName(L.name)), el('div', { class: 'f' }, 'Written from their quiz answers. Change anything before you send it.')), el('button', { class: 'btn sm', onclick: back }, 'Back')),
     box, go,
-    el('div', { class: 'small muted' }, 'Opening WhatsApp marks this lead Contacted, with the time, so your reply speed is counted.')];
+    el('div', { class: 'l3', style: 'white-space:normal' }, 'Opening WhatsApp marks this lead Contacted, with the time, so your reply speed is counted.'));
 }
-function compose(L) { sheet(composeNodes(L)); }
 
 /* ---------- AJ's speed board ---------- */
 function renderBoard() {
   const b = S.board;
-  $('title').textContent = 'Leads speed board';
-  if (!b) { put($('view')); return; }
-  const tot = b.coaches.reduce((a, c) => { a.w += c.stats.waiting; a.l += c.stats.late; a.d += c.stats.due; a.c += c.stats.customers; return a; }, { w: 0, l: 0, d: 0, c: 0 });
-  put($('sub'), tot.w + ' leads not contacted across the team' + (tot.l ? ', ' + tot.l + ' waiting over a day' : '') + '. Only you can see this page.');
+  document.title = 'Leads speed board';
+  if (!b) { put($('root'), el('div', { class: 'empty', style: 'width:100%' }, S.loading ? [el('span', { class: 'spin' }), ' Loading…'] : '')); return; }
+  const tot = b.coaches.reduce((a, c) => { a.w += c.stats.waiting; a.l += c.stats.late; return a; }, { w: 0, l: 0 });
   const share = c => 'Hi ' + c.name + ', this is your private leads page. Only your own leads are in it. Open it, then tap Share and "Add to Home Screen" so it is one tap away. Please don\'t share this link with anyone.\n\n' + c.link;
-  put($('view'), el('div', { class: 'board' },
+  put($('root'), el('div', { class: 'board' },
+    el('div', null, el('h1', null, 'Leads speed board'), el('div', { class: 'l3', style: 'white-space:normal;font-size:13px' }, tot.w + ' leads not contacted across the team' + (tot.l ? ', ' + tot.l + ' waiting over a day' : '') + '. Only you can see this page.')),
     b.coaches.map(c => {
       const s = c.stats;
-      return el('div', { class: 'card coachrow' },
-        el('div', { class: 'row sb' }, el('h2', null, c.name), s.late ? el('span', { class: 'tag bad' }, s.late + ' over 24 h') : el('span', { class: 'tag good' }, 'On time')),
-        el('div', { class: 'nums' },
-          el('span', { class: 'tag ' + (s.waiting ? 'bad' : '') }, s.waiting + ' not contacted'), el('span', { class: 'tag ' + (s.due ? 'warn' : '') }, s.due + ' due'),
-          el('span', { class: 'tag blue' }, s.active + ' in progress'), el('span', { class: 'tag good' }, s.customers + ' customers'), el('span', { class: 'tag' }, s.total + ' total')),
-        el('div', { class: 'small muted' }, (s.median != null ? 'Median first reply ' + s.median + ' h (last 30 days)' : 'No first replies recorded yet') + ' · ' + (s.last ? 'last active ' + ago(s.last) + ' ago' : 'not opened yet')),
-        el('div', { class: 'row' },
-          el('button', { class: 'btn sm', onclick: () => { S.viewCoach = c.code; S.filter = 'waiting'; S.q = ''; S.data = null; render(); refresh(); } }, 'Open leads'),
+      return el('div', { class: 'crow' },
+        el('div', { style: 'display:grid;gap:10px;min-width:0' },
+          el('div', { class: 'who' }, el('div', { class: 'av', 'aria-hidden': 'true' }, initial(c.name)), el('div', null, el('div', { class: 'n' }, c.name), el('div', { class: 's' }, (s.median != null ? 'Median first reply ' + s.median + ' h' : 'No first replies yet') + ' · ' + (s.last ? 'active ' + ago(s.last) + ' ago' : 'not opened yet')))),
+          el('div', { class: 'nums' },
+            el('div', null, el('b', { class: s.waiting ? 'hot' : '' }, s.waiting), 'not contacted'), el('div', null, el('b', { style: s.late ? 'color:var(--late)' : '' }, s.late), 'over 24 h'),
+            el('div', null, el('b', null, s.due), 'due'), el('div', null, el('b', null, s.active), 'in progress'), el('div', null, el('b', null, s.customers), 'customers'), el('div', null, el('b', null, s.total), 'total'))),
+        el('div', { class: 'acts' },
+          el('button', { class: 'btn sm pri', onclick: () => { S.viewCoach = c.code; S.filter = 'waiting'; S.q = ''; S.data = null; S.sel = ''; render(); refresh(); } }, 'Open leads'),
           c.link ? el('a', { class: 'btn sm wa', href: 'https://wa.me/' + c.wa + '?text=' + encodeURIComponent(share(c)), target: '_blank', rel: 'noopener' }, 'Send link') : null,
-          c.link ? el('button', { class: 'btn sm ghost', onclick: e => copy(c.link, e.target) }, 'Copy link') : null,
-          el('button', { class: 'btn sm ghost', onclick: () => rotate(c) }, c.link ? 'New link' : 'Make link')));
+          c.link ? el('button', { class: 'btn sm', onclick: e => copy(c.link, e.target) }, 'Copy link') : null,
+          el('button', { class: 'btn sm', onclick: () => rotate(c) }, c.link ? 'New link' : 'Make link')));
     }),
-    Object.keys(b.orphans || {}).length ? el('div', { class: 'card' }, el('h2', null, 'Leads with no portal'),
-      el('div', { class: 'small muted' }, 'These coach names on leads don’t match an approved coach, so nobody sees these leads in the portal. Usually the coach is hidden, not set up yet, or changed their display name.'),
-      Object.keys(b.orphans).map(n => el('div', null, n + ': ' + b.orphans[n] + ' lead' + (b.orphans[n] > 1 ? 's' : '')))) : null));
-  put($('foot'), S.lastOk ? 'Updated ' + new Date(S.lastOk).toLocaleTimeString('en-GB', { hour: '2-digit', minute: '2-digit' }) + ' · ' : '', el('button', { class: 'link', onclick: () => refresh() }, 'Refresh'));
+    Object.keys(b.orphans || {}).length ? el('div', { class: 'box' }, el('h3', null, 'Leads with no portal'),
+      el('div', { class: 'l3', style: 'white-space:normal' }, 'These coach names on leads don’t match an approved coach, so nobody sees these leads. Usually the coach is hidden, not set up yet, or changed their display name.'),
+      Object.keys(b.orphans).map(n => el('div', null, n + ': ' + b.orphans[n] + ' lead' + (b.orphans[n] > 1 ? 's' : '')))) : null,
+    el('div', { class: 'foot', style: 'padding:0' }, S.lastOk ? 'Updated ' + new Date(S.lastOk).toLocaleTimeString('en-GB', { hour: '2-digit', minute: '2-digit' }) + '. ' : '', el('button', { class: 'linkbtn', onclick: () => refresh() }, 'Refresh'))));
 }
 async function copy(text, btn) {
   try { await navigator.clipboard.writeText(text); btn.textContent = 'Copied'; setTimeout(() => { btn.textContent = 'Copy link'; }, 2000); }
   catch (e) { banner('warn', 'Could not copy automatically. Here is the link: ' + text); }
 }
 function rotate(c) {
-  sheet(el('h2', null, (c.link ? 'New link for ' : 'Make a link for ') + c.name + '?'),
+  sheet(el('div', { class: 'dt' }, el('h2', { style: 'margin:0' }, (c.link ? 'New link for ' : 'Make a link for ') + c.name + '?'),
     el('div', null, c.link ? 'Their current link stops working right away. You then send them the new one.' : 'This makes their private leads link. You then send it to them.'),
-    el('div', { class: 'row' },
-      el('button', { class: 'btn', onclick: async e => { e.target.disabled = true; try { await api({ a: 'a_rotate', coach: c.code }); closeSheet(); banner('ok', 'Done. Tap "Send link" to send ' + c.name + ' the new link.'); refresh(true); } catch (err) { closeSheet(); showError(err); } } }, c.link ? 'Yes, make a new link' : 'Make link'),
-      el('button', { class: 'btn ghost', onclick: closeSheet }, 'Cancel')));
+    el('div', { class: 'acts' },
+      el('button', { class: 'btn pri', onclick: async e => { e.target.disabled = true; try { await api({ a: 'a_rotate', coach: c.code }); closeSheet(); banner('ok', 'Done. Tap "Send link" to send ' + c.name + ' the new link.'); refresh(true); } catch (err) { closeSheet(); showError(err); } } }, c.link ? 'Yes, make a new link' : 'Make link'),
+      el('button', { class: 'btn', onclick: closeSheet }, 'Cancel'))));
 }
 
 /* ---------- boot ---------- */
 function render() {
-  const pl = document.querySelector('.pane-list'), keep = pl ? pl.scrollTop : 0;
-  draw();
-  const pl2 = document.querySelector('.pane-list'); if (pl2 && keep) pl2.scrollTop = keep;
-}
-function draw() {
+  const lc = document.querySelector('.listcol'), keep = lc ? lc.scrollTop : 0;
   if (!S.key && !S.admin) {
-    $('title').textContent = 'My Leads';
-    put($('sub'), 'Your private leads page.');
-    put($('view'), el('div', { class: 'card' }, el('h2', null, 'Open your personal link'), el('div', null, 'This page needs the private link Coach AJ sent you. Please open that link again, or ask Coach AJ for a new one.')));
-    put($('foot')); return;
+    put($('root'), el('div', { class: 'board' }, el('h1', null, 'Leads'), el('div', { class: 'box' }, el('h3', null, 'Open your personal link'), el('div', null, 'This page needs the private link Coach AJ sent you. Please open that link again, or ask Coach AJ for a new one.'))));
+    return;
   }
   if (isAdmin() && !S.viewCoach) renderBoard(); else renderCoach();
+  const lc2 = document.querySelector('.listcol'); if (lc2 && keep) lc2.scrollTop = keep;
 }
 wideMq.addEventListener('change', () => { if (wide() && $('sheet').firstChild) put($('sheet')); document.body.style.overflow = ''; render(); });
 readKeys();
