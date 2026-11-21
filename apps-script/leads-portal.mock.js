@@ -54,7 +54,7 @@ function makeEnv() {
 function seeded() {
   const E = makeEnv();
   const cs = E.ss.insertSheet('Coaches'); cs.insertColumnsAfter(26, 2);
-  const COLS = E.ctx.COACH_FIELDS.length - 1;
+  const COLS = E.ctx.COACH_FIELDS.length - 2;
   const coachRow = (code, status, name, full, email) => { const r = new Array(COLS).fill(''); r[0] = code; r[1] = status; r[4] = name; r[5] = full; r[6] = '0812345'; r[7] = email; return r; };
   cs.getRange(1, 1, 1, COLS).setValues([E.ctx.COACH_FIELDS.slice(0, COLS).map(f => f[1])]);
   [coachRow('msfionahd', 'approved', 'Ms. FIONA HD', 'Fiona Hidayani Dwiningrum', 'f@x'), coachRow('lala', 'approved', 'dr. Lala', 'dr. Emanuella Tamara', 'l@x'), coachRow('gone', 'hidden', 'Gone Coach', 'Gone', 'g@x'), coachRow('aj', 'approved', 'Coach AJ', 'AJ', 'aj@x'), coachRow('tien', 'approved', 'Tien', 'Tien Vanny Setyawan', '')]

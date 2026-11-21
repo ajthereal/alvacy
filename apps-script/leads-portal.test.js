@@ -90,4 +90,26 @@ test('the quiz lead logger still works and ignores the portal columns', () => {
   assert.strictEqual(r.text, 'ok');
   assert.strictEqual(E.call({ a: 'list', k: E.ctx.readCoaches_(E.ctx.coachSheet_()).find(x => x.code === 'lala').leadsKey }).leads[0].name, 'Gita');
 });
+
+test('shared account: William\'s leads (Leads ke = tien) show in Tien\'s portal, not as orphans, and William gets no link', () => {
+  const sh = E.ctx.coachSheet_();
+  const COLS = E.ctx.COACH_FIELDS.length;
+  const r = new Array(COLS).fill(''); r[0] = 'stwilliam'; r[1] = 'approved'; r[4] = 'William'; r[6] = '0812345'; r[7] = 't@x'; r[COLS - 1] = 'tien';
+  sh.getRange(sh.getLastRow() + 1, 1, 1, COLS).setValues([r]);
+  E.ctx.doPost({ postData: { contents: JSON.stringify({ sid: 'w1', status: 'Lead masuk', coach: 'William', name: 'Hana', wa: '6289999', total: 40 }) } });
+  E.ctx.setupLeadsPortal();
+  const rows = E.ctx.readCoaches_(sh);
+  assert(!rows.find(x => x.code === 'stwilliam').leadsKey, 'William must not get his own link');
+  const tienKey = rows.find(x => x.code === 'tien').leadsKey;
+  const list = E.call({ a: 'list', k: tienKey });
+  assert(list.ok, list.msg);
+  assert(list.leads.some(L => L.name === 'Hana'));
+  const o = E.call({ a: 'a_overview', k: ADMIN });
+  assert(!o.orphans['William']);
+  assert(o.coaches.find(c => c.code === 'tien').name === 'Tien + William');
+  assert(!o.coaches.find(c => c.code === 'stwilliam'));
+  assert(E.ctx.portalLine_({ coach: 'William', sid: 'w1' }).join('\n').includes(tienKey));
+  assert.strictEqual(E.call({ a: 'a_rotate', k: ADMIN, coach: 'stwilliam' }).code, 'NOCOACH');
+  assert(E.call({ a: 'save', k: tienKey, sid: 'w1', stage: 'Contacted' }).ok);
+});
 console.log(passed + ' passed');

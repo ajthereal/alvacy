@@ -360,7 +360,7 @@ const COACH_FIELDS = [
   ['kgFrom', 'Berat awal'], ['kgTo', 'Berat sekarang'], ['fatFrom', 'Lemak awal'], ['fatTo', 'Lemak sekarang'], ['vfaFrom', 'VFA awal'], ['vfaTo', 'VFA sekarang'],
   ['storyId', 'Cerita (ID)'], ['hlId', 'Highlight (ID)'], ['storyEn', 'Cerita (EN)'], ['hlEn', 'Highlight (EN)'],
   ['token', 'Token edit'], ['approveKey', 'Kunci approve'], ['folder', 'Folder Drive'], ['files', 'File gambar'],
-  ['imgNew', 'Gambar baru'], ['published', 'Tayang terakhir'], ['reqId', 'Request ID'], ['note', 'Catatan'], ['leadsKey', 'Kunci leads']
+  ['imgNew', 'Gambar baru'], ['published', 'Tayang terakhir'], ['reqId', 'Request ID'], ['note', 'Catatan'], ['leadsKey', 'Kunci leads'], ['leadsTo', 'Leads ke']
 ];
 /* Codes that must never be taken: the coaches written in assets/site.js and every folder or page on the site. */
 const COACH_RESERVED = ['aj', 'nova', 'lala', 'jevon', 'melita', 'lucky', 'test', 'kalori', 'lunch', 'tools', 'privacy', 'transform', 'en', 'images',
@@ -954,9 +954,24 @@ function pLog_(coach, sid, lead, action, detail) {
   try { pHistory_().appendRow([new Date(), coach, sid, clean_(lead), action, clean_(String(detail || '').slice(0, 300))]); } catch (e) {}
 }
 
-/* Coaches who can use the portal: approved, with a key, not in P_SKIP. */
+/* Coaches who can use the portal: approved, with a key, not in P_SKIP, and not sharing another coach's account.
+   Shared account: put the other coach's code in "Leads ke" (e.g. William -> tienvanny). His leads then show in
+   that coach's portal and he gets no portal link of his own. */
 function pCoaches_() {
-  return readCoaches_(coachSheet_()).filter(c => c.status === 'approved' && c.leadsKey && P_SKIP.indexOf(pNorm_(c.name)) < 0);
+  return readCoaches_(coachSheet_()).filter(c => c.status === 'approved' && c.leadsKey && !c.leadsTo && P_SKIP.indexOf(pNorm_(c.name)) < 0);
+}
+/* Every display name whose leads belong to this coach: their own, plus coaches whose "Leads ke" points here. */
+function pNames_(coach, rows) {
+  const names = [pNorm_(coach.name)];
+  (rows || readCoaches_(coachSheet_())).forEach(c => { if (c.code !== coach.code && String(c.leadsTo || '').trim() === coach.code) names.push(pNorm_(c.name)); });
+  return names;
+}
+/* The coach who works this display name's leads (follows "Leads ke"). */
+function pOwnerOf_(name, rows) {
+  rows = rows || readCoaches_(coachSheet_());
+  let c = rows.filter(x => pNorm_(x.name) === pNorm_(name))[0];
+  if (c && c.leadsTo) c = rows.filter(x => x.code === String(c.leadsTo).trim())[0] || null;
+  return c && c.status === 'approved' && c.leadsKey && !c.leadsTo && P_SKIP.indexOf(pNorm_(c.name)) < 0 ? c : null;
 }
 function pAuth_(d) {
   const k = String(d.k || '');
@@ -1000,9 +1015,9 @@ function pLeadOut_(row, dup) {
   };
 }
 /* One coach's full leads, one entry per person (same WhatsApp number = same person). */
-function pCoachLeads_(all, coach) {
-  const name = pNorm_(coach.name);
-  const mine = all.filter(x => pNorm_(x.v[3]) === name && x.v[2] === 'Lead masuk' && String(x.v[5]).trim());
+function pCoachLeads_(all, coach, rows) {
+  const names = coach._names || (coach._names = pNames_(coach, rows));
+  const mine = all.filter(x => names.indexOf(pNorm_(x.v[3])) >= 0 && x.v[2] === 'Lead masuk' && String(x.v[5]).trim());
   const groups = {};
   mine.forEach(x => { const k = pWaKey_(x.v[6]) || ('sid:' + x.v[1]); (groups[k] = groups[k] || []).push(x); });
   return Object.keys(groups).map(k => {
@@ -1011,9 +1026,9 @@ function pCoachLeads_(all, coach) {
     return { row: worked[0] || g[0], dup: g.length };
   });
 }
-function pPartials_(all, coach) {
-  const name = pNorm_(coach.name), since = Date.now() - 30 * 86400000;
-  return all.filter(x => pNorm_(x.v[3]) === name && x.v[2] !== 'Lead masuk' && pMs_(x.v[0]) > since).length;
+function pPartials_(all, coach, rows) {
+  const names = coach._names || (coach._names = pNames_(coach, rows)), since = Date.now() - 30 * 86400000;
+  return all.filter(x => names.indexOf(pNorm_(x.v[3])) >= 0 && x.v[2] !== 'Lead masuk' && pMs_(x.v[0]) > since).length;
 }
 function pStats_(leads) {
   const now = Date.now(), today = pToday_(), since = now - 30 * 86400000;
@@ -1109,12 +1124,17 @@ function pSave_(coach, d, contacted, admin) {
 function pLink_(c) { return PORTAL_URL + '#k=' + c.leadsKey; }
 function pOverview_() {
   const all = pReadLeads_().rows;
-  const coaches = readCoaches_(coachSheet_()).filter(c => c.status === 'approved' && P_SKIP.indexOf(pNorm_(c.name)) < 0);
-  const known = coaches.map(c => pNorm_(c.name)).concat(P_SKIP);
+  const rows = readCoaches_(coachSheet_());
+  const coaches = rows.filter(c => c.status === 'approved' && !c.leadsTo && P_SKIP.indexOf(pNorm_(c.name)) < 0);
+  const known = [];
   const list = coaches.map(c => {
-    const leads = pCoachLeads_(all, c).map(g => pLeadOut_(g.row, g.dup));
-    return { code: c.code, name: c.name, wa: pWaKey_(c.wa), link: c.leadsKey ? pLink_(c) : '', stats: pStats_(leads), partial: pPartials_(all, c) };
+    const names = c._names = pNames_(c, rows);
+    names.forEach(n => known.push(n));
+    const leads = pCoachLeads_(all, c, rows).map(g => pLeadOut_(g.row, g.dup));
+    const also = rows.filter(x => x.code !== c.code && String(x.leadsTo || '').trim() === c.code).map(x => x.name);
+    return { code: c.code, name: c.name + (also.length ? ' + ' + also.join(' + ') : ''), wa: pWaKey_(c.wa), link: c.leadsKey ? pLink_(c) : '', stats: pStats_(leads), partial: pPartials_(all, c, rows) };
   }).sort((a, b) => b.stats.late - a.stats.late || b.stats.total - a.stats.total);
+  P_SKIP.forEach(n => known.push(n));
   const orphans = {};
   all.forEach(x => { if (x.v[2] === 'Lead masuk' && known.indexOf(pNorm_(x.v[3])) < 0) { const k = String(x.v[3] || '(no coach)'); orphans[k] = (orphans[k] || 0) + 1; } });
   return { ok: true, v: PORTAL_V, now: Date.now(), coaches: list, orphans: orphans };
@@ -1126,6 +1146,7 @@ function pRotate_(d) {
     const row = readCoaches_(sh).filter(c => c.code === String(d.coach || ''))[0];
     if (!row) return pFail_('NOCOACH', 'That coach was not found.');
     if (row.status !== 'approved') return pFail_('NOCOACH', 'This coach is not approved, so they cannot have a portal link.');
+    if (row.leadsTo) return pFail_('NOCOACH', row.name + '’s leads go to another coach’s portal (see "Leads ke" in the Coaches sheet), so they have no link of their own.');
     const had = !!row.leadsKey;
     row.leadsKey = randHex_(24); row.updated = new Date().toISOString();
     writeCoach_(sh, row);
@@ -1137,7 +1158,7 @@ function pRotate_(d) {
 /* Line added to every new-lead email, so the coach opens the lead straight in the portal. */
 function portalLine_(d) {
   try {
-    const c = pCoaches_().filter(x => pNorm_(x.name) === pNorm_(d.coach))[0];
+    const c = pOwnerOf_(d.coach);
     return c ? ['', 'Open this lead in your portal (tap WhatsApp there, so it counts as contacted):', pLink_(c) + '&l=' + encodeURIComponent(d.sid || '')] : [];
   } catch (e) { return []; }
 }
@@ -1177,7 +1198,7 @@ function setupLeadsPortal() {
   try {
     const sh = coachSheet_();
     readCoaches_(sh).forEach(c => {
-      if (c.status !== 'approved' || c.leadsKey || P_SKIP.indexOf(pNorm_(c.name)) >= 0) return;
+      if (c.status !== 'approved' || c.leadsKey || c.leadsTo || P_SKIP.indexOf(pNorm_(c.name)) >= 0) return;
       c.leadsKey = randHex_(24); writeCoach_(sh, c); made.push(c.name);
     });
   } finally { lock.releaseLock(); }
