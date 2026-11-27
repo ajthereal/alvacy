@@ -13,7 +13,7 @@
 <link rel="icon" href="/images/icon.svg?v=3" type="image/svg+xml">
 <link rel="icon" href="/images/icon-192.png?v=3" sizes="192x192" type="image/png">
 <link rel="apple-touch-icon" href="/images/apple-touch-icon.png?v=3">
-<meta name="theme-color" content="#1E3A8A">
+<meta name="theme-color" content="#FFFFFF">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="#transformwithST">
 <meta property="og:title" content="Free Body Age Assessment, 3 Minutes · #transformwithST">
@@ -100,9 +100,9 @@
 <meta name="claude:viewport-fit-sides" content="cover">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Geist+Mono:wght@500&display=swap">
-<link rel="stylesheet" href="/assets/site.css?v=1793167738">
-<link rel="stylesheet" href="/assets/palettes.css?v=1793167738">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@400;500;600;700;800&family=Geist+Mono:wght@500&display=swap">
+<link rel="stylesheet" href="/assets/site.css?v=1795742322">
+<link rel="stylesheet" href="/assets/palettes.css?v=1795742322">
 <script>document.documentElement.setAttribute('data-theme','light')</script>
 <style>
 /* Layout: calm, centered, mobile-first wellness page. One column of content, navy brand, Cloudlight look from /assets/site.css, generous white space. Works for any coach on the team. */
@@ -149,8 +149,8 @@
 .faq details p{margin-top:10px;color:var(--muted)}
 .final{padding-block:clamp(44px,7vw,80px)}
 .final .box h2{color:inherit}
-.final .box{background:#172554;color:#EAF0FA;border-radius:32px;padding:clamp(28px,5vw,48px);display:grid;gap:18px;justify-items:center;text-align:center}
-.final .btn{background:#EAF0FA;color:#172554;box-shadow:none}
+.final .box{background:#111111;color:#F3F3F1;border-radius:32px;padding:clamp(28px,5vw,48px);display:grid;gap:18px;justify-items:center;text-align:center}
+.final .btn{background:#F3F3F1;color:#111111;box-shadow:none}
 .foot{padding-block:26px 34px;font-size:.82rem;color:var(--muted);border-top:1px solid var(--line)}
 .foot .wrap{display:grid;gap:6px;text-align:center}
 
@@ -179,6 +179,8 @@
 .results{padding-block:24px 64px;display:grid;gap:22px}
 .scorecard{background:var(--surface);border:1px solid var(--line);border-radius:24px;padding:clamp(24px,4vw,36px);display:grid;gap:14px;justify-items:center;text-align:center}
 .ring{width:150px;height:150px}
+.lcdscore{padding:8px 14px}
+.lcdscore svg{height:44px}
 .ring .track{stroke:var(--line)}
 .ring .val{stroke:var(--accent);transition:stroke-dashoffset 1s ease}
 .ring text{fill:var(--ink);font-family:var(--f-body);font-weight:700}
@@ -299,7 +301,8 @@
 <footer class="foot"><div class="wrap"><span>This questionnaire is for lifestyle education and does not replace medical advice.</span><span>Run by the Success Together coaching team. · <a href="../privacy/" style="color:inherit">Privacy Policy</a></span></div></footer></main>
 
 <script src="/data/coaches.js"></script>
-<script src="/assets/site.js?v=1793167738"></script>
+<script src="/assets/site.js?v=1795742322"></script>
+<script src="/assets/lcd.js?v=1795742322"></script>
 <script>
 const COACHES = ALV.COACHES;
 const DEFAULT_COACH = ALV.DEFAULT;
@@ -765,6 +768,7 @@ function results(u,c){
       <text x="60" y="64" text-anchor="middle" font-size="32">${sc.total}</text>
       <text class="sub" x="60" y="82" text-anchor="middle">/ 100</text>
     </svg>
+    ${window.ALVLCD?`<div class="lcd lcdscore" aria-hidden="true"><span class="lcd-num">${ALVLCD.seg(ALVLCD.fmt(sc.total,3,0))}<span class="u">/ 100</span></span></div>`:''}
     <h1 style="font-size:clamp(1.8rem,5vw,2.5rem)">${band[0]}</h1>
     <p class="lede" style="max-width:52ch">${band[1]}</p>
     <div class="agesig a-${level(sc.total)}"><span class="kicker">${u.ageK}</span><strong>${u.ageV[level(sc.total)]}</strong><span class="small">${u.ageNote}</span></div>
