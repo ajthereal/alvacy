@@ -52,9 +52,11 @@
 .day[aria-pressed=true]{background:var(--cta);color:var(--cta-ink);border-color:var(--cta)}
 .day[aria-pressed=true] b{color:var(--cta-ink)}
 .slots{display:grid;gap:6px}
+.slots.two{grid-template-columns:repeat(2,minmax(0,1fr))}
 .slot{display:flex;justify-content:space-between;align-items:center;gap:10px;width:100%;min-height:50px;padding:0 16px;border-radius:14px;border:1.5px solid var(--line);background:var(--surface);color:var(--ink);font:600 1rem var(--f-body);text-align:left}
 .slot .t{font-family:var(--f-mono);font-variant-numeric:tabular-nums}
 .slot .s{font-size:.85rem;font-weight:600}
+.slots.two .slot{padding:0 12px;font-size:.95rem}
 .slot.free{cursor:pointer;border-color:var(--sky-line);background:var(--accent-soft)}
 .slot.free .s{color:var(--good)}
 .slot.free:active{transform:scale(.99)}
@@ -140,7 +142,7 @@ function store(k, v) { try { if (v == null) localStorage.removeItem(k); else loc
 function load(k) { try { return localStorage.getItem(k) || ''; } catch (e) { return ''; } }
 
 /* ---------- state ---------- */
-const S = { role: null, name: '', secret: '', adminKey: '', data: null, admin: null, day: 0, adminTab: 'schedule', skew: 0, lastOk: 0, offline: false };
+const S = { role: null, name: '', secret: '', adminKey: '', data: null, admin: null, day: 2, adminLater: false, memberLater: false, adminTab: 'schedule', skew: 0, lastOk: 0, offline: false };
 const now = () => Date.now() + S.skew;
 
 function readKeys() {
@@ -251,16 +253,30 @@ function renderMember() {
   const parts = [];
   if (S.adminKey) parts.push(roleSwitch('member'));
   parts.push(nextCard());
-  parts.push(el('div', { class: 'days', role: 'group', 'aria-label': 'Pick a day' }, Array.from({ length: Math.min(d.rules.daysAhead, 14) }, (_, i) => {
-    const ms = localMidnight(now()) + i * DAY;
-    return el('button', { class: 'day', 'aria-pressed': String(S.day === i), onclick: () => { S.day = i; renderMember(); } }, i === 0 ? 'Today' : dayName(ms), el('b', null, new Date(ms).getDate()));
-  })));
-  const ms = localMidnight(now()) + S.day * DAY;
-  const sl = slotsFor(ms);
-  parts.push(el('div', { class: 'card' },
-    el('div', { class: 'row sb' }, el('h2', null, dayName(ms, true)), el('span', { class: 'small muted' }, (d.rules.openStartHour <= 0 && d.rules.openEndHour >= 24 ? 'Open 24 hours' : 'Open ' + pad(d.rules.openStartHour) + ':00 to ' + pad(d.rules.openEndHour) + ':00 WIB'))),
-    sl.length ? el('div', { class: 'slots' }, sl.map(slotRow)) : el('div', { class: 'empty' }, 'Nothing left to book today. Pick another day.'),
-    el('div', { class: 'small muted' }, 'Busy means someone else has booked it. You only ever see your own bookings.')));
+  const open = d.rules.openStartHour <= 0 && d.rules.openEndHour >= 24 ? 'Open 24 hours' : 'Open ' + pad(d.rules.openStartHour) + ':00 to ' + pad(d.rules.openEndHour) + ':00 WIB';
+  const dayCard = (ms, title, emptyMsg, withOpen, note) => {
+    const sl = slotsFor(ms);
+    return el('div', { class: 'card' },
+      el('div', { class: 'row sb' }, el('h2', null, title + dayName(ms, true)), withOpen ? el('span', { class: 'small muted' }, open) : null),
+      sl.length ? el('div', { class: 'slots two' }, sl.map(slotRow)) : el('div', { class: 'empty' }, emptyMsg),
+      note ? el('div', { class: 'small muted' }, 'Busy means someone else has booked it. You only ever see your own bookings.') : null);
+  };
+  const base = localMidnight(now());
+  const dayAt = i => localMidnight(base + i * DAY + 3 * HOUR);
+  parts.push(dayCard(dayAt(0), 'Today · ', 'Nothing left to book today.', true, false));
+  parts.push(dayCard(dayAt(1), 'Tomorrow · ', 'Nothing to book this day.', false, true));
+  const maxDays = Math.min(d.rules.daysAhead, 14);
+  if (d.rules.daysAhead > 2) {
+    parts.push(el('div', { class: 'row' }, el('button', { class: 'btn sm ghost', onclick: () => { S.memberLater = !S.memberLater; renderMember(); } }, S.memberLater ? 'Hide later days' : 'Show later days')));
+    if (S.memberLater) {
+      if (S.day < 2 || S.day >= maxDays) S.day = 2;
+      parts.push(el('div', { class: 'days', role: 'group', 'aria-label': 'Pick a day' }, Array.from({ length: Math.max(maxDays - 2, 0) }, (_, j) => {
+        const i = j + 2, ms = dayAt(i);
+        return el('button', { class: 'day', 'aria-pressed': String(S.day === i), onclick: () => { S.day = i; renderMember(); } }, dayName(ms), el('b', null, new Date(ms).getDate()));
+      })));
+      parts.push(dayCard(dayAt(S.day), '', 'Nothing to book this day.', false, false));
+    }
+  }
   parts.push(mineCard());
   put($('view'), parts);
   put($('foot'), S.lastOk ? 'Updated ' + hm(S.lastOk) + ' · refreshes every minute' : '');
@@ -285,12 +301,9 @@ function nextCard() {
   return el('div', { class: 'card hl' }, kids);
 }
 function mineCard() {
-  const d = S.data, up = liveMine().sort((a, b) => a.start - b.start);
-  const past = d.mine.filter(b => !(b.status === 'active' && b.end > now())).reverse();
-  const rows = up.concat(past).slice(0, 12);
-  const label = { active: 'Booked', cancelled: 'Cancelled', ended: 'Finished', done: 'Finished' };
+  const rows = liveMine().sort((a, b) => a.start - b.start);
   return el('div', { class: 'card' }, el('h2', null, 'My bookings'),
-    rows.length ? rows.map(b => el('div', { class: 'item' }, el('div', { class: 'row sb' }, el('div', null, el('div', { class: 'mono' }, hm(b.start) + ' – ' + hm(b.end)), el('div', { class: 'small muted' }, dayName(b.start, true))), el('div', { class: 'row' }, el('span', { class: 'tag ' + (b.status === 'active' && b.end > now() ? 'active' : '') }, b.status === 'active' && b.end > now() ? 'Booked' : (label[b.status] || b.status)), b.status === 'active' && b.end > now() ? el('button', { class: 'btn sm warn', onclick: () => confirmCancel(b, b.start <= now()) }, b.start <= now() ? 'End early' : 'Cancel') : null)))) : el('div', { class: 'muted' }, 'Nothing yet.'));
+    rows.length ? rows.map(b => el('div', { class: 'item' }, el('div', { class: 'row sb' }, el('div', null, el('div', { class: 'mono' }, hm(b.start) + ' – ' + hm(b.end)), el('div', { class: 'small muted' }, dayName(b.start, true))), el('div', { class: 'row' }, el('span', { class: 'tag active' }, 'Booked'), el('button', { class: 'btn sm warn', onclick: () => confirmCancel(b, b.start <= now()) }, b.start <= now() ? 'End early' : 'Cancel'))))) : el('div', { class: 'muted' }, 'Nothing booked yet.'));
 }
 function openBook(t) {
   const r = S.data.rules, t0 = now();
@@ -360,17 +373,23 @@ function renderAdmin() {
   put($('foot'), S.lastOk ? 'Updated ' + hm(S.lastOk) : '');
 }
 function adminSchedule() {
-  const a = S.admin, byDay = {};
+  const a = S.admin, byDay = {}, t0 = now();
   const conflictIds = new Set((a.conflicts || []).flat());
-  a.bookings.forEach(b => { const k = localMidnight(b.start); (byDay[k] = byDay[k] || []).push(b); });
-  const days = Object.keys(byDay).map(Number).sort((x, y) => x - y);
-  const kids = [el('div', { class: 'row' }, el('button', { class: 'btn sm', onclick: adminBookForm }, 'Book for a member'), el('button', { class: 'btn sm ghost', onclick: blockForm }, 'Block time'))];
-  if (!days.length) kids.push(el('div', { class: 'card empty' }, 'No bookings yet.'));
-  days.forEach(k => kids.push(el('div', { class: 'card' }, el('h2', null, dayName(k, true)),
-    byDay[k].map(b => el('div', { class: 'item' },
+  a.bookings.filter(b => b.status === 'active' && b.end > t0).forEach(b => { const k = localMidnight(b.start); (byDay[k] = byDay[k] || []).push(b); });
+  const base = localMidnight(t0), tomorrow = localMidnight(base + DAY + 3 * HOUR);
+  const later = Object.keys(byDay).map(Number).filter(k => k > tomorrow).sort((x, y) => x - y);
+  const laterCount = later.reduce((n, k) => n + byDay[k].length, 0);
+  const card = (k, title) => el('div', { class: 'card' }, el('h2', null, title + dayName(k, true)),
+    (byDay[k] || []).length ? byDay[k].sort((x, y) => x.start - y.start).map(b => el('div', { class: 'item' },
       el('div', { class: 'row sb' }, el('div', null, el('div', { class: 'mono' }, hm(b.start) + ' – ' + hm(b.end)), el('div', null, b.kind === 'block' ? 'Blocked: ' + (b.label || '') : b.member), b.label && b.kind === 'member' ? el('div', { class: 'small muted' }, b.label) : null),
-        el('span', { class: 'tag ' + (conflictIds.has(b.id) ? 'bad' : b.status === 'active' ? 'active' : 'warn') }, conflictIds.has(b.id) ? 'Overlap' : b.status === 'active' ? 'Booked' : b.status === 'done' ? 'Finished' : b.status)),
-      b.status === 'active' ? el('div', { class: 'row' }, el('button', { class: 'btn sm warn', onclick: () => adminCancel(b) }, 'Cancel')) : null)))));
+        el('span', { class: 'tag ' + (conflictIds.has(b.id) ? 'bad' : 'active') }, conflictIds.has(b.id) ? 'Overlap' : 'Booked')),
+      el('div', { class: 'row' }, el('button', { class: 'btn sm warn', onclick: () => adminCancel(b) }, 'Cancel')))) : el('div', { class: 'muted' }, 'Nothing booked.'));
+  const kids = [el('div', { class: 'row' }, el('button', { class: 'btn sm', onclick: adminBookForm }, 'Book for a member'), el('button', { class: 'btn sm ghost', onclick: blockForm }, 'Block time')),
+    card(base, 'Today · '), card(tomorrow, 'Tomorrow · ')];
+  if (laterCount > 0) {
+    kids.push(el('div', { class: 'row' }, el('button', { class: 'btn sm ghost', onclick: () => { S.adminLater = !S.adminLater; renderAdmin(); } }, S.adminLater ? 'Hide later days' : 'Show later days (' + laterCount + ')')));
+    if (S.adminLater) later.forEach(k => kids.push(card(k, '')));
+  }
   return kids;
 }
 async function adminCancel(b) {
