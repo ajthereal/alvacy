@@ -17,7 +17,7 @@
 <link rel="icon" href="/images/icon.svg?v=2" type="image/svg+xml">
 <link rel="icon" href="/images/icon-192.png?v=2" sizes="192x192" type="image/png">
 <link rel="apple-touch-icon" href="/images/apple-touch-icon.png?v=2">
-<meta name="theme-color" content="#1E3A8A">
+<meta name="theme-color" content="#FFFFFF">
 <meta property="og:type" content="profile">
 <meta property="og:site_name" content="#transformwithST">
 <meta property="og:title" content="AJ Jonathan · Diet sudah, olahraga sudah, badan tetap bandel?">
@@ -30,21 +30,21 @@
 <meta name="twitter:card" content="summary_large_image">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Geist+Mono:wght@500&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@400;500;600;700;800&family=Geist+Mono:wght@500&display=swap">
 <script>
 document.documentElement.setAttribute('data-theme','light');
 /* Halaman ini selalu pakai warna AJ (sky) dan membawa AJ sebagai coach ke halaman lain di situs. */
 window.PALETTE_OVERRIDE='sky';
 try{localStorage.setItem('alv-coach','aj')}catch(e){}
 </script>
-<link rel="stylesheet" href="/assets/site.css?v=1793167738">
-<link rel="stylesheet" href="/assets/palettes.css?v=1793167738">
-<link rel="stylesheet" href="/assets/results.css?v=1793167738">
+<link rel="stylesheet" href="/assets/site.css?v=1795742322">
+<link rel="stylesheet" href="/assets/palettes.css?v=1795742322">
+<link rel="stylesheet" href="/assets/results.css?v=1795742322">
 <style>
 .lang{display:inline-flex;gap:2px;padding:3px;border-radius:99px;background:var(--cloud);border:1px solid var(--cloud-line)}
 .site-nav .lang a{font-size:.74rem;font-weight:700;letter-spacing:.02em;padding:5px 8px;border-radius:99px;color:var(--muted);line-height:1}
-.site-nav .lang a[aria-current]{background:var(--surface);color:var(--head);box-shadow:0 1px 4px rgba(23,37,84,.12)}
-html[lang^="zh"] body{font-family:"Plus Jakarta Sans","PingFang SC","Hiragino Sans GB","Microsoft YaHei","Noto Sans CJK SC","Noto Sans SC",sans-serif}
+.site-nav .lang a[aria-current]{background:var(--surface);color:var(--head);box-shadow:0 1px 4px rgba(0,0,0,.12)}
+html[lang^="zh"] body{font-family:"Inter Tight","PingFang SC","Hiragino Sans GB","Microsoft YaHei","Noto Sans CJK SC","Noto Sans SC",sans-serif}
 html[lang^="zh"] h1,html[lang^="zh"] h2,html[lang^="zh"] h3,html[lang^="zh"] b,html[lang^="zh"] blockquote,html[lang^="zh"] .lede{letter-spacing:0!important}
 html[lang^="zh"] .hero h1,html[lang^="zh"] h2,html[lang^="zh"] .sub h3,html[lang^="zh"] .mp h3{line-height:1.25}
 html[lang^="zh"] p,html[lang^="zh"] li,html[lang^="zh"] dd{line-height:1.75}
@@ -62,9 +62,9 @@ section{padding-block:clamp(56px,10vw,112px)}
 @media (max-width:1152px){ .trail{margin-inline:12px;padding-inline:8px} }
 .segs{display:grid;grid-template-columns:repeat(7,minmax(0,1fr));gap:4px;width:100%}
 .segs a{display:block;height:18px;position:relative;-webkit-tap-highlight-color:transparent}
-.segs a::before{content:"";position:absolute;left:0;right:0;top:7px;height:4px;border-radius:99px;background:rgba(23,37,84,.14)}
+.segs a::before{content:"";position:absolute;left:0;right:0;top:7px;height:4px;border-radius:99px;background:rgba(0,0,0,.14)}
 .segs i{position:absolute;left:0;right:0;top:7px;height:4px;border-radius:99px;background:var(--pop);transform-origin:left;transform:scaleX(0);transition:transform .25s linear}
-.segs a[aria-current="step"]::before{background:rgba(23,37,84,.26)}
+.segs a[aria-current="step"]::before{background:rgba(0,0,0,.26)}
 .where{margin:0;font-size:.74rem;line-height:1;color:var(--head);background:rgba(255,255,255,.9);-webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px);border:1px solid var(--line);border-radius:99px;padding:6px 12px;box-shadow:var(--lift);white-space:nowrap;max-width:100%;overflow:hidden;text-overflow:ellipsis}
 .where b{font-family:var(--f-mono);font-weight:500}
 .where span{color:var(--muted)}
@@ -75,7 +75,7 @@ section{padding-block:clamp(56px,10vw,112px)}
 .dock{position:fixed;left:0;right:0;bottom:0;z-index:30;padding:10px 16px calc(10px + env(safe-area-inset-bottom,0px));display:flex;justify-content:center;
   transform:translateY(120%);transition:transform .45s var(--ease);pointer-events:none}
 .dock.on{transform:none}
-.dock .btn{pointer-events:auto;box-shadow:0 10px 30px rgba(23,37,84,.25)}
+.dock .btn{pointer-events:auto;box-shadow:0 10px 30px rgba(0,0,0,.25)}
 @media (min-width:900px){ .dock{display:none} }
 
 /* hero: bidang sky dengan cahaya yang bergerak, kartu hasil naik dari tepi bawah */
@@ -118,6 +118,11 @@ section{padding-block:clamp(56px,10vw,112px)}
 .device .foot{font-size:.76rem;color:var(--muted);border-top:1px solid var(--line);padding-top:12px}
 .ring{stroke-dasharray:100;stroke-dashoffset:calc(100 - var(--v));transition:stroke-dashoffset 1.6s var(--ease)}
 .js .device:not(.in) .ring{stroke-dashoffset:100}
+.lcd-sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+.device .lcd .lcd-num svg{height:64px}
+.device .lcd .lcd-row svg{height:20px;display:inline-block;vertical-align:middle}
+.device .lcd .lcd-d{display:inline-block}
+.device .lcd .lcd-row>span{display:flex;align-items:center;gap:6px}
 .fchip{position:absolute;display:none;align-items:center;gap:10px;padding:10px 14px;border-radius:18px;background:rgba(255,255,255,.92);border:1px solid var(--sky-line);box-shadow:var(--lift-img);
   font-size:.82rem;color:var(--muted);text-align:left;line-height:1.3;animation:bob 6s ease-in-out infinite}
 .fchip b{display:block;font-family:var(--f-mono);font-weight:500;font-size:1.05rem;color:var(--head);letter-spacing:-.03em}
@@ -191,10 +196,10 @@ section{padding-block:clamp(56px,10vw,112px)}
 .trio .v{font-family:var(--f-mono);font-size:1.5rem;letter-spacing:-.04em;color:var(--head)}
 .trio p{font-size:.86rem!important;line-height:1.4!important;color:var(--muted)!important}
 .mp .tag{display:inline-block;font-size:.68rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;padding:5px 11px;border-radius:999px;background:var(--pop);color:var(--pop-ink);margin-bottom:10px}
-.mp.me-panel{background:#172554;border-color:#172554}
+.mp.me-panel{background:#111111;border-color:#111111}
 .mp.me-panel h3{color:#fff}
 .mp.me-panel .mp-sub,.mp.me-panel dt{color:#9FB0D6}
-.mp.me-panel dd{color:#EAF0FA}
+.mp.me-panel dd{color:#F3F3F1}
 .mp.me-panel .mp-data{background:rgba(255,255,255,.08);border-color:rgba(255,255,255,.14)}
 .mp.me-panel .mp-data p{color:#DCE5F7}
 .mp.me-panel .mp-l{color:#FDBA74!important}
@@ -256,7 +261,7 @@ section{padding-block:clamp(56px,10vw,112px)}
 .disclose{display:flex;gap:12px;align-items:flex-start;padding:14px 16px;border-radius:var(--r-sm);background:rgba(255,255,255,.7);border:1px solid var(--sky-line);font-size:.9rem;color:var(--ink);line-height:1.5}
 .disclose svg{flex:none;width:20px;height:20px;margin-top:2px;color:var(--accent)}
 .hub{display:grid;justify-items:center;gap:0}
-.hub .core{font-weight:700;color:#fff;background:var(--head);padding:12px 22px;border-radius:99px;font-size:.95rem;box-shadow:0 8px 24px rgba(23,37,84,.2)}
+.hub .core{font-weight:700;color:#fff;background:var(--head);padding:12px 22px;border-radius:99px;font-size:.95rem;box-shadow:0 8px 24px rgba(0,0,0,.2)}
 .hub svg{width:100%;height:56px;display:block;overflow:visible}
 .hub path{vector-effect:non-scaling-stroke;fill:none;stroke:var(--accent);stroke-width:2;stroke-dasharray:100;stroke-dashoffset:100;transition:stroke-dashoffset 1.4s var(--ease) .2s}
 .reveal.in .hub path{stroke-dashoffset:0}
@@ -329,12 +334,12 @@ section{padding-block:clamp(56px,10vw,112px)}
 #hasil{padding-top:0}
 
 /* penutup */
-.door{max-width:1120px;margin:0 auto;display:grid;grid-template-columns:minmax(0,1fr) auto;gap:24px;align-items:center;background:#172554;color:#EAF0FA;border-radius:var(--r-lg);padding:clamp(28px,5vw,56px)}
+.door{max-width:1120px;margin:0 auto;display:grid;grid-template-columns:minmax(0,1fr) auto;gap:24px;align-items:center;background:#111111;color:#F3F3F1;border-radius:var(--r-lg);padding:clamp(28px,5vw,56px)}
 .door h2{color:#fff;font-size:clamp(1.8rem,4.4vw,2.8rem)}
-.door p{color:#C3CDE3;margin-top:12px;max-width:34em}
+.door p{color:#C9C9C5;margin-top:12px;max-width:34em}
 .door .btns{display:grid;gap:10px}
-.door .btn.quiet{background:transparent;border-color:#8FA0C8;color:#EAF0FA}
-.door .btn.quiet:hover{border-color:#EAF0FA}
+.door .btn.quiet{background:transparent;border-color:#8A8A86;color:#F3F3F1}
+.door .btn.quiet:hover{border-color:#F3F3F1}
 @media (max-width:760px){ .door{grid-template-columns:1fr} }
 .biz{max-width:1120px;margin:12px auto 0;display:grid;grid-template-columns:minmax(0,1fr) auto;gap:20px;align-items:center;padding:clamp(24px,4vw,40px)}
 .biz h3{font-size:1.4rem;letter-spacing:-.025em;margin-top:6px}
@@ -386,7 +391,7 @@ section{padding-block:clamp(56px,10vw,112px)}
 .pill.aw.c4{background:linear-gradient(170deg,#F0FAF6,#D9F0E6)}
 .pill.rk{background:linear-gradient(170deg,#0E7C86,#0F9B8E);color:#fff;border-color:transparent}
 .pill.rk .tg{font-size:.62rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;padding:4px 9px;border-radius:99px;background:rgba(255,255,255,.18);margin-bottom:auto}
-.pill.sc{background:linear-gradient(170deg,#1E3A8A,#172554);color:#fff;border-color:transparent}
+.pill.sc{background:linear-gradient(170deg,#1E3A8A,#111111);color:#fff;border-color:transparent}
 .pill.sc .tg{font-size:.62rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;padding:4px 9px;border-radius:99px;background:rgba(255,255,255,.14);margin-bottom:auto}
 .pill:hover{transform:translateY(-3px)}
 .wall.in .pill:hover{transform:translateY(-3px)}
@@ -470,6 +475,10 @@ section{padding-block:clamp(56px,10vw,112px)}
     <div class="device reveal" role="group" aria-label="Hasil nyata AJ">
       <div class="top"><span class="label">Hasil nyata AJ</span><span class="who">90 hari</span></div>
       <div class="prof"><img src="/images/coach-aj-face.jpg" width="192" height="192" alt="Foto AJ"><div><b>AJ Jonathan Ong</b><span>Coach #transformwithST</span></div></div>
+      <div class="lcd" id="ajLcd">
+        <div class="lcd-num"><span data-lcd data-from="85.1" data-to="67"><span class="lcd-sr">67</span><span class="lcd-d" aria-hidden="true"></span></span><span class="u">kg</span></div>
+        <div class="lcd-row"><span>Body fat <span data-lcd data-from="23.7" data-to="9.9"><span class="lcd-sr">9,9</span><span class="lcd-d" aria-hidden="true"></span></span> %</span><span>Visceral <span data-lcd data-from="13.5" data-to="5.5"><span class="lcd-sr">5,5</span><span class="lcd-d" aria-hidden="true"></span></span></span><span>Omron HBF-375</span></div>
+      </div>
       <div class="score">
         <svg viewBox="0 0 112 112" role="img" aria-label="Body fat turun dari 23,7 persen menjadi 9,9 persen"><circle cx="56" cy="56" r="48" fill="none" stroke="var(--d-track)" stroke-width="10"/><circle class="ring" pathLength="100" style="--v:23.7" cx="56" cy="56" r="48" fill="none" stroke="var(--d-orange)" stroke-opacity=".38" stroke-width="10" stroke-linecap="round" transform="rotate(-90 56 56)"/><circle class="ring" pathLength="100" style="--v:9.9" cx="56" cy="56" r="48" fill="none" stroke="var(--d-teal)" stroke-width="10" stroke-linecap="round" transform="rotate(-90 56 56)"/></svg>
         <div><div class="big"><span data-count="9.9" data-from="23.7" data-dec="1">9,9</span><small>%</small></div><p class="verdict">Body fat dulu 23,7%. Otot naik.</p></div>
@@ -1049,8 +1058,9 @@ section{padding-block:clamp(56px,10vw,112px)}
 <div class="dock" aria-hidden="false"><a class="btn primary" href="https://wa.me/628170241185?text=Halo%20AJ%2C%20aku%20baru%20buka%20halaman%20profil%20kamu%20dan%20mau%20ngobrol.">Chat AJ di WhatsApp</a></div>
 
 <script src="/data/coaches.js"></script>
-<script src="/assets/site.js?v=1793167738"></script>
-<script src="/assets/results.js?v=zh1"></script>
+<script src="/assets/site.js?v=1795742322"></script>
+<script src="/assets/lcd.js?v=1795742322"></script>
+<script src="/assets/results.js?v=1795742322"></script>
 <script>
 var I=window.TWA_I18N||{rl:'id',dec:',',wpm:250,cjk:false,ch:['Cerita','Enam jalan','Yang menua','TRME','Coaching','Hasil','Ngobrol'],start:'Mulai · 7 bagian · <span>± {n} menit</span>',step:'<b>{i} dari 7</b> · {ch}{last} <span>· {t}</span>',last:' · bagian terakhir',end:'Sudah di akhir',lt1:'hampir selesai',rem:'± {n} menit lagi'};
 ALVResults.mount(document.getElementById('results'));ALVResults.render(I.rl);
@@ -1120,6 +1130,26 @@ ALVResults.mount(document.getElementById('results'));ALVResults.render(I.rl);
     var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){run(e.target);io.unobserve(e.target)}})},{threshold:.6});
     els.forEach(function(el){el.textContent=fmt(parseFloat(el.dataset.from||0),+(el.dataset.dec||0));io.observe(el)});
   }
+})();
+/* LCD readout in the hero card: counts down from the start to the end numbers once, when it scrolls into view. Reduced motion: final numbers. */
+(function(){
+  var box=document.getElementById('ajLcd');
+  if(!box||!window.ALVLCD)return;
+  var cells=[].slice.call(box.querySelectorAll('[data-lcd]'));
+  function draw(p){
+    cells.forEach(function(c){
+      var from=parseFloat(c.dataset.from),to=parseFloat(c.dataset.to),w=String(Math.floor(Math.max(from,to))).length+1;
+      c.querySelector('.lcd-d').innerHTML=ALVLCD.seg(ALVLCD.fmt(from+(to-from)*p,w,1));
+    });
+  }
+  if(matchMedia('(prefers-reduced-motion:reduce)').matches||!('IntersectionObserver' in window)){draw(1);return}
+  draw(0);
+  var seen=false;
+  new IntersectionObserver(function(es,o){es.forEach(function(e){
+    if(!e.isIntersecting||seen)return;seen=true;o.disconnect();
+    var t0=null;function step(t){if(!t0)t0=t;var k=Math.min(1,(t-t0)/1600);draw(1-Math.pow(1-k,3));if(k<1)requestAnimationFrame(step)}
+    requestAnimationFrame(step);
+  })},{threshold:.6}).observe(box);
 })();
 </script>
 </body>

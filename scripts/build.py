@@ -159,7 +159,7 @@ def head_block(page, lang, faq):
         f'<link rel="icon" href="/images/icon.svg?v={ASSET_V}" type="image/svg+xml">',
         f'<link rel="icon" href="/images/icon-192.png?v={ASSET_V}" sizes="192x192" type="image/png">',
         f'<link rel="apple-touch-icon" href="/images/apple-touch-icon.png?v={ASSET_V}">',
-        '<meta name="theme-color" content="#1E3A8A">',
+        '<meta name="theme-color" content="#FFFFFF">',
         *(['<meta name="robots" content="noindex, nofollow">'] if page.get('noindex') else []),
         '<meta property="og:type" content="website">',
         f'<meta property="og:site_name" content="{e(page.get("brand", "#transformwithST"))}">',

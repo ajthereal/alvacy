@@ -120,7 +120,7 @@ def build(p, en):
 <link rel="icon" href="/images/icon.svg?v=2" type="image/svg+xml">
 <link rel="icon" href="/images/icon-192.png?v=2" sizes="192x192" type="image/png">
 <link rel="apple-touch-icon" href="/images/apple-touch-icon.png?v=2">
-<meta name="theme-color" content="#1E3A8A">
+<meta name="theme-color" content="#FFFFFF">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="#transformwithST">
 <meta property="og:title" content="{E(short(P(p["title"], en), 60))}">
@@ -137,12 +137,12 @@ def build(p, en):
 </script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Geist+Mono:wght@500&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@400;500;600;700;800&family=Geist+Mono:wght@500&display=swap">
 <script>
 document.documentElement.setAttribute('data-theme','light');
 </script>
-<link rel="stylesheet" href="/assets/site.css?v=1793167738">
-<link rel="stylesheet" href="/assets/palettes.css?v=1793167738">
+<link rel="stylesheet" href="/assets/site.css?v=1795742322">
+<link rel="stylesheet" href="/assets/palettes.css?v=1795742322">
 <style>
 {CSS}
 </style>
@@ -186,7 +186,7 @@ document.documentElement.setAttribute('data-theme','light');
 <div class="dock"><a class="btn primary js-wa" href="{WA}"><span>Chat <span class="cn">Coach AJ</span> {t(("di WhatsApp", "on WhatsApp"))}</span></a></div>
 
 <script src="/data/coaches.js"></script>
-<script src="/assets/site.js?v=1793167738"></script>
+<script src="/assets/site.js?v=1795742322"></script>
 <script>
 (function(){{
   var d=document.querySelector('.dock');function f(){{d.classList.toggle('on',scrollY>520)}}addEventListener('scroll',f,{{passive:true}});f();
