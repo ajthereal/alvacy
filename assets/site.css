@@ -86,8 +86,8 @@ button{font:inherit;color:inherit;cursor:pointer}
 
 /* buttons: pills */
 .btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;border:2px solid transparent;border-radius:999px;padding:12px 26px;min-height:52px;font-weight:700;font-size:1.02rem;text-decoration:none;transition:background-color .16s var(--ease),border-color .16s var(--ease)}
-.btn.primary{background:var(--cta);border-color:var(--cta);color:var(--cta-ink)}
-.btn.primary:hover{background:var(--cta-hover);border-color:var(--cta-hover)}
+.btn.primary{background:var(--cta);color:var(--cta-ink)}
+.btn.primary:hover{background:var(--cta-hover)}
 .btn.quiet{background:transparent;border-color:var(--head);color:var(--head)}
 .btn.quiet:hover{background:var(--sand)}
 .btn.small{padding:9px 18px;min-height:44px;font-size:.92rem}

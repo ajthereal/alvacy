@@ -141,7 +141,7 @@ def build(p, en):
 <script>
 document.documentElement.setAttribute('data-theme','light');
 </script>
-<link rel="stylesheet" href="/assets/site.css?v=1795742322">
+<link rel="stylesheet" href="/assets/site.css?v=1795742323">
 <link rel="stylesheet" href="/assets/palettes.css?v=1795742322">
 <style>
 {CSS}
